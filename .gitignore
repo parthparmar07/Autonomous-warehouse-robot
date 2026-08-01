@@ -1,0 +1,50 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+
+# --- virtual environment ---
+.venv/
+venv/
+env/
+
+# --- experiment tracking & artefacts ---
+mlruns/
+mlartifacts/
+optuna_studies/
+outputs/
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+
+# NOTE: exported ONNX policies ARE versioned (they are graded deliverables).
+!artifacts/onnx/*.onnx
+
+# --- monitoring / reporting output ---
+reports/generated/
+evidently_reports/
+emissions.csv
+.codecarbon.config
+
+# --- episode logs (regenerable from seeds; manifests are versioned, logs are not) ---
+logs/
+data/episodes/
+*.jsonl.gz
+
+# --- testing & coverage ---
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+.ruff_cache/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp

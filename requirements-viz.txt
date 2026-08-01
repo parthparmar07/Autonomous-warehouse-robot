@@ -1,0 +1,19 @@
+# Visualisation-only dependencies — 3D PyBullet demo (EO-4).
+#
+# NOT required for training, evaluation, the decision service, or CI.
+# The renderer replays recorded trajectories and is import-isolated from all
+# training/eval code paths (FR-7, ADR-001). Nothing here can affect a reported metric.
+#
+# Windows note: pybullet publishes no win_amd64 wheels for any modern version
+# (last one was 2.6.9 / cp27), so `pip install pybullet` on Windows compiles from
+# source and needs MSVC + the Windows 10/11 SDK. Two zero-cost alternatives:
+#   1. WSL2 (Ubuntu 22.04) — manylinux wheel installs instantly; WSLg gives a live
+#      GUI window on Windows 11, which supports the W15 live demo.
+#   2. Google Colab — install there and render headless to an MP4 for the recording.
+# See ADR-004 for the decision record.
+#
+#   pip install -r requirements-viz.txt
+
+pybullet>=3.2.6
+imageio>=2.34
+imageio-ffmpeg>=0.5

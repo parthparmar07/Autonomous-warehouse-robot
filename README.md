@@ -17,7 +17,10 @@ value decomposition grows with it.
 
 ## Documentation
 
-Read in this order:
+**New to the project? Start with the [Plain-English Guide](docs/08_plain_english_guide.md)** — the
+whole project and all five papers explained without jargon, with a glossary. ~10 minutes.
+
+Then read in this order:
 
 | # | Document | What it settles |
 |---|---|---|

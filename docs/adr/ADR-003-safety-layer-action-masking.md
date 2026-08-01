@@ -67,6 +67,14 @@ begins, so no policy is ever trained in an unconstrained world.
 ## Consequences
 
 **Positive**
+- **Backed by the shielding literature.** Elsayed-Aly et al. (AAMAS 2021, arXiv:2101.11196, [P4])
+  formalise exactly this pattern. Our per-robot corridor mask is a **factored shield** in the
+  extreme case — one shield per agent, correctness depending only on that agent's cell and the
+  static corridor mask. Two of their results carry directly: shielding *during learning* guarantees
+  safety **without compromising learned-policy quality** (evidence against RSK-06, which we
+  previously had to argue against on first principles alone), and factored shielding **scales better
+  in agent count** than centralised shielding (supports NFR-7 latency at N=20). Using their
+  terminology also locates our design in an established literature rather than presenting it as ad hoc.
 - Chosen action ≡ executed action, so the replay buffer is coherent and there is no train/execute mismatch.
 - The safety property holds by construction, independent of model quality — it cannot be unlearned,
   and it holds even for a randomly initialised network. This is exactly the ETH-3 claim.

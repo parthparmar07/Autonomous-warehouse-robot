@@ -65,6 +65,15 @@ perturb one Q_a upward over randomised inputs and assert ΔQ_tot ≥ 0.
 - We own correctness. A subtly wrong mixer could produce plausible-but-wrong results — mitigated by
   the monotonicity property test, by the IQL comparison acting as a sanity floor, and by the epymarl
   oracle path.
+- **Implementation tricks matter more than we assumed.** Hu et al. (arXiv:2102.03479, [P3]) find
+  that QMIX's measured performance is "significantly affected by various code-level optimizations,"
+  to the point that properly-optimised plain QMIX outperforms variants designed to beat it. A
+  from-scratch implementation that omits them will underperform for reasons that have nothing to do
+  with the science. **Mitigation — W7 checklist, every item logged to MLflow (FR-8) so a later
+  underperformance is diagnosable rather than guesswork:**
+  reward normalisation/standardisation · gradient clipping · optimiser choice (Adam vs. RMSProp) ·
+  ε-anneal schedule · replay buffer size · target-network update cadence · parameter sharing across
+  agents. QMIX and IQL must be held identical on all of these so the mixer is the only difference.
 - ~300 lines of R2's W7 budget spent on implementation rather than experiments.
 
 **Neutral**

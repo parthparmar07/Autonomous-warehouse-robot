@@ -16,18 +16,30 @@ There are two problems with this as an acceptance criterion.
 
 **1. It is not an engineering outcome we control.** Whether the QMIX−IQL gap widens with fleet size
 is a property of the algorithms and the environment, not of our implementation effort. We can build
-QMIX correctly, tune it well, and evaluate it rigorously, and the gap can still narrow. In fact
-there are principled reasons to expect it might:
+QMIX correctly, tune it well, and evaluate it rigorously, and the gap can still narrow. There are
+principled reasons to expect it might:
 
-- QMIX's monotonic mixing constraint limits the class of joint value functions it can represent.
+- ~~QMIX's monotonic mixing constraint limits the class of joint value functions it can represent.
   The cost of that restriction grows with the number of agents, and it is exactly the setting where
-  the literature reports QMIX struggling.
+  the literature reports QMIX struggling.~~ **Amended W3 after the literature review — this argument
+  is contested.** Hu et al. (arXiv:2102.03479, [P3]) find that the monotonicity constraint can
+  *improve* sample efficiency in **purely cooperative** tasks, and that reported gains from
+  relaxing it are largely attributable to code-level optimisations rather than the relaxation
+  itself. Our warehouse task is purely cooperative — the regime they examine. The
+  representational-limitation argument is therefore weaker than we first claimed, and may point the
+  other way. See `07_literature_review.md` §6.1.
 - The mixer's input (global state) and output space grow with N, making the credit-assignment
   problem harder to fit at the same sample budget.
 - IQL, despite being theoretically unsound under non-stationarity, is empirically robust and
   sometimes degrades more gracefully than value-decomposition methods at scale.
 - Our compute budget is fixed and free-tier. At N=20 both algorithms may be under-trained, which
   compresses any gap toward noise.
+
+**The decision below does not depend on which way the gap goes** — it rests only on the outcome
+being outside our control. But the correction matters and is kept visible rather than deleted: a
+pre-registration is only credible if we are equally willing to publish updates that cut against our
+own earlier reasoning. Net effect of [P3]: a *widening* gap (H1 supported) is somewhat more
+plausible than we had assumed when this ADR was drafted.
 
 **2. As written, it creates a bad incentive.** An acceptance criterion is something you are supposed
 to *make* true. The only levers available for making this particular statement true — after seeing

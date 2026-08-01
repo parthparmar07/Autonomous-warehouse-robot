@@ -28,7 +28,9 @@ Read in this order:
 | 4 | [CRISP-DM adaptation](docs/04_crisp_dm_adaptation.md) | Why CRISP-DM needs modifying for RL, and the two safeguards added |
 | 5 | [Milestone plan](docs/05_milestone_plan.md) | Roles, M1–M10 gates, week-by-week schedule, critical path, descope ladder |
 | 6 | [Risk register](docs/06_risk_register.md) | 14 scored risks; three reds, all landing in W4 |
+| 7 | [Literature review](docs/07_literature_review.md) | Five supporting papers, what each changes about our design, and the RAI sourcing gaps |
 | — | [ADRs](docs/adr/) | Five accepted architecture decisions with rejected alternatives |
+| — | [Papers](papers/) | The five PDFs, indexed and mapped to requirements |
 
 ---
 

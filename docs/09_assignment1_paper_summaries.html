@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assignment 1 — Literature Summary — Project 25</title>
+<style>
+  :root{
+    --ink:#16181d; --ink-soft:#4a5160; --ink-faint:#767d8c;
+    --rule:#dcdfe6; --rule-soft:#eceef2;
+    --bg:#ffffff; --bg-soft:#f7f8fa; --bg-accent:#f0f4fb;
+    --accent:#1f4e9c; --accent-soft:#e3ebf7;
+    --warn-bg:#fdf6e4; --warn-rule:#e0c168; --warn-ink:#6b5310;
+    --maxw:56rem;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --ink:#e6e8ee; --ink-soft:#b2b8c6; --ink-faint:#8d94a3;
+      --rule:#333844; --rule-soft:#272b34;
+      --bg:#15171c; --bg-soft:#1c1f26; --bg-accent:#1a2334;
+      --accent:#7aa7ee; --accent-soft:#1e2a3e;
+      --warn-bg:#2b2413; --warn-rule:#7a6425; --warn-ink:#e3c778;
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; padding:2.5rem 1.25rem 5rem;
+    background:var(--bg); color:var(--ink);
+    font:16px/1.62 "Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  }
+  .sheet{max-width:var(--maxw); margin:0 auto}
+
+  h1{font-size:1.85rem; line-height:1.25; margin:0 0 .3rem; letter-spacing:-.015em}
+  .sub{font-size:1.02rem; color:var(--ink-soft); margin:0 0 1.6rem; font-style:italic}
+  h2{
+    font-size:1.28rem; margin:3rem 0 1rem; padding-bottom:.4rem;
+    border-bottom:2px solid var(--rule); letter-spacing:-.01em;
+  }
+  h3{
+    font-size:1.08rem; margin:0 0 .9rem; color:var(--accent);
+    letter-spacing:-.005em;
+  }
+  p{margin:0 0 .85rem}
+  a{color:var(--accent); text-decoration:none; border-bottom:1px solid var(--accent-soft)}
+  a:hover{border-bottom-color:currentColor}
+  strong{font-weight:600}
+
+  /* meta block */
+  .meta{
+    background:var(--bg-soft); border:1px solid var(--rule);
+    border-radius:8px; padding:1rem 1.15rem; margin:0 0 1.5rem;
+  }
+  .meta dl{display:grid; grid-template-columns:auto 1fr; gap:.4rem 1.1rem; margin:0;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-size:.86rem}
+  .meta dt{color:var(--ink-faint); font-weight:600; white-space:nowrap}
+  .meta dd{margin:0}
+  .fill{color:var(--ink-faint); font-style:italic}
+
+  /* tables */
+  .scroll{overflow-x:auto; margin:0 0 1.3rem; -webkit-overflow-scrolling:touch}
+  table{border-collapse:collapse; width:100%; min-width:34rem;
+    font-family:system-ui,-apple-system,"Segoe UI",sans-serif; font-size:.845rem}
+  th,td{text-align:left; padding:.55rem .7rem; border-bottom:1px solid var(--rule-soft); vertical-align:top}
+  thead th{background:var(--bg-accent); border-bottom:2px solid var(--rule);
+    font-weight:600; font-size:.79rem; letter-spacing:.02em; text-transform:uppercase; color:var(--ink-soft)}
+  tbody tr:last-child td{border-bottom:1px solid var(--rule)}
+  .pid{font-weight:700; color:var(--accent); white-space:nowrap}
+
+  /* paper blocks */
+  .paper{
+    border:1px solid var(--rule); border-left:4px solid var(--accent);
+    border-radius:6px; padding:1.3rem 1.4rem; margin:0 0 1.4rem;
+    background:var(--bg);
+  }
+  .field{margin:0 0 1rem}
+  .field:last-child{margin-bottom:0}
+  .label{
+    display:block; font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+    font-size:.7rem; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--ink-faint); margin:0 0 .3rem;
+  }
+  .field p:last-child{margin-bottom:0}
+  .cite{font-size:.9rem; color:var(--ink-soft)}
+  .cite a{word-break:break-word}
+
+  /* callouts */
+  .note{
+    background:var(--bg-accent); border-left:3px solid var(--accent);
+    padding:.85rem 1.05rem; margin:0 0 1.3rem; border-radius:0 5px 5px 0; font-size:.94rem;
+  }
+  .note p:last-child{margin-bottom:0}
+  .warn{
+    background:var(--warn-bg); border-left:3px solid var(--warn-rule); color:var(--warn-ink);
+    padding:.8rem 1rem; margin:1rem 0 0; border-radius:0 5px 5px 0; font-size:.88rem;
+  }
+  .warn p:last-child{margin-bottom:0}
+
+  ol.refs{padding-left:1.3rem; font-size:.9rem}
+  ol.refs li{margin:0 0 .8rem; padding-left:.25rem}
+  .foot{margin-top:2.5rem; padding-top:1rem; border-top:1px solid var(--rule);
+    font-size:.82rem; color:var(--ink-faint); font-family:system-ui,sans-serif}
+
+  /* print */
+  @media print{
+    :root{
+      --ink:#000; --ink-soft:#333; --ink-faint:#555;
+      --rule:#bbb; --rule-soft:#ddd;
+      --bg:#fff; --bg-soft:#f4f4f4; --bg-accent:#eef2f8;
+      --accent:#1a3f7d; --accent-soft:#ccd;
+      --warn-bg:#faf4e2; --warn-rule:#c0a040; --warn-ink:#4a3a06;
+    }
+    body{padding:0; font-size:10.5pt; line-height:1.45}
+    .sheet{max-width:none}
+    h2{margin-top:1.5rem; page-break-after:avoid}
+    h3{page-break-after:avoid}
+    .paper{page-break-inside:avoid; border-left-width:3px}
+    table{min-width:0; font-size:9pt}
+    .scroll{overflow:visible}
+    a{color:inherit; border:0}
+    .no-print{display:none}
+    @page{margin:16mm 14mm}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+  <h1>Assignment 1 — Literature Summary</h1>
+  <p class="sub">Project 25: Autonomous Warehouse Robot Fleet Coordination Using Multi-Agent Reinforcement Learning</p>
+
+  <div class="meta">
+    <dl>
+      <dt>Group members</dt><dd class="fill">name — roll no. · name — roll no. · name — roll no. · name — roll no.</dd>
+      <dt>Course / Semester</dt><dd><span class="fill">course code</span> · Semester 5</dd>
+      <dt>Faculty</dt><dd>Tasmiya Khan</dd>
+      <dt>Date</dt><dd>2 August 2026</dd>
+      <dt>Papers reviewed</dt><dd>6 <span class="fill">(minimum required: 5)</span></dd>
+    </dl>
+  </div>
+
+  <h2>1. Introduction</h2>
+  <p>Our project builds a fleet of warehouse robots that learn to cooperate. Multiple robots must complete a queue of pick-and-deliver tasks without blocking each other, colliding, or entering corridors reserved for human workers. We implement <strong>QMIX</strong>, a cooperative multi-agent reinforcement learning (MARL) algorithm, and compare it against <strong>IQL</strong> (Independent Q-Learning) and a <strong>rule-based</strong> dispatcher at fleet sizes of 5, 10 and 20 robots.</p>
+  <p>The six papers below were selected because each answers a specific question we had to resolve before writing code. They are not a general survey of the field — every one is cited in at least one of our design documents, and two of them changed decisions we had already made.</p>
+
+  <div class="note">
+    <p><strong>A note on publication venues.</strong> In computer science and machine learning, the flagship <em>conferences</em> — ICML, NeurIPS, AAMAS — are peer-reviewed archival venues and are generally ranked <em>above</em> most journals in the field, with acceptance rates typically between 20% and 26%. This differs from disciplines where the journal is the primary venue.</p>
+    <p>We have nonetheless prioritised journal publications where one exists. Our selection is <strong>3 journal articles</strong> (<em>Journal of Machine Learning Research</em>, <em>IEEE Robotics and Automation Letters</em>, <em>Applied Intelligence</em>), <strong>2 top-tier peer-reviewed conference papers</strong> (NeurIPS, AAMAS), and <strong>1 non-archival paper</strong> (P3). P3 is flagged openly rather than presented as peer-reviewed; it is included because its empirical ablation study directly changed two of our design decisions. It is our sixth paper, so the five-paper minimum is met by peer-reviewed work alone.</p>
+  </div>
+
+  <h2>2. Summary table</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>#</th><th>Paper (short)</th><th>Year</th><th>Venue</th><th>Type</th><th>Question it answers for us</th></tr></thead>
+    <tbody>
+      <tr><td class="pid">P1</td><td>QMIX: Monotonic Value Function Factorisation</td><td>2020</td><td><em>J. Machine Learning Research</em> 21(178)</td><td>Journal</td><td>How do you share credit fairly among cooperating agents?</td></tr>
+      <tr><td class="pid">P2</td><td>Benchmarking MARL Algorithms in Cooperative Tasks</td><td>2021</td><td>NeurIPS (Datasets &amp; Benchmarks)</td><td>Conference</td><td>Which algorithms do we compare against, and how do we compare fairly?</td></tr>
+      <tr><td class="pid">P3</td><td>Rethinking Implementation Tricks and Monotonicity</td><td>2021</td><td>arXiv / ICLR Blogposts 2023</td><td>Preprint</td><td>Is the algorithm doing the work, or the implementation details?</td></tr>
+      <tr><td class="pid">P4</td><td>Safe MARL via Shielding</td><td>2021</td><td>AAMAS</td><td>Conference</td><td>How do we guarantee safety when the policy is still untrained?</td></tr>
+      <tr><td class="pid">P5</td><td>PRIMAL: Pathfinding via RL and Imitation</td><td>2019</td><td><em>IEEE Robotics &amp; Automation Letters</em> 4(3)</td><td>Journal</td><td>Does decentralised learning work on real warehouse robots?</td></tr>
+      <tr><td class="pid">P6</td><td>A Review of Cooperative Multi-Agent Deep RL</td><td>2023</td><td><em>Applied Intelligence</em> 53(11)</td><td>Journal</td><td>Where do our chosen methods sit in the wider field?</td></tr>
+    </tbody>
+  </table>
+  </div>
+
+  <h2>3. Paper summaries</h2>
+
+  <!-- P1 -->
+  <div class="paper">
+    <h3>P1 — Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning (QMIX)</h3>
+
+    <div class="field"><span class="label">Title explanation</span>
+      <p>A <em>value function</em> is a robot's estimate of how good a situation is. <em>Factorisation</em> means breaking the team's single overall value into one piece per robot, so each robot can act on its own share. <em>Monotonic</em> is the constraint that makes this safe: if any one robot's estimate goes up, the team's estimate can never go down. In short — <strong>splitting a team score into individual scores in a way that keeps the two consistent.</strong> The algorithm is called QMIX.</p></div>
+
+    <div class="field"><span class="label">Objectives</span>
+      <p>To train robots that must each act using only their own local observations, while exploiting the fact that during training in simulation the whole system state is visible. The paper targets a gap between two extremes: VDN, which simply adds agent values together and is too restrictive, and fully centralised methods, which cannot be deployed on independently-acting agents. QMIX aims for a richer combination than a sum, while still guaranteeing that each agent greedily choosing its own best action reproduces the best joint action.</p></div>
+
+    <div class="field"><span class="label">Methodology</span>
+      <p>Each agent has its own recurrent deep Q-network (DRQN) reading only its local observation history. A separate <strong>mixing network</strong> combines the agents' individual values into a joint value <em>Q<sub>tot</sub></em>. The mixing network's weights are produced by <em>hypernetworks</em> conditioned on the global state and are forced to be non-negative, structurally guaranteeing monotonicity. The system is trained end-to-end by minimising a temporal-difference loss on <em>Q<sub>tot</sub></em>. This scheme is called <strong>CTDE</strong> — Centralised Training with Decentralised Execution. Evaluation is on the StarCraft Multi-Agent Challenge (SMAC).</p></div>
+
+    <div class="field"><span class="label">Type of results achieved</span>
+      <p><em>In the paper:</em> QMIX consistently outperforms both IQL and VDN across SMAC scenarios, with ablation studies isolating the contribution of the mixing network and global-state conditioning.</p>
+      <p><em>For our project:</em> this is the algorithm we implement. It provides the exact network architecture for Week 7, and its monotonicity guarantee becomes a testable property — our automated test perturbs one agent's value upward and asserts the team value never decreases. We expect a task-completion rate of at least 80% at 5 robots, and a measurable advantage over IQL that we predict will widen as the fleet grows.</p></div>
+
+    <div class="field cite"><span class="label">Referenced journal or website</span>
+      <p>Rashid, T., Samvelyan, M., Schroeder de Witt, C., Farquhar, G., Foerster, J., &amp; Whiteson, S. (2020). <em>Journal of Machine Learning Research</em>, 21(178), 1–51.<br>
+      <a href="https://www.jmlr.org/papers/v21/20-081.html">jmlr.org/papers/v21/20-081.html</a><br>
+      Earlier conference version: <em>Proceedings of ICML 2018</em>, PMLR 80:4295–4304. Preprint: <a href="https://arxiv.org/abs/1803.11485">arXiv:1803.11485</a></p></div>
+  </div>
+
+  <!-- P2 -->
+  <div class="paper">
+    <h3>P2 — Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks</h3>
+
+    <div class="field"><span class="label">Title explanation</span>
+      <p><em>Benchmarking</em> means running many algorithms on the same problems under the same conditions so the comparison is fair. <em>Cooperative tasks</em> are problems where all agents share one goal, as opposed to competing. The title is therefore: <strong>a fair, like-for-like contest between MARL algorithms on problems where agents must work together.</strong></p></div>
+
+    <div class="field"><span class="label">Objectives</span>
+      <p>The authors observe that MARL lacks commonly-used evaluation tasks and criteria, which makes published comparisons unreliable. Their objectives are to systematically evaluate three distinct classes of algorithm, to provide reference performance figures the community can cite, and to release open-source tooling and environments so future comparisons are reproducible.</p></div>
+
+    <div class="field"><span class="label">Methodology</span>
+      <p>They compare three algorithm families — <strong>independent learning</strong> (including IQL), <strong>centralised multi-agent policy gradient</strong>, and <strong>value decomposition</strong> (including QMIX) — across a diverse range of cooperative environments. Each algorithm receives its own hyperparameter search per task, so no method is disadvantaged by poor tuning, and results are reported across multiple random seeds. They open-source <strong>EPyMARL</strong>, extending the PyMARL codebase so implementation details such as parameter sharing can be configured explicitly, plus two new environments designed around coordination under sparse rewards — one of which, <strong>RWARE</strong>, is a grid-based robotic warehouse.</p></div>
+
+    <div class="field"><span class="label">Type of results achieved</span>
+      <p><em>In the paper:</em> reference performance tables across all algorithm–task combinations, and the finding that no single algorithm dominates everywhere. Critically, implementation details such as parameter sharing materially affect results — so comparisons that fail to control for them are not meaningful.</p>
+      <p><em>For our project:</em> this validates our experimental design. It confirms QMIX-versus-IQL is the field's standard comparison rather than an arbitrary choice, and RWARE's existence establishes a grid warehouse as an accepted research environment. It also imposed a rule: QMIX and IQL must be held identical in network size, parameter sharing and training budget, so the mixing network is the only difference between them. Every such setting is logged for our results to be defensible.</p></div>
+
+    <div class="field cite"><span class="label">Referenced journal or website</span>
+      <p>Papoudakis, G., Christianos, F., Schäfer, L., &amp; Albrecht, S. V. (2021). <em>Proceedings of the 35th Conference on Neural Information Processing Systems (NeurIPS 2021), Datasets and Benchmarks Track.</em><br>
+      <a href="https://arxiv.org/abs/2006.07869">arxiv.org/abs/2006.07869</a> · Code: <a href="https://github.com/uoe-agents/epymarl">github.com/uoe-agents/epymarl</a></p></div>
+  </div>
+
+  <!-- P3 -->
+  <div class="paper">
+    <h3>P3 — Rethinking the Implementation Tricks and Monotonicity Constraint in Cooperative MARL</h3>
+
+    <div class="field"><span class="label">Title explanation</span>
+      <p><em>Implementation tricks</em> are small, unglamorous coding choices — how rewards are scaled, how gradients are clipped, which optimiser is used. The <em>monotonicity constraint</em> is QMIX's core rule from P1. <em>Rethinking</em> signals that the paper challenges accepted wisdom. In plain terms: <strong>are recent improvements over QMIX genuinely better ideas, or just better code?</strong></p></div>
+
+    <div class="field"><span class="label">Objectives</span>
+      <p>Several published variants of QMIX claimed better performance by <em>relaxing</em> its monotonicity constraint. The authors set out to test whether the constraint is genuinely the limitation those papers assume, by separating the effect of the algorithmic change from the effect of code-level optimisations bundled into the same implementations.</p></div>
+
+    <div class="field"><span class="label">Methodology</span>
+      <p>A controlled ablation study. The authors examine the released source code of QMIX variants, identify the code-level optimisations each contains, then apply those same optimisations to standard QMIX. All methods are re-run under matched conditions on SMAC and on Difficulty-Enhanced Predator-Prey (DEPP). They add a theoretical analysis of why monotonicity should help specifically in purely cooperative tasks, and open-source their implementation as <strong>PyMARL2</strong>.</p></div>
+
+    <div class="field"><span class="label">Type of results achieved</span>
+      <p><em>In the paper:</em> three findings. First, the reported improvements of QMIX variants are significantly affected by code-level optimisations rather than by relaxing monotonicity. Second, QMIX with normalised optimisations outperforms the variants designed to beat it. Third — contrary to common wisdom — the monotonicity constraint can <em>improve</em> sample efficiency in purely cooperative tasks.</p>
+      <p><em>For our project:</em> two consequences. It warns that our from-scratch QMIX could underperform for reasons unrelated to the science, so we maintain an explicit checklist of these implementation details, each recorded, making any underperformance diagnosable rather than guesswork. It also <strong>corrected an argument we had already written down</strong>: we had assumed monotonicity would become more limiting as the fleet grows. Since our warehouse task is purely cooperative — the exact regime this paper examines — that assumption is contested and possibly backwards. We amended our design record rather than deleting the original claim.</p></div>
+
+    <div class="field cite"><span class="label">Referenced journal or website</span>
+      <p>Hu, J., Jiang, S., Harding, S. A., Wu, H., &amp; Liao, S. (2021). Preprint, <a href="https://arxiv.org/abs/2102.03479">arXiv:2102.03479</a>; later presented on the <strong>ICLR 2023 Blogposts Track</strong>. Code: <a href="https://github.com/hijkzzz/pymarl2">github.com/hijkzzz/pymarl2</a></p>
+      <div class="warn"><p><strong>Venue note (stated openly):</strong> this is the one item in our selection that is not a peer-reviewed journal or conference paper. We cite it for its empirical ablations, not as theoretical authority. It is retained because it materially changed our design, and it is our sixth source — the five-paper requirement is satisfied by peer-reviewed work without it.</p></div></div>
+  </div>
+
+  <!-- P4 -->
+  <div class="paper">
+    <h3>P4 — Safe Multi-Agent Reinforcement Learning via Shielding</h3>
+
+    <div class="field"><span class="label">Title explanation</span>
+      <p>A <em>shield</em> is a separate, non-learning component placed between an agent and the world; it watches proposed actions and blocks or corrects unsafe ones. <em>Safe MARL</em> means guaranteeing that no unsafe state is ever entered — including during training, when the policy is still bad at its job. The title reads: <strong>making multi-robot learning provably safe by adding a guard that does not learn.</strong></p></div>
+
+    <div class="field"><span class="label">Objectives</span>
+      <p>The authors note that MARL is increasingly applied in safety-critical settings requiring guaranteed safety during the learning process, and that current MARL methods provide no such guarantee. Their objective is to supply one, and to determine how it should be structured so it remains practical as the number of agents grows.</p></div>
+
+    <div class="field"><span class="label">Methodology</span>
+      <p>Two shielding architectures are proposed and compared. In <strong>centralised shielding</strong>, a single shield is synthesised to monitor all agents' joint actions and correct any unsafe action. In <strong>factored shielding</strong>, multiple shields are synthesised based on a factorisation of the joint state space; these monitor agents concurrently, each responsible for a subset of agents at each step. Both are evaluated against unshielded MARL on safety violations, learned-policy quality and scalability in agent count.</p></div>
+
+    <div class="field"><span class="label">Type of results achieved</span>
+      <p><em>In the paper:</em> both approaches guarantee agent safety during learning <strong>without compromising the quality of the learned policies</strong> — safety is not paid for in performance. Factored shielding is more scalable in the number of agents than centralised shielding.</p>
+      <p><em>For our project:</em> the strongest external validation of our safety design. Our human-corridor block is a factored shield in its simplest form — one shield per robot, whose correctness depends only on that robot's position and a fixed map of corridor cells. The first finding is direct evidence against a risk we had logged (that blocking actions might disrupt learned coordination), which we previously could only argue from first principles. The second is why we expect our safety check to remain fast at 20 robots. Our target is zero corridor intrusions across 20 dedicated safety-test episodes, enforced automatically on every build.</p></div>
+
+    <div class="field cite"><span class="label">Referenced journal or website</span>
+      <p>ElSayed-Aly, I., Bharadwaj, S., Amato, C., Ehlers, R., Topcu, U., &amp; Feng, L. (2021). <em>Proceedings of the 20th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2021)</em>, pp. 483–491. IFAAMAS.<br>
+      <a href="https://arxiv.org/abs/2101.11196">arxiv.org/abs/2101.11196</a></p></div>
+  </div>
+
+  <!-- P5 -->
+  <div class="paper">
+    <h3>P5 — PRIMAL: Pathfinding via Reinforcement and Imitation Multi-Agent Learning</h3>
+
+    <div class="field"><span class="label">Title explanation</span>
+      <p><em>Pathfinding</em> here means <strong>multi-agent path finding (MAPF)</strong> — routing many robots to many destinations at once without collisions. <em>Reinforcement learning</em> is learning by trial and error; <em>imitation learning</em> is learning by copying an expert. PRIMAL combines both: <strong>robots learn to route themselves through a mixture of their own experience and copying an expert planner.</strong></p></div>
+
+    <div class="field"><span class="label">Objectives</span>
+      <p>The authors observe that most state-of-the-art MAPF planners rely on centralised planning and scale poorly past a few hundred agents, and that such approaches suit real deployments badly, where noise and uncertainty require paths to be recomputed online — impossible when planning takes seconds to minutes. Their objective is fully decentralised policies in which agents plan reactively under partial observability while still coordinating implicitly.</p></div>
+
+    <div class="field"><span class="label">Methodology</span>
+      <p>Reinforcement learning is combined with imitation of an expert centralised MAPF planner, whose demonstrations are supplied during training. The authors emphasise <strong>careful reward shaping and environment sampling</strong> as essential to making the approach work. Agents observe only a local window of the world. Once learned, a single policy can be copied onto any number of agents, so the method naturally scales to different team sizes and world dimensions. Evaluation covers randomised worlds with up to 1024 agents, benchmarked against state-of-the-art MAPF planners, plus a hybrid simulation of a factory mockup involving both real and simulated robots.</p></div>
+
+    <div class="field"><span class="label">Type of results achieved</span>
+      <p><em>In the paper:</em> success rates competitive with state-of-the-art planners while scaling to 1024 agents, and successful validation on physical hardware in a factory mockup.</p>
+      <p><em>For our project:</em> three things. It grounds the project in real robotics rather than a toy problem. Its central argument — centralised planning degrades as agent count grows — is precisely the mechanism we predict will cause our rule-based baseline to fall behind as we scale from 5 to 20 robots, which is the effect our scalability study is designed to measure. And its emphasis on reward shaping justifies our planned hyperparameter study treating reward weights as a research variable rather than a guess. One deliberate difference: PRIMAL trains one policy and copies it to any number of agents, whereas we train separately per fleet size to isolate how fleet size affects learning. PRIMAL's approach is better for deployment and is noted in our future work.</p></div>
+
+    <div class="field cite"><span class="label">Referenced journal or website</span>
+      <p>Sartoretti, G., Kerr, J., Shi, Y., Wagner, G., Kumar, T. K. S., Koenig, S., &amp; Choset, H. (2019). <em>IEEE Robotics and Automation Letters</em>, 4(3), 2378–2385.<br>
+      DOI: <a href="https://doi.org/10.1109/LRA.2019.2903261">10.1109/LRA.2019.2903261</a> · Preprint: <a href="https://arxiv.org/abs/1809.03531">arXiv:1809.03531</a></p></div>
+  </div>
+
+  <!-- P6 -->
+  <div class="paper">
+    <h3>P6 — A Review of Cooperative Multi-Agent Deep Reinforcement Learning</h3>
+
+    <div class="field"><span class="label">Title explanation</span>
+      <p>A <em>review</em> (or survey) paper does not present new experiments; it organises an entire research area, explains how the main approaches relate, and identifies open problems. <em>Cooperative</em> restricts scope to settings where agents share a goal. The title is therefore: <strong>a structured map of every major way researchers make multiple agents learn to work together.</strong></p></div>
+
+    <div class="field"><span class="label">Objectives</span>
+      <p>To present and organise recent MARL algorithms for cooperative problems, to explain the challenges each family of methods faces and how the literature has addressed them, to review real-world applications, to catalogue the simulation environments available for MARL research, and to propose future research directions.</p></div>
+
+    <div class="field"><span class="label">Methodology</span>
+      <p>A systematic literature review rather than an experimental study. The authors organise cooperative MARL into five families: <strong>(I) independent learners</strong>, <strong>(II) fully observable critic</strong>, <strong>(III) value function factorisation</strong>, <strong>(IV) consensus</strong>, and <strong>(V) learn to communicate</strong>. Each family is explained in turn along with its characteristic difficulties and the mitigations proposed in the relevant papers, and connections are drawn between papers within each category. Separate sections cover emerging research areas, real-world applications and available environments.</p></div>
+
+    <div class="field"><span class="label">Type of results achieved</span>
+      <p><em>In the paper:</em> a taxonomy of the field, a comparative account of the strengths and weaknesses of each family, a catalogue of applications and environments, and a set of proposed research directions. Being a review, the contribution is organisational rather than empirical.</p>
+      <p><em>For our project:</em> it locates our work precisely within the field. The two algorithms we compare are not arbitrary picks from a large space — IQL is the canonical member of family (I) and QMIX of family (III), so our comparison is between two of the five recognised approaches to cooperative MARL. This gives our project's framing an authoritative, peer-reviewed, journal-published source, and its sections on applications and environments informed our decision to build a custom grid warehouse rather than adopt an existing benchmark.</p></div>
+
+    <div class="field cite"><span class="label">Referenced journal or website</span>
+      <p>Oroojlooy, A., &amp; Hajinezhad, D. (2023). <em>Applied Intelligence</em>, 53(11), 13677–13722. Springer.<br>
+      DOI: <a href="https://doi.org/10.1007/s10489-022-04105-y">10.1007/s10489-022-04105-y</a> · Preprint: <a href="https://arxiv.org/abs/1908.03963">arXiv:1908.03963</a></p></div>
+  </div>
+
+  <h2>4. How the papers fit together</h2>
+  <div class="scroll">
+  <table>
+    <thead><tr><th>The question</th><th>Answered by</th></tr></thead>
+    <tbody>
+      <tr><td>Where does our work sit in the field?</td><td class="pid">P6 (journal review)</td></tr>
+      <tr><td>What algorithm do we build, and why does it work?</td><td class="pid">P1</td></tr>
+      <tr><td>What do we compare against, and how do we compare fairly?</td><td class="pid">P2</td></tr>
+      <tr><td>What separates a working implementation from a broken one?</td><td class="pid">P3</td></tr>
+      <tr><td>How do we guarantee safety without relying on learning?</td><td class="pid">P4</td></tr>
+      <tr><td>Why should coordination get harder with more robots?</td><td class="pid">P5</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p>P1 and P4 are load-bearing: remove either and a core objective of our project loses its foundation. P3 is the paper that argued against a position we had already taken, and improved the project by doing so.</p>
+
+  <h2>5. Identified gaps in this literature set</h2>
+  <p>Our project also has a Responsible AI component covering warehouse-worker displacement, the <strong>ISO 3691-4</strong> safety standard for industrial autonomous mobile robots, and energy consumption per delivery. <strong>None of the six papers above address any of these.</strong></p>
+  <p>This is not an oversight. These are not machine-learning questions and no MARL paper will answer them; they require labour-economics research, occupational-safety literature, the standard document itself, and an engineering reference for robot motor power. Sourcing these is scheduled as a separate activity in Week 5 of our project plan, and recording the gap now is how we ensure it is not discovered late.</p>
+
+  <h2>6. References</h2>
+  <ol class="refs">
+    <li>ElSayed-Aly, I., Bharadwaj, S., Amato, C., Ehlers, R., Topcu, U., &amp; Feng, L. (2021). Safe Multi-Agent Reinforcement Learning via Shielding. In <em>Proceedings of the 20th International Conference on Autonomous Agents and Multiagent Systems (AAMAS 2021)</em> (pp. 483–491). IFAAMAS. <a href="https://arxiv.org/abs/2101.11196">https://arxiv.org/abs/2101.11196</a></li>
+    <li>Hu, J., Jiang, S., Harding, S. A., Wu, H., &amp; Liao, S. (2021). <em>Rethinking the Implementation Tricks and Monotonicity Constraint in Cooperative Multi-Agent Reinforcement Learning.</em> arXiv preprint arXiv:2102.03479. Later presented on the ICLR 2023 Blogposts Track. <a href="https://arxiv.org/abs/2102.03479">https://arxiv.org/abs/2102.03479</a></li>
+    <li>Oroojlooy, A., &amp; Hajinezhad, D. (2023). A review of cooperative multi-agent deep reinforcement learning. <em>Applied Intelligence</em>, 53(11), 13677–13722. <a href="https://doi.org/10.1007/s10489-022-04105-y">https://doi.org/10.1007/s10489-022-04105-y</a></li>
+    <li>Papoudakis, G., Christianos, F., Schäfer, L., &amp; Albrecht, S. V. (2021). Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks. In <em>Proceedings of the 35th Conference on Neural Information Processing Systems (NeurIPS 2021), Datasets and Benchmarks Track.</em> <a href="https://arxiv.org/abs/2006.07869">https://arxiv.org/abs/2006.07869</a></li>
+    <li>Rashid, T., Samvelyan, M., Schroeder de Witt, C., Farquhar, G., Foerster, J., &amp; Whiteson, S. (2020). Monotonic Value Function Factorisation for Deep Multi-Agent Reinforcement Learning. <em>Journal of Machine Learning Research</em>, 21(178), 1–51. <a href="https://www.jmlr.org/papers/v21/20-081.html">https://www.jmlr.org/papers/v21/20-081.html</a></li>
+    <li>Sartoretti, G., Kerr, J., Shi, Y., Wagner, G., Kumar, T. K. S., Koenig, S., &amp; Choset, H. (2019). PRIMAL: Pathfinding via Reinforcement and Imitation Multi-Agent Learning. <em>IEEE Robotics and Automation Letters</em>, 4(3), 2378–2385. <a href="https://doi.org/10.1109/LRA.2019.2903261">https://doi.org/10.1109/LRA.2019.2903261</a></li>
+  </ol>
+
+  <p class="foot">References listed alphabetically by first author. All six PDFs are archived in the project repository under <code>papers/</code>. Repository: github.com/parthparmar07/Autonomous-warehouse-robot</p>
+
+</div>
+</body>
+</html>

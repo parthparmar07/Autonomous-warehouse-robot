@@ -18,7 +18,10 @@ value decomposition grows with it.
 ## Documentation
 
 **New to the project? Start with the [Plain-English Guide](docs/08_plain_english_guide.md)** — the
-whole project and all five papers explained without jargon, with a glossary. ~10 minutes.
+whole project and the supporting papers explained without jargon, with a glossary. ~10 minutes.
+
+**Coursework:** [Assignment 1 — Literature Summary](docs/09_assignment1_paper_summaries.md)
+([print-ready HTML](docs/09_assignment1_paper_summaries.html)).
 
 Then read in this order:
 

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warehouse Fleet Control</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 32px;
+        background: #f4f7fb;
+      }
+      .panel {
+        max-width: 720px;
+        background: white;
+        padding: 24px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      }
+      button {
+        background: #2563eb;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      pre {
+        background: #111827;
+        color: #e5e7eb;
+        padding: 14px;
+        border-radius: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="panel">
+      <h1>Warehouse Fleet Control</h1>
+      <p>Simple frontend connected to the FastAPI backend.</p>
+      <button id="predictBtn">Preview actions</button>
+      <button id="stepBtn">Advance simulation</button>
+      <pre id="responseBox">Waiting for result...</pre>
+      <h2>Warehouse state</h2>
+      <pre id="stateBox">No state loaded...</pre>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

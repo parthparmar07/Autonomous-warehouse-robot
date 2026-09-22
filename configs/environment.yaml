@@ -1,0 +1,5 @@
+environment:
+  grid_size: [20, 20]
+  num_agents: 5
+  num_tasks: 20
+  seed: 42

@@ -1,0 +1,1545 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Report - Unit 1 & 2 - ATLAS uGDX School of Technology</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
+
+  html { background:#f5f6f8; color-scheme: light; }
+  *{ box-sizing:border-box; }
+
+  body{
+    background:#ffffff;
+    color:#222222;
+    font-family:"Segoe UI", Arial, Helvetica, sans-serif;
+    font-size:10.5pt;
+    line-height:1.5;
+    margin:0 auto;
+    padding:0;
+  }
+
+  .document-container{
+    max-width:8.5in;
+    margin:20px auto;
+    background:#ffffff;
+    box-shadow:0 0 15px rgba(0,0,0,0.1);
+    padding:40px 50px 60px;
+  }
+
+  /* ---------- ATLAS / uGDX Header ---------- */
+  .header-logos{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:14px;
+  }
+  .ugdx-logo-container img{
+    height:56px;
+    width:auto;
+    display:block;
+    object-fit:contain;
+  }
+  .atlas-logo-container img{
+    height:56px;
+    width:auto;
+    display:block;
+    object-fit:contain;
+  }
+
+  .header-text{
+    text-align:center;
+    margin-bottom:20px;
+  }
+  .header-text .inst{
+    font-size:13pt;
+    font-weight:bold;
+    color:#111;
+  }
+  .header-text .dept{
+    font-size:11.5pt;
+    font-weight:bold;
+    color:#222;
+    margin:2px 0;
+  }
+  .header-text .year{
+    font-size:10pt;
+    font-weight:bold;
+    color:#444;
+  }
+
+  .course-title{
+    text-align:center;
+    margin:18px 0;
+  }
+  .course-code{
+    font-size:11pt;
+    font-weight:bold;
+    letter-spacing:0.08em;
+    margin-bottom:3px;
+  }
+  .course-name{
+    font-size:13pt;
+    font-weight:bold;
+    letter-spacing:0.04em;
+    margin-bottom:3px;
+  }
+  .report-label{
+    font-size:12pt;
+    font-weight:bold;
+    letter-spacing:0.06em;
+  }
+
+  .main-project-title{
+    text-align:center;
+    margin:22px 0 6px;
+  }
+  .main-project-title .label{
+    font-size:12pt;
+    font-weight:bold;
+    letter-spacing:0.05em;
+    margin-bottom:4px;
+  }
+  .main-project-title .title-text{
+    font-size:13pt;
+    font-weight:bold;
+    color:#0a3b66;
+    margin-bottom:4px;
+  }
+  .main-project-title .subtitle-text{
+    font-size:11.5pt;
+    font-weight:bold;
+    color:#333;
+  }
+
+  .first-page-tag{
+    color:#c2185b;
+    font-weight:bold;
+    text-align:center;
+    font-size:10pt;
+    margin:10px 0 16px;
+    text-transform:uppercase;
+  }
+
+  /* ---------- Template Color Scheme ---------- */
+  .chapter-heading, h2.chapter-title{
+    color:#c2185b;
+    font-size:12.5pt;
+    font-weight:bold;
+    margin:28px 0 12px;
+    border-bottom:1px solid #f06292;
+    padding-bottom:4px;
+  }
+  .pink-heading{
+    color:#c2185b;
+    font-size:11.5pt;
+    font-weight:bold;
+    margin:18px 0 8px;
+  }
+
+  .sub-heading, h3.section-title{
+    color:#00796b;
+    font-size:11pt;
+    font-weight:bold;
+    margin:16px 0 6px;
+  }
+
+  p{ margin:0 0 9px; text-align:justify; }
+  ul, ol{ margin:0 0 10px; padding-left:22px; }
+  li{ margin-bottom:4px; }
+
+  /* ---------- Tables matching PDF grid ---------- */
+  table{
+    border-collapse:collapse;
+    width:100%;
+    margin:12px 0 18px;
+    font-size:9.5pt;
+  }
+  table th, table td{
+    border:1px solid #555555;
+    padding:5px 8px;
+    vertical-align:top;
+    text-align:left;
+  }
+  table th{
+    background:#f4f5f7;
+    font-weight:bold;
+    color:#111;
+  }
+
+  table.details-grid th{
+    background:#fafafa;
+    width:25%;
+  }
+
+  /* ---------- Running Footer ---------- */
+  .footer-bar{
+    text-align:center;
+    font-size:8.5pt;
+    color:#555;
+    border-top:1px solid #ddd;
+    padding-top:12px;
+    margin-top:35px;
+  }
+
+  .svg-diagram-container{
+    width:100%;
+    margin:16px 0 20px;
+    background:#ffffff;
+    border:1px solid #dcdfe6;
+    border-radius:4px;
+    padding:12px 8px;
+    box-shadow:0 1px 4px rgba(0,0,0,0.05);
+  }
+  .svg-diagram-container svg{
+    display:block;
+    width:100%;
+    height:auto;
+  }
+  .diagram-caption{
+    text-align:center;
+    font-size:9pt;
+    font-weight:bold;
+    color:#444;
+    margin-top:6px;
+  }
+
+  .page-break{
+    page-break-before:always;
+    margin-top:30px;
+    padding-top:15px;
+    border-top:1px dashed #ccc;
+  }
+
+  @media print{
+    html, body{ background:#fff; font-size:10pt; }
+    .document-container{ max-width:100%; box-shadow:none; padding:0; margin:0; }
+    .page-break{ page-break-before:always; border-top:none; margin-top:0; padding-top:0; }
+    table, .svg-diagram-container{ page-break-inside:avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="document-container">
+
+  <!-- ==================== FIRST PAGE ==================== -->
+  <div class="header-logos">
+    <div class="ugdx-logo-container">
+      <img src="ugdx_logo.png" alt="uGDX School of Technology">
+    </div>
+    <div class="atlas-logo-container">
+      <img src="atlas_logo.png" alt="ATLAS SKILLTECH UNIVERSITY">
+    </div>
+  </div>
+
+  <div class="header-text">
+    <div class="inst">ATLAS – uGDX</div>
+    <div class="dept">School of Technology</div>
+    <div class="dept">B. Tech in CS AI & ML</div>
+    <div class="year">Academic Year: 2026-27</div>
+  </div>
+
+  <div class="course-title">
+    <div class="course-code">BTECH CAP 501</div>
+    <div class="course-name">PROJECT LIFE CYCLE MANAGEMENT</div>
+    <div class="report-label">PROJECT REPORT</div>
+  </div>
+
+  <div class="main-project-title">
+    <div class="label">PROJECT TITLE</div>
+    <div class="title-text">Autonomous Warehouse Robot Fleet Coordination Using Multi-Agent Reinforcement Learning</div>
+    <div class="subtitle-text">Project Initiation, Feasibility, and Requirements</div>
+  </div>
+
+  <div class="first-page-tag">(FIRST PAGE)</div>
+
+  <table class="details-grid">
+    <tr>
+      <th>Student Name</th>
+      <td>Parth Parmar (Lead), Saket Sarvaiya, Swarnim Jambhrunkar</td>
+      <th>Roll No. / App ID</th>
+      <td>2410244, 2408838, 2409789</td>
+    </tr>
+    <tr>
+      <th>Branch / Section</th>
+      <td>B. Tech CS AI & ML</td>
+      <th>Academic Year</th>
+      <td>2026-2027</td>
+    </tr>
+    <tr>
+      <th>Project Title</th>
+      <td>Autonomous Warehouse Robot Fleet Coordination Using Multi-Agent RL</td>
+      <th>Project Domain</th>
+      <td>Multi-Agent Reinforcement Learning / Logistics Robotics</td>
+    </tr>
+    <tr>
+      <th>Faculty Mentor</th>
+      <td>Faculty Mentor, School of Technology</td>
+      <th>Date of Submission</th>
+      <td>August 29, 2026</td>
+    </tr>
+  </table>
+
+  <div class="pink-heading" style="text-align:center; margin-top:20px;">SAMPLE COPY OF CONTENT</div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Content:</th>
+        <th style="width:100px; text-align:center;">Page No:</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>FIRST PAGE: Project title, Student details as mentioned above</td><td style="text-align:center;">i</td></tr>
+      <tr><td colspan="2"><strong>SECOND PAGE ONWARDS:</strong></td></tr>
+      <tr><td>DEDICATION</td><td style="text-align:center;">ii</td></tr>
+      <tr><td>ABSTRACT</td><td style="text-align:center;">iii</td></tr>
+      <tr><td>ACKNOWLEDGEMENTS</td><td style="text-align:center;">iv</td></tr>
+      <tr><td>PREFACE</td><td style="text-align:center;">v</td></tr>
+      <tr><td>INDEX</td><td style="text-align:center;">vi</td></tr>
+      <tr><td>LIST OF FIGURES</td><td style="text-align:center;">vii</td></tr>
+      <tr><td>LIST OF TABLES</td><td style="text-align:center;">viii</td></tr>
+      <tr><td colspan="2"><strong>CHAPTERS</strong></td></tr>
+      <tr><td><strong>I. Project Overview and Problem Scoping</strong></td><td style="text-align:center;">1</td></tr>
+      <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;1.1 Project Title</td><td style="text-align:center;">2</td></tr>
+      <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;1.2 Background and Context</td><td style="text-align:center;">3</td></tr>
+      <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;1.3 Problem Statement</td><td style="text-align:center;">5</td></tr>
+      <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;1.4 Proposed AI/ML Solution</td><td style="text-align:center;">7</td></tr>
+      <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;1.5 Success Criteria</td><td style="text-align:center;">9</td></tr>
+      <tr><td><strong>II. AI/ML Project Life Cycle and Difference from Conventional Software</strong></td><td style="text-align:center;">13</td></tr>
+      <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;2.1 Proposed Life Cycle of Your Project</td><td style="text-align:center;">14</td></tr>
+      <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;2.2 Why Your Project Is an AI/ML Project</td><td style="text-align:center;">15</td></tr>
+      <tr><td>&nbsp;&nbsp;&nbsp;&nbsp;2.3 ML Project vs ML Pipeline</td><td style="text-align:center;">18</td></tr>
+      <tr><td><strong>III. AI Project Life Cycle Frameworks</strong></td><td style="text-align:center;">21</td></tr>
+      <tr><td><strong>IV. Problem Scoping and Feasibility Analysis</strong></td><td style="text-align:center;">27</td></tr>
+      <tr><td><strong>V. Requirements Engineering for AI</strong></td><td style="text-align:center;">34</td></tr>
+      <tr><td><strong>VI. Stakeholder Management in AI</strong></td><td style="text-align:center;">41</td></tr>
+      <tr><td><strong>VII. Dataset Overview</strong></td><td style="text-align:center;">48</td></tr>
+      <tr><td><strong>VIII. Final Project Initiation Summary</strong></td><td style="text-align:center;">54</td></tr>
+      <tr><td><strong>IX. Preliminary Next Steps</strong></td><td style="text-align:center;">57</td></tr>
+      <tr><td><strong>X. References</strong></td><td style="text-align:center;">60</td></tr>
+      <tr><td><strong>XI. Appendix (Optional)</strong></td><td style="text-align:center;">63</td></tr>
+    </tbody>
+  </table>
+
+  <div class="footer-bar">Project Life Cycle Management | Unit 1 & 2 Individual Project Report Template</div>
+
+  <!-- ==================== FRONT MATTER ==================== -->
+  <div class="page-break"></div>
+
+  <div class="pink-heading">Purpose of the Report</div>
+  <p>This report is prepared individually based on the selected project topic. It is designed to demonstrate practical application of all concepts covered in Unit 1 and Unit 2. At this stage, we initiate and analyze the proposed AI/ML project by defining the problem, studying stakeholders, identifying requirements, comparing project life-cycle frameworks, conducting multi-dimensional feasibility analysis, and establishing data provenance and quality governance.</p>
+
+  <div class="pink-heading">Unit 1 & 2: Concepts Covered</div>
+  <ul>
+    <li><strong>1.1</strong> The AI and ML Project Life Cycle and why AI/ML projects differ from conventional software projects.</li>
+    <li><strong>1.2</strong> AI Project Life Cycle Frameworks: CRISP-DM, Microsoft TDSP, Google ML Life Cycle.</li>
+    <li><strong>1.3</strong> Problem Scoping and Feasibility: technical, economic, operational, ethical.</li>
+    <li><strong>1.4</strong> Requirements Engineering for AI: functional, non-functional, data, ethical requirements.</li>
+    <li><strong>1.5</strong> Stakeholder Management in AI: data subjects, regulators, affected communities, adversarial stakeholders.</li>
+    <li><strong>2.1</strong> Data as the critical resource: Provenance, lineage, and versioning.</li>
+    <li><strong>2.2</strong> Data quality dimensions and ML failure modes.</li>
+  </ul>
+
+  <div class="pink-heading">DEDICATION</div>
+  <p>Dedicated to researchers, robotics engineers, and logistics floor workers striving to build safer, more cooperative, and ethical autonomous multi-agent systems in real-world industrial environments.</p>
+
+  <div class="pink-heading">ABSTRACT</div>
+  <p>Modern e-commerce logistics centers rely heavily on autonomous mobile robot (AMR) fleets. However, scaling fleet size introduces critical coordination bottlenecks: narrow-corridor deadlocks, inter-robot collisions, and resource contention. Traditional heuristic dispatchers fail under complex congestion dynamics.</p>
+  <p>This report presents the initiation, feasibility study, lifecycle methodology, and requirements specification for Project 25: Autonomous Warehouse Robot Fleet Coordination using Multi-Agent Reinforcement Learning (MARL). We formulate the coordination problem as a Decentralised Partially Observable Markov Decision Process (Dec-POMDP) and deploy QMIX (Centralised Training with Decentralised Execution - CTDE) benchmarked against Independent Q-Learning (IQL) and a Rule-Based Nearest-Task Dispatcher across fleet sizes N = 5, 10, and 20.</p>
+  <p>A dual-environment architecture is adopted: a canonical, high-throughput NumPy grid simulator drives all training and statistical evaluations, while PyBullet provides isolated 3D trajectory replay. Hard safety constraints are guaranteed via an action-masking safety layer that removes corridor-entering actions prior to policy decision-making. Evaluation integrity is strictly maintained through sealed SHA-256 hashed evaluation manifests committed prior to model training.</p>
+
+  <div class="footer-bar">Project Life Cycle Management | Unit 1 & 2 Individual Project Report Template</div>
+
+  <!-- ==================== CHAPTER 1 ==================== -->
+  <div class="page-break"></div>
+
+  <h2 class="chapter-title">Chapter 1. Project Overview and Problem Scoping</h2>
+
+  <h3 class="section-title">1.1 Project Title</h3>
+  <p><strong>Autonomous Warehouse Robot Fleet Coordination Using Multi-Agent Reinforcement Learning</strong></p>
+
+  <h3 class="section-title">1.2 Background and Context</h3>
+  <p>Modern e-commerce fulfillment centers require rapid, continuous transportation of goods from storage racks to packing stations. Automated warehouses deploy fleets of Autonomous Mobile Robots (AMRs) operating in structured grid layouts characterized by narrow bidirectional aisles, dense rack blocks, and designated transit corridors.</p>
+  <p>Standard logistics operations rely on centralized heuristic dispatchers (such as nearest-task allocation) and localized yielding rules. While effective for small fleets, these heuristics fail when robot density increases. Opposing robots in narrow aisles face deadlocks where neither can pass, and uncoordinated path choices generate severe localized bottlenecks that degrade throughput and waste energy.</p>
+
+  <h3 class="section-title">1.3 Problem Statement</h3>
+  <p>The central difficulty of coordinating an autonomous robot fleet is the <strong>multi-agent credit assignment problem</strong> under partial observability:</p>
+  <ol>
+    <li><strong>Credit Assignment Dilemma:</strong> If robots receive individual rewards solely upon completing a personal delivery, an agent that yields at an intersection to relieve congestion receives zero short-term reward. Consequently, independent agents learn aggressive, selfish policies where yielding is unlearned, causing gridlock. Conversely, sharing global team rewards equally introduces high variance that obscures individual learning signals.</li>
+    <li><strong>Decentralised Execution Constraint:</strong> Due to communication latency and wireless packet loss in industrial warehouses, robots cannot rely on real-time inter-agent messaging during navigation. Each robot must execute movement decisions based purely on local sensor observations.</li>
+    <li><strong>Safety Corridor Invariants:</strong> Warehouses contain dedicated safety zones for human workers. Reinforcement learning policies optimizing purely for shortest paths will cut through human safety corridors unless constrained by deterministic safety guardrails.</li>
+  </ol>
+
+  <h3 class="section-title">1.4 Proposed AI/ML Solution</h3>
+  <p>We deploy <strong>QMIX</strong>, a cooperative MARL algorithm operating under the <strong>Centralised Training with Decentralised Execution (CTDE)</strong> paradigm, benchmarked against Independent Q-Learning (IQL) and a Rule-Based Dispatcher:</p>
+  <ul>
+    <li><strong>Decentralised Agent Q-Networks:</strong> Each robot uses a recurrent neural network (incorporating a GRU) that maps local spatial observation histories (a 5x5 occupancy grid, target bearing vector, and load flag) to discrete movement utilities without reading global state.</li>
+    <li><strong>Centralised Monotonic Mixer:</strong> During training, a mixing network combines individual agent utilities into a joint action-value <em>Q_tot</em>. Hypernetworks conditioned on global layout states dynamically generate the mixer weights, enforcing non-negativity via absolute value activations to satisfy the monotonicity condition (d Q_tot / d Q_a >= 0). This ensures decentralized greedy actions align with the joint optimum.</li>
+    <li><strong>Dual-Environment Architecture (ADR-001):</strong> A fast, canonical NumPy grid simulator (<em>WarehouseEnv</em>) executes all training and evaluations at high frame rates, while PyBullet is isolated strictly for 3D trajectory demo replay (FR-7).</li>
+    <li><strong>Hard Safety Action Masking (ADR-003):</strong> An action-masking safety layer sets the utilities of corridor-entering actions to -infinity before the argmax operation, guaranteeing zero human corridor violations.</li>
+  </ul>
+
+  <h3 class="section-title">1.5 Success Criteria</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th style="width:35%;">Question</th>
+        <th>Project-Specific Answer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>What is the input?</strong></td>
+        <td>Local spatial observation tensor (5x5 occupancy grid, target bearing vector, parcel status) per robot, complemented by global layout state during training.</td>
+      </tr>
+      <tr>
+        <td><strong>What is the expected output?</strong></td>
+        <td>Discrete movement action choice from {Forward, Backward, Left, Right, Stay} per agent at each timestep.</td>
+      </tr>
+      <tr>
+        <td><strong>Who will use the output?</strong></td>
+        <td>On-board robot motor controllers during execution and the discrete simulation engine during evaluation.</td>
+      </tr>
+      <tr>
+        <td><strong>How will the output help solve the problem?</strong></td>
+        <td>Coordinates multi-robot spatial trajectories, eliminates narrow-aisle deadlocks via learned yielding, and avoids human zones.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Type of Success</th>
+        <th>Success Criterion</th>
+        <th>How It Will Be Measured</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Technical (Performance)</strong></td>
+        <td>High baseline task completion at N=5</td>
+        <td>Task-completion rate >= 80% on sealed manifest via evaluation harness.</td>
+      </tr>
+      <tr>
+        <td><strong>Technical (Comparative)</strong></td>
+        <td>Cooperative advantage over baselines</td>
+        <td>Statistically superior to IQL and Rule-Based with 95% bootstrap CIs across N=5, 10, 20.</td>
+      </tr>
+      <tr>
+        <td><strong>Technical (Safety)</strong></td>
+        <td>Zero human corridor intrusions</td>
+        <td>Exactly 0 intrusions across 20 dedicated max-aggression safety episodes; blocking CI gate.</td>
+      </tr>
+      <tr>
+        <td><strong>Technical (Collision)</strong></td>
+        <td>Collision reduction at scale</td>
+        <td>QMIX collisions <= 50% of IQL collisions at N=10 fleet size logged to MLflow.</td>
+      </tr>
+      <tr>
+        <td><strong>Practical (Deployment)</strong></td>
+        <td>Real-time decision capability</td>
+        <td>p95 inference latency < 100 ms for N=20 robots on CPU hardware.</td>
+      </tr>
+      <tr>
+        <td><strong>Practical (Integrity)</strong></td>
+        <td>Pre-registered hypothesis validation</td>
+        <td>Complete measurement of QMIX-IQL scaling (H1) using SHA-256 pre-sealed manifests.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer-bar">Project Life Cycle Management | Unit 1 & 2 Individual Project Report Template</div>
+
+  <!-- ==================== CHAPTER 2 ==================== -->
+  <div class="page-break"></div>
+
+  <h2 class="chapter-title">Chapter 2. AI/ML Project Life Cycle and Difference from Conventional Software</h2>
+
+  <h3 class="section-title">2.1 Proposed Life Cycle of Your Project</h3>
+  <p>The life cycle follows an adapted CRISP-DM for Multi-Agent RL with explicit iterative feedback loops for reward shaping and drift-triggered retraining:</p>
+
+  <!-- Vector SVG Diagram 2.1 -->
+  <div class="svg-diagram-container">
+    <svg viewBox="0 0 740 370" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#00796b" />
+        </marker>
+        <marker id="arrow-pink" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#c2185b" />
+        </marker>
+        <marker id="arrow-blue" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#0a3b66" />
+        </marker>
+        <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%">
+          <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.08"/>
+        </filter>
+      </defs>
+
+      <!-- Outer boundary -->
+      <rect x="5" y="5" width="730" height="360" rx="8" fill="#fcfdfe" stroke="#cfd8dc" stroke-width="1.5"/>
+
+      <!-- Stage 1 -->
+      <g filter="url(#card-shadow)">
+        <rect x="25" y="25" width="205" height="68" rx="6" fill="#ffffff" stroke="#c2185b" stroke-width="1.8"/>
+        <rect x="25" y="25" width="205" height="22" rx="6" fill="#c2185b"/>
+        <text x="127" y="40" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">STAGE 1: SCOPING (W1-W3)</text>
+        <text x="127" y="62" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">Problem Dec-POMDP Formulation</text>
+        <text x="127" y="78" font-family="'Segoe UI', Arial" font-size="8.5" fill="#666" text-anchor="middle">Requirements Baseline & ADRs</text>
+      </g>
+
+      <!-- Forward Arrow 1 -> 2 -->
+      <path d="M 230 59 L 268 59" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Stage 2 -->
+      <g filter="url(#card-shadow)">
+        <rect x="275" y="25" width="205" height="68" rx="6" fill="#ffffff" stroke="#00796b" stroke-width="1.8"/>
+        <rect x="275" y="25" width="205" height="22" rx="6" fill="#00796b"/>
+        <text x="377" y="40" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">STAGE 2: ENVIRONMENT (W4)</text>
+        <text x="377" y="62" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">NumPy WarehouseEnv & Action Mask</text>
+        <text x="377" y="78" font-family="'Segoe UI', Arial" font-size="8.5" font-weight="bold" fill="#c2185b" text-anchor="middle">Sealed Manifest Protocol (DR-3)</text>
+      </g>
+
+      <!-- Forward Arrow 2 -> 3 -->
+      <path d="M 480 59 L 518 59" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Stage 3 -->
+      <g filter="url(#card-shadow)">
+        <rect x="525" y="25" width="190" height="68" rx="6" fill="#ffffff" stroke="#0a3b66" stroke-width="1.8"/>
+        <rect x="525" y="25" width="190" height="22" rx="6" fill="#0a3b66"/>
+        <text x="620" y="40" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">STAGE 3: BASELINES (W5-W6)</text>
+        <text x="620" y="62" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">Rule-Based Task Dispatcher</text>
+        <text x="620" y="78" font-family="'Segoe UI', Arial" font-size="8.5" fill="#666" text-anchor="middle">Independent Q-Learning (IQL)</text>
+      </g>
+
+      <!-- Down Arrow 3 -> 4 -->
+      <path d="M 620 93 L 620 138" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Stage 4 -->
+      <g filter="url(#card-shadow)">
+        <rect x="495" y="145" width="220" height="74" rx="6" fill="#ffffff" stroke="#c2185b" stroke-width="2"/>
+        <rect x="495" y="145" width="220" height="22" rx="6" fill="#c2185b"/>
+        <text x="605" y="160" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">STAGE 4: QMIX CTDE (W7-W8)</text>
+        <text x="605" y="182" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">Custom PyTorch Agent + Mixer Nets</text>
+        <text x="605" y="198" font-family="'Segoe UI', Arial" font-size="8.5" fill="#666" text-anchor="middle">Optuna Tuning & Hypernetworks</text>
+      </g>
+
+      <!-- Left Arrow 4 -> 5 -->
+      <path d="M 495 182 L 448 182" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Stage 5 -->
+      <g filter="url(#card-shadow)">
+        <rect x="225" y="145" width="215" height="74" rx="6" fill="#ffffff" stroke="#00796b" stroke-width="1.8"/>
+        <rect x="225" y="145" width="215" height="22" rx="6" fill="#00796b"/>
+        <text x="332" y="160" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">STAGE 5: EVALUATION (W9-W10)</text>
+        <text x="332" y="182" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">Sealed 9-Cell Matrix (N=5,10,20)</text>
+        <text x="332" y="198" font-family="'Segoe UI', Arial" font-size="8.5" fill="#666" text-anchor="middle">Bootstrap CIs & Hypothesis H1</text>
+      </g>
+
+      <!-- Feedback Loop 1: Stage 5 -> Stage 4 (Reward Shaping) -->
+      <path d="M 332 219 L 332 245 L 605 245 L 605 227" fill="none" stroke="#c2185b" stroke-width="1.6" stroke-dasharray="4,3" marker-end="url(#arrow-pink)"/>
+      <rect x="410" y="235" width="130" height="18" rx="3" fill="#fce4ec" stroke="#f06292" stroke-width="0.8"/>
+      <text x="475" y="247" font-family="'Segoe UI', Arial" font-size="8" font-weight="bold" fill="#c2185b" text-anchor="middle">Feedback: Reward Shaping</text>
+
+      <!-- Down Arrow 5 -> 6 -->
+      <path d="M 250 219 L 250 262 L 150 262 L 150 278" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Stage 6 -->
+      <g filter="url(#card-shadow)">
+        <rect x="25" y="285" width="245" height="68" rx="6" fill="#ffffff" stroke="#0a3b66" stroke-width="1.8"/>
+        <rect x="25" y="285" width="245" height="22" rx="6" fill="#0a3b66"/>
+        <text x="147" y="300" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">STAGE 6: DEPLOY & MONITOR (W11-W12)</text>
+        <text x="147" y="322" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">ONNX Export + FastAPI Docker Service</text>
+        <text x="147" y="338" font-family="'Segoe UI', Arial" font-size="8.5" fill="#666" text-anchor="middle">Evidently Data Drift & PSI Alerts</text>
+      </g>
+
+      <!-- Forward Arrow 6 -> 7 -->
+      <path d="M 270 319 L 348 319" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#arrow)"/>
+
+      <!-- Stage 7 -->
+      <g filter="url(#card-shadow)">
+        <rect x="355" y="285" width="245" height="68" rx="6" fill="#ffffff" stroke="#2e7d32" stroke-width="1.8"/>
+        <rect x="355" y="285" width="245" height="22" rx="6" fill="#2e7d32"/>
+        <text x="477" y="300" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">STAGE 7: RESPONSIBLE AI & DEMO (W13-W15)</text>
+        <text x="477" y="322" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">ISO 3691-4 Safety Audit & Carbon Audit</text>
+        <text x="477" y="338" font-family="'Segoe UI', Arial" font-size="8.5" fill="#666" text-anchor="middle">PyBullet 3D Trajectory Replay Demo</text>
+      </g>
+
+      <!-- Feedback Loop 2: Stage 6 -> Stage 4 (Drift Retraining) -->
+      <path d="M 25 319 L 12 319 L 12 182 L 217 182" fill="none" stroke="#0a3b66" stroke-width="1.6" stroke-dasharray="4,3" marker-end="url(#arrow-blue)"/>
+      <rect x="18" y="235" width="130" height="18" rx="3" fill="#e1f5fe" stroke="#81d4fa" stroke-width="0.8"/>
+      <text x="83" y="247" font-family="'Segoe UI', Arial" font-size="8" font-weight="bold" fill="#0a3b66" text-anchor="middle">Trigger: Drift Retraining (PSI)</text>
+    </svg>
+    <div class="diagram-caption">Figure 2.1: Multi-Agent RL Project Life Cycle Architecture with Closed-Loop Feedback Mechanisms</div>
+  </div>
+
+  <h3 class="section-title">2.2 Why Your Project Is an AI/ML Project</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:25%;">Aspect</th>
+        <th>Your AI/ML Project (MARL Warehouse Fleet Coordination)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Primary input</strong></td>
+        <td>Dynamic spatial observation windows (5x5 local grids), stochastic task arrival queues, and agent coordinates.</td>
+      </tr>
+      <tr>
+        <td><strong>Expected behaviour</strong></td>
+        <td>Emergent cooperative coordination (such as dynamic lane formation and yielding) discovered via trial-and-error RL.</td>
+      </tr>
+      <tr>
+        <td><strong>Role of data</strong></td>
+        <td>Millions of simulated interaction transitions driving continuous value function parameter updates.</td>
+      </tr>
+      <tr>
+        <td><strong>Testing/evaluation</strong></td>
+        <td>Evaluated statistically using sealed random seeds, bootstrap confidence intervals, and Pareto frontiers.</td>
+      </tr>
+      <tr>
+        <td><strong>Changes after deployment</strong></td>
+        <td>Policy performance fluctuates due to environment distribution shifts (such as layout modifications or order surges).</td>
+      </tr>
+      <tr>
+        <td><strong>Monitoring requirement</strong></td>
+        <td>Continuous tracking of Population Stability Index (PSI), task completion rates, and safety override frequencies.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">2.3 ML Project vs ML Pipeline</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Possible Automated Pipeline Activities</th>
+        <th>Human Decisions and Accountability</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Automated generation of seeded warehouse grid layouts and tasks.</td>
+        <td>Definition of warehouse boundaries and human safety corridor annotations.</td>
+      </tr>
+      <tr>
+        <td>Multi-agent environment stepping and observation cropping.</td>
+        <td>Formulation of reward weights, delivery bonuses, and collision penalties.</td>
+      </tr>
+      <tr>
+        <td>Experience replay batching and gradient backpropagation.</td>
+        <td>Approval of hypernetwork architectures, learning rates, and discount factors.</td>
+      </tr>
+      <tr>
+        <td>Optuna hyperparameter optimization sweeps.</td>
+        <td>Trade-off selection along the Pareto frontier (throughput vs safety margins).</td>
+      </tr>
+      <tr>
+        <td>Automated ONNX model compilation and containerization.</td>
+        <td>Formal verification and sign-off on ISO 3691-4 safety compliance disclaimers.</td>
+      </tr>
+      <tr>
+        <td>Automated CI test execution and code linting.</td>
+        <td>Authorizing live fleet service deployment and setting retraining thresholds.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer-bar">Project Life Cycle Management | Unit 1 & 2 Individual Project Report Template</div>
+
+  <!-- ==================== CHAPTER 3 ==================== -->
+  <div class="page-break"></div>
+
+  <h2 class="chapter-title">Chapter 3. AI Project Life Cycle Frameworks</h2>
+
+  <h3 class="section-title">3.1 CRISP-DM Mapping</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:25%;">CRISP-DM Phase</th>
+        <th>How This Phase Applies to My Project</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Business Understanding</strong></td>
+        <td>Frame warehouse congestion as a multi-agent credit assignment problem. Define primary business objective as maximizing task completion rate while enforcing zero human-corridor safety breaches.</td>
+      </tr>
+      <tr>
+        <td><strong>Data Understanding</strong></td>
+        <td>Analyze simulated state representations: local occupancy grids, task distance vectors, and global grid matrices across N=5, 10, and 20 fleet sizes.</td>
+      </tr>
+      <tr>
+        <td><strong>Data Preparation</strong></td>
+        <td>Construct seeded task queue generator, spatial state normalization transforms, and local observation window extractors (5x5 grids).</td>
+      </tr>
+      <tr>
+        <td><strong>Modelling</strong></td>
+        <td>Build PyTorch QMIX agent network (GRU/Linear), monotonic mixing network with hypernetworks, IQL baseline, and rule-based heuristic dispatcher.</td>
+      </tr>
+      <tr>
+        <td><strong>Evaluation</strong></td>
+        <td>Run sealed evaluation manifests across all 9 cells (3 algos x 3 fleet sizes). Measure task completion rate, delivery time, collision rate with 95% bootstrap CIs.</td>
+      </tr>
+      <tr>
+        <td><strong>Deployment</strong></td>
+        <td>Package ONNX Runtime policy inside FastAPI decision container. Implement Evidently drift monitoring and isolated PyBullet 3D replay interface.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">3.2 Microsoft TDSP Mapping</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:25%;">TDSP Stage</th>
+        <th>Application to My Project</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Business Understanding</strong></td>
+        <td>Define project objectives (OBJ-1 to OBJ-6), acceptance criteria for N=5, 10, 20 fleet sizes, and safety constraints.</td>
+      </tr>
+      <tr>
+        <td><strong>Data Acquisition and Understanding</strong></td>
+        <td>Generate synthetic environment state trajectories; validate task queue determinism and spatial observation completeness.</td>
+      </tr>
+      <tr>
+        <td><strong>Modelling</strong></td>
+        <td>Perform feature engineering on local observations, train QMIX vs IQL policies, run Optuna hyperparameter optimization sweeps.</td>
+      </tr>
+      <tr>
+        <td><strong>Deployment</strong></td>
+        <td>Deploy ONNX policy model in lightweight Docker container with HTTP REST endpoint for real-time fleet decision requests.</td>
+      </tr>
+      <tr>
+        <td><strong>Customer Acceptance</strong></td>
+        <td>Verify safety gate (0 corridor intrusions across 20 test episodes) and check quality gate against baseline completion targets.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">3.3 Google ML Life Cycle / Pipeline Perspective</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Pipeline Stage</th>
+        <th>Possible Automation</th>
+        <th>Human Decision Required</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Data Ingestion</strong></td>
+        <td>Automated generation of seeded warehouse grids.</td>
+        <td>Verification of floorplan accuracy and human corridor boundaries.</td>
+      </tr>
+      <tr>
+        <td><strong>Data Validation</strong></td>
+        <td>Automated tensor shape and coordinate assertions.</td>
+        <td>Approval of observation receptive field scope (5x5 grid).</td>
+      </tr>
+      <tr>
+        <td><strong>Model Training</strong></td>
+        <td>Automated CTDE training loop and loss updates.</td>
+        <td>Termination criteria selection and discount factor gamma.</td>
+      </tr>
+      <tr>
+        <td><strong>Model Evaluation</strong></td>
+        <td>Automated execution against sealed manifests.</td>
+        <td>Statistical comparison of QMIX vs IQL scaling curves (H1).</td>
+      </tr>
+      <tr>
+        <td><strong>Model Serving</strong></td>
+        <td>Automated FastAPI packaging and ONNX execution.</td>
+        <td>Setting maximum allowable latency threshold (p95 < 100 ms).</td>
+      </tr>
+      <tr>
+        <td><strong>Monitoring</strong></td>
+        <td>Automated logging of latency and Evidently PSI.</td>
+        <td>Triggering model retraining based on layout or order volume changes.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p><strong>Final Framework Choice and Justification:</strong> <strong>Adapted CRISP-DM for RL</strong>. It directly addresses RL's active data generation dynamics by introducing pre-registered sealed evaluation manifests (DR-3) and an isolated action-masking safety layer (FR-3).</p>
+
+  <div class="footer-bar">Project Life Cycle Management | Unit 1 & 2 Individual Project Report Template</div>
+
+  <!-- ==================== CHAPTER 4 ==================== -->
+  <div class="page-break"></div>
+
+  <h2 class="chapter-title">Chapter 4. Problem Scoping and Feasibility Analysis</h2>
+
+  <h3 class="section-title">4.1 Technical Feasibility</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Technical Aspect</th>
+        <th>Analysis for My Project</th>
+        <th>Risk / Limitation</th>
+        <th>Possible Mitigation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Data sufficiency</strong></td>
+        <td>Fully synthetic data generated via custom NumPy simulator (>10M transitions/hour).</td>
+        <td>Sim-to-real gap; unmodeled wheel friction.</td>
+        <td>Use deterministic seeded generators; isolate 3D physics to demo replay (ADR-001).</td>
+      </tr>
+      <tr>
+        <td><strong>Model capability</strong></td>
+        <td>Custom PyTorch QMIX (~300 lines) with state-conditioned monotonic hypernetworks.</td>
+        <td>Monotonicity constraint may restrict value expressiveness.</td>
+        <td>Evaluate IQL alongside QMIX to measure net benefit of value decomposition.</td>
+      </tr>
+      <tr>
+        <td><strong>Latency / hardware capability</strong></td>
+        <td>Fast NumPy tensor step (<1 ms). CPU for N=5; free Colab/Kaggle T4 GPUs for N=10/20.</td>
+        <td>Physics simulation during training is computationally intractable.</td>
+        <td>Adopt ADR-001 dual-environment design: NumPy for training, PyBullet for offline replay.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">4.2 Economic Feasibility</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Cost / Benefit Item</th>
+        <th>Description</th>
+        <th>Estimated Level</th>
+        <th>Justification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Data acquisition</strong></td>
+        <td>Synthetic data generation via custom simulator.</td>
+        <td>Low (Zero cost)</td>
+        <td>No commercial dataset purchases required.</td>
+      </tr>
+      <tr>
+        <td><strong>Data cleaning/labelling</strong></td>
+        <td>Automated environment state logging and reward logic.</td>
+        <td>Low (Zero cost)</td>
+        <td>Automated code logic in Python environment.</td>
+      </tr>
+      <tr>
+        <td><strong>Computing/infrastructure</strong></td>
+        <td>CPU for N=5; Google Colab / Kaggle T4 GPUs for N=10/20.</td>
+        <td>Low (Zero cost)</td>
+        <td>Utilizing free tier public cloud resources.</td>
+      </tr>
+      <tr>
+        <td><strong>Development effort</strong></td>
+        <td>4-student engineering team over 15 weeks.</td>
+        <td>Medium</td>
+        <td>Academic coursework; zero cash out-of-pocket payroll.</td>
+      </tr>
+      <tr>
+        <td><strong>Maintenance/retraining</strong></td>
+        <td>Automated retraining scripts run on local/free compute.</td>
+        <td>Low</td>
+        <td>Scripted pipeline using open-source tools.</td>
+      </tr>
+      <tr>
+        <td><strong>Expected benefit/value</strong></td>
+        <td>Eliminates warehouse gridlock, improves throughput.</td>
+        <td>High</td>
+        <td>Demonstrates scalable MARL coordination for logistics.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Economic Feasibility Conclusion:</strong> The project is fully economically feasible with a total out-of-pocket budget of Rupees 0.</p>
+
+  <h3 class="section-title">4.3 Operational Feasibility</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:35%;">Operational Question</th>
+        <th>Analysis for My Project</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Who will operate the system?</strong></td>
+        <td>Warehouse Operations Managers via FastAPI fleet service and Evidently drift dashboard.</td>
+      </tr>
+      <tr>
+        <td><strong>Who will maintain the data?</strong></td>
+        <td>System Administrators maintaining configuration JSON files (<code>warehouse_layout.json</code>) and manifests.</td>
+      </tr>
+      <tr>
+        <td><strong>Who will monitor the model?</strong></td>
+        <td>DevOps / IT Operations monitoring MLflow experiment logs and Evidently PSI metrics.</td>
+      </tr>
+      <tr>
+        <td><strong>Who will handle retraining?</strong></td>
+        <td>ML Engineering team executing automated retraining runbooks when drift alerts trigger.</td>
+      </tr>
+      <tr>
+        <td><strong>What skills/infrastructure are required?</strong></td>
+        <td>Python 3.11, Docker, ONNX Runtime, basic REST API service hosting infrastructure.</td>
+      </tr>
+      <tr>
+        <td><strong>Can the organization sustain it over time?</strong></td>
+        <td>Yes; modular design, documented runbooks, and ONNX model export ensure low maintenance overhead.</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Operational Feasibility Conclusion:</strong> The system demonstrates high operational sustainability through exportable ONNX models and standard REST microservice interfaces.</p>
+
+  <h3 class="section-title">4.4 Ethical Feasibility</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Ethical Issue</th>
+        <th>Who May Be Affected?</th>
+        <th>Potential Harm</th>
+        <th>Requirement & Enforcement in Project</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Privacy and data use</strong></td>
+        <td>Floor workers</td>
+        <td>Excessive worker surveillance.</td>
+        <td>Logs only robot coordinates; zero worker PII collected (DR-1).</td>
+      </tr>
+      <tr>
+        <td><strong>Bias and fairness</strong></td>
+        <td>Floor workers</td>
+        <td>Algorithmic work intensification.</td>
+        <td>ETH-1 requires balanced analysis of automation on worker ergonomics.</td>
+      </tr>
+      <tr>
+        <td><strong>Transparency / explainability</strong></td>
+        <td>Operations managers</td>
+        <td>Black-box policy decisions causing jams.</td>
+        <td>Model cards, MLflow lineage, and Pareto frontier plots (OBJ-5).</td>
+      </tr>
+      <tr>
+        <td><strong>Misuse or harmful decisions</strong></td>
+        <td>Floor workers & hardware</td>
+        <td>Physical collisions or corridor breaches.</td>
+        <td>Hard safety action masking (FR-3) blocking corridor entry.</td>
+      </tr>
+      <tr>
+        <td><strong>Human oversight & accountability</strong></td>
+        <td>Safety Officers / EHS</td>
+        <td>Misinterpreting simulation as certified.</td>
+        <td>Explicit ISO 3691-4 non-certification disclaimer (ETH-2).</td>
+      </tr>
+    </tbody>
+  </table>
+  <p><strong>Ethical Feasibility Conclusion:</strong> The project is ethically feasible, prioritizing human worker safety as a non-negotiable hard architectural constraint (NFR-3).</p>
+
+  <div class="footer-bar">Project Life Cycle Management | Unit 1 & 2 Individual Project Report Template</div>
+
+  <!-- ==================== CHAPTER 5 ==================== -->
+  <div class="page-break"></div>
+
+  <h2 class="chapter-title">Chapter 5. Requirements Engineering for AI</h2>
+
+  <h3 class="section-title">5.1 Functional Requirements</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Functional Requirement</th>
+        <th>Priority</th>
+        <th>Acceptance / Test Criterion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>FR1</strong></td>
+        <td>Local Observation Window: Agent network processes 5x5 occupancy grid, target bearing, and load status.</td>
+        <td>High</td>
+        <td>Unit test asserting agent network never accesses global state (<code>test_observation_space.py</code>).</td>
+      </tr>
+      <tr>
+        <td><strong>FR2</strong></td>
+        <td>Monotonic Mixer: Mixer enforces d Q_tot / d Q_a >= 0 via state-conditioned absolute value hypernetwork weights.</td>
+        <td>High</td>
+        <td>Property test verifying Delta Q_tot >= 0 over 10,000 randomized inputs (<code>test_mixer_monotonicity.py</code>).</td>
+      </tr>
+      <tr>
+        <td><strong>FR3</strong></td>
+        <td>Action Masking Safety Layer: Override any policy action entering human corridors; log all overrides.</td>
+        <td>High</td>
+        <td>Isolation test asserting 0 corridor entries with adversarial policy (<code>test_safety_layer.py</code>).</td>
+      </tr>
+      <tr>
+        <td><strong>FR4</strong></td>
+        <td>Deterministic Task Generator: Generate identical task queues given identical random seed.</td>
+        <td>Medium</td>
+        <td>Determinism test verifying byte-identical queue outputs (<code>test_task_queue_determinism.py</code>).</td>
+      </tr>
+      <tr>
+        <td><strong>FR5</strong></td>
+        <td>FastAPI Decision Service: Accept state snapshot and return fleet action vector via ONNX Runtime.</td>
+        <td>Medium</td>
+        <td>REST API contract test and schema validation benchmark (<code>test_service_contract.py</code>).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">5.2 Non-Functional Requirements</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Aspect</th>
+        <th>Non-Functional Requirement</th>
+        <th>Target / Constraint</th>
+        <th>How It Will Be Verified</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>NFR1</strong></td>
+        <td>Task Completion (N=5)</td>
+        <td>QMIX completion rate >= 80% on N=5 sealed manifest.</td>
+        <td>Evaluation harness; blocking CI Quality Gate.</td>
+      </tr>
+      <tr>
+        <td><strong>NFR2</strong></td>
+        <td>Cooperative Scaling (H1)</td>
+        <td>Characterize QMIX vs IQL completion gap as N grows (5 to 10 to 20).</td>
+        <td>Pre-registered hypothesis H1 measured with bootstrap 95% CIs.</td>
+      </tr>
+      <tr>
+        <td><strong>NFR3</strong></td>
+        <td>Safety Corridor Intrusion</td>
+        <td>0 policy-induced human corridor intrusions.</td>
+        <td>20 dedicated safety evaluation episodes; blocking CI Safety Gate.</td>
+      </tr>
+      <tr>
+        <td><strong>NFR4</strong></td>
+        <td>Collision Reduction</td>
+        <td>QMIX collisions <= 50% of IQL collisions at N=10.</td>
+        <td>Comparative evaluation logging to MLflow; Optuna study.</td>
+      </tr>
+      <tr>
+        <td><strong>NFR5</strong></td>
+        <td>Inference Latency</td>
+        <td>p95 fleet action decision latency < 100 ms for N=20 on CPU.</td>
+        <td>FastAPI load benchmark (<code>test_service_latency.py</code>).</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">5.3 Data Requirements</h3>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:30%;">Data Requirement</th>
+        <th>Project-Specific Specification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Required data sources</strong></td>
+        <td>Purely synthetic data generated by custom NumPy simulator (<code>WarehouseEnv</code>). No external dataset.</td>
+      </tr>
+      <tr>
+        <td><strong>Required features/variables</strong></td>
+        <td>Agent coordinates, orientation, local 5x5 occupancy matrix, target shelf location, task status, corridor mask.</td>
+      </tr>
+      <tr>
+        <td><strong>Data volume/availability</strong></td>
+        <td>On-demand generation during training (10M+ environment steps across training runs).</td>
+      </tr>
+      <tr>
+        <td><strong>Data format and integration</strong></td>
+        <td>Structured NumPy arrays during training; JSON REST payloads for FastAPI service; MLflow artifact storage.</td>
+      </tr>
+      <tr>
+        <td><strong>Data quality</strong></td>
+        <td>100% complete state spatial maps; deterministic seeding guarantees reproducible state transitions.</td>
+      </tr>
+      <tr>
+        <td><strong>Labelling requirements</strong></td>
+        <td>Self-supervised reinforcement signals: package delivery (+10), collision penalty (-5), step penalty (-0.1).</td>
+      </tr>
+      <tr>
+        <td><strong>Data update frequency and retention</strong></td>
+        <td>Evaluation manifests (20 episodes each for N=5, 10, 20) generated, SHA-256 hashed, and sealed in Git at W4.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer-bar">Project Life Cycle Management | Unit 1 & 2 Individual Project Report Template</div>
+
+  <!-- ==================== CHAPTER 6 ==================== -->
+  <div class="page-break"></div>
+
+  <h2 class="chapter-title">Chapter 6. Stakeholder Management in AI</h2>
+
+  <h3 class="section-title">6.1 Stakeholder Identification</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Stakeholder</th>
+        <th>Category</th>
+        <th>Interest / Role</th>
+        <th>Influence</th>
+        <th>Potential Concern</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Warehouse Floor Workers</strong></td>
+        <td>Affected</td>
+        <td>Physical safety, workplace pace, job security.</td>
+        <td>Low</td>
+        <td>Robot collisions, work intensification, displacement.</td>
+      </tr>
+      <tr>
+        <td><strong>Operations Managers</strong></td>
+        <td>Decisional</td>
+        <td>Order throughput, delivery speed, fleet uptime.</td>
+        <td>High</td>
+        <td>Fleet deadlock during peak demand, stalling.</td>
+      </tr>
+      <tr>
+        <td><strong>Safety Officers / EHS</strong></td>
+        <td>Gatekeeping</td>
+        <td>Workplace safety compliance, incident prevention.</td>
+        <td>High</td>
+        <td>Policy unlearning safety rules and causing crashes.</td>
+      </tr>
+      <tr>
+        <td><strong>Robot Vendors</strong></td>
+        <td>Supplier</td>
+        <td>Policy exportability, API integration standards.</td>
+        <td>Medium</td>
+        <td>Proprietary lock-in, non-standard runtime formats.</td>
+      </tr>
+      <tr>
+        <td><strong>Faculty / Examiners</strong></td>
+        <td>Assessing</td>
+        <td>Academic rigor, evaluation integrity, reproducibility.</td>
+        <td>High</td>
+        <td>Selective result reporting, unseeded experiments.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">6.2 Stakeholder Categories to Consider</h3>
+  <p>Model users (Ops Managers), Business owners (Logistics leadership), Data creators (Simulation generators), Regulators (ISO 3691-4 assessors), Affected communities (Floor pickers/packers), Auditors (Faculty examiners), and Adversarial actors (Malicious network clients).</p>
+
+  <h3 class="section-title">6.3 Stakeholder Conflict Analysis</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Stakeholder 1</th>
+        <th>Stakeholder 2</th>
+        <th>Conflict</th>
+        <th>How the Project Will Address It</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Operations Managers</strong></td>
+        <td><strong>Safety Officers</strong></td>
+        <td>Throughput optimization vs Safety conservative rules (Safety margins slow down delivery speed).</td>
+        <td>Safety is modeled as a hard constraint via action masking rather than a soft reward term. Throughput is maximized within the safe action space.</td>
+      </tr>
+      <tr>
+        <td><strong>Operations Managers</strong></td>
+        <td><strong>Floor Workers</strong></td>
+        <td>Automation productivity goals vs Worker displacement risks.</td>
+        <td>ETH-1 requires explicit reporting of both economic benefits and employment displacement metrics based on published labor statistics.</td>
+      </tr>
+      <tr>
+        <td><strong>Safety Officers</strong></td>
+        <td><strong>Project Team</strong></td>
+        <td>Simulation safety evidence vs Physical ISO certification claims.</td>
+        <td>ETH-2 provides an explicit non-certification disclaimer stating simulation proof does not replace hardware E-stop certification.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">6.4 Data Subjects and Affected Communities</h3>
+  <p>No individual personal data is collected or processed by the system (DR-1). The primary affected community consists of warehouse floor workers who co-occupy physical warehouse spaces with autonomous fleets. Their interests are protected by elevating safety corridor protection (NFR-3) to a non-negotiable blocking CI gate.</p>
+
+  <h3 class="section-title">6.5 Adversarial Stakeholders</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Possible Adversarial Actor</th>
+        <th>Possible Action / Threat</th>
+        <th>Potential Impact</th>
+        <th>Basic Mitigation</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Malicious API Client</strong></td>
+        <td>Malformed state JSON injection to FastAPI service.</td>
+        <td>Service crash or out-of-bounds action response.</td>
+        <td>Pydantic schema validation and input range checking in FastAPI.</td>
+      </tr>
+      <tr>
+        <td><strong>Adversarial Policy Input</strong></td>
+        <td>Manipulating state inputs to force corridor entry.</td>
+        <td>Physical collision risk if unmasked.</td>
+        <td>Action-masking safety layer overrides policy argmax regardless of input.</td>
+      </tr>
+      <tr>
+        <td><strong>Data Tampering Actor</strong></td>
+        <td>Modifying evaluation manifests post-training to fake performance.</td>
+        <td>Compromised scientific evaluation integrity.</td>
+        <td>SHA-256 manifest hashing and Git tag sealing (<code>eval-manifests-sealed</code>) in W4.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer-bar">Project Life Cycle Management | Unit 1 & 2 Individual Project Report Template</div>
+
+  <!-- ==================== CHAPTER 7 ==================== -->
+  <div class="page-break"></div>
+
+  <h2 class="chapter-title">Chapter 7. Dataset Overview</h2>
+
+  <h3 class="section-title">7.1 Data Required for the Project</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Dataset/Data Item</th>
+        <th>Purpose in Project</th>
+        <th>Format</th>
+        <th>Expected Size</th>
+        <th>Availability Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Warehouse Layout Config</strong></td>
+        <td>Grid map, shelf locations, corridor masks.</td>
+        <td>JSON</td>
+        <td>< 100 KB</td>
+        <td>Available (W4)</td>
+      </tr>
+      <tr>
+        <td><strong>Task Queue Manifests</strong></td>
+        <td>Seeded order pickup/delivery locations.</td>
+        <td>JSON / CSV</td>
+        <td>< 5 MB</td>
+        <td>Generated & Sealed (W4)</td>
+      </tr>
+      <tr>
+        <td><strong>Experience Replay Buffer</strong></td>
+        <td>Storing (s, a, r, s', mask) transitions for training.</td>
+        <td>NumPy arrays</td>
+        <td>~2 GB (in RAM)</td>
+        <td>Generated during training</td>
+      </tr>
+      <tr>
+        <td><strong>MLflow Run Artifacts</strong></td>
+        <td>Episode metrics, loss curves, ONNX models.</td>
+        <td>Binary / JSON</td>
+        <td>~500 MB</td>
+        <td>Generated during evaluation</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">7.2 Data Provenance</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Dataset</th>
+        <th>Source</th>
+        <th>Data Owner</th>
+        <th>Collected By</th>
+        <th>Collection Period</th>
+        <th>Collection Method</th>
+        <th>Permission/Access Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Layout Map</strong></td>
+        <td>Custom Design</td>
+        <td>Project Team</td>
+        <td>Environment Generator</td>
+        <td>W4</td>
+        <td>Programmatic JSON Script</td>
+        <td>Open / Internal</td>
+      </tr>
+      <tr>
+        <td><strong>Sealed Manifests</strong></td>
+        <td>Seeded Generator</td>
+        <td>Project Team</td>
+        <td>Script <code>gen_manifests.py</code></td>
+        <td>W4</td>
+        <td>Pseudorandom Sampling (Seeds 100-120)</td>
+        <td>Sealed in Git</td>
+      </tr>
+      <tr>
+        <td><strong>Training Steps</strong></td>
+        <td>NumPy Simulator</td>
+        <td>Project Team</td>
+        <td>QMIX Training Loop</td>
+        <td>W7-W8</td>
+        <td>Interactive RL Step Executions</td>
+        <td>Fully Synthetic</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3 class="section-title">7.3 Data Lineage Diagram</h3>
+  
+  <!-- Vector SVG Diagram 7.3 -->
+  <div class="svg-diagram-container">
+    <svg viewBox="0 0 740 400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="d-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="#00796b" />
+        </marker>
+        <filter id="d-shadow" x="-5%" y="-5%" width="110%" height="115%">
+          <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.08"/>
+        </filter>
+      </defs>
+
+      <!-- Outer Box -->
+      <rect x="5" y="5" width="730" height="390" rx="8" fill="#fbfcfd" stroke="#b0bec5" stroke-width="1.5"/>
+
+      <!-- Row 1: Generation & Simulator -->
+      <!-- Node 1: Configs & Seeds -->
+      <g filter="url(#d-shadow)">
+        <rect x="25" y="25" width="195" height="70" rx="6" fill="#ffffff" stroke="#c2185b" stroke-width="1.8"/>
+        <rect x="25" y="25" width="195" height="22" rx="6" fill="#c2185b"/>
+        <text x="122" y="40" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">1. CONFIG & SEEDS (JSON)</text>
+        <text x="122" y="62" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">warehouse_layout.json (20x20)</text>
+        <text x="122" y="78" font-family="'Segoe UI', Arial" font-size="8.5" fill="#666" text-anchor="middle">Seeded RNG (Seeds 100-120)</text>
+      </g>
+
+      <!-- Arrow 1 -> 2 -->
+      <path d="M 220 60 L 260 60" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#d-arrow)"/>
+
+      <!-- Node 2: Task Generator -->
+      <g filter="url(#d-shadow)">
+        <rect x="268" y="25" width="200" height="70" rx="6" fill="#ffffff" stroke="#00796b" stroke-width="1.8"/>
+        <rect x="268" y="25" width="200" height="22" rx="6" fill="#00796b"/>
+        <text x="368" y="40" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">2. TASK GENERATOR (DR-2)</text>
+        <text x="368" y="62" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">Deterministic Pickup/Drop Queue</text>
+        <text x="368" y="78" font-family="'Segoe UI', Arial" font-size="8.5" font-weight="bold" fill="#c2185b" text-anchor="middle">SHA-256 HASHES.txt Sealed</text>
+      </g>
+
+      <!-- Arrow 2 -> 3 -->
+      <path d="M 468 60 L 512 60" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#d-arrow)"/>
+
+      <!-- Node 3: NumPy Simulator -->
+      <g filter="url(#d-shadow)">
+        <rect x="520" y="25" width="195" height="70" rx="6" fill="#ffffff" stroke="#0a3b66" stroke-width="1.8"/>
+        <rect x="520" y="25" width="195" height="22" rx="6" fill="#0a3b66"/>
+        <text x="617" y="40" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">3. WarehouseEnv SIMULATOR</text>
+        <text x="617" y="62" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">Canonical NumPy Grid Engine</text>
+        <text x="617" y="78" font-family="'Segoe UI', Arial" font-size="8.5" fill="#666" text-anchor="middle">Global State Matrix (20x20)</text>
+      </g>
+
+      <!-- Down Arrow 3 -> 4 -->
+      <path d="M 617 95 L 617 145" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#d-arrow)"/>
+
+      <!-- Row 2: Observation & Safety Processing -->
+      <!-- Node 4: Obs Cropping -->
+      <g filter="url(#d-shadow)">
+        <rect x="500" y="152" width="215" height="74" rx="6" fill="#ffffff" stroke="#00796b" stroke-width="1.8"/>
+        <rect x="500" y="152" width="215" height="22" rx="6" fill="#00796b"/>
+        <text x="607" y="167" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">4. OBSERVATION SLICING</text>
+        <text x="607" y="189" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">5x5 Local Occupancy Window</text>
+        <text x="607" y="205" font-family="'Segoe UI', Arial" font-size="8.5" fill="#666" text-anchor="middle">Normalized Bearing Vector (FR-1)</text>
+      </g>
+
+      <!-- Left Arrow 4 -> 5 -->
+      <path d="M 500 189 L 458 189" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#d-arrow)"/>
+
+      <!-- Node 5: Safety Action Masking -->
+      <g filter="url(#d-shadow)">
+        <rect x="235" y="152" width="215" height="74" rx="6" fill="#ffffff" stroke="#c2185b" stroke-width="2"/>
+        <rect x="235" y="152" width="215" height="22" rx="6" fill="#c2185b"/>
+        <text x="342" y="167" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">5. SAFETY ACTION MASKING</text>
+        <text x="342" y="189" font-family="'Segoe UI', Arial" font-size="9" font-weight="bold" fill="#c2185b" text-anchor="middle">Corridor Mask Filter (-inf)</text>
+        <text x="342" y="205" font-family="'Segoe UI', Arial" font-size="8.5" fill="#333" text-anchor="middle">Pre-argmax Override & Log (FR-3)</text>
+      </g>
+
+      <!-- Left Arrow 5 -> 6 -->
+      <path d="M 235 189 L 192 189" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#d-arrow)"/>
+
+      <!-- Node 6: Experience Replay -->
+      <g filter="url(#d-shadow)">
+        <rect x="25" y="152" width="160" height="74" rx="6" fill="#ffffff" stroke="#0a3b66" stroke-width="1.8"/>
+        <rect x="25" y="152" width="160" height="22" rx="6" fill="#0a3b66"/>
+        <text x="105" y="167" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">6. REPLAY BUFFER</text>
+        <text x="105" y="189" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">(o, u, r, o', s, mask)</text>
+        <text x="105" y="205" font-family="'Segoe UI', Arial" font-size="8.5" fill="#666" text-anchor="middle">~2 GB RAM Buffer (DR-4)</text>
+      </g>
+
+      <!-- Down Arrow 6 -> 7 -->
+      <path d="M 105 226 L 105 272" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#d-arrow)"/>
+
+      <!-- Row 3: Training & Delivery -->
+      <!-- Node 7: PyTorch CTDE Loop -->
+      <g filter="url(#d-shadow)">
+        <rect x="25" y="280" width="280" height="80" rx="6" fill="#ffffff" stroke="#00796b" stroke-width="1.8"/>
+        <rect x="25" y="280" width="280" height="22" rx="6" fill="#00796b"/>
+        <text x="165" y="295" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">7. CTDE QMIX NEURAL TRAINING</text>
+        <text x="165" y="317" font-family="'Segoe UI', Arial" font-size="9" fill="#333" text-anchor="middle">Decentralized GRU Agent Q-Networks</text>
+        <text x="165" y="333" font-family="'Segoe UI', Arial" font-size="8.5" fill="#333" text-anchor="middle">Central Monotonic Hypernetwork Mixer</text>
+        <text x="165" y="349" font-family="'Segoe UI', Arial" font-size="8.5" fill="#666" text-anchor="middle">Temporal Difference Loss Minimization</text>
+      </g>
+
+      <!-- Right Arrow 7 -> 8 -->
+      <path d="M 305 320 L 388 320" fill="none" stroke="#00796b" stroke-width="2" marker-end="url(#d-arrow)"/>
+
+      <!-- Node 8: Deployment Artifacts -->
+      <g filter="url(#d-shadow)">
+        <rect x="395" y="280" width="320" height="80" rx="6" fill="#ffffff" stroke="#2e7d32" stroke-width="2"/>
+        <rect x="395" y="280" width="320" height="22" rx="6" fill="#2e7d32"/>
+        <text x="555" y="295" font-family="'Segoe UI', Arial" font-size="10" font-weight="bold" fill="#ffffff" text-anchor="middle">8. LINEAGE ARTIFACTS & DEPLOYMENT</text>
+        <text x="555" y="317" font-family="'Segoe UI', Arial" font-size="9" font-weight="bold" fill="#2e7d32" text-anchor="middle">MLflow Tags: Git Commit + Config SHA + Seed (FR-8)</text>
+        <text x="555" y="333" font-family="'Segoe UI', Arial" font-size="8.5" fill="#333" text-anchor="middle">Optimized ONNX Runtime Model Exports</text>
+        <text x="555" y="349" font-family="'Segoe UI', Arial" font-size="8.5" fill="#666" text-anchor="middle">FastAPI Docker Service + Evidently Drift Dashboard</text>
+      </g>
+    </svg>
+    <div class="diagram-caption">Figure 7.3: End-to-End Data Lineage, Transformation Pipeline, and Cryptographic Provenance Architecture</div>
+  </div>
+
+  <p><em>Lineage Explanation:</em> The lineage tracks data from initial seed generation to ONNX deployment. Because all data is synthetically derived from seeded code, any training or evaluation run can be reproduced by matching the Git commit hash, environment config hash, and random seed (FR-8).</p>
+
+  <h3 class="section-title">7.4 Data Transformation Log</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Step No.</th>
+        <th>Input Data</th>
+        <th>Operation Performed</th>
+        <th>Reason</th>
+        <th>Output Data</th>
+        <th>Tool/Method Used</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>1</strong></td>
+        <td>Global Grid Map</td>
+        <td>Spatial grid discretization (20x20 cells).</td>
+        <td>Standardize state space for tensor computation.</td>
+        <td>Integer Grid Tensor</td>
+        <td>NumPy</td>
+      </tr>
+      <tr>
+        <td><strong>2</strong></td>
+        <td>Global State</td>
+        <td>Local 5x5 window crop around agent position.</td>
+        <td>Enforce decentralized observation constraints (FR-1).</td>
+        <td>Agent Local Obs Matrix</td>
+        <td>Custom Python slicer</td>
+      </tr>
+      <tr>
+        <td><strong>3</strong></td>
+        <td>Raw Policy Q-values</td>
+        <td>Apply binary corridor mask (Set invalid actions to -inf).</td>
+        <td>Guarantee zero human corridor intrusions (FR-3).</td>
+        <td>Masked Q-value Vector</td>
+        <td>PyTorch tensor masking</td>
+      </tr>
+      <tr>
+        <td><strong>4</strong></td>
+        <td>Episode Trajectory</td>
+        <td>Calculate completion rate, delivery time, collisions.</td>
+        <td>Compute evaluation metrics for MLflow logging (FR-6).</td>
+        <td>Summary Metric Dict</td>
+        <td>Python evaluation harness</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="footer-bar">Project Life Cycle Management | Unit 1 & 2 Individual Project Report Template</div>
+
+  <!-- ==================== CHAPTER 8 & 9 ==================== -->
+  <div class="page-break"></div>
+
+  <h2 class="chapter-title">Chapter 8. Final Project Initiation Summary</h2>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:30%;">Item</th>
+        <th>Final Summary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Problem being addressed</strong></td>
+        <td>Warehouse fleet gridlock, inter-robot collisions, and credit assignment failure during multi-agent scaling (N=5 to 20).</td>
+      </tr>
+      <tr>
+        <td><strong>Proposed AI/ML approach</strong></td>
+        <td>QMIX (CTDE) with PyTorch, evaluated against IQL and Rule-Based Dispatcher, incorporating an action-masking safety layer.</td>
+      </tr>
+      <tr>
+        <td><strong>Primary stakeholders</strong></td>
+        <td>Operations Managers, Safety Officers, Warehouse Floor Workers, Course Faculty / Examiners.</td>
+      </tr>
+      <tr>
+        <td><strong>Major data requirement</strong></td>
+        <td>Synthetic simulation trajectories driven by seeded, SHA-256 hashed evaluation manifests.</td>
+      </tr>
+      <tr>
+        <td><strong>Most important feasibility risk</strong></td>
+        <td>Simulation-to-reality execution gap and computational cost of multi-agent training at scale (Mitigated via dual NumPy/PyBullet design and free Cloud GPUs).</td>
+      </tr>
+      <tr>
+        <td><strong>Most important ethical concern</strong></td>
+        <td>Physical worker safety in shared human-robot corridors and potential labor displacement (Mitigated via hard safety action masking and formal RAI reporting).</td>
+      </tr>
+      <tr>
+        <td><strong>Final project recommendation</strong></td>
+        <td><strong>Proceed to Phase 2 (Implementation)</strong> following the pre-registered adapted CRISP-DM milestone schedule.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="chapter-title">Chapter 9. Preliminary Next Steps</h2>
+  <ol>
+    <li><strong>Week 4:</strong> Implement canonical NumPy <code>WarehouseEnv</code>, seeded task generator, action masking filter, and commit SHA-256 hashed evaluation manifests tagged <code>eval-manifests-sealed</code>.</li>
+    <li><strong>Weeks 5-6:</strong> Build Rule-Based Nearest-Task Dispatcher and Independent Q-Learning (IQL) baseline models.</li>
+    <li><strong>Weeks 7-8:</strong> Develop custom PyTorch QMIX agent and mixing networks; execute Optuna hyperparameter optimization and reward shaping sweeps.</li>
+    <li><strong>Weeks 9-10:</strong> Run full 9-cell evaluation matrix across N=5, 10, and 20 fleet sizes; compute 95% bootstrap confidence intervals for scalability curves.</li>
+    <li><strong>Weeks 11-12:</strong> Export PyTorch models to ONNX Runtime, build FastAPI decision service, package in Docker, and integrate Evidently drift monitoring.</li>
+    <li><strong>Weeks 13-15:</strong> Complete Responsible AI analysis, ISO 3691-4 safety mapping, CodeCarbon energy accounting, and render PyBullet 3D trajectory replay demo.</li>
+  </ol>
+
+  <h2 class="chapter-title">10. References</h2>
+  <ol>
+    <li>J. Rashid, M. Samvelyan, C. Schroeder de Witt, G. Farquhar, J. Foerster, and S. Whiteson, "QMIX: Monotonic Value Factorisation for Deep Multi-Agent Reinforcement Learning," in <em>Proceedings of the 35th International Conference on Machine Learning (ICML)</em>, PMLR 80:4295-4304, 2018.</li>
+    <li>J. Rashid et al., "Monotonic Value Factorisation for Deep Multi-Agent Reinforcement Learning," <em>Journal of Machine Learning Research (JMLR)</em>, vol. 21, no. 178, pp. 1-51, 2020.</li>
+    <li>G. Papoudakis, F. Christianos, L. Schäfer, and S. V. Albrecht, "Benchmarking Multi-Agent Deep Reinforcement Learning Algorithms in Cooperative Tasks," in <em>Proceedings of the Neural Information Processing Systems (NeurIPS) Track on Datasets and Benchmarks</em>, 2021.</li>
+    <li>J. Hu, S. Adams, and P. A. Beling, "Rethinking the Implementation Tricks and Monotonicity Constraint in Cooperative MARL," <em>arXiv preprint arXiv:2102.06713</em>, 2021; also <em>ICLR Blogposts Track</em>, 2023.</li>
+    <li>A. Elsayed-Aly, S. Ammar, Y. Lu, S. Ornik, P. Grover, and B. S. Raman, "Safe Multi-Agent Reinforcement Learning via Shielding," in <em>Proceedings of the 20th International Conference on Autonomous Agents and Multiagent Systems (AAMAS)</em>, pp. 443-451, 2021.</li>
+    <li>G. Sartoretti, J. Kerr, Y. Shi, G. Wagner, T. K. S. Kumar, S. Koenig, and H. Choset, "PRIMAL: Pathfinding via Reinforcement and Imitation Multi-Agent Learning," <em>IEEE Robotics and Automation Letters (RA-L)</em>, vol. 4, no. 3, pp. 2378-2385, 2019.</li>
+    <li>A. Oroojlooy and D. Vahid, "A Review of Cooperative Multi-Agent Deep Reinforcement Learning," <em>Applied Intelligence</em>, vol. 53, no. 11, pp. 13677-13722, 2023.</li>
+    <li>International Organization for Standardization, "ISO 3691-4:2023 Industrial trucks - Safety requirements and verification - Part 4: Driverless industrial trucks and their systems," Geneva, Switzerland: ISO, 2023.</li>
+    <li>V. Schmidt et al., "CodeCarbon: Estimate and Track Carbon Emissions from Machine Learning," <em>Zenodo</em>, 2021.</li>
+  </ol>
+
+  <h2 class="chapter-title">Appendix (Optional)</h2>
+  <p><strong>Architecture Decision Records (ADRs):</strong> ADR-001 (Dual-Environment Strategy), ADR-002 (Custom PyTorch QMIX), ADR-003 (Hard Action-Masking Safety), ADR-004 (Python 3.11 Toolchain), ADR-005 (NFR-2 as Pre-Registered Hypothesis H1).</p>
+
+  <div class="footer-bar">Project Life Cycle Management | Unit 1 & 2 Individual Project Report Template</div>
+
+</div>
+
+</body>
+</html>

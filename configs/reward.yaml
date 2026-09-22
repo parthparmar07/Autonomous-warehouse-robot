@@ -1,0 +1,4 @@
+reward:
+  delivery_reward: 10
+  collision_penalty: -5
+  step_penalty: -0.1

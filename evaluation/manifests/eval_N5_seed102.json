@@ -1,0 +1,304 @@
+{
+  "num_agents": 5,
+  "seed": 102,
+  "grid_size": [
+    20,
+    20
+  ],
+  "num_tasks": 20,
+  "tasks": [
+    {
+      "task_id": 0,
+      "pickup": [
+        8,
+        3
+      ],
+      "delivery": [
+        10,
+        11
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 1,
+      "pickup": [
+        4,
+        16
+      ],
+      "delivery": [
+        5,
+        5
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 2,
+      "pickup": [
+        1,
+        13
+      ],
+      "delivery": [
+        12,
+        9
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 3,
+      "pickup": [
+        6,
+        17
+      ],
+      "delivery": [
+        16,
+        11
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 4,
+      "pickup": [
+        12,
+        19
+      ],
+      "delivery": [
+        1,
+        4
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 5,
+      "pickup": [
+        3,
+        2
+      ],
+      "delivery": [
+        8,
+        6
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 6,
+      "pickup": [
+        16,
+        15
+      ],
+      "delivery": [
+        19,
+        10
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 7,
+      "pickup": [
+        9,
+        18
+      ],
+      "delivery": [
+        13,
+        19
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 8,
+      "pickup": [
+        11,
+        18
+      ],
+      "delivery": [
+        2,
+        3
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 9,
+      "pickup": [
+        11,
+        11
+      ],
+      "delivery": [
+        19,
+        14
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 10,
+      "pickup": [
+        5,
+        18
+      ],
+      "delivery": [
+        13,
+        2
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 11,
+      "pickup": [
+        6,
+        12
+      ],
+      "delivery": [
+        16,
+        1
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 12,
+      "pickup": [
+        6,
+        14
+      ],
+      "delivery": [
+        12,
+        11
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 13,
+      "pickup": [
+        9,
+        2
+      ],
+      "delivery": [
+        16,
+        2
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 14,
+      "pickup": [
+        6,
+        10
+      ],
+      "delivery": [
+        5,
+        9
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 15,
+      "pickup": [
+        7,
+        10
+      ],
+      "delivery": [
+        19,
+        19
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 16,
+      "pickup": [
+        5,
+        19
+      ],
+      "delivery": [
+        14,
+        5
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 17,
+      "pickup": [
+        18,
+        1
+      ],
+      "delivery": [
+        5,
+        5
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 18,
+      "pickup": [
+        9,
+        16
+      ],
+      "delivery": [
+        11,
+        5
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    },
+    {
+      "task_id": 19,
+      "pickup": [
+        19,
+        2
+      ],
+      "delivery": [
+        16,
+        12
+      ],
+      "creation_timestep": 0,
+      "status": "pending"
+    }
+  ],
+  "robot_initial_state": [
+    {
+      "id": 0,
+      "x": 1,
+      "y": 1,
+      "orientation": 1
+    },
+    {
+      "id": 1,
+      "x": 2,
+      "y": 1,
+      "orientation": 1
+    },
+    {
+      "id": 2,
+      "x": 3,
+      "y": 1,
+      "orientation": 1
+    },
+    {
+      "id": 3,
+      "x": 4,
+      "y": 1,
+      "orientation": 1
+    },
+    {
+      "id": 4,
+      "x": 5,
+      "y": 1,
+      "orientation": 1
+    }
+  ],
+  "manifest_hash": "416faeb5a5c3c28f68ba112cd8fbbf186fd750c409107ae5e47b5f7fd292c05e"
+}

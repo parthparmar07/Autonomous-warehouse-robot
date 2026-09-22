@@ -8,10 +8,75 @@ The signature contribution is the **scalability analysis**: how task-completion 
 delivery time, and collision rate change as the fleet grows, and whether the cooperative benefit of
 value decomposition grows with it.
 
-> **Status: Week 1–3 (Initiation & Requirements).** Planning artefacts complete; environment
-> implementation begins in W4. No results exist yet — nothing in this repo claims otherwise.
+> **Current status: working prototype and research foundation.** The canonical simulator, safety
+> interfaces, training scaffolds, evaluation scripts, FastAPI service, and browser demo are implemented
+> and tested. The learned policies are still preliminary and must not be presented as final research
+> results until longer training and repeated evaluation are complete.
 
 **Team:** 4 students · **Duration:** 15 weeks (Semester 5) · **Budget:** ₹0 (free tiers only)
+
+## Implementation Status
+
+### Completed
+
+- Deterministic NumPy warehouse simulator with five discrete actions, local 28-feature observations,
+   task generation, rewards, robot movement, delivery progression, and collision metrics.
+- Safety/action-mask interfaces used by policy inference and the API.
+- Nearest-task dispatcher baseline with dynamic task assignment.
+- DQN and IQL agent foundations, replay buffers, target networks, and training scripts.
+- QMIX agent networks, monotonic mixer, replay buffer, target networks, centralized loss, and optimizer
+   update path. QMIX training is CUDA-aware when a compatible PyTorch build is installed.
+- Deterministic evaluation manifests for N=5, 10, and 20 with SHA-256 hashes.
+- Evaluation metrics, bootstrap helper, comparison runner, and JSON benchmark output.
+- FastAPI service with `/health`, `/predict`, `/state`, and `/step` endpoints.
+- Optional DQN checkpoint loading for API inference with a deterministic fallback when no checkpoint exists.
+- Browser demo connected to the live state, prediction, and simulation-step endpoints.
+- GPU support verified on an NVIDIA GeForce RTX 4050 Laptop GPU with CUDA-enabled PyTorch.
+- Regression suite currently passes 14 tests.
+
+### Current Measured Results
+
+The current benchmark is a preliminary smoke comparison using one seed and one episode per algorithm
+and fleet size. It is useful for checking the pipeline, not for final claims.
+
+| Algorithm | N=5 completion | N=20 completion | Interpretation |
+|---|---:|---:|---|
+| Nearest-task baseline | 95% | 100% | Strong completion, but collision counts rise sharply |
+| IQL checkpoint | 0% | 0% | Briefly trained; not yet effective |
+| QMIX checkpoint | 0% | 0% | Smoke-trained only; not a final result |
+| DQN checkpoint | 0% | 0% | Briefly trained; not yet effective |
+
+The baseline recorded 1 collision at N=5 and 140 at N=20 in the current smoke run. This makes the
+collision metric important: completion alone is not sufficient evidence of a safe policy.
+
+### Remaining Work
+
+1. Make the warehouse action mask enforce actual boundary, shelf, and robot-conflict constraints.
+2. Train QMIX for longer on N=5 using the CUDA device, with checkpoint metadata and repeatable seeds.
+3. Train separate N=20 policies; QMIX mixer weights are fleet-size-specific.
+4. Evaluate each algorithm over repeated episodes and seeds using sealed manifests rather than one smoke episode.
+5. Add confidence intervals, final plots, and a results table for the report.
+6. Improve the browser demo from JSON output to a visual warehouse grid with robot/task status.
+7. Add deployment hardening: restricted CORS, model version reporting, request logging, and production configuration.
+
+### Running the Working Prototype
+
+```powershell
+$env:PYTHONPATH='.'
+pytest -q
+python scripts/generate_manifests.py
+python scripts/benchmark_algorithms.py
+python scripts/train_qmix.py --episodes 3 --max-steps 30 --train-every 5
+python -m uvicorn src.deployment.api:app --host 127.0.0.1 --port 8000
+```
+
+Serve the browser demo from another terminal:
+
+```powershell
+python -m http.server 5500 --directory frontend
+```
+
+Then open `http://127.0.0.1:5500`.
 
 ---
 

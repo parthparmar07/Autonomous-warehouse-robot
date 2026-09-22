@@ -1,0 +1,11 @@
+training:
+  episodes: 100
+  num_agents: 5
+  max_steps: 150
+  batch_size: 64
+  gamma: 0.99
+  learning_rate: 0.001
+  replay_capacity: 100000
+  epsilon_start: 1.0
+  epsilon_end: 0.05
+  epsilon_decay: 0.995

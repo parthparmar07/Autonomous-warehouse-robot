@@ -12,7 +12,7 @@ class IQLTrainer:
     """Minimal trainer for the independent Q-learning baseline."""
 
     def __init__(self, num_agents: int = 5, replay_capacity: int = 100_000, batch_size: int = 64, learning_rate: float = 1e-3, gamma: float = 0.99) -> None:
-        self.model = IndependentQLearning(num_agents=num_agents, input_dim=28, action_dim=5, learning_rate=learning_rate, gamma=gamma)
+        self.model = IndependentQLearning(num_agents=num_agents, input_dim=30, action_dim=5, learning_rate=learning_rate, gamma=gamma)
         self.replay_buffers = [ReplayBuffer(capacity=replay_capacity, batch_size=batch_size) for _ in range(num_agents)]
 
     def add_transition(self, agent_id: int, state: np.ndarray, action: int, reward: float, next_state: np.ndarray, done: bool, action_mask: Sequence[bool] | None = None, next_action_mask: Sequence[bool] | None = None) -> None:

@@ -19,7 +19,7 @@ class DQNTrainer:
         gamma: float = 0.99,
     ) -> None:
         self.agent = DQNAgent(
-            input_dim=28,
+            input_dim=30,
             action_dim=5,
             learning_rate=learning_rate,
             gamma=gamma,

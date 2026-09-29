@@ -3,11 +3,13 @@ from __future__ import annotations
 from src.evaluation.metrics import summarize_metrics
 from src.evaluation.evaluator import evaluate_policy
 from src.baselines.nearest_task import NearestTaskDispatcher
+from src.environment.layout import default_layout
 from src.environment.warehouse_env import WarehouseEnv
 
 
 if __name__ == "__main__":
-    baseline = NearestTaskDispatcher(WarehouseEnv(grid_size=(20, 20), num_agents=5))
+    grid_size = (20, 20)
+    baseline = NearestTaskDispatcher(WarehouseEnv(grid_size=grid_size, num_agents=5, **default_layout(grid_size)))
     results = evaluate_policy(baseline, num_agents=5, seeds=(7,), episodes=2)
     summary = summarize_metrics(results)
     print({

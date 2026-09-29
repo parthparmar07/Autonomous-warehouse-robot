@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+from src.environment.layout import default_layout
 from src.environment.task_generator import generate_tasks
 from src.environment.warehouse_env import WarehouseEnv
 from src.utils.hashing import sha256_digest
@@ -11,7 +12,7 @@ from src.utils.hashing import sha256_digest
 
 def generate_evaluation_manifest(num_agents: int, seed: int, grid_size: tuple[int, int] = (20, 20), num_tasks: int = 20) -> dict[str, Any]:
     """Create a deterministic evaluation manifest from a seeded warehouse environment."""
-    env = WarehouseEnv(grid_size=grid_size, num_agents=num_agents, seed=seed)
+    env = WarehouseEnv(grid_size=grid_size, num_agents=num_agents, seed=seed, **default_layout(grid_size))
     env.reset(seed=seed)
     tasks = generate_tasks(env, num_tasks=num_tasks, seed=seed)
     manifest = {

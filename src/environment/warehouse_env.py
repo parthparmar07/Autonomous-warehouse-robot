@@ -5,6 +5,7 @@ from typing import Any, Dict, List, Sequence, Tuple
 import numpy as np
 
 from src.environment.rewards import compute_reward
+from src.safety.action_mask import compute_passable_mask, orientation_delta
 
 ACTION_FORWARD = 0
 ACTION_BACKWARD = 1
@@ -28,6 +29,7 @@ class WarehouseEnv:
         num_agents: int = 5,
         seed: int = 0,
         obstacles: Sequence[Tuple[int, int]] | None = None,
+        safety_corridors: Sequence[Tuple[int, int]] | None = None,
     ) -> None:
         self.grid_size = tuple(grid_size)
         self.num_agents = int(num_agents)
@@ -35,17 +37,26 @@ class WarehouseEnv:
         self.rng = np.random.default_rng(self.seed)
         self.grid = np.zeros(self.grid_size, dtype=np.int8)
         self.obstacles = set(obstacles or [])
+        self.safety_corridors = set(safety_corridors or [])
         self.robots: List[Dict[str, Any]] = []
         self.task_queue: List[Dict[str, Any]] = []
         self.completed_tasks = 0
-        self.episode_metrics: Dict[str, float] = {"collision_count": 0.0, "step_count": 0.0, "reward": 0.0}
+        self.episode_metrics: Dict[str, float] = {
+            "collision_count": 0.0,
+            "step_count": 0.0,
+            "reward": 0.0,
+            "safety_overrides": 0.0,
+        }
 
-        self._apply_static_obstacles()
+        self._apply_static_layout()
 
-    def _apply_static_obstacles(self) -> None:
+    def _apply_static_layout(self) -> None:
         for x, y in self.obstacles:
             if 0 <= x < self.grid_size[0] and 0 <= y < self.grid_size[1]:
                 self.grid[y, x] = GRID_SHELF
+        for x, y in self.safety_corridors:
+            if 0 <= x < self.grid_size[0] and 0 <= y < self.grid_size[1]:
+                self.grid[y, x] = GRID_SAFETY_CORRIDOR
 
     def reset(self, seed: int | None = None) -> Dict[str, Any]:
         if seed is not None:
@@ -54,7 +65,12 @@ class WarehouseEnv:
         self.robots = []
         self.task_queue = []
         self.completed_tasks = 0
-        self.episode_metrics = {"collision_count": 0.0, "step_count": 0.0, "reward": 0.0}
+        self.episode_metrics = {
+            "collision_count": 0.0,
+            "step_count": 0.0,
+            "reward": 0.0,
+            "safety_overrides": 0.0,
+        }
 
         for robot_id in range(self.num_agents):
             x = 1 + (robot_id % max(1, self.grid_size[0] - 2))
@@ -63,6 +79,7 @@ class WarehouseEnv:
                 x = self.grid_size[0] - 2
             if y >= self.grid_size[1]:
                 y = self.grid_size[1] - 2
+            x, y = self._nearest_free_cell(x, y)
             self.robots.append(
                 {
                     "id": robot_id,
@@ -94,6 +111,14 @@ class WarehouseEnv:
             if action in (ACTION_LEFT, ACTION_RIGHT):
                 new_x = robot["x"]
                 new_y = robot["y"]
+            if (
+                action in (ACTION_FORWARD, ACTION_BACKWARD)
+                and self._is_in_bounds(new_x, new_y)
+                and self.grid[new_y, new_x] == GRID_SAFETY_CORRIDOR
+            ):
+                # Layer-3 diagnostic (ADR-003): counts even if a caller ignored the
+                # action mask -- the physical block below is what actually stops it.
+                self.episode_metrics["safety_overrides"] += 1.0
             proposed_positions.append((new_x, new_y))
 
         occupied: Dict[Tuple[int, int], int] = {}
@@ -101,7 +126,7 @@ class WarehouseEnv:
             robot = self.robots[robot_id]
             if not self._is_in_bounds(new_x, new_y):
                 continue
-            if self.grid[new_y, new_x] == GRID_SHELF:
+            if self.grid[new_y, new_x] in (GRID_SHELF, GRID_SAFETY_CORRIDOR):
                 continue
             occupied.setdefault((new_x, new_y), robot_id)
             if robot_id != occupied[(new_x, new_y)] and (new_x, new_y) != (robot["x"], robot["y"]):
@@ -123,7 +148,7 @@ class WarehouseEnv:
 
             if not self._is_in_bounds(new_x, new_y):
                 continue
-            if self.grid[new_y, new_x] == GRID_SHELF:
+            if self.grid[new_y, new_x] in (GRID_SHELF, GRID_SAFETY_CORRIDOR):
                 continue
             if (new_x, new_y) in occupied and occupied[(new_x, new_y)] == robot_id:
                 robot["x"] = int(new_x)
@@ -171,30 +196,24 @@ class WarehouseEnv:
         return deliveries
 
     def _action_delta(self, orientation: int, action: int) -> Tuple[int, int]:
-        if action == ACTION_FORWARD:
-            if orientation == 0:
-                return 0, -1
-            if orientation == 1:
-                return 1, 0
-            if orientation == 2:
-                return 0, 1
-            return -1, 0
-        if action == ACTION_BACKWARD:
-            if orientation == 0:
-                return 0, 1
-            if orientation == 1:
-                return -1, 0
-            if orientation == 2:
-                return 0, -1
-            return 1, 0
-        if action == ACTION_LEFT:
-            return 0, 0
-        if action == ACTION_RIGHT:
-            return 0, 0
-        return 0, 0
+        return orientation_delta(orientation, action)
 
     def _is_in_bounds(self, x: int, y: int) -> bool:
         return 0 <= x < self.grid_size[0] and 0 <= y < self.grid_size[1]
+
+    def _nearest_free_cell(self, x: int, y: int) -> Tuple[int, int]:
+        """Guard against spawning a robot on a shelf or safety-corridor cell: search
+        outward in expanding rings until a free cell is found."""
+        if self._is_in_bounds(x, y) and self.grid[y, x] == GRID_FREE:
+            return x, y
+        max_radius = max(self.grid_size)
+        for radius in range(1, max_radius + 1):
+            for dx in range(-radius, radius + 1):
+                for dy in range(-radius, radius + 1):
+                    nx, ny = x + dx, y + dy
+                    if self._is_in_bounds(nx, ny) and self.grid[ny, nx] == GRID_FREE:
+                        return nx, ny
+        return x, y
 
     def get_global_state(self) -> Dict[str, Any]:
         return {
@@ -203,9 +222,22 @@ class WarehouseEnv:
             "robots": [dict(robot) for robot in self.robots],
             "task_queue": [dict(task) for task in self.task_queue],
             "metrics": dict(self.episode_metrics),
+            "completed_tasks": self.completed_tasks,
         }
 
     def get_local_observation(self, agent_id: int) -> np.ndarray:
+        """28 local/task features plus a 2-feature encoding of the robot's own heading.
+
+        The local window and target bearing are both in fixed world-axis coordinates,
+        not rotated to face the robot's heading -- so without the heading itself as a
+        feature, the *same* observation would have to map to different correct actions
+        depending on an orientation the policy never sees (whether FORWARD moves it
+        toward or away from the target, or whether a masked FORWARD needs a LEFT or a
+        RIGHT to clear). That is a partial-observability bug, not a training difficulty:
+        no amount of extra training data fixes an observation that is genuinely
+        ambiguous. sin/cos of the heading (rather than a raw 0-3 integer or one-hot) is
+        continuous and keeps the four headings equally far apart for the network.
+        """
         robot = self.robots[agent_id]
         x, y = robot["x"], robot["y"]
         local_window = np.zeros((5, 5), dtype=np.float32)
@@ -225,18 +257,31 @@ class WarehouseEnv:
         norm = max(1.0, np.hypot(float(dx), float(dy)))
         target_bearing = np.array([dx / norm, dy / norm], dtype=np.float32)
         load_value = float(robot["load_status"])
+        heading_radians = float(robot["orientation"]) * (np.pi / 2.0)
+        heading_encoding = np.array([np.sin(heading_radians), np.cos(heading_radians)], dtype=np.float32)
 
         observation = np.concatenate(
             [
                 local_window.reshape(-1),
                 target_bearing,
                 np.array([load_value], dtype=np.float32),
+                heading_encoding,
             ]
         )
         return observation.astype(np.float32)
 
     def get_action_mask(self, agent_id: int) -> List[bool]:
-        return [True, True, True, True, True]
+        """Layer 2 (ADR-003): actions that would leave the grid, enter a shelf or
+        safety-corridor cell, or collide with another robot's current cell are masked
+        out before the policy's argmax. STAY, LEFT and RIGHT never move, so they are
+        always legal -- a robot always has at least one safe action available."""
+        robot = self.robots[agent_id]
+        occupied = {
+            (other["x"], other["y"])
+            for idx, other in enumerate(self.robots)
+            if idx != agent_id and other.get("active", True)
+        }
+        return compute_passable_mask(robot["x"], robot["y"], robot["orientation"], self.grid, occupied)
 
     def render(self) -> str:
         grid = self.grid.copy()

@@ -8,6 +8,7 @@ import torch
 
 from src.algorithms.qmix.trainer import QMIXTrainer
 from src.baselines.nearest_task import NearestTaskDispatcher
+from src.environment.layout import default_layout
 from src.environment.task_generator import generate_tasks
 from src.environment.warehouse_env import WarehouseEnv
 from src.utils.seeding import set_global_seed
@@ -21,19 +22,43 @@ def global_state(env: WarehouseEnv) -> np.ndarray:
     return np.pad(np.asarray(values, dtype=np.float32), (0, max(0, 64 - len(values))))[:64]
 
 
+def _distance_to_target(robot: dict) -> float:
+    target = robot.get("target")
+    if target is None:
+        return 0.0
+    return float(abs(target[0] - robot["x"]) + abs(target[1] - robot["y"]))
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Train QMIX on the canonical warehouse environment")
     parser.add_argument("--episodes", type=int, default=30)
     parser.add_argument("--max-steps", type=int, default=100)
     parser.add_argument("--train-every", type=int, default=4)
+    parser.add_argument("--warm-start", dest="warm_start", action="store_true", default=True, help="Load artifacts/qmix_policy.pt before training if it exists and matches num_agents (default: on).")
+    parser.add_argument("--no-warm-start", dest="warm_start", action="store_false", help="Start from a random init even if a checkpoint exists.")
     args = parser.parse_args()
 
     seed = 321
     num_agents = 5
     set_global_seed(seed)
     trainer = QMIXTrainer(num_agents=num_agents, batch_size=32)
-    env = WarehouseEnv(grid_size=(20, 20), num_agents=num_agents, seed=seed)
+    grid_size = (20, 20)
+    env = WarehouseEnv(grid_size=grid_size, num_agents=num_agents, seed=seed, **default_layout(grid_size))
     losses: list[float] = []
+
+    checkpoint = Path("artifacts") / "qmix_policy.pt"
+    if args.warm_start and checkpoint.exists():
+        artifact = torch.load(checkpoint, map_location=trainer.device, weights_only=True)
+        agent_state_dicts = artifact["agent_networks"]
+        if len(agent_state_dicts) == num_agents:
+            for network, target_network, state_dict in zip(trainer.agent_networks, trainer.target_agent_networks, agent_state_dicts):
+                network.load_state_dict(state_dict)
+                target_network.load_state_dict(state_dict)
+            trainer.mixer.load_state_dict(artifact["mixer"])
+            trainer.target_mixer.load_state_dict(artifact["mixer"])
+            print(f"Warm-started from {checkpoint}")
+        else:
+            print(f"Skipping warm start: {checkpoint} has {len(agent_state_dicts)} agents, expected {num_agents}")
 
     update_count = 0
     for episode in range(args.episodes):
@@ -41,17 +66,27 @@ def main() -> None:
         env.task_queue = generate_tasks(env, num_tasks=num_agents * 2, seed=seed + episode)
         dispatcher = NearestTaskDispatcher(env)
         dispatcher.assign_tasks(env.task_queue)
+        trainer.reset_hidden_states()  # recurrent memory must not leak across episodes
         for step in range(args.max_steps):
             dispatcher.assign_pending_tasks(env.task_queue)
             observations = [env.get_local_observation(agent_id) for agent_id in range(num_agents)]
             masks = [env.get_action_mask(agent_id) for agent_id in range(num_agents)]
+            previous_distances = [_distance_to_target(robot) for robot in env.robots]
+            hidden_before = list(trainer.hidden_states)
             actions = trainer.act(observations, masks)
+            hidden_after = list(trainer.hidden_states)
             state_before = global_state(env)
             state = env.step(actions)
             next_observations = [env.get_local_observation(agent_id) for agent_id in range(num_agents)]
+            # Team-level potential shaping: average per-agent progress toward its current
+            # target, added to the shared team reward. QMIX trains on one joint reward, so
+            # this nudges every agent toward "get closer to your task" without breaking the
+            # cooperative value-decomposition structure -- it is not itself the objective.
+            team_progress = sum(previous_distances[i] - _distance_to_target(env.robots[i]) for i in range(num_agents)) / num_agents
+            shaped_reward = float(state.get("reward", 0.0)) + 0.1 * team_progress
             trainer.add_transition(
-                state_before, actions, float(state.get("reward", 0.0)), global_state(env), bool(state.get("done", False)),
-                masks, masks, observations, next_observations,
+                state_before, actions, shaped_reward, global_state(env), bool(state.get("done", False)),
+                masks, masks, observations, next_observations, hidden_before, hidden_after,
             )
             if step % max(1, args.train_every) == 0:
                 loss = trainer.train_step()
@@ -63,9 +98,7 @@ def main() -> None:
         if episode % 10 == 0:
             trainer.update_targets()
 
-    artifact_dir = Path("artifacts")
-    artifact_dir.mkdir(parents=True, exist_ok=True)
-    checkpoint = artifact_dir / "qmix_policy.pt"
+    checkpoint.parent.mkdir(parents=True, exist_ok=True)
     torch.save({
         "agent_networks": [network.state_dict() for network in trainer.agent_networks],
         "mixer": trainer.mixer.state_dict(),

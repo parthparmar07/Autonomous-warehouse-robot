@@ -41,7 +41,7 @@ def predict_actions(observations: Sequence[Sequence[float]], masks: Sequence[Seq
     predictions: list[int] = []
     for index, obs in enumerate(observations):
         observation = np.asarray(obs, dtype=np.float32)
-        if observation.shape[0] != 28:
+        if observation.shape[0] != 30:
             raise ValueError("local observation too short for action prediction")
         safe_mask = np.ones(5, dtype=bool) if masks is None or masks[index] is None else np.asarray(masks[index], dtype=bool)
         if model is not None:

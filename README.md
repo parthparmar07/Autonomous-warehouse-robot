@@ -75,38 +75,72 @@ value decomposition grows with it.
    motion, fading path trails, a pulse effect on delivery, algorithm/fleet-size/seed controls, play/pause/
    step, live reward/delivery sparklines, and a **"Compare all" mode** that runs all four algorithms
    side by side on the same seed and floor plan with a live leaderboard.
-- GPU support verified on an NVIDIA GeForce RTX 4050 Laptop GPU with CUDA-enabled PyTorch.
+- GPU support: an NVIDIA GeForce RTX 4050 Laptop GPU with CUDA-enabled PyTorch (2.6.0+cu124) is installed
+   and verified (`torch.cuda.is_available()` and a real matmul both checked directly on-device). Honest
+   caveat: these networks are small enough (a few hundred thousand parameters) that CUDA kernel-launch
+   overhead roughly cancels the parallelism benefit, and the actual training bottleneck is the
+   CPU/Python-bound BFS expert-data collection, not the neural network forward/backward pass — so GPU
+   training is available and used, but hasn't meaningfully changed wall-clock time for this workload.
+- Fleet-size-specific checkpoints (`src/deployment/policies.py`): a checkpoint trained at a given N is
+   preferred exactly when available (`artifacts/{algo}_policy_N{n}.pt`), falling back to cycling the
+   generic checkpoint's per-robot networks otherwise. QMIX now has real N=5 and N=10 trained mixers;
+   N=20's checkpoint completed its behaviour-cloning pass but not its DAgger refinement (see caveat below).
+- Sealed-manifest evaluation with real confidence intervals (`scripts/evaluate_sealed.py`): verifies each
+   manifest's SHA-256 hash before use (aborts on mismatch, per "Evaluation integrity" below), replays the
+   exact sealed floor plan/seed/task list, and reports a percentile bootstrap 95% CI
+   (`src/evaluation/bootstrap.py`) on completion rate, collisions, and reward per algorithm × fleet size.
 - Regression suite currently passes 23 tests.
 
 ### Current Measured Results
 
-The current benchmark averages 5 seeds × 2 episodes per algorithm and fleet size (`scripts/benchmark_algorithms.py`),
-run against the real floor plan, action mask, and fixed observation space — steadier than one smoke
-episode, but still not the sealed-manifest evaluation described under "Evaluation integrity" below. See
-Remaining Work for what a final result needs.
+Two independent evaluations, run after all of the fixes above, agree on the overall shape of the result.
 
-| Algorithm | N=5 completion | N=10 completion | N=20 completion | N=5 collisions |
-|---|---:|---:|---:|---:|
-| Nearest-task baseline | 99% | 99% | 97% | 52.3 |
-| DQN checkpoint | 21% | 20% | 30% | 0.8 |
-| IQL checkpoint | 25% | 31% | 46% | 1.2 |
-| QMIX checkpoint | 32% | 30% | 45% | 1.3 |
+**5 seeds × 2 episodes each (`scripts/benchmark_algorithms.py`):**
+
+| Algorithm | N=5 | N=10 | N=20 |
+|---|---:|---:|---:|
+| Nearest-task baseline | 99% | 99% | 97% |
+| DQN | 21% | 20% | 30% |
+| IQL | 25% | 31% | 46% |
+| QMIX | 43% | 21% | 36% |
+
+**Sealed manifests, hash-verified, 95% bootstrap CI (`scripts/evaluate_sealed.py`):**
+
+| Algorithm | N=5 | N=10 | N=20 |
+|---|---|---|---|
+| Nearest-task | 0.98 [0.95, 1.00] | 0.98 [0.95, 1.00] | 1.00 [1.00, 1.00] |
+| DQN | 0.28 [0.15, 0.40] | 0.30 [0.15, 0.50] | 0.28 [0.20, 0.40] |
+| IQL | 0.18 [0.10, 0.35] | 0.37 [0.30, 0.45] | 0.42 [0.35, 0.55] |
+| QMIX | 0.45 [0.40, 0.50] | 0.30 [0.00, 0.50] | 0.37 [0.25, 0.50] |
 
 **This is the first time in the project's history that every learned algorithm has a substantial,
-nonzero completion rate at every fleet size** — and every one of them has a dramatically lower collision
-rate than the baseline (single digits vs. 52–312), consistent with them having actually learned
-something about avoiding collisions rather than just moving in straight lines. For most of this session
-every learned policy scored exactly 0% regardless of which bugs were fixed or how much longer training
-ran (see the diagnosis below for why). The imitation-learning warm start plus the observation fix is
-what actually moved these numbers off zero — not a hyperparameter tweak. QMIX, the project's flagship
-algorithm, is now competitive with or ahead of IQL at every fleet size, which is the direction H1
-(the pre-registered hypothesis that cooperative value decomposition's benefit grows with fleet size)
-predicts, though three algorithms at 5 seeds is nowhere near enough evidence to claim H1 either way yet.
+nonzero completion rate at every fleet size** — and every one has a dramatically lower collision rate
+than the baseline (single digits vs. 52–312), consistent with them having actually learned something
+about avoiding collisions rather than just moving in straight lines. For most of this session every
+learned policy scored exactly 0% regardless of which bugs were fixed or how much longer training ran
+(see the diagnosis below for why). The imitation-learning warm start plus the observation fix is what
+actually moved these numbers off zero — not a hyperparameter tweak.
 
-**Safety result (across every run): zero `safety_overrides`.** No policy — trained, untrained, imitation-
-warm-started, or the baseline — has ever gotten a movement past the mask into a corridor cell. This
-holds regardless of how good or bad the policy's task-completion is, which is exactly ADR-003's claim:
-the safety guarantee does not depend on model quality.
+**Honest caveats, not smoothed over:**
+- **N=20's QMIX checkpoint is behaviour-cloning only.** Its DAgger refinement run was killed after ~76
+  minutes with no reliable ETA (confirmed still genuinely computing, not hung, via sustained high CPU
+  use — just far slower than N=5/N=10's scaling predicted, likely because 20 robots on the same 20×20
+  floor plan means far more path congestion for the BFS expert). The saved checkpoint is real and valid
+  (round 0 completed and saved before the process was stopped), just less refined than N=5/N=10's.
+- **QMIX N=10 is the weakest of QMIX's three fleet sizes in both evaluations**, and its sealed-manifest
+  CI is wide (`[0.00, 0.50]` from only 3 seeds) — read that number as genuinely uncertain, not precise.
+  A dedicated N=10 mixer was trained, but the mixer is only used during further training, not at
+  inference (`act()` only touches the per-robot agent networks) — so this result is better explained as
+  training variance in one BC+DAgger run than as evidence the fleet-size-specific mixer helped or hurt.
+- The two evaluations don't match exactly (different seeds, different sample sizes) and shouldn't be
+  expected to — they agree on the shape (baseline dominates completion; all three learned algorithms are
+  real but well below it; no single learned algorithm is cleanly best across every fleet size yet), which
+  is what matters at this sample size.
+
+**Safety result (across every run in both evaluations): zero `safety_overrides`.** No policy — trained,
+untrained, imitation-warm-started, or the baseline — has ever gotten a movement past the mask into a
+corridor cell. This holds regardless of how good or bad the policy's task-completion is, which is
+exactly ADR-003's claim: the safety guarantee does not depend on model quality.
 
 **Why every learned policy scored 0% for most of this session, and what actually fixed it.** Diagnosed
 by hand at each stage (see `src/algorithms/`, `src/environment/warehouse_env.py`), not just read off the
@@ -135,16 +169,20 @@ completion number:
    (necessary, not sufficient on its own — see diagnosis above).
 3. ~~Fix the observation's missing-heading partial-observability bug; add an imitation-learning warm
    start.~~ **Done** — this is what actually produced nonzero completion rates.
-4. Push completion rates further: more DAgger rounds / demonstrations, or RL fine-tuning on top of the
-   imitation-pretrained checkpoints (the original training scripts still work and now start from a
-   working policy instead of random init).
-5. Train on the CUDA device for far more episodes/demonstrations than a CPU session comfortably allows.
-6. Train genuinely separate N=10/N=20 QMIX **mixers** (the agent networks already generalise via
-   checkpoint cycling; the mixer is the one piece that's still fleet-size-locked, and it only matters for
-   further training, not for the numbers above).
-7. The benchmark now averages 5 seeds × 2 episodes instead of one smoke episode (steadier, but still not
-   the sealed-manifest evaluation "Evaluation integrity" describes). Switch it to the sealed manifests in
-   `evaluation/manifests/`, and add confidence intervals and final plots for the report.
+4. ~~Install and verify CUDA-enabled PyTorch.~~ **Done**, with the honest caveat that it hasn't
+   meaningfully sped up this workload (see above) — the win would come from a workload where the neural
+   net forward/backward pass dominates, not BFS data collection.
+5. ~~Train fleet-size-specific checkpoints instead of only ever training at N=5 and cycling.~~ **Done**
+   for QMIX N=5 and N=10 (real trained mixers); **N=20 is BC-only**, its DAgger refinement was cut short
+   (see caveat above) — finishing that run (or restarting it with a smaller `--dagger-episodes`) is the
+   most direct next step.
+6. ~~Switch evaluation from one smoke episode to something with real statistical grounding.~~ **Done**:
+   `scripts/evaluate_sealed.py` replays the sealed, hash-verified manifests and reports a 95% bootstrap CI.
+   Next: more sealed seeds per fleet size than 3 — the current CIs are wide largely because of that small
+   n, not because of a flaw in the method — and add the plots for the report.
+7. Push completion rates further: more DAgger rounds / demonstrations, or RL fine-tuning on top of the
+   imitation-pretrained checkpoints (the training scripts accept `--warm-start`, on by default, and load
+   fleet-size-specific checkpoints automatically — this is one command, not new engineering).
 8. Add deployment hardening: restricted CORS, model version reporting, request logging, and production configuration.
 
 ### Running the Working Prototype
@@ -156,15 +194,20 @@ python scripts/generate_manifests.py
 
 # Imitation-learning warm start (recommended before benchmarking or RL fine-tuning --
 # see "Current Measured Results" for why): behaviour cloning from the BFS dispatcher,
-# refined with DAgger. Produces artifacts/{dqn,iql,qmix}_policy.pt.
+# refined with DAgger. Produces artifacts/{dqn,iql,qmix}_policy.pt (and, with
+# --num-agents, a fleet-size-specific artifacts/{algo}_policy_N{n}.pt too).
 python scripts/pretrain_bc.py --num-agents 5 --episodes 80 --max-steps 150 --epochs 12 --dagger-rounds 2 --dagger-episodes 25
+python scripts/pretrain_bc.py --only qmix --num-agents 10 --episodes 80 --max-steps 150 --epochs 12 --dagger-rounds 2 --dagger-episodes 25
+python scripts/pretrain_bc.py --only qmix --num-agents 20 --episodes 80 --max-steps 150 --epochs 12 --dagger-rounds 2 --dagger-episodes 25
 
-python scripts/benchmark_algorithms.py
+python scripts/benchmark_algorithms.py       # 5-seed smoke comparison
+python scripts/evaluate_sealed.py            # sealed manifests, hash-verified, 95% bootstrap CI
 
 # Optional: further RL fine-tuning on top of the imitation-pretrained checkpoints,
-# instead of from a random init.
-python scripts/train_qmix.py --episodes 300 --max-steps 150 --train-every 4
-python scripts/train_iql.py --episodes 150 --max-steps 150
+# instead of from a random init -- --warm-start is on by default and loads the
+# fleet-size-specific checkpoint automatically.
+python scripts/train_qmix.py --num-agents 5 --episodes 300 --max-steps 150 --train-every 4
+python scripts/train_iql.py --num-agents 5 --episodes 150 --max-steps 150
 python scripts/train_dqn.py
 
 python -m uvicorn src.deployment.api:app --host 127.0.0.1 --port 8000

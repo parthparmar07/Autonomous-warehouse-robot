@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 
 import torch
 
 from src.algorithms.dqn.trainer import DQNTrainer
 from src.baselines.nearest_task import NearestTaskDispatcher
+from src.deployment.policies import generic_checkpoint, resolve_checkpoint, specific_checkpoint
 from src.environment.layout import default_layout
 from src.environment.task_generator import generate_tasks
 from src.environment.warehouse_env import WarehouseEnv
@@ -16,7 +16,7 @@ from src.utils.seeding import set_global_seed
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Fine-tune DQN on the canonical warehouse environment")
-    parser.add_argument("--warm-start", dest="warm_start", action="store_true", default=True, help="Load artifacts/dqn_policy.pt before training if it exists (default: on).")
+    parser.add_argument("--warm-start", dest="warm_start", action="store_true", default=True, help="Load a matching dqn checkpoint before training if one exists (default: on).")
     parser.add_argument("--no-warm-start", dest="warm_start", action="store_false", help="Start from a random init even if a checkpoint exists.")
     args = parser.parse_args()
 
@@ -37,12 +37,12 @@ def main() -> None:
         gamma=training_cfg.get("gamma", 0.99),
     )
 
-    checkpoint = Path("artifacts") / "dqn_policy.pt"
-    if args.warm_start and checkpoint.exists():
-        state_dict = torch.load(checkpoint, map_location=trainer.agent.device, weights_only=True)
+    warm_start_checkpoint = resolve_checkpoint("dqn", num_agents) if args.warm_start else None
+    if warm_start_checkpoint is not None:
+        state_dict = torch.load(warm_start_checkpoint, map_location=trainer.agent.device, weights_only=True)
         trainer.agent.online_network.load_state_dict(state_dict)
         trainer.agent.target_network.load_state_dict(state_dict)
-        print(f"Warm-started from {checkpoint}")
+        print(f"Warm-started from {warm_start_checkpoint}")
 
     losses = []
     for episode in range(episodes):
@@ -77,11 +77,12 @@ def main() -> None:
         if episode % 10 == 0:
             trainer.update_target()
 
-    checkpoint.parent.mkdir(parents=True, exist_ok=True)
-    torch.save(trainer.agent.online_network.state_dict(), checkpoint)
+    generic_checkpoint("dqn").parent.mkdir(parents=True, exist_ok=True)
+    torch.save(trainer.agent.online_network.state_dict(), generic_checkpoint("dqn"))
+    torch.save(trainer.agent.online_network.state_dict(), specific_checkpoint("dqn", num_agents))
 
     average_loss = sum(losses) / len(losses) if losses else 0.0
-    print({"episodes": episodes, "checkpoint": str(checkpoint), "average_loss": average_loss})
+    print({"episodes": episodes, "num_agents": num_agents, "checkpoint": str(specific_checkpoint("dqn", num_agents)), "average_loss": average_loss})
 
 
 def _distance_to_target(robot: dict) -> float:

@@ -1,13 +1,13 @@
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 
 import numpy as np
 import torch
 
 from src.algorithms.qmix.trainer import QMIXTrainer
 from src.baselines.nearest_task import NearestTaskDispatcher
+from src.deployment.policies import generic_checkpoint, resolve_checkpoint, specific_checkpoint
 from src.environment.layout import default_layout
 from src.environment.task_generator import generate_tasks
 from src.environment.warehouse_env import WarehouseEnv
@@ -31,24 +31,25 @@ def _distance_to_target(robot: dict) -> float:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Train QMIX on the canonical warehouse environment")
+    parser.add_argument("--num-agents", type=int, default=5)
     parser.add_argument("--episodes", type=int, default=30)
     parser.add_argument("--max-steps", type=int, default=100)
     parser.add_argument("--train-every", type=int, default=4)
-    parser.add_argument("--warm-start", dest="warm_start", action="store_true", default=True, help="Load artifacts/qmix_policy.pt before training if it exists and matches num_agents (default: on).")
+    parser.add_argument("--warm-start", dest="warm_start", action="store_true", default=True, help="Load a matching qmix checkpoint before training if one exists (default: on).")
     parser.add_argument("--no-warm-start", dest="warm_start", action="store_false", help="Start from a random init even if a checkpoint exists.")
     args = parser.parse_args()
 
     seed = 321
-    num_agents = 5
+    num_agents = args.num_agents
     set_global_seed(seed)
     trainer = QMIXTrainer(num_agents=num_agents, batch_size=32)
     grid_size = (20, 20)
     env = WarehouseEnv(grid_size=grid_size, num_agents=num_agents, seed=seed, **default_layout(grid_size))
     losses: list[float] = []
 
-    checkpoint = Path("artifacts") / "qmix_policy.pt"
-    if args.warm_start and checkpoint.exists():
-        artifact = torch.load(checkpoint, map_location=trainer.device, weights_only=True)
+    warm_start_checkpoint = resolve_checkpoint("qmix", num_agents) if args.warm_start else None
+    if warm_start_checkpoint is not None:
+        artifact = torch.load(warm_start_checkpoint, map_location=trainer.device, weights_only=True)
         agent_state_dicts = artifact["agent_networks"]
         if len(agent_state_dicts) == num_agents:
             for network, target_network, state_dict in zip(trainer.agent_networks, trainer.target_agent_networks, agent_state_dicts):
@@ -56,9 +57,13 @@ def main() -> None:
                 target_network.load_state_dict(state_dict)
             trainer.mixer.load_state_dict(artifact["mixer"])
             trainer.target_mixer.load_state_dict(artifact["mixer"])
-            print(f"Warm-started from {checkpoint}")
+            print(f"Warm-started agent networks + mixer from {warm_start_checkpoint}")
         else:
-            print(f"Skipping warm start: {checkpoint} has {len(agent_state_dicts)} agents, expected {num_agents}")
+            for network, target_network, idx in zip(trainer.agent_networks, trainer.target_agent_networks, range(num_agents)):
+                state_dict = agent_state_dicts[idx % len(agent_state_dicts)]
+                network.load_state_dict(state_dict)
+                target_network.load_state_dict(state_dict)
+            print(f"Warm-started agent networks only (cycled) from {warm_start_checkpoint}; mixer stays random-init since it has {len(agent_state_dicts)} agents, need {num_agents}")
 
     update_count = 0
     for episode in range(args.episodes):
@@ -98,12 +103,14 @@ def main() -> None:
         if episode % 10 == 0:
             trainer.update_targets()
 
-    checkpoint.parent.mkdir(parents=True, exist_ok=True)
-    torch.save({
+    payload = {
         "agent_networks": [network.state_dict() for network in trainer.agent_networks],
         "mixer": trainer.mixer.state_dict(),
-    }, checkpoint)
-    print({"episodes": args.episodes, "updates": update_count, "checkpoint": str(checkpoint), "average_loss": sum(losses) / len(losses) if losses else 0.0})
+    }
+    generic_checkpoint("qmix").parent.mkdir(parents=True, exist_ok=True)
+    torch.save(payload, generic_checkpoint("qmix"))
+    torch.save(payload, specific_checkpoint("qmix", num_agents))
+    print({"episodes": args.episodes, "num_agents": num_agents, "updates": update_count, "checkpoint": str(specific_checkpoint("qmix", num_agents)), "average_loss": sum(losses) / len(losses) if losses else 0.0})
 
 
 if __name__ == "__main__":

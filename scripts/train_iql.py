@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 import argparse
-from pathlib import Path
 
 import torch
 
 from src.algorithms.iql.trainer import IQLTrainer
 from src.baselines.nearest_task import NearestTaskDispatcher
+from src.deployment.policies import generic_checkpoint, resolve_checkpoint, specific_checkpoint
 from src.environment.layout import default_layout
 from src.environment.task_generator import generate_tasks
 from src.environment.warehouse_env import WarehouseEnv
@@ -22,14 +22,15 @@ def _distance_to_target(robot: dict) -> float:
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Train IQL on the canonical warehouse environment")
+    parser.add_argument("--num-agents", type=int, default=5)
     parser.add_argument("--episodes", type=int, default=30)
     parser.add_argument("--max-steps", type=int, default=100)
-    parser.add_argument("--warm-start", dest="warm_start", action="store_true", default=True, help="Load artifacts/iql_policy.pt before training if it exists and matches num_agents (default: on).")
+    parser.add_argument("--warm-start", dest="warm_start", action="store_true", default=True, help="Load a matching iql checkpoint before training if one exists (default: on).")
     parser.add_argument("--no-warm-start", dest="warm_start", action="store_false", help="Start from a random init even if a checkpoint exists.")
     args = parser.parse_args()
 
     seed = 123
-    num_agents = 5
+    num_agents = args.num_agents
     episodes = args.episodes
     max_steps = args.max_steps
     set_global_seed(seed)
@@ -38,16 +39,15 @@ def main() -> None:
     env = WarehouseEnv(grid_size=grid_size, num_agents=num_agents, seed=seed, **default_layout(grid_size))
     losses: list[float] = []
 
-    checkpoint = Path("artifacts") / "iql_policy.pt"
-    if args.warm_start and checkpoint.exists():
-        state_dicts = torch.load(checkpoint, map_location="cpu", weights_only=True)
-        if len(state_dicts) == num_agents:
-            for agent, state_dict in zip(trainer.model.agents, state_dicts):
-                agent.online_network.load_state_dict(state_dict)
-                agent.target_network.load_state_dict(state_dict)
-            print(f"Warm-started from {checkpoint}")
-        else:
-            print(f"Skipping warm start: {checkpoint} has {len(state_dicts)} agents, expected {num_agents}")
+    warm_start_checkpoint = resolve_checkpoint("iql", num_agents) if args.warm_start else None
+    if warm_start_checkpoint is not None:
+        state_dicts = torch.load(warm_start_checkpoint, map_location="cpu", weights_only=True)
+        for idx, agent in enumerate(trainer.model.agents):
+            state_dict = state_dicts[idx % len(state_dicts)]
+            agent.online_network.load_state_dict(state_dict)
+            agent.target_network.load_state_dict(state_dict)
+        exact = "exact match" if len(state_dicts) == num_agents else f"cycled from {len(state_dicts)} agents"
+        print(f"Warm-started from {warm_start_checkpoint} ({exact})")
 
     for episode in range(episodes):
         env.reset(seed=seed + episode)
@@ -82,10 +82,12 @@ def main() -> None:
             if done:
                 break
 
-    checkpoint.parent.mkdir(parents=True, exist_ok=True)
-    torch.save([agent.online_network.state_dict() for agent in trainer.model.agents], checkpoint)
+    payload = [agent.online_network.state_dict() for agent in trainer.model.agents]
+    generic_checkpoint("iql").parent.mkdir(parents=True, exist_ok=True)
+    torch.save(payload, generic_checkpoint("iql"))
+    torch.save(payload, specific_checkpoint("iql", num_agents))
     average_loss = sum(losses) / len(losses) if losses else 0.0
-    print({"episodes": episodes, "checkpoint": str(checkpoint), "average_loss": average_loss})
+    print({"episodes": episodes, "num_agents": num_agents, "checkpoint": str(specific_checkpoint("iql", num_agents)), "average_loss": average_loss})
 
 
 if __name__ == "__main__":

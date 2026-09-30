@@ -19,16 +19,36 @@ ALGORITHM_DESCRIPTIONS = {
     "qmix": "Centralized-training/decentralized-execution value decomposition across the fleet.",
 }
 
-_CHECKPOINTS = {
-    "dqn": Path("artifacts/dqn_policy.pt"),
-    "iql": Path("artifacts/iql_policy.pt"),
-    "qmix": Path("artifacts/qmix_policy.pt"),
-}
+_ARTIFACT_DIR = Path("artifacts")
 
 
-def checkpoint_exists(name: str) -> bool:
-    path = _CHECKPOINTS.get(name)
-    return path is not None and path.exists()
+def generic_checkpoint(name: str) -> Path:
+    """The default checkpoint path, trained at whatever fleet size a script last used
+    (N=5 unless told otherwise). Loaded with per-robot-network cycling for a fleet size
+    it wasn't trained at."""
+    return _ARTIFACT_DIR / f"{name}_policy.pt"
+
+
+def specific_checkpoint(name: str, num_agents: int) -> Path:
+    """A checkpoint trained specifically for this fleet size, e.g. artifacts/qmix_policy_N20.pt.
+    Preferred over the generic checkpoint when present -- this is what lets QMIX's
+    fleet-size-specific mixer actually be used for N=10/N=20 instead of only ever
+    training at N=5 and cycling the agent networks."""
+    return _ARTIFACT_DIR / f"{name}_policy_N{num_agents}.pt"
+
+
+def resolve_checkpoint(name: str, num_agents: int) -> Path | None:
+    specific = specific_checkpoint(name, num_agents)
+    if specific.exists():
+        return specific
+    generic = generic_checkpoint(name)
+    if generic.exists():
+        return generic
+    return None
+
+
+def checkpoint_exists(name: str, num_agents: int = 5) -> bool:
+    return resolve_checkpoint(name, num_agents) is not None
 
 
 def load_policy(name: str, num_agents: int) -> Any:
@@ -44,8 +64,8 @@ def load_policy(name: str, num_agents: int) -> Any:
 
     if name == "iql":
         policy = IndependentQLearning(num_agents=num_agents)
-        checkpoint = _CHECKPOINTS["iql"]
-        if checkpoint.exists():
+        checkpoint = resolve_checkpoint("iql", num_agents)
+        if checkpoint is not None:
             state_dicts = torch.load(checkpoint, map_location="cpu", weights_only=True)
             # Each agent's network is architecturally independent of fleet size -- only
             # the *count* of robots differs, not what a single robot's policy looks like
@@ -62,8 +82,8 @@ def load_policy(name: str, num_agents: int) -> Any:
 
     if name == "qmix":
         policy = QMIXTrainer(num_agents=num_agents)
-        checkpoint = _CHECKPOINTS["qmix"]
-        if checkpoint.exists():
+        checkpoint = resolve_checkpoint("qmix", num_agents)
+        if checkpoint is not None:
             artifact = torch.load(checkpoint, map_location=policy.device, weights_only=True)
             agent_state_dicts = artifact["agent_networks"]
             if agent_state_dicts:
@@ -80,8 +100,8 @@ def load_policy(name: str, num_agents: int) -> Any:
 
     if name == "dqn":
         trainer = DQNTrainer()
-        checkpoint = _CHECKPOINTS["dqn"]
-        if checkpoint.exists():
+        checkpoint = resolve_checkpoint("dqn", num_agents)
+        if checkpoint is not None:
             state_dict = torch.load(checkpoint, map_location="cpu", weights_only=True)
             trainer.agent.online_network.load_state_dict(state_dict)
         trainer.agent.epsilon = 0.0

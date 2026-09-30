@@ -33,6 +33,17 @@ def generate_evaluation_manifest(num_agents: int, seed: int, grid_size: tuple[in
     return manifest
 
 
+def verify_manifest_hash(manifest: dict[str, Any]) -> bool:
+    """Recompute the manifest's hash the same way it was sealed (with manifest_hash
+    blanked out first) and check it against the stored value. This is the "assert the
+    hash and abort on mismatch" the README's evaluation-integrity section promises --
+    a sealed manifest that fails this has been altered since it was generated."""
+    stored_hash = manifest.get("manifest_hash", "")
+    check = dict(manifest)
+    check["manifest_hash"] = ""
+    return sha256_digest(check) == stored_hash
+
+
 def write_manifest(path: str | Path, manifest: dict[str, Any]) -> str:
     target = Path(path)
     target.parent.mkdir(parents=True, exist_ok=True)

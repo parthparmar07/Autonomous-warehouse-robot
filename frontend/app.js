@@ -11,7 +11,7 @@ const ORIENTATION_ANGLE = { 0: -90, 1: 0, 2: 90, 3: 180 };
 
 function robotColor(id) {
   const hue = (id * 137.508) % 360; // golden-angle spacing -> well-separated hues at any N
-  return `hsl(${hue.toFixed(0)}, 72%, 60%)`;
+  return `hsl(${hue.toFixed(0)}, 62%, 48%)`;
 }
 
 function lerp(a, b, t) {
@@ -47,24 +47,36 @@ async function apiGet(path) {
 // ---------------------------------------------------------------------------
 
 function drawFreeCell(ctx, x, y, size) {
-  ctx.fillStyle = "#eef2f9";
+  ctx.fillStyle = "#fbfaf7";
   ctx.fillRect(x, y, size, size);
-  ctx.strokeStyle = "#d7deea";
+  ctx.strokeStyle = "#ece9e1";
   ctx.lineWidth = 1;
   ctx.strokeRect(x + 0.5, y + 0.5, size - 1, size - 1);
 }
 
 function drawShelfCell(ctx, x, y, size) {
-  ctx.fillStyle = "#5b3a22";
+  // A top-down pallet rack: a warm wood-toned frame with a grid of stacked boxes,
+  // rather than a flat block, so it reads as shelving rather than a generic obstacle.
+  ctx.fillStyle = "#8a6a45";
   ctx.fillRect(x, y, size, size);
-  ctx.strokeStyle = "#3d2716";
-  ctx.lineWidth = Math.max(1, size * 0.06);
-  ctx.beginPath();
-  ctx.moveTo(x, y + size * 0.33);
-  ctx.lineTo(x + size, y + size * 0.33);
-  ctx.moveTo(x, y + size * 0.66);
-  ctx.lineTo(x + size, y + size * 0.66);
-  ctx.stroke();
+  const pad = size * 0.1;
+  const inner = size - pad * 2;
+  const cols = 2;
+  const rows = 2;
+  const gap = size * 0.06;
+  const cellW = (inner - gap * (cols - 1)) / cols;
+  const cellH = (inner - gap * (rows - 1)) / rows;
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const bx = x + pad + c * (cellW + gap);
+      const by = y + pad + r * (cellH + gap);
+      ctx.fillStyle = "#c9a06b";
+      ctx.fillRect(bx, by, cellW, cellH);
+      ctx.strokeStyle = "#6b4e30";
+      ctx.lineWidth = Math.max(0.5, size * 0.02);
+      ctx.strokeRect(bx, by, cellW, cellH);
+    }
+  }
 }
 
 function drawCorridorCell(ctx, x, y, size) {
@@ -72,10 +84,10 @@ function drawCorridorCell(ctx, x, y, size) {
   ctx.beginPath();
   ctx.rect(x, y, size, size);
   ctx.clip();
-  ctx.fillStyle = "#3a2e12";
+  ctx.fillStyle = "#2b2306";
   ctx.fillRect(x, y, size, size);
-  ctx.strokeStyle = "#f5a524";
-  ctx.lineWidth = size * 0.22;
+  ctx.strokeStyle = "#f5c518";
+  ctx.lineWidth = size * 0.24;
   for (let i = -size; i < size * 2; i += size * 0.5) {
     ctx.beginPath();
     ctx.moveTo(x + i, y + size);
@@ -101,15 +113,28 @@ function drawGrid(ctx, grid, cellPx) {
 function drawTaskMarker(ctx, cx, cy, size, kind) {
   ctx.lineWidth = 2;
   if (kind === "pickup") {
-    ctx.strokeStyle = "#34d399";
+    ctx.strokeStyle = "#1a8a5f";
     ctx.beginPath();
-    ctx.arc(cx, cy, size * 0.28, 0, Math.PI * 2);
+    ctx.arc(cx, cy, size * 0.26, 0, Math.PI * 2);
     ctx.stroke();
   } else {
-    ctx.strokeStyle = "#818cf8";
-    const s = size * 0.24;
+    ctx.strokeStyle = "#6d5bd0";
+    const s = size * 0.22;
     ctx.strokeRect(cx - s, cy - s, s * 2, s * 2);
   }
+}
+
+function drawRouteLine(ctx, fromX, fromY, toX, toY, color) {
+  ctx.save();
+  ctx.strokeStyle = color;
+  ctx.globalAlpha = 0.55;
+  ctx.lineWidth = 1.6;
+  ctx.setLineDash([5, 4]);
+  ctx.beginPath();
+  ctx.moveTo(fromX, fromY);
+  ctx.lineTo(toX, toY);
+  ctx.stroke();
+  ctx.restore();
 }
 
 function drawTrail(ctx, points, cellPx, color) {
@@ -118,10 +143,10 @@ function drawTrail(ctx, points, cellPx, color) {
   for (let i = 1; i < points.length; i++) {
     const a = points[i - 1];
     const b = points[i];
-    const alpha = (i / points.length) * 0.35;
+    const alpha = (i / points.length) * 0.3;
     ctx.strokeStyle = color;
     ctx.globalAlpha = alpha;
-    ctx.lineWidth = Math.max(1.5, cellPx * 0.12);
+    ctx.lineWidth = Math.max(1.5, cellPx * 0.1);
     ctx.lineCap = "round";
     ctx.beginPath();
     ctx.moveTo(a.x * cellPx + cellPx / 2, a.y * cellPx + cellPx / 2);
@@ -133,18 +158,28 @@ function drawTrail(ctx, points, cellPx, color) {
 
 function drawRobot(ctx, cx, cy, r, angleDeg, color, loaded, id, showLabel) {
   ctx.save();
+  ctx.shadowColor = "rgba(20,20,20,0.25)";
+  ctx.shadowBlur = r * 0.6;
+  ctx.shadowOffsetY = r * 0.18;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.fillStyle = "#ffffff";
+  ctx.fill();
+  ctx.restore();
+
+  ctx.save();
   ctx.translate(cx, cy);
   ctx.rotate((angleDeg * Math.PI) / 180);
   ctx.beginPath();
-  ctx.arc(0, 0, r, 0, Math.PI * 2);
+  ctx.arc(0, 0, r * 0.82, 0, Math.PI * 2);
   ctx.fillStyle = color;
   ctx.fill();
-  ctx.lineWidth = loaded ? Math.max(2, r * 0.3) : 1;
-  ctx.strokeStyle = loaded ? "#fbbf24" : "rgba(0,0,0,0.25)";
+  ctx.lineWidth = Math.max(2, r * 0.24);
+  ctx.strokeStyle = loaded ? "#e0a526" : "rgba(255,255,255,0.9)";
   ctx.stroke();
 
-  const tipX = r * 1.4;
-  const baseW = r * 0.55;
+  const tipX = r * 1.05;
+  const baseW = r * 0.42;
   ctx.beginPath();
   ctx.moveTo(tipX, 0);
   ctx.lineTo(0, baseW);
@@ -155,20 +190,19 @@ function drawRobot(ctx, cx, cy, r, angleDeg, color, loaded, id, showLabel) {
   ctx.restore();
 
   if (showLabel && r > 7) {
-    ctx.fillStyle = "#c9d6ee";
-    ctx.font = `700 ${Math.max(8, r * 0.75)}px sans-serif`;
+    ctx.fillStyle = "#6b6b6f";
+    ctx.font = `700 ${Math.max(8, r * 0.7)}px Inter, sans-serif`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText(String(id), cx, cy - r * 1.9);
+    ctx.fillText(String(id), cx, cy - r * 1.85);
   }
 }
 
 function drawPulse(ctx, cx, cy, cellPx, progress) {
-  // progress: 0 (just delivered) -> 1 (fully faded)
   const radius = cellPx * (0.3 + progress * 1.6);
   ctx.save();
   ctx.globalAlpha = Math.max(0, 1 - progress);
-  ctx.strokeStyle = "#fde68a";
+  ctx.strokeStyle = "#e0a526";
   ctx.lineWidth = Math.max(1.5, cellPx * 0.12);
   ctx.beginPath();
   ctx.arc(cx, cy, radius, 0, Math.PI * 2);
@@ -178,17 +212,17 @@ function drawPulse(ctx, cx, cy, cellPx, progress) {
 
 // ---------------------------------------------------------------------------
 // Session hook: owns one backend session (reset/tick), tracks history for
-// smooth interpolation, trails and delivery pulses without funnelling every
-// animation frame through React state.
+// smooth interpolation, trails, delivery pulses and per-robot activity.
 // ---------------------------------------------------------------------------
 
 function useSimSession(sessionId) {
   const [state, setState] = useState(null);
   const [error, setError] = useState(null);
-  const [history, setHistory] = useState([]); // [{reward, completed}] per tick, for sparklines
+  const [history, setHistory] = useState([]);
   const animRef = useRef({ prev: null, curr: null, tickStartedAt: 0, tickDuration: 400 });
-  const trailsRef = useRef(new Map()); // robotId -> [{x,y}]
-  const pulsesRef = useRef([]); // [{x,y,startedAt}]
+  const trailsRef = useRef(new Map());
+  const pulsesRef = useRef([]);
+  const activityRef = useRef(new Map()); // robotId -> cells moved this episode
 
   const reset = useCallback(
     async (algorithm, numAgents, numTasks, seed) => {
@@ -203,7 +237,8 @@ function useSimSession(sessionId) {
         animRef.current = { prev: result, curr: result, tickStartedAt: performance.now(), tickDuration: 400 };
         trailsRef.current = new Map();
         pulsesRef.current = [];
-        setHistory([]);
+        activityRef.current = new Map();
+        setHistory([{ reward: 0, completed: 0, collisions: 0, blocked: 0, step: 0 }]);
         setState(result);
         return result;
       } catch (err) {
@@ -221,23 +256,31 @@ function useSimSession(sessionId) {
         const prev = animRef.current.curr || result;
         animRef.current = { prev, curr: result, tickStartedAt: performance.now(), tickDuration: speedMs };
 
-        // Trails: append each robot's new cell.
         result.robots.forEach((robot) => {
           const trail = trailsRef.current.get(robot.id) || [];
           trail.push({ x: robot.x, y: robot.y });
           if (trail.length > 7) trail.shift();
           trailsRef.current.set(robot.id, trail);
-        });
 
-        // Delivery pulses: any robot whose load_status just dropped to 0.
-        result.robots.forEach((robot) => {
           const before = prev.robots.find((r) => r.id === robot.id);
+          if (before && (before.x !== robot.x || before.y !== robot.y)) {
+            activityRef.current.set(robot.id, (activityRef.current.get(robot.id) || 0) + 1);
+          }
           if (before && before.load_status === 1 && robot.load_status === 0) {
             pulsesRef.current.push({ x: robot.x, y: robot.y, startedAt: performance.now() });
           }
         });
 
-        setHistory((h) => [...h.slice(-59), { reward: result.reward ?? 0, completed: result.completed_tasks ?? 0 }]);
+        setHistory((h) => [
+          ...h.slice(-59),
+          {
+            reward: result.metrics?.reward ?? 0,
+            completed: result.completed_tasks ?? 0,
+            collisions: result.metrics?.collision_count ?? 0,
+            blocked: result.metrics?.safety_overrides ?? 0,
+            step: result.metrics?.step_count ?? 0,
+          },
+        ]);
         setState(result);
         setError(null);
         return result;
@@ -249,16 +292,14 @@ function useSimSession(sessionId) {
     [sessionId]
   );
 
-  return { state, error, history, reset, tick, animRef, trailsRef, pulsesRef };
+  return { state, error, history, reset, tick, animRef, trailsRef, pulsesRef, activityRef };
 }
 
 // ---------------------------------------------------------------------------
-// Warehouse canvas: reads an animation ref directly and runs its own
-// requestAnimationFrame loop, independent of React's render cycle, so robot
-// motion is smooth regardless of how often the parent re-renders.
+// Warehouse canvas
 // ---------------------------------------------------------------------------
 
-function WarehouseCanvas({ animRef, trailsRef, pulsesRef, cellPx = 26, showLabels = true }) {
+function WarehouseCanvas({ animRef, trailsRef, pulsesRef, cellPx = 26, showLabels = true, showRoutes = true }) {
   const canvasRef = useRef(null);
   const rafRef = useRef(null);
 
@@ -297,6 +338,11 @@ function WarehouseCanvas({ animRef, trailsRef, pulsesRef, cellPx = 26, showLabel
           const before = (prev && prev.robots.find((r) => r.id === robot.id)) || robot;
           const x = lerp(before.x, robot.x, t);
           const y = lerp(before.y, robot.y, t);
+
+          if (showRoutes && robot.target) {
+            drawRouteLine(ctx, x * cellPx + cellPx / 2, y * cellPx + cellPx / 2, robot.target[0] * cellPx + cellPx / 2, robot.target[1] * cellPx + cellPx / 2, robotColor(robot.id));
+          }
+
           const angle = lerpAngle(ORIENTATION_ANGLE[before.orientation] ?? 0, ORIENTATION_ANGLE[robot.orientation] ?? 0, t);
           drawRobot(ctx, x * cellPx + cellPx / 2, y * cellPx + cellPx / 2, cellPx * 0.36, angle, robotColor(robot.id), robot.load_status === 1, robot.id, showLabels);
         });
@@ -323,34 +369,34 @@ function Legend() {
   return (
     <div className="legend">
       <span className="legend-item">
-        <span className="swatch" style={{ background: "#eef2f9", border: "1px solid #d7deea" }} />
+        <span className="swatch" style={{ background: "#fbfaf7", border: "1px solid #ece9e1" }} />
         Floor
       </span>
       <span className="legend-item">
-        <span className="swatch" style={{ background: "#5b3a22" }} />
+        <span className="swatch" style={{ background: "#8a6a45" }} />
         Shelf
       </span>
       <span className="legend-item">
-        <span className="swatch" style={{ background: "#3a2e12", border: "1px solid #f5a524" }} />
+        <span className="swatch" style={{ background: "#2b2306", border: "1px solid #f5c518" }} />
         Safety corridor (masked out)
       </span>
       <span className="legend-item">
-        <span className="swatch" style={{ borderRadius: "50%", border: "2px solid #34d399", background: "transparent" }} />
+        <span className="swatch" style={{ borderRadius: "50%", border: "2px solid #1a8a5f", background: "transparent" }} />
         Pickup point
       </span>
       <span className="legend-item">
-        <span className="swatch" style={{ border: "2px solid #818cf8", background: "transparent" }} />
+        <span className="swatch" style={{ border: "2px solid #6d5bd0", background: "transparent" }} />
         Delivery point
       </span>
       <span className="legend-item">
-        <span className="swatch" style={{ borderRadius: "50%", border: "2px solid #fbbf24", background: "#4f8cff" }} />
-        Robot (ring = carrying load)
+        <span className="swatch" style={{ borderRadius: "50%", border: "2px solid #e0a526", background: "#3a6fd8" }} />
+        Robot (gold ring = carrying)
       </span>
     </div>
   );
 }
 
-function Sparkline({ data, accessor, color = "#4f8cff", height = 40 }) {
+function Sparkline({ data, accessor, color = "#17171a", height = 56 }) {
   const canvasRef = useRef(null);
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -359,13 +405,28 @@ function Sparkline({ data, accessor, color = "#4f8cff", height = 40 }) {
     ctx.clearRect(0, 0, width, height);
     if (data.length < 2) return;
     const values = data.map(accessor);
-    const min = Math.min(...values);
-    const max = Math.max(...values);
+    const min = Math.min(...values, 0);
+    const max = Math.max(...values, 1);
     const span = max - min || 1;
+    const toXY = (v, i) => [(i / (values.length - 1)) * width, height - ((v - min) / span) * (height - 8) - 4];
+
+    ctx.beginPath();
+    ctx.moveTo(0, height);
+    values.forEach((v, i) => {
+      const [x, y] = toXY(v, i);
+      ctx.lineTo(x, y);
+    });
+    ctx.lineTo(width, height);
+    ctx.closePath();
+    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+    gradient.addColorStop(0, `${color}33`);
+    gradient.addColorStop(1, `${color}02`);
+    ctx.fillStyle = gradient;
+    ctx.fill();
+
     ctx.beginPath();
     values.forEach((v, i) => {
-      const x = (i / (values.length - 1)) * width;
-      const y = height - ((v - min) / span) * (height - 6) - 3;
+      const [x, y] = toXY(v, i);
       if (i === 0) ctx.moveTo(x, y);
       else ctx.lineTo(x, y);
     });
@@ -373,15 +434,48 @@ function Sparkline({ data, accessor, color = "#4f8cff", height = 40 }) {
     ctx.lineWidth = 2;
     ctx.lineJoin = "round";
     ctx.stroke();
-    const last = values[values.length - 1];
-    const lastY = height - ((last - min) / span) * (height - 6) - 3;
+
+    const [lx, ly] = toXY(values[values.length - 1], values.length - 1);
     ctx.beginPath();
-    ctx.arc(width, lastY, 3, 0, Math.PI * 2);
+    ctx.arc(lx, ly, 3.2, 0, Math.PI * 2);
     ctx.fillStyle = color;
     ctx.fill();
   }, [data, accessor, color, height]);
 
-  return <canvas ref={canvasRef} width={280} height={height} style={{ width: "100%", height: `${height}px` }} />;
+  return <canvas ref={canvasRef} width={320} height={height} style={{ width: "100%", height: `${height}px` }} />;
+}
+
+// ---------------------------------------------------------------------------
+// Stat tiles with real trend deltas (compared to ~5 ticks ago)
+// ---------------------------------------------------------------------------
+
+function Trend({ series, higherIsBetter = true }) {
+  if (series.length < 6) return <span className="trend flat">--</span>;
+  const now = series[series.length - 1];
+  const before = series[Math.max(0, series.length - 6)];
+  const delta = now - before;
+  if (Math.abs(delta) < 1e-9) return <span className="trend flat"><IconMinus size={10} /> 0%</span>;
+  const pct = before !== 0 ? Math.abs((delta / before) * 100) : Math.abs(delta) * 100;
+  const isUp = delta > 0;
+  const good = isUp === higherIsBetter;
+  return (
+    <span className={`trend ${good ? "up" : "down"}`}>
+      {isUp ? <IconTrendUp size={10} /> : <IconTrendDown size={10} />} {pct.toFixed(0)}%
+    </span>
+  );
+}
+
+function StatTile({ icon, value, label, tone, series, higherIsBetter }) {
+  return (
+    <div className={`stat ${tone || ""}`}>
+      <div className="stat-top">
+        <span className="stat-icon">{icon}</span>
+        {series && <Trend series={series} higherIsBetter={higherIsBetter} />}
+      </div>
+      <div className="value">{value}</div>
+      <div className="label">{label}</div>
+    </div>
+  );
 }
 
 function StatsPanel({ state, history }) {
@@ -390,61 +484,117 @@ function StatsPanel({ state, history }) {
 
   return (
     <div className="panel">
-      <h2>Live metrics</h2>
+      <div className="panel-header">
+        <div className="panel-title">
+          <span className="icon-badge">
+            <IconActivity size={15} />
+          </span>
+          Live Metrics
+        </div>
+        <span className="status-line">
+          <span className="status-dot" /> Running
+        </span>
+      </div>
       <div className="stat-grid">
-        <div className="stat">
-          <div className="value">{metrics.step_count ?? 0}</div>
-          <div className="label">Steps</div>
-        </div>
-        <div className="stat good">
-          <div className="value">{state ? state.completed_tasks ?? 0 : 0}</div>
-          <div className="label">Delivered</div>
-        </div>
-        <div className="stat">
-          <div className="value">{totalTasks}</div>
-          <div className="label">Tasks queued</div>
-        </div>
-        <div className={`stat ${metrics.collision_count > 0 ? "bad" : "good"}`}>
-          <div className="value">{metrics.collision_count ?? 0}</div>
-          <div className="label">Collisions</div>
-        </div>
-        <div className={`stat ${metrics.safety_overrides > 0 ? "warn" : "good"}`}>
-          <div className="value">{metrics.safety_overrides ?? 0}</div>
-          <div className="label">Corridor attempts blocked</div>
-        </div>
-        <div className="stat">
-          <div className="value">{Number(metrics.reward ?? 0).toFixed(1)}</div>
-          <div className="label">Episode reward</div>
-        </div>
+        <StatTile icon={<IconFootprints size={14} />} value={metrics.step_count ?? 0} label="Steps" series={history.map((h) => h.step)} higherIsBetter={true} />
+        <StatTile icon={<IconPackage size={14} />} value={state ? state.completed_tasks ?? 0 : 0} label="Delivered" tone="good" series={history.map((h) => h.completed)} higherIsBetter={true} />
+        <StatTile icon={<IconList size={14} />} value={totalTasks} label="Tasks Queued" />
+        <StatTile icon={<IconAlertTriangle size={14} />} value={metrics.collision_count ?? 0} label="Collisions" tone={metrics.collision_count > 0 ? "bad" : "good"} series={history.map((h) => h.collisions)} higherIsBetter={false} />
+        <StatTile icon={<IconBan size={14} />} value={metrics.safety_overrides ?? 0} label="Corridor Blocks" tone={metrics.safety_overrides > 0 ? "warn" : "good"} series={history.map((h) => h.blocked)} higherIsBetter={false} />
+        <StatTile icon={<IconStar size={14} />} value={Number(metrics.reward ?? 0).toFixed(1)} label="Episode Reward" series={history.map((h) => h.reward)} higherIsBetter={true} />
       </div>
-      <div className="sparkline-wrap">
-        <div className="label">Deliveries over time</div>
-        <Sparkline data={history} accessor={(d) => d.completed} color="#34d399" />
-      </div>
-      <div className="sparkline-wrap">
-        <div className="label">Cumulative reward</div>
-        <Sparkline data={history} accessor={(d) => d.reward} color="#7c5cff" />
+
+      <div style={{ marginTop: 16 }}>
+        <div className="panel-header" style={{ marginBottom: 6 }}>
+          <div className="panel-title" style={{ fontSize: "0.82rem" }}>
+            <span className="icon-badge">
+              <IconTruck size={13} />
+            </span>
+            Deliveries Over Time
+          </div>
+          <span className="chart-dropdown">Steps</span>
+        </div>
+        <Sparkline data={history} accessor={(d) => d.completed} color="#1a8a5f" />
       </div>
     </div>
   );
 }
 
-function RobotList({ state }) {
+function FleetTable({ state, activityRef }) {
   if (!state) return null;
+  const maxSteps = Math.max(1, state.metrics?.step_count ?? 1);
   return (
     <div className="panel">
-      <h2>Fleet</h2>
-      <div className="robot-list">
-        {state.robots.map((robot) => (
-          <div className="robot-row" key={robot.id}>
-            <span className="robot-dot" style={{ background: robotColor(robot.id), color: robotColor(robot.id) }} />
-            <span>#{robot.id}</span>
-            <span style={{ color: "var(--text-dim)" }}>
-              ({robot.x}, {robot.y})
-            </span>
-            <span style={{ marginLeft: "auto" }}>{robot.load_status === 1 ? "carrying" : "idle"}</span>
-          </div>
-        ))}
+      <div className="panel-header">
+        <div className="panel-title">
+          <span className="icon-badge">
+            <IconGrid size={14} />
+          </span>
+          Fleet Status
+        </div>
+        <button className="see-all-link">
+          View All <IconChevronRight size={13} />
+        </button>
+      </div>
+      <table className="fleet-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Position</th>
+            <th>Status</th>
+            <th>Activity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {state.robots.map((robot) => {
+            const moved = activityRef.current.get(robot.id) || 0;
+            const pct = Math.min(100, Math.round((moved / maxSteps) * 100));
+            return (
+              <tr key={robot.id}>
+                <td>
+                  <span className="fleet-id">
+                    <span className="fleet-dot" style={{ background: robotColor(robot.id), color: robotColor(robot.id) }} />#{robot.id}
+                  </span>
+                </td>
+                <td style={{ color: "var(--ink-dim)" }}>
+                  ({robot.x}, {robot.y})
+                </td>
+                <td>
+                  <span className={`status-pill ${robot.load_status === 1 ? "carrying" : "idle"}`}>{robot.load_status === 1 ? <IconBox size={11} /> : null}{robot.load_status === 1 ? "carrying" : "idle"}</span>
+                </td>
+                <td>
+                  <div className="activity-bar-wrap">
+                    <div className="activity-bar-fill" style={{ width: `${pct}%` }} />
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Stepper control
+// ---------------------------------------------------------------------------
+
+function Stepper({ value, onChange, min = 1, max = 999, icon, labelText }) {
+  const set = (v) => onChange(Math.max(min, Math.min(max, v)));
+  return (
+    <div className="field">
+      <label>
+        {icon} {labelText}
+      </label>
+      <div className="stepper">
+        <button type="button" onClick={() => set(Number(value) - 1)}>
+          &minus;
+        </button>
+        <input type="number" value={value} onChange={(e) => set(Number(e.target.value) || min)} />
+        <button type="button" onClick={() => set(Number(value) + 1)}>
+          +
+        </button>
       </div>
     </div>
   );
@@ -462,6 +612,7 @@ function SingleView({ algorithms }) {
   const [seed, setSeed] = useState(42);
   const [playing, setPlaying] = useState(false);
   const [speedMs, setSpeedMs] = useState(400);
+  const [zoom, setZoom] = useState(1);
 
   useEffect(() => {
     session.reset(algorithm, numAgents, numTasks, seed);
@@ -480,6 +631,13 @@ function SingleView({ algorithms }) {
     session.reset(algorithm, numAgents, numTasks, seed);
   };
 
+  const canvasWrapRef = useRef(null);
+  const toggleFullscreen = () => {
+    const el = canvasWrapRef.current;
+    if (!document.fullscreenElement) el.requestFullscreen?.();
+    else document.exitFullscreen?.();
+  };
+
   const activeAlgo = algorithms.find((a) => a.name === algorithm);
 
   return (
@@ -487,10 +645,19 @@ function SingleView({ algorithms }) {
       {session.error && <div className="error-banner">{session.error}</div>}
 
       <div className="panel">
-        <h2>Simulation controls</h2>
+        <div className="panel-header">
+          <div className="panel-title">
+            <span className="icon-badge">
+              <IconSliders size={14} />
+            </span>
+            Simulation Controls
+          </div>
+        </div>
         <div className="controls-row">
           <div className="field">
-            <label>Algorithm</label>
+            <label>
+              <IconCube size={13} /> Algorithm
+            </label>
             <select value={algorithm} onChange={(e) => setAlgorithm(e.target.value)}>
               {(algorithms.length ? algorithms : [{ name: algorithm }]).map((a) => (
                 <option key={a.name} value={a.name}>
@@ -499,37 +666,32 @@ function SingleView({ algorithms }) {
               ))}
             </select>
           </div>
+          <Stepper value={numAgents} onChange={setNumAgents} min={1} max={20} icon={<IconTruck size={13} />} labelText="Fleet Size" />
+          <Stepper value={numTasks} onChange={setNumTasks} min={1} max={40} icon={<IconPackage size={13} />} labelText="Tasks in Flight" />
           <div className="field">
-            <label>Fleet size</label>
-            <select value={numAgents} onChange={(e) => setNumAgents(e.target.value)}>
-              {[3, 5, 10, 20].map((n) => (
-                <option key={n} value={n}>
-                  {n}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="field">
-            <label>Tasks in flight</label>
-            <input type="number" min="1" max="40" value={numTasks} onChange={(e) => setNumTasks(e.target.value)} />
-          </div>
-          <div className="field">
-            <label>Seed</label>
-            <input type="number" value={seed} onChange={(e) => setSeed(e.target.value)} />
+            <label>
+              <IconRefreshCw size={13} /> Seed
+            </label>
+            <div className="seed-field">
+              <input type="number" value={seed} onChange={(e) => setSeed(Number(e.target.value))} />
+              <button className="icon-btn" type="button" title="Randomize seed" onClick={() => setSeed(Math.floor(Math.random() * 100000))}>
+                <IconRefreshCw size={14} />
+              </button>
+            </div>
           </div>
           <div className="field">
             <label>Speed ({speedMs} ms/step)</label>
             <input type="range" min="80" max="1200" step="20" value={speedMs} onChange={(e) => setSpeedMs(Number(e.target.value))} />
           </div>
           <div className="buttons">
-            <button className="secondary" onClick={handleReset}>
-              Reset
+            <button className="pill" onClick={handleReset}>
+              <IconRotateCcw size={14} /> Reset
             </button>
-            <button className="secondary" onClick={() => session.tick(speedMs)} disabled={playing}>
-              Step
+            <button className="pill" onClick={() => session.tick(speedMs)} disabled={playing}>
+              <IconStepForward size={14} /> Step
             </button>
-            <button className="primary" onClick={() => setPlaying((p) => !p)}>
-              {playing ? "Pause" : "Play"}
+            <button className="pill solid" onClick={() => setPlaying((p) => !p)}>
+              {playing ? <IconPause size={14} /> : <IconPlay size={14} />} {playing ? "Pause" : "Play"}
             </button>
           </div>
         </div>
@@ -543,15 +705,38 @@ function SingleView({ algorithms }) {
 
       <div className="layout">
         <div className="panel">
-          <h2>Floor plan</h2>
-          <div className="canvas-wrap">
-            <WarehouseCanvas animRef={session.animRef} trailsRef={session.trailsRef} pulsesRef={session.pulsesRef} cellPx={26} />
+          <div className="panel-header">
+            <div className="panel-title">
+              <span className="icon-badge">
+                <IconGrid size={14} />
+              </span>
+              Warehouse Floor Plan
+            </div>
+            <div className="header-actions">
+              <div className="view-toggle">
+                <button className="active">2D View</button>
+                <button disabled title="Not available in this build">
+                  3D View
+                </button>
+              </div>
+              <button className="icon-btn" title="Zoom in" onClick={() => setZoom((z) => (z >= 1.6 ? 1 : z + 0.2))}>
+                <IconSearch size={15} />
+              </button>
+              <button className="icon-btn" title="Fullscreen" onClick={toggleFullscreen}>
+                <IconMaximize size={15} />
+              </button>
+            </div>
+          </div>
+          <div className="canvas-wrap" ref={canvasWrapRef}>
+            <div style={{ transform: `scale(${zoom})`, transformOrigin: "center" }}>
+              <WarehouseCanvas animRef={session.animRef} trailsRef={session.trailsRef} pulsesRef={session.pulsesRef} cellPx={26} />
+            </div>
           </div>
           <Legend />
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <div>
           <StatsPanel state={session.state} history={session.history} />
-          <RobotList state={session.state} />
+          <FleetTable state={session.state} activityRef={session.activityRef} />
         </div>
       </div>
     </>
@@ -572,7 +757,7 @@ function CompareCard({ algorithm, session, rank, cellPx }) {
         <span className={`rank ${rank === 1 ? "first" : ""}`}>#{rank}</span>
       </div>
       <div className="compare-mini-canvas-wrap">
-        <WarehouseCanvas animRef={session.animRef} trailsRef={session.trailsRef} pulsesRef={session.pulsesRef} cellPx={cellPx} showLabels={false} />
+        <WarehouseCanvas animRef={session.animRef} trailsRef={session.trailsRef} pulsesRef={session.pulsesRef} cellPx={cellPx} showLabels={false} showRoutes={false} />
       </div>
       <div className="compare-stats">
         <div className="mini-stat">
@@ -599,7 +784,14 @@ function CompareCard({ algorithm, session, rank, cellPx }) {
 function Leaderboard({ ranked }) {
   return (
     <div className="panel leaderboard">
-      <h2>Leaderboard</h2>
+      <div className="panel-header">
+        <div className="panel-title">
+          <span className="icon-badge">
+            <IconStar size={14} />
+          </span>
+          Leaderboard
+        </div>
+      </div>
       <table>
         <thead>
           <tr>
@@ -692,46 +884,47 @@ function CompareView() {
       )}
 
       <div className="panel">
-        <h2>Compare all four, live, same seed</h2>
+        <div className="panel-header">
+          <div className="panel-title">
+            <span className="icon-badge">
+              <IconLayers size={14} />
+            </span>
+            Compare all four, live, same seed
+          </div>
+        </div>
         <div className="controls-row">
+          <Stepper value={numAgents} onChange={setNumAgents} min={1} max={20} icon={<IconTruck size={13} />} labelText="Fleet Size" />
+          <Stepper value={numTasks} onChange={setNumTasks} min={1} max={40} icon={<IconPackage size={13} />} labelText="Tasks in Flight" />
           <div className="field">
-            <label>Fleet size</label>
-            <select value={numAgents} onChange={(e) => setNumAgents(e.target.value)}>
-              {[3, 5, 10, 20].map((n) => (
-                <option key={n} value={n}>
-                  {n}
-                </option>
-              ))}
-            </select>
-          </div>
-          <div className="field">
-            <label>Tasks in flight</label>
-            <input type="number" min="1" max="40" value={numTasks} onChange={(e) => setNumTasks(e.target.value)} />
-          </div>
-          <div className="field">
-            <label>Seed</label>
-            <input type="number" value={seed} onChange={(e) => setSeed(e.target.value)} />
+            <label>
+              <IconRefreshCw size={13} /> Seed
+            </label>
+            <div className="seed-field">
+              <input type="number" value={seed} onChange={(e) => setSeed(Number(e.target.value))} />
+              <button className="icon-btn" type="button" title="Randomize seed" onClick={() => setSeed(Math.floor(Math.random() * 100000))}>
+                <IconRefreshCw size={14} />
+              </button>
+            </div>
           </div>
           <div className="field">
             <label>Speed ({speedMs} ms/step)</label>
             <input type="range" min="80" max="1200" step="20" value={speedMs} onChange={(e) => setSpeedMs(Number(e.target.value))} />
           </div>
           <div className="buttons">
-            <button className="secondary" onClick={resetAll}>
-              Reset all
+            <button className="pill" onClick={resetAll}>
+              <IconRotateCcw size={14} /> Reset all
             </button>
-            <button className="secondary" onClick={tickAll} disabled={playing}>
-              Step all
+            <button className="pill" onClick={tickAll} disabled={playing}>
+              <IconStepForward size={14} /> Step all
             </button>
-            <button className="primary" onClick={() => setPlaying((p) => !p)}>
-              {playing ? "Pause" : "Play"}
+            <button className="pill solid" onClick={() => setPlaying((p) => !p)}>
+              {playing ? <IconPause size={14} /> : <IconPlay size={14} />} {playing ? "Pause" : "Play"}
             </button>
           </div>
         </div>
         <p className="algo-description">
-          All four run on the same floor plan, fleet size and seed, ticking together -- the fairest side-by-side
-          comparison the live demo can give you. The nearest-task baseline uses BFS pathfinding; the learned
-          checkpoints use whatever's currently saved in <code>artifacts/</code>.
+          All four run on the same floor plan, fleet size and seed, ticking together — the fairest side-by-side comparison the live demo can give you. The
+          nearest-task baseline uses BFS pathfinding; the learned checkpoints use whatever's currently saved in <code>artifacts/</code>.
         </p>
       </div>
 
@@ -748,11 +941,50 @@ function CompareView() {
 }
 
 // ---------------------------------------------------------------------------
+// Sidebar
+// ---------------------------------------------------------------------------
+
+const NAV_ITEMS = [
+  { key: "simulator", label: "Simulator", icon: <IconCube size={17} /> },
+  { key: "compare", label: "Compare", icon: <IconGrid size={17} /> },
+];
+
+function Sidebar({ page, setPage }) {
+  return (
+    <div className="sidebar">
+      <div className="brand">
+        <span className="logo">
+          <IconCube size={17} />
+        </span>
+        <span className="name">WFC</span>
+      </div>
+      <div className="nav">
+        {NAV_ITEMS.map((item) => (
+          <button key={item.key} className={`nav-item ${page === item.key ? "active" : ""}`} onClick={() => setPage(item.key)}>
+            {item.icon}
+            {item.label}
+          </button>
+        ))}
+      </div>
+      <div className="sidebar-footer">
+        <div className="dots">
+          {Array.from({ length: 12 }).map((_, i) => (
+            <span key={i} />
+          ))}
+        </div>
+        <strong>Built with FastAPI</strong>
+        <span>Live simulation &amp; pathfinding</span>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // App shell
 // ---------------------------------------------------------------------------
 
 function App() {
-  const [mode, setMode] = useState("single");
+  const [page, setPage] = useState("simulator");
   const [algorithms, setAlgorithms] = useState([]);
   const [apiError, setApiError] = useState(null);
 
@@ -762,26 +994,41 @@ function App() {
       .catch((err) => setApiError(`Could not reach the API at ${API_URL}: ${err.message}`));
   }, []);
 
+  const mode = page === "compare" ? "compare" : "single";
+  const setMode = (m) => setPage(m === "compare" ? "compare" : "simulator");
+
+  const eyebrow = mode === "compare" ? "COMPARE" : "SIMULATOR";
+  const title = "Warehouse Fleet Control";
+  const subtitle =
+    mode === "compare"
+      ? "Run every algorithm on the same seed and floor plan, side by side, live."
+      : "Live NumPy simulator, driven through the FastAPI fleet-decision service.";
+
   return (
-    <div className="app">
-      <div className="app-header">
-        <div>
-          <h1>Warehouse Fleet Control</h1>
-          <p>Live NumPy simulator, driven through the FastAPI fleet-decision service.</p>
+    <div className="app-shell">
+      <Sidebar page={page} setPage={setPage} />
+      <div className="main">
+        <div className="page-header">
+          <div>
+            <span className="kicker">{eyebrow}</span>
+            <h1>{title}</h1>
+            <p>{subtitle}</p>
+          </div>
+          <div className="mode-toggle">
+            <button className={mode === "single" ? "active" : ""} onClick={() => setMode("single")}>
+              Single Run
+            </button>
+            <button className={mode === "compare" ? "active" : ""} onClick={() => setMode("compare")}>
+              Compare Runs
+            </button>
+          </div>
         </div>
-        <div className="mode-toggle">
-          <button className={mode === "single" ? "active" : ""} onClick={() => setMode("single")}>
-            Single
-          </button>
-          <button className={mode === "compare" ? "active" : ""} onClick={() => setMode("compare")}>
-            Compare all
-          </button>
-        </div>
+
+        {apiError && <div className="error-banner">{apiError}</div>}
+
+        {page === "simulator" && <SingleView algorithms={algorithms} />}
+        {page === "compare" && <CompareView />}
       </div>
-
-      {apiError && <div className="error-banner">{apiError}</div>}
-
-      {mode === "single" ? <SingleView algorithms={algorithms} /> : <CompareView />}
     </div>
   );
 }

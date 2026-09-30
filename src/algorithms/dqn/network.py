@@ -8,9 +8,9 @@ import torch.nn as nn
 
 
 class DQNNetwork(nn.Module):
-    """Simple DQN for a 28-dimensional local observation and 5 actions."""
+    """Simple DQN for a 30-dimensional local observation and 5 actions."""
 
-    def __init__(self, input_dim: int = 28, hidden_dim: int = 128, action_dim: int = 5) -> None:
+    def __init__(self, input_dim: int = 30, hidden_dim: int = 128, action_dim: int = 5) -> None:
         super().__init__()
         self.network = nn.Sequential(
             nn.Linear(input_dim, hidden_dim),

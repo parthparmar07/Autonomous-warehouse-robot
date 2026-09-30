@@ -1,0 +1,626 @@
+[
+  {
+    "algorithm": "dqn",
+    "num_agents": 5,
+    "manifests_evaluated": 3,
+    "completion_rate_mean": 0.2833333333333334,
+    "completion_rate_ci95": [
+      0.15,
+      0.4000000000000001
+    ],
+    "collision_count_mean": 1.0,
+    "collision_count_ci95": [
+      0.0,
+      2.0
+    ],
+    "episode_reward_mean": 31.66666666666652,
+    "episode_reward_ci95": [
+      4.999999999999995,
+      49.99999999999982
+    ],
+    "per_seed": [
+      {
+        "seed": 100,
+        "num_tasks": 20,
+        "completed_tasks": 8,
+        "completion_rate": 0.4,
+        "steps": 200,
+        "collisions": 2,
+        "safety_overrides": 0,
+        "episode_reward": 49.99999999999982
+      },
+      {
+        "seed": 101,
+        "num_tasks": 20,
+        "completed_tasks": 3,
+        "completion_rate": 0.15,
+        "steps": 200,
+        "collisions": 1,
+        "safety_overrides": 0,
+        "episode_reward": 4.999999999999995
+      },
+      {
+        "seed": 102,
+        "num_tasks": 20,
+        "completed_tasks": 6,
+        "completion_rate": 0.3,
+        "steps": 200,
+        "collisions": 0,
+        "safety_overrides": 0,
+        "episode_reward": 39.999999999999744
+      }
+    ]
+  },
+  {
+    "algorithm": "dqn",
+    "num_agents": 10,
+    "manifests_evaluated": 3,
+    "completion_rate_mean": 0.3,
+    "completion_rate_ci95": [
+      0.15,
+      0.5
+    ],
+    "collision_count_mean": 1.6666666666666667,
+    "collision_count_ci95": [
+      1.0,
+      2.0
+    ],
+    "episode_reward_mean": 31.666666666666885,
+    "episode_reward_ci95": [
+      4.999999999999995,
+      70.00000000000091
+    ],
+    "per_seed": [
+      {
+        "seed": 100,
+        "num_tasks": 20,
+        "completed_tasks": 10,
+        "completion_rate": 0.5,
+        "steps": 200,
+        "collisions": 2,
+        "safety_overrides": 0,
+        "episode_reward": 70.00000000000091
+      },
+      {
+        "seed": 101,
+        "num_tasks": 20,
+        "completed_tasks": 3,
+        "completion_rate": 0.15,
+        "steps": 200,
+        "collisions": 1,
+        "safety_overrides": 0,
+        "episode_reward": 4.999999999999995
+      },
+      {
+        "seed": 102,
+        "num_tasks": 20,
+        "completed_tasks": 5,
+        "completion_rate": 0.25,
+        "steps": 200,
+        "collisions": 2,
+        "safety_overrides": 0,
+        "episode_reward": 19.999999999999744
+      }
+    ]
+  },
+  {
+    "algorithm": "dqn",
+    "num_agents": 20,
+    "manifests_evaluated": 3,
+    "completion_rate_mean": 0.2833333333333334,
+    "completion_rate_ci95": [
+      0.20000000000000004,
+      0.4000000000000001
+    ],
+    "collision_count_mean": 3.6666666666666665,
+    "collision_count_ci95": [
+      3.0,
+      4.0
+    ],
+    "episode_reward_mean": 18.333333333333186,
+    "episode_reward_ci95": [
+      4.999999999999963,
+      39.999999999999744
+    ],
+    "per_seed": [
+      {
+        "seed": 100,
+        "num_tasks": 20,
+        "completed_tasks": 4,
+        "completion_rate": 0.2,
+        "steps": 200,
+        "collisions": 3,
+        "safety_overrides": 0,
+        "episode_reward": 4.999999999999963
+      },
+      {
+        "seed": 101,
+        "num_tasks": 20,
+        "completed_tasks": 5,
+        "completion_rate": 0.25,
+        "steps": 200,
+        "collisions": 4,
+        "safety_overrides": 0,
+        "episode_reward": 9.999999999999853
+      },
+      {
+        "seed": 102,
+        "num_tasks": 20,
+        "completed_tasks": 8,
+        "completion_rate": 0.4,
+        "steps": 200,
+        "collisions": 4,
+        "safety_overrides": 0,
+        "episode_reward": 39.999999999999744
+      }
+    ]
+  },
+  {
+    "algorithm": "iql",
+    "num_agents": 5,
+    "manifests_evaluated": 3,
+    "completion_rate_mean": 0.18333333333333332,
+    "completion_rate_ci95": [
+      0.10000000000000002,
+      0.3499999999999999
+    ],
+    "collision_count_mean": 0.6666666666666666,
+    "collision_count_ci95": [
+      0.0,
+      1.0
+    ],
+    "episode_reward_mean": 13.333333333333265,
+    "episode_reward_ci95": [
+      -4.99999999999997,
+      44.99999999999975
+    ],
+    "per_seed": [
+      {
+        "seed": 100,
+        "num_tasks": 20,
+        "completed_tasks": 2,
+        "completion_rate": 0.1,
+        "steps": 200,
+        "collisions": 0,
+        "safety_overrides": 0,
+        "episode_reward": 6.356026815979021e-15
+      },
+      {
+        "seed": 101,
+        "num_tasks": 20,
+        "completed_tasks": 7,
+        "completion_rate": 0.35,
+        "steps": 200,
+        "collisions": 1,
+        "safety_overrides": 0,
+        "episode_reward": 44.99999999999976
+      },
+      {
+        "seed": 102,
+        "num_tasks": 20,
+        "completed_tasks": 2,
+        "completion_rate": 0.1,
+        "steps": 200,
+        "collisions": 1,
+        "safety_overrides": 0,
+        "episode_reward": -4.99999999999997
+      }
+    ]
+  },
+  {
+    "algorithm": "iql",
+    "num_agents": 10,
+    "manifests_evaluated": 3,
+    "completion_rate_mean": 0.36666666666666664,
+    "completion_rate_ci95": [
+      0.3,
+      0.45
+    ],
+    "collision_count_mean": 1.3333333333333333,
+    "collision_count_ci95": [
+      1.0,
+      2.0
+    ],
+    "episode_reward_mean": 46.66666666666669,
+    "episode_reward_ci95": [
+      34.99999999999976,
+      60.00000000000059
+    ],
+    "per_seed": [
+      {
+        "seed": 100,
+        "num_tasks": 20,
+        "completed_tasks": 7,
+        "completion_rate": 0.35,
+        "steps": 200,
+        "collisions": 1,
+        "safety_overrides": 0,
+        "episode_reward": 44.999999999999744
+      },
+      {
+        "seed": 101,
+        "num_tasks": 20,
+        "completed_tasks": 6,
+        "completion_rate": 0.3,
+        "steps": 200,
+        "collisions": 1,
+        "safety_overrides": 0,
+        "episode_reward": 34.99999999999976
+      },
+      {
+        "seed": 102,
+        "num_tasks": 20,
+        "completed_tasks": 9,
+        "completion_rate": 0.45,
+        "steps": 200,
+        "collisions": 2,
+        "safety_overrides": 0,
+        "episode_reward": 60.00000000000058
+      }
+    ]
+  },
+  {
+    "algorithm": "iql",
+    "num_agents": 20,
+    "manifests_evaluated": 3,
+    "completion_rate_mean": 0.4166666666666667,
+    "completion_rate_ci95": [
+      0.3499999999999999,
+      0.55
+    ],
+    "collision_count_mean": 4.333333333333333,
+    "collision_count_ci95": [
+      3.0,
+      6.0
+    ],
+    "episode_reward_mean": 41.66666666666682,
+    "episode_reward_ci95": [
+      19.99999999999975,
+      75.00000000000095
+    ],
+    "per_seed": [
+      {
+        "seed": 100,
+        "num_tasks": 20,
+        "completed_tasks": 7,
+        "completion_rate": 0.35,
+        "steps": 200,
+        "collisions": 4,
+        "safety_overrides": 0,
+        "episode_reward": 29.999999999999744
+      },
+      {
+        "seed": 101,
+        "num_tasks": 20,
+        "completed_tasks": 7,
+        "completion_rate": 0.35,
+        "steps": 200,
+        "collisions": 6,
+        "safety_overrides": 0,
+        "episode_reward": 19.99999999999975
+      },
+      {
+        "seed": 102,
+        "num_tasks": 20,
+        "completed_tasks": 11,
+        "completion_rate": 0.55,
+        "steps": 200,
+        "collisions": 3,
+        "safety_overrides": 0,
+        "episode_reward": 75.00000000000095
+      }
+    ]
+  },
+  {
+    "algorithm": "nearest_task",
+    "num_agents": 5,
+    "manifests_evaluated": 3,
+    "completion_rate_mean": 0.9833333333333334,
+    "completion_rate_ci95": [
+      0.9499999999999998,
+      1.0
+    ],
+    "collision_count_mean": 83.0,
+    "collision_count_ci95": [
+      7.0,
+      222.0
+    ],
+    "episode_reward_mean": -232.23333333333346,
+    "episode_reward_ci95": [
+      -940.0000000000013,
+      155.00000000000034
+    ],
+    "per_seed": [
+      {
+        "seed": 100,
+        "num_tasks": 20,
+        "completed_tasks": 20,
+        "completion_rate": 1.0,
+        "steps": 117,
+        "collisions": 20,
+        "safety_overrides": 0,
+        "episode_reward": 88.30000000000041
+      },
+      {
+        "seed": 101,
+        "num_tasks": 20,
+        "completed_tasks": 19,
+        "completion_rate": 0.95,
+        "steps": 200,
+        "collisions": 222,
+        "safety_overrides": 0,
+        "episode_reward": -940.0000000000011
+      },
+      {
+        "seed": 102,
+        "num_tasks": 20,
+        "completed_tasks": 20,
+        "completion_rate": 1.0,
+        "steps": 100,
+        "collisions": 7,
+        "safety_overrides": 0,
+        "episode_reward": 155.00000000000034
+      }
+    ]
+  },
+  {
+    "algorithm": "nearest_task",
+    "num_agents": 10,
+    "manifests_evaluated": 3,
+    "completion_rate_mean": 0.9833333333333334,
+    "completion_rate_ci95": [
+      0.9499999999999998,
+      1.0
+    ],
+    "collision_count_mean": 250.33333333333334,
+    "collision_count_ci95": [
+      24.0,
+      427.0
+    ],
+    "episode_reward_mean": -1070.6333333333314,
+    "episode_reward_ci95": [
+      -1954.8999999999953,
+      73.00000000000023
+    ],
+    "per_seed": [
+      {
+        "seed": 100,
+        "num_tasks": 20,
+        "completed_tasks": 19,
+        "completion_rate": 0.95,
+        "steps": 200,
+        "collisions": 300,
+        "safety_overrides": 0,
+        "episode_reward": -1329.9999999999986
+      },
+      {
+        "seed": 101,
+        "num_tasks": 20,
+        "completed_tasks": 20,
+        "completion_rate": 1.0,
+        "steps": 199,
+        "collisions": 427,
+        "safety_overrides": 0,
+        "episode_reward": -1954.8999999999953
+      },
+      {
+        "seed": 102,
+        "num_tasks": 20,
+        "completed_tasks": 20,
+        "completion_rate": 1.0,
+        "steps": 70,
+        "collisions": 24,
+        "safety_overrides": 0,
+        "episode_reward": 73.00000000000023
+      }
+    ]
+  },
+  {
+    "algorithm": "nearest_task",
+    "num_agents": 20,
+    "manifests_evaluated": 3,
+    "completion_rate_mean": 1.0,
+    "completion_rate_ci95": [
+      1.0,
+      1.0
+    ],
+    "collision_count_mean": 337.0,
+    "collision_count_ci95": [
+      145.0,
+      493.0
+    ],
+    "episode_reward_mean": -1492.366666666666,
+    "episode_reward_ci95": [
+      -2272.9999999999986,
+      -530.6000000000001
+    ],
+    "per_seed": [
+      {
+        "seed": 100,
+        "num_tasks": 20,
+        "completed_tasks": 20,
+        "completion_rate": 1.0,
+        "steps": 85,
+        "collisions": 373,
+        "safety_overrides": 0,
+        "episode_reward": -1673.499999999999
+      },
+      {
+        "seed": 101,
+        "num_tasks": 20,
+        "completed_tasks": 20,
+        "completion_rate": 1.0,
+        "steps": 56,
+        "collisions": 145,
+        "safety_overrides": 0,
+        "episode_reward": -530.6000000000001
+      },
+      {
+        "seed": 102,
+        "num_tasks": 20,
+        "completed_tasks": 20,
+        "completion_rate": 1.0,
+        "steps": 80,
+        "collisions": 493,
+        "safety_overrides": 0,
+        "episode_reward": -2272.9999999999986
+      }
+    ]
+  },
+  {
+    "algorithm": "qmix",
+    "num_agents": 5,
+    "manifests_evaluated": 3,
+    "completion_rate_mean": 0.45,
+    "completion_rate_ci95": [
+      0.4000000000000001,
+      0.5
+    ],
+    "collision_count_mean": 1.6666666666666667,
+    "collision_count_ci95": [
+      0.0,
+      4.0
+    ],
+    "episode_reward_mean": 61.66666666666682,
+    "episode_reward_ci95": [
+      39.99999999999976,
+      80.00000000000036
+    ],
+    "per_seed": [
+      {
+        "seed": 100,
+        "num_tasks": 20,
+        "completed_tasks": 8,
+        "completion_rate": 0.4,
+        "steps": 200,
+        "collisions": 4,
+        "safety_overrides": 0,
+        "episode_reward": 39.99999999999976
+      },
+      {
+        "seed": 101,
+        "num_tasks": 20,
+        "completed_tasks": 9,
+        "completion_rate": 0.45,
+        "steps": 200,
+        "collisions": 1,
+        "safety_overrides": 0,
+        "episode_reward": 65.00000000000034
+      },
+      {
+        "seed": 102,
+        "num_tasks": 20,
+        "completed_tasks": 10,
+        "completion_rate": 0.5,
+        "steps": 200,
+        "collisions": 0,
+        "safety_overrides": 0,
+        "episode_reward": 80.00000000000036
+      }
+    ]
+  },
+  {
+    "algorithm": "qmix",
+    "num_agents": 10,
+    "manifests_evaluated": 3,
+    "completion_rate_mean": 0.3,
+    "completion_rate_ci95": [
+      0.0,
+      0.5
+    ],
+    "collision_count_mean": 1.6666666666666667,
+    "collision_count_ci95": [
+      1.0,
+      2.0
+    ],
+    "episode_reward_mean": 31.666666666666874,
+    "episode_reward_ci95": [
+      -30.00000000000018,
+      75.00000000000085
+    ],
+    "per_seed": [
+      {
+        "seed": 100,
+        "num_tasks": 20,
+        "completed_tasks": 8,
+        "completion_rate": 0.4,
+        "steps": 200,
+        "collisions": 2,
+        "safety_overrides": 0,
+        "episode_reward": 49.99999999999994
+      },
+      {
+        "seed": 101,
+        "num_tasks": 20,
+        "completed_tasks": 0,
+        "completion_rate": 0.0,
+        "steps": 200,
+        "collisions": 2,
+        "safety_overrides": 0,
+        "episode_reward": -30.000000000000178
+      },
+      {
+        "seed": 102,
+        "num_tasks": 20,
+        "completed_tasks": 10,
+        "completion_rate": 0.5,
+        "steps": 200,
+        "collisions": 1,
+        "safety_overrides": 0,
+        "episode_reward": 75.00000000000085
+      }
+    ]
+  },
+  {
+    "algorithm": "qmix",
+    "num_agents": 20,
+    "manifests_evaluated": 3,
+    "completion_rate_mean": 0.3666666666666667,
+    "completion_rate_ci95": [
+      0.25,
+      0.5
+    ],
+    "collision_count_mean": 3.6666666666666665,
+    "collision_count_ci95": [
+      1.0,
+      5.0
+    ],
+    "episode_reward_mean": 35.00000000000023,
+    "episode_reward_ci95": [
+      4.99999999999997,
+      75.00000000000095
+    ],
+    "per_seed": [
+      {
+        "seed": 100,
+        "num_tasks": 20,
+        "completed_tasks": 7,
+        "completion_rate": 0.35,
+        "steps": 200,
+        "collisions": 5,
+        "safety_overrides": 0,
+        "episode_reward": 24.999999999999766
+      },
+      {
+        "seed": 101,
+        "num_tasks": 20,
+        "completed_tasks": 5,
+        "completion_rate": 0.25,
+        "steps": 200,
+        "collisions": 5,
+        "safety_overrides": 0,
+        "episode_reward": 4.99999999999997
+      },
+      {
+        "seed": 102,
+        "num_tasks": 20,
+        "completed_tasks": 10,
+        "completion_rate": 0.5,
+        "steps": 200,
+        "collisions": 1,
+        "safety_overrides": 0,
+        "episode_reward": 75.00000000000095
+      }
+    ]
+  }
+]

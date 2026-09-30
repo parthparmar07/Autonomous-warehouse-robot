@@ -2,109 +2,121 @@
   {
     "algorithm": "nearest_task",
     "num_agents": 5,
-    "completion_rate": 0.95,
-    "average_delivery_time": 200.0,
-    "collision_rate": 1.0,
-    "throughput": 0.095,
-    "episode_reward": 165.00000000000074
+    "completion_rate": 0.99,
+    "average_delivery_time": 124.7,
+    "collision_rate": 52.3,
+    "throughput": 0.17422595761726198,
+    "episode_reward": -75.96999999999993,
+    "safety_overrides": 0
   },
   {
     "algorithm": "nearest_task",
     "num_agents": 10,
-    "completion_rate": 0.95,
-    "average_delivery_time": 200.0,
-    "collision_rate": 532.0,
-    "throughput": 0.095,
-    "episode_reward": -2489.999999999994
+    "completion_rate": 0.9899999999999999,
+    "average_delivery_time": 123.6,
+    "collision_rate": 190.3,
+    "throughput": 0.20386343910648536,
+    "episode_reward": -765.859999999999,
+    "safety_overrides": 0
   },
   {
     "algorithm": "nearest_task",
     "num_agents": 20,
-    "completion_rate": 1.0,
-    "average_delivery_time": 95.0,
-    "collision_rate": 140.0,
-    "throughput": 0.21052631578947367,
-    "episode_reward": -509.5000000000002
+    "completion_rate": 0.97,
+    "average_delivery_time": 92.2,
+    "collision_rate": 312.5,
+    "throughput": 0.27427682377298745,
+    "episode_reward": -1377.719999999998,
+    "safety_overrides": 0
   },
   {
     "algorithm": "iql",
     "num_agents": 5,
-    "completion_rate": 0.0,
+    "completion_rate": 0.24999999999999994,
     "average_delivery_time": 200.0,
-    "collision_rate": 0.0,
-    "throughput": 0.0,
-    "episode_reward": -20.000000000000014
+    "collision_rate": 1.2,
+    "throughput": 0.025,
+    "episode_reward": 24.00000000000008,
+    "safety_overrides": 0
   },
   {
     "algorithm": "iql",
     "num_agents": 10,
-    "completion_rate": 0.0,
+    "completion_rate": 0.31,
     "average_delivery_time": 200.0,
-    "collision_rate": 11.0,
-    "throughput": 0.0,
-    "episode_reward": -74.99999999999949
+    "collision_rate": 2.3,
+    "throughput": 0.031,
+    "episode_reward": 30.5,
+    "safety_overrides": 0
   },
   {
     "algorithm": "iql",
     "num_agents": 20,
-    "completion_rate": 0.0,
+    "completion_rate": 0.45500000000000007,
     "average_delivery_time": 200.0,
-    "collision_rate": 53.0,
-    "throughput": 0.0,
-    "episode_reward": -285.0000000000002
+    "collision_rate": 5.5,
+    "throughput": 0.0455,
+    "episode_reward": 43.50000000000021,
+    "safety_overrides": 0
   },
   {
     "algorithm": "qmix",
     "num_agents": 5,
-    "completion_rate": 0.0,
+    "completion_rate": 0.43,
     "average_delivery_time": 200.0,
-    "collision_rate": 0.0,
-    "throughput": 0.0,
-    "episode_reward": -20.000000000000014
+    "collision_rate": 1.5,
+    "throughput": 0.043,
+    "episode_reward": 58.500000000000306,
+    "safety_overrides": 0
   },
   {
     "algorithm": "qmix",
     "num_agents": 10,
-    "completion_rate": 0.0,
+    "completion_rate": 0.21000000000000002,
     "average_delivery_time": 200.0,
-    "collision_rate": 0.0,
-    "throughput": 0.0,
-    "episode_reward": -20.000000000000014
+    "collision_rate": 2.0,
+    "throughput": 0.020999999999999998,
+    "episode_reward": 12.000000000000087,
+    "safety_overrides": 0
   },
   {
     "algorithm": "qmix",
     "num_agents": 20,
-    "completion_rate": 0.0,
+    "completion_rate": 0.36000000000000004,
     "average_delivery_time": 200.0,
-    "collision_rate": 200.0,
-    "throughput": 0.0,
-    "episode_reward": -1020.0000000000032
+    "collision_rate": 2.7,
+    "throughput": 0.036,
+    "episode_reward": 38.5000000000003,
+    "safety_overrides": 0
   },
   {
     "algorithm": "dqn",
     "num_agents": 5,
-    "completion_rate": 0.0,
+    "completion_rate": 0.20999999999999996,
     "average_delivery_time": 200.0,
-    "collision_rate": 0.0,
-    "throughput": 0.0,
-    "episode_reward": -20.000000000000014
+    "collision_rate": 0.8,
+    "throughput": 0.021,
+    "episode_reward": 17.99999999999988,
+    "safety_overrides": 0
   },
   {
     "algorithm": "dqn",
     "num_agents": 10,
-    "completion_rate": 0.0,
+    "completion_rate": 0.2,
     "average_delivery_time": 200.0,
-    "collision_rate": 0.0,
-    "throughput": 0.0,
-    "episode_reward": -20.000000000000014
+    "collision_rate": 1.7,
+    "throughput": 0.02,
+    "episode_reward": 11.499999999999979,
+    "safety_overrides": 0
   },
   {
     "algorithm": "dqn",
     "num_agents": 20,
-    "completion_rate": 0.0,
+    "completion_rate": 0.3,
     "average_delivery_time": 200.0,
-    "collision_rate": 0.0,
-    "throughput": 0.0,
-    "episode_reward": -20.000000000000014
+    "collision_rate": 20.9,
+    "throughput": 0.030000000000000006,
+    "episode_reward": -64.50000000000026,
+    "safety_overrides": 0
   }
 ]

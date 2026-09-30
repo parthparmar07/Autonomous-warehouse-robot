@@ -10,7 +10,7 @@ from src.algorithms.dqn.agent import DQNAgent
 class IndependentQLearning:
     """Per-agent DQN baseline: each robot learns independently from its local observation."""
 
-    def __init__(self, num_agents: int = 5, input_dim: int = 28, action_dim: int = 5, learning_rate: float = 1e-3, gamma: float = 0.99) -> None:
+    def __init__(self, num_agents: int = 5, input_dim: int = 30, action_dim: int = 5, learning_rate: float = 1e-3, gamma: float = 0.99) -> None:
         self.num_agents = int(num_agents)
         self.input_dim = int(input_dim)
         self.action_dim = int(action_dim)

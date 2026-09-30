@@ -25,7 +25,14 @@ class QMIXReplayBuffer:
         next_action_masks: Optional[List[List[bool]]] = None,
         observations: Optional[List[np.ndarray]] = None,
         next_observations: Optional[List[np.ndarray]] = None,
+        hidden_ins: Optional[List[Optional[np.ndarray]]] = None,
+        next_hidden_ins: Optional[List[Optional[np.ndarray]]] = None,
     ) -> None:
+        """``hidden_ins[i]``/``next_hidden_ins[i]`` are the GRU hidden state each agent's
+        network actually carried into ``observations[i]`` / ``next_observations[i]`` during
+        the rollout (``None`` at an episode's first step). Storing the real hidden state
+        alongside the transition -- rather than re-deriving one at train time -- is what
+        lets ``train_step`` compute Q-values consistently with what the policy actually saw."""
         self.buffer.append(
             {
                 "state": np.asarray(state, dtype=np.float32),
@@ -37,6 +44,8 @@ class QMIXReplayBuffer:
                 "next_action_masks": [list(mask) for mask in next_action_masks] if next_action_masks is not None else None,
                 "observations": [np.asarray(obs, dtype=np.float32) for obs in observations] if observations is not None else None,
                 "next_observations": [np.asarray(obs, dtype=np.float32) for obs in next_observations] if next_observations is not None else None,
+                "hidden_ins": [None if h is None else np.asarray(h, dtype=np.float32) for h in hidden_ins] if hidden_ins is not None else None,
+                "next_hidden_ins": [None if h is None else np.asarray(h, dtype=np.float32) for h in next_hidden_ins] if next_hidden_ins is not None else None,
             }
         )
 

@@ -5,8 +5,8 @@ from src.algorithms.qmix.mixer import QMIXMixer
 
 
 def test_qmix_shapes_and_monotonic_condition_hold():
-    agent = QMIXAgentNetwork(input_dim=28, action_dim=5)
-    obs = np.random.randn(28).astype(np.float32)
+    agent = QMIXAgentNetwork(input_dim=30, action_dim=5)
+    obs = np.random.randn(30).astype(np.float32)
     q_values, hidden = agent.forward(np.asarray(obs, dtype=np.float32))
     assert q_values.shape == (5,)
 

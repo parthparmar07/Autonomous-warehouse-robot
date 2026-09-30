@@ -10,7 +10,7 @@ import torch.nn as nn
 class QMIXAgentNetwork(nn.Module):
     """Per-agent utility network with local observation encoder and GRU memory."""
 
-    def __init__(self, input_dim: int = 28, hidden_dim: int = 64, action_dim: int = 5, gru_hidden_dim: int = 32) -> None:
+    def __init__(self, input_dim: int = 30, hidden_dim: int = 64, action_dim: int = 5, gru_hidden_dim: int = 32) -> None:
         super().__init__()
         self.encoder = nn.Sequential(
             nn.Linear(input_dim, hidden_dim),
@@ -43,14 +43,23 @@ class QMIXAgentNetwork(nn.Module):
         q_values = self.q_head(out[-1]).squeeze(0)
         return q_values, next_hidden
 
-    def act(self, observation: Sequence[float] | np.ndarray, action_mask: Optional[Sequence[bool]] = None) -> int:
+    def act(
+        self,
+        observation: Sequence[float] | np.ndarray,
+        action_mask: Optional[Sequence[bool]] = None,
+        hidden_state: Optional[torch.Tensor] = None,
+    ) -> tuple[int, torch.Tensor]:
+        """Returns (action, next_hidden_state). Callers doing a rollout over multiple
+        steps must carry ``next_hidden_state`` back in as ``hidden_state`` on the next
+        call -- passing ``None`` every time (the old behaviour) throws the GRU's memory
+        away and makes it decide from the current observation alone."""
         tensor = torch.as_tensor(observation, dtype=torch.float32, device=next(self.parameters()).device).unsqueeze(0)
         with torch.no_grad():
-            q_values, _ = self.forward(tensor)
-            q_values = q_values.detach().cpu().numpy().copy()
-            if q_values.ndim == 2:
-                q_values = q_values[0]
+            q_values, next_hidden = self.forward(tensor, hidden_state)
+            q_values_np = q_values.detach().cpu().numpy().copy()
+            if q_values_np.ndim == 2:
+                q_values_np = q_values_np[0]
         if action_mask is not None:
-            q_values = np.asarray(q_values, dtype=float)
-            q_values[~np.asarray(action_mask, dtype=bool)] = -np.inf
-        return int(np.argmax(q_values))
+            q_values_np = np.asarray(q_values_np, dtype=float)
+            q_values_np[~np.asarray(action_mask, dtype=bool)] = -np.inf
+        return int(np.argmax(q_values_np)), next_hidden

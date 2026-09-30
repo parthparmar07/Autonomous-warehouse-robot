@@ -15,7 +15,7 @@ class DQNAgent:
 
     def __init__(
         self,
-        input_dim: int = 28,
+        input_dim: int = 30,
         action_dim: int = 5,
         learning_rate: float = 1e-3,
         gamma: float = 0.99,

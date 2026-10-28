@@ -8,6 +8,7 @@ dist/
 
 # --- virtual environment ---
 .venv/
+.venv-cuda/
 venv/
 env/
 
@@ -15,14 +16,26 @@ env/
 mlruns/
 mlartifacts/
 optuna_studies/
-outputs/
+outputs/*
+!outputs/evaluation/
+!outputs/evaluation/*.json
 checkpoints/
 *.pt
 *.pth
 *.ckpt
 
-# NOTE: exported ONNX policies ARE versioned (they are graded deliverables).
+# NOTE: exported ONNX and canonical v6_research policies ARE versioned.
 !artifacts/onnx/*.onnx
+!artifacts/warehouse_v6_research/
+!artifacts/warehouse_v6_research/*.pt
+!artifacts/warehouse_v6_research/*.sha256
+!artifacts/warehouse_v6_research/mixed_stock_v1/
+!artifacts/warehouse_v6_research/mixed_stock_v1/*.pt
+!artifacts/warehouse_v6_research/mixed_stock_v1/*.sha256
+!artifacts/warehouse_v6_research/mixed_stock_v1/*.json
+!artifacts/warehouse_v6_research/tiny/
+!artifacts/warehouse_v6_research/tiny/*.pt
+!artifacts/warehouse_v6_research/tiny/*.sha256
 
 # --- monitoring / reporting output ---
 reports/generated/
@@ -37,6 +50,7 @@ data/episodes/
 
 # --- testing & coverage ---
 .pytest_cache/
+tmp/
 .coverage
 coverage.xml
 htmlcov/

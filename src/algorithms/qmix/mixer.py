@@ -39,11 +39,11 @@ class QMIXMixer(nn.Module):
         return out
 
     def monotonicity_check(self, agent_q_values: Sequence[np.ndarray]) -> bool:
-        for idx in range(len(agent_q_values)):
-            base = np.asarray(agent_q_values[idx], dtype=np.float32).copy()
-            boosted = base + 1.0
-            if boosted.shape != base.shape:
-                return False
-            if not np.all(np.isfinite(boosted)):
-                return False
-        return True
+        if len(agent_q_values)!=self.num_agents:
+            raise ValueError('One utility array per agent is required')
+        utilities=[torch.as_tensor(np.asarray(q),dtype=torch.float32).flatten().requires_grad_() for q in agent_q_values]
+        if len({len(q) for q in utilities})!=1 or any(not torch.isfinite(q).all() for q in utilities):
+            return False
+        state=torch.zeros(len(utilities[0]),self.state_dim)
+        derivatives=torch.autograd.grad(self(utilities,state).sum(),utilities)
+        return all(bool((g>=-1e-7).all()) for g in derivatives)

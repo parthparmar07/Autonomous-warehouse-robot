@@ -1,69 +1,49 @@
-from __future__ import annotations
-
-from typing import List
-
-from pydantic import BaseModel, Field, model_validator
-
-ALGORITHM_NAMES = ("nearest_task", "dqn", "iql", "qmix")
-
+import math
+from typing import Literal
+from pydantic import BaseModel, Field, StrictInt, StrictBool, model_validator
+from src.environment.spec import ACTION_DIM, OBS_DIM, OBS_VERSION
+ALGORITHM_NAMES=('nearest_task','dqn','iql','vdn','qmix','shortest_path')
 
 class ObservationRequest(BaseModel):
-    """Input contract for raw local-observation batches (programmatic / testing use).
-
-    ``masks`` is optional per-observation action masks (see ``get_action_mask``); without
-    one, every action is reported legal for that observation -- callers that need the real
-    safety guarantee should supply masks computed from a live WarehouseEnv, or drive the
-    simulation through /reset + /tick instead, which always uses the true per-robot mask.
-    """
-
-    observations: List[List[float]] = Field(default_factory=list)
-    masks: List[List[bool]] | None = None
-
-    @model_validator(mode="after")
-    def validate_observations(self):
-        if not self.observations:
-            raise ValueError("observations must not be empty")
-        for obs in self.observations:
-            if len(obs) != 30:
-                raise ValueError("each observation must contain exactly 30 features")
-        if self.masks is not None and len(self.masks) != len(self.observations):
-            raise ValueError("masks must have one entry per observation")
+    observations:list[list[float]]=Field(min_length=1,max_length=40)
+    masks:list[list[StrictBool]]
+    algorithm:str='qmix'
+    observation_version:str=OBS_VERSION
+    @model_validator(mode='after')
+    def validate_batch(self):
+        if self.algorithm not in ('dqn','iql','vdn','qmix') or self.observation_version!=OBS_VERSION:
+            raise ValueError('Incompatible algorithm/observation version')
+        if any(len(o)!=OBS_DIM or not all(math.isfinite(v) for v in o) for o in self.observations):
+            raise ValueError(f'Each observation must contain {OBS_DIM} finite features')
+        if len(self.masks)!=len(self.observations) or any(len(m)!=ACTION_DIM or not any(m) for m in self.masks):
+            raise ValueError('Each observation requires a seven-action mask with a legal action')
         return self
-
-
 class PredictResponse(BaseModel):
-    actions: List[int]
-    message: str = "ok"
-
-
+    actions:list[int]
+    message:str='versioned checkpoint inference'
 class StepRequest(BaseModel):
-    actions: List[int]
-
-    @model_validator(mode="after")
+    actions:list[StrictInt]=Field(min_length=1,max_length=40)
+    @model_validator(mode='after')
     def validate_actions(self):
-        if not self.actions:
-            raise ValueError("actions must not be empty")
-        if any(action not in range(5) for action in self.actions):
-            raise ValueError("actions must be between 0 and 4")
+        if any(a not in range(ACTION_DIM) for a in self.actions):raise ValueError('Actions must be in 0..6')
         return self
-
-
 class ResetRequest(BaseModel):
-    algorithm: str = "nearest_task"
-    num_agents: int = 5
-    num_tasks: int = 10
-    seed: int | None = None
-
-    @model_validator(mode="after")
+    workload:Literal['outbound','mixed']='outbound'
+    arrival_interval:StrictInt=Field(default=20,ge=8,le=400)
+    algorithm:str='nearest_task'
+    num_agents:StrictInt=Field(default=5,ge=1,le=40)
+    num_tasks:StrictInt=Field(default=10,ge=1,le=128)
+    seed:StrictInt=Field(default=42,ge=0,le=2**32-1)
+    initial_soc:float=Field(default=1,ge=0,le=1)
+    sensor_front_fov:float=Field(default=360,ge=0,le=360)
+    sensor_rear_fov:float=Field(default=0,ge=0,le=360)
+    sensor_dropout:float=Field(default=0,ge=0,le=1)
+    sensor_latency:StrictInt=Field(default=0,ge=0,le=50)
+    @model_validator(mode='after')
     def validate_algorithm(self):
-        if self.algorithm not in ALGORITHM_NAMES:
-            raise ValueError(f"algorithm must be one of {ALGORITHM_NAMES}")
-        if not (1 <= self.num_agents <= 40):
-            raise ValueError("num_agents must be between 1 and 40")
+        if self.algorithm not in ALGORITHM_NAMES:raise ValueError('Unknown algorithm')
         return self
-
-
 class AlgorithmInfo(BaseModel):
-    name: str
-    trained: bool
-    description: str
+    name:str
+    trained:bool
+    description:str

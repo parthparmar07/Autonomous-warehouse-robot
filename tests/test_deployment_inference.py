@@ -1,10 +1,19 @@
 import numpy as np
-
+import pytest
 from src.deployment.inference import predict_actions
+from src.deployment import policies
+from src.environment.warehouse_env import WarehouseEnv
+from src.training.learner import RecurrentLearner
 
-
-def test_inference_returns_valid_masked_actions():
-    observations = [np.zeros(30, dtype=np.float32), np.ones(30, dtype=np.float32)]
-    actions = predict_actions(observations, [[True, False, False, False, False], [False, True, True, True, True]])
-    assert actions[0] == 0
-    assert actions[1] in {1, 2, 3, 4}
+def test_missing_incompatible_and_corrupt_checkpoints_fail_closed(tmp_path,monkeypatch):
+    monkeypatch.setattr(policies,'_ARTIFACT_DIR',tmp_path)
+    env=WarehouseEnv(num_agents=2)
+    obs=[env.get_local_observation(i) for i in range(2)]
+    masks=[[True,False,False,False,False,False,False],[False,True,False,False,False,False,False]]
+    with pytest.raises(FileNotFoundError):predict_actions(obs,masks)
+    model=RecurrentLearner('qmix',2,env.observation_dim,len(env.get_training_state()))
+    path=policies.specific_checkpoint('qmix',2)
+    policies.save_checkpoint(model.checkpoint({}),path)
+    assert predict_actions(obs,masks)==[0,1]
+    path.write_bytes(b'corrupt')
+    with pytest.raises(ValueError,match='hash'):predict_actions(obs,masks)

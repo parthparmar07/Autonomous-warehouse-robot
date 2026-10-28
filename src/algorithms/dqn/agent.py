@@ -36,12 +36,15 @@ class DQNAgent:
         self.epsilon_start = epsilon_start
         self.epsilon_end = epsilon_end
         self.epsilon_decay = epsilon_decay
+        self.action_dim = action_dim
+        self.updates = 0
+        self.target_every = 200
 
     def act(self, observation: Sequence[float] | np.ndarray, action_mask: Sequence[bool] | None = None) -> int:
         if np.random.rand() < self.epsilon:
-            valid_actions = list(range(5)) if action_mask is None else [idx for idx, allowed in enumerate(action_mask) if allowed]
+            valid_actions = list(range(self.action_dim)) if action_mask is None else [idx for idx, allowed in enumerate(action_mask) if allowed]
             if not valid_actions:
-                return 0
+                raise ValueError('No legal actions')
             return int(np.random.choice(valid_actions))
         return self.online_network.act(observation, action_mask)
 
@@ -59,17 +62,23 @@ class DQNAgent:
 
         with torch.no_grad():
             next_q = self.target_network(next_states)
-            next_q_masked = next_q.clone()
+            next_q_masked = self.online_network(next_states).clone()
             for idx, item in enumerate(batch):
                 next_mask = item.get("next_action_mask")
                 if next_mask is not None:
                     next_q_masked[idx, ~np.asarray(next_mask, dtype=bool)] = -torch.inf
-            target_q = rewards + self.gamma * (1.0 - dones) * next_q_masked.max(dim=1).values
+            if not torch.isfinite(next_q_masked).any(dim=1).all():
+                raise ValueError('Missing legal bootstrap action')
+            selected=next_q_masked.argmax(1)
+            target_q = rewards + self.gamma * (1.0 - dones) * next_q.gather(1,selected[:,None]).squeeze(1)
 
         loss = self.loss_fn(current_q, target_q)
         self.optimizer.zero_grad()
         loss.backward()
         self.optimizer.step()
+        self.updates += 1
+        if self.updates % self.target_every == 0:
+            self.update_target_network()
 
         self.epsilon = max(self.epsilon_end, self.epsilon * self.epsilon_decay)
         return float(loss.item())

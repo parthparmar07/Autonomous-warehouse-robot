@@ -59,13 +59,16 @@ def test_env_action_mask_blocks_shelf_entry():
     assert mask[ACTION_FORWARD] is False
 
 
-def test_env_action_mask_blocks_moving_onto_another_robot():
+def test_joint_resolver_blocks_stationary_robot_without_mask_leaking_occupancy():
     env = WarehouseEnv(grid_size=(5, 5), num_agents=2, seed=1)
     env.reset(seed=1)
     env.robots[0]["x"], env.robots[0]["y"], env.robots[0]["orientation"] = 1, 1, 1  # facing east
     env.robots[1]["x"], env.robots[1]["y"] = 2, 1
     mask = env.get_action_mask(0)
-    assert mask[ACTION_FORWARD] is False
+    assert mask[ACTION_FORWARD] is True
+    env.step([ACTION_FORWARD,ACTION_STAY])
+    assert (env.robots[0]['x'],env.robots[0]['y'])==(1,1)
+    assert env.episode_metrics['collision_count']==1
 
 
 def test_env_action_mask_out_of_bounds_is_masked():

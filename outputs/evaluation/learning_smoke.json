@@ -1,0 +1,9 @@
+{
+  "scope": "tiny N=1 imitation plus real QMIX TD updates; not full-warehouse quality",
+  "initial_completion": 0.0,
+  "final_completion": 1.0,
+  "updates": 100,
+  "passed": true,
+  "run_id": "qmix_N1_seed11_1793122073717576400",
+  "source_sha256": "021570d17bab9af56aaab784b35a5b3b97ce99e485746c207aad0b91d2fc188e"
+}

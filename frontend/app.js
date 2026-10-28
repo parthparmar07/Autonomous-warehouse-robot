@@ -1,11 +1,13 @@
 const { useState, useEffect, useRef, useCallback, useMemo } = React;
 
-const API_URL = "http://127.0.0.1:8000";
-const COMPARE_ALGORITHMS = ["nearest_task", "dqn", "iql", "qmix"];
+const API_URL = window.WAREHOUSE_API_URL || "http://127.0.0.1:8000";
+const COMPARE_ALGORITHMS = ["nearest_task", "iql", "vdn", "qmix"];
 
 const GRID_FREE = 0;
 const GRID_SHELF = 1;
 const GRID_SAFETY_CORRIDOR = 2;
+const GRID_PICKUP = 3;
+const GRID_DELIVERY = 4;
 
 const ORIENTATION_ANGLE = { 0: -90, 1: 0, 2: 90, 3: 180 };
 
@@ -105,23 +107,58 @@ function drawGrid(ctx, grid, cellPx) {
       const py = y * cellPx;
       if (cell === GRID_SHELF) drawShelfCell(ctx, px, py, cellPx);
       else if (cell === GRID_SAFETY_CORRIDOR) drawCorridorCell(ctx, px, py, cellPx);
+      else if (cell === GRID_PICKUP || cell === GRID_DELIVERY) {
+        ctx.fillStyle = cell === GRID_PICKUP ? "#d6efe3" : "#e8e1fa";
+        ctx.fillRect(px, py, cellPx, cellPx);
+        ctx.strokeStyle = cell === GRID_PICKUP ? "#1a8a5f" : "#6d5bd0";
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(px + 2, py + 2, cellPx - 4, cellPx - 4);
+      }
+      else if (cell === 5 || cell === 6) {
+        ctx.fillStyle = cell === 5 ? "#f8dd9a" : "#c9e8f5";
+        ctx.fillRect(px, py, cellPx, cellPx);
+        ctx.strokeStyle = cell === 5 ? "#966800" : "#226b8c";
+        ctx.strokeRect(px + 2, py + 2, cellPx - 4, cellPx - 4);
+      }
       else drawFreeCell(ctx, px, py, cellPx);
     }
   }
 }
 
-function drawTaskMarker(ctx, cx, cy, size, kind) {
-  ctx.lineWidth = 2;
-  if (kind === "pickup") {
-    ctx.strokeStyle = "#1a8a5f";
-    ctx.beginPath();
-    ctx.arc(cx, cy, size * 0.26, 0, Math.PI * 2);
-    ctx.stroke();
-  } else {
-    ctx.strokeStyle = "#6d5bd0";
-    const s = size * 0.22;
-    ctx.strokeRect(cx - s, cy - s, s * 2, s * 2);
+function drawStations(ctx, state, size) {
+  ctx.save();
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.font = `700 ${Math.max(8, size * 0.33)}px Inter, sans-serif`;
+  const layout = state.layout || {};
+  for (const [key, prefix, color] of [["receiving_bays", "R", "#b55b18"], ["pickup_bays", "P", "#156b4b"], ["drop_bays", "D", "#5643a8"], ["charger_bays", "C", "#966800"], ["transfer_bays", "T", "#226b8c"]]) {
+    ctx.fillStyle = color;
+    (layout[key] || []).forEach(([x, y], index) => {
+      ctx.fillText(`${prefix}${index + 1}`, (x + 0.5) * size, (y + 0.5) * size);
+    });
   }
+  // A badge counts reserved packages on a rack, not loose parcels on the floor.
+  const waiting = new Map();
+  if (state.inventory) {
+    Object.values(state.inventory).filter(item => item.state === "shelf").forEach(item => {
+      const [bx, by] = item.storage_bay;
+      const shelf = [[bx+1,by],[bx-1,by],[bx,by+1],[bx,by-1]].find(([x,y]) => state.grid?.[y]?.[x] === 1);
+      if (shelf) { const key = shelf.join(","); waiting.set(key, (waiting.get(key) || 0) + 1); }
+    });
+  } else {
+    (state.task_queue || []).filter((task) => task.status === "pending" && task.shelf).forEach((task) => {
+      const key = task.shelf.join(",");
+      waiting.set(key, (waiting.get(key) || 0) + 1);
+    });
+  }
+  waiting.forEach((count, key) => {
+    const [x, y] = key.split(",").map(Number);
+    ctx.fillStyle = "#fff0c2";
+    ctx.fillRect((x + 0.12) * size, (y + 0.12) * size, size * 0.76, size * 0.76);
+    ctx.fillStyle = "#66400b";
+    ctx.fillText(String(count), (x + 0.5) * size, (y + 0.5) * size);
+  });
+  ctx.restore();
 }
 
 function drawRouteLine(ctx, fromX, fromY, toX, toY, color) {
@@ -225,7 +262,7 @@ function useSimSession(sessionId) {
   const activityRef = useRef(new Map()); // robotId -> cells moved this episode
 
   const reset = useCallback(
-    async (algorithm, numAgents, numTasks, seed) => {
+    async (algorithm, numAgents, numTasks, seed, options = {}) => {
       setError(null);
       try {
         const result = await apiPost(`/reset?session_id=${sessionId}`, {
@@ -233,6 +270,7 @@ function useSimSession(sessionId) {
           num_agents: Number(numAgents),
           num_tasks: Number(numTasks),
           seed: Number(seed),
+          ...options,
         });
         animRef.current = { prev: result, curr: result, tickStartedAt: performance.now(), tickDuration: 400 };
         trailsRef.current = new Map();
@@ -322,15 +360,7 @@ function WarehouseCanvas({ animRef, trailsRef, pulsesRef, cellPx = 26, showLabel
 
         drawGrid(ctx, curr.grid, cellPx);
 
-        (curr.task_queue || []).forEach((task) => {
-          if (task.status === "pending") {
-            const [tx, ty] = task.pickup;
-            drawTaskMarker(ctx, tx * cellPx + cellPx / 2, ty * cellPx + cellPx / 2, cellPx, "pickup");
-          } else if (task.status === "picked") {
-            const [tx, ty] = task.delivery;
-            drawTaskMarker(ctx, tx * cellPx + cellPx / 2, ty * cellPx + cellPx / 2, cellPx, "delivery");
-          }
-        });
+        drawStations(ctx, curr, cellPx);
 
         trailsRef.current.forEach((points, id) => drawTrail(ctx, points, cellPx, robotColor(id)));
 
@@ -382,11 +412,15 @@ function Legend() {
       </span>
       <span className="legend-item">
         <span className="swatch" style={{ borderRadius: "50%", border: "2px solid #1a8a5f", background: "transparent" }} />
-        Pickup point
+        P: shelf service bay
       </span>
       <span className="legend-item">
         <span className="swatch" style={{ border: "2px solid #6d5bd0", background: "transparent" }} />
-        Delivery point
+        D: outbound drop bay · R: receiving bay
+      </span>
+      <span className="legend-item">
+        <span className="swatch" style={{ background: "#fff0c2", border: "1px solid #66400b" }} />
+        Rack number = packages awaiting pickup
       </span>
       <span className="legend-item">
         <span className="swatch" style={{ borderRadius: "50%", border: "2px solid #e0a526", background: "#3a6fd8" }} />
@@ -497,7 +531,7 @@ function StatsPanel({ state, history }) {
       </div>
       <div className="stat-grid">
         <StatTile icon={<IconFootprints size={14} />} value={metrics.step_count ?? 0} label="Steps" series={history.map((h) => h.step)} higherIsBetter={true} />
-        <StatTile icon={<IconPackage size={14} />} value={state ? state.completed_tasks ?? 0 : 0} label="Delivered" tone="good" series={history.map((h) => h.completed)} higherIsBetter={true} />
+        <StatTile icon={<IconPackage size={14} />} value={state ? state.completed_tasks ?? 0 : 0} label={state?.workload_version ? "Handling jobs completed" : "Delivered"} tone="good" series={history.map((h) => h.completed)} higherIsBetter={true} />
         <StatTile icon={<IconList size={14} />} value={totalTasks} label="Tasks Queued" />
         <StatTile icon={<IconAlertTriangle size={14} />} value={metrics.collision_count ?? 0} label="Collisions" tone={metrics.collision_count > 0 ? "bad" : "good"} series={history.map((h) => h.collisions)} higherIsBetter={false} />
         <StatTile icon={<IconBan size={14} />} value={metrics.safety_overrides ?? 0} label="Corridor Blocks" tone={metrics.safety_overrides > 0 ? "warn" : "good"} series={history.map((h) => h.blocked)} higherIsBetter={false} />
@@ -542,12 +576,15 @@ function FleetTable({ state, activityRef }) {
             <th>#</th>
             <th>Position</th>
             <th>Status</th>
+            <th>Battery</th>
+            <th>Order route</th>
             <th>Activity</th>
           </tr>
         </thead>
         <tbody>
           {state.robots.map((robot) => {
             const moved = activityRef.current.get(robot.id) || 0;
+            const task = state.task_queue.find((item) => item.task_id === robot.current_task);
             const pct = Math.min(100, Math.round((moved / maxSteps) * 100));
             return (
               <tr key={robot.id}>
@@ -560,7 +597,11 @@ function FleetTable({ state, activityRef }) {
                   ({robot.x}, {robot.y})
                 </td>
                 <td>
-                  <span className={`status-pill ${robot.load_status === 1 ? "carrying" : "idle"}`}>{robot.load_status === 1 ? <IconBox size={11} /> : null}{robot.load_status === 1 ? "carrying" : "idle"}</span>
+                  <span className={`status-pill ${robot.load_status === 1 ? "carrying" : "idle"}`}>{robot.mode?.toLowerCase().replaceAll("_", " ") || "idle"}</span>
+                </td>
+                <td title={`${robot.energy_eu?.toFixed(2)} energy units`}>{Math.round(100 * robot.energy_eu / robot.capacity_eu)}%</td>
+                <td>
+                  {task ? `${task.pickup_bay || "Pickup"} → ${task.drop_bay || "Drop"}` : "—"}
                 </td>
                 <td>
                   <div className="activity-bar-wrap">
@@ -604,6 +645,37 @@ function Stepper({ value, onChange, min = 1, max = 999, icon, labelText }) {
 // Single-algorithm view
 // ---------------------------------------------------------------------------
 
+function SensorPanel({ state, sessionId }) {
+  const [robotId, setRobotId] = useState(0);
+  const [sensor, setSensor] = useState(null);
+  const [error, setError] = useState(null);
+  useEffect(() => {
+    let cancelled = false;
+    if (!state) return;
+    const id = Math.min(robotId, state.robots.length - 1);
+    apiGet(`/sensor?session_id=${sessionId}&agent_id=${id}`).then(value => {
+      if (!cancelled) { setSensor(value); setError(null); }
+    }).catch(err => { if (!cancelled) setError(err.message); });
+    return () => { cancelled = true; };
+  }, [state, robotId, sessionId]);
+  const describe = cell => !cell[0] ? ["Unknown", "#263446", "?"] : cell[1] ? ["Outside map", "#111827", "×"] : cell[7] ? ["Nearby robot", "#de694b", "R"] : cell[2] ? ["Shelf", "#ad8656", "S"] : cell[3] ? ["Safety corridor", "#cba525", "!"] : cell[4] ? ["Pickup", "#b6dfc9", "P"] : cell[5] ? ["Drop", "#d7cef3", "D"] : cell[6] ? ["Charger", "#f8dd9a", "C"] : ["Visible floor", "#f4f1e9", "·"];
+  return <div className="panel" style={{ padding: 18, marginBottom: 16 }}>
+    <div className="panel-title">Robot sensor view</div>
+    <label htmlFor="sensor-robot">Robot </label><select id="sensor-robot" value={Math.min(robotId, (state?.robots.length || 1) - 1)} onChange={e => setRobotId(Number(e.target.value))}>
+      {(state?.robots || []).map(r => <option key={r.id} value={r.id}>#{r.id}</option>)}
+    </select>
+    {error && <p role="alert">{error}</p>}
+    {sensor && <><p style={{ fontSize: 12 }}>Front ↑ · {sensor.age_ticks} tick(s) old · simulated range sensing</p>
+      <div aria-label="Local sensor grid" style={{ display: "grid", gridTemplateColumns: `repeat(${sensor.frame.length}, 35px)`, gap: 3, justifyContent: "center", margin: "12px 0" }}>
+        {sensor.frame.flatMap((row, y) => row.map((cell, x) => {
+          const [label, background, symbol] = describe(cell);
+          const self = x === Math.floor(row.length / 2) && y === Math.floor(sensor.frame.length / 2);
+          return <div key={`${x}-${y}`} title={self ? "This robot" : label} style={{ background, color: cell[0] ? "#172032" : "#fff", height: 35, display: "grid", placeItems: "center", border: self ? "2px solid #1a8a5f" : "1px solid #bbb", borderRadius: 3 }}>{self ? "↑" : symbol}</div>;
+        }))}
+      </div><p style={{ fontSize: 12 }}>Dark ? cells are unseen, occluded, or dropped readings. This is the actual local input; it is not a camera image. The central arrow is the robot.</p></>}
+  </div>;
+}
+
 function SingleView({ algorithms }) {
   const session = useSimSession("ui-single");
   const [algorithm, setAlgorithm] = useState("nearest_task");
@@ -613,6 +685,14 @@ function SingleView({ algorithms }) {
   const [playing, setPlaying] = useState(false);
   const [speedMs, setSpeedMs] = useState(400);
   const [zoom, setZoom] = useState(1);
+  const [frontFov, setFrontFov] = useState(360);
+  const [rearFov, setRearFov] = useState(0);
+  const [initialSoc, setInitialSoc] = useState(100);
+  const [workload, setWorkload] = useState("outbound");
+  const [arrivalInterval, setArrivalInterval] = useState(20);
+  const [available, setAvailable] = useState(algorithms);
+
+  useEffect(() => { apiGet(`/algorithms?num_agents=${numAgents}`).then(setAvailable).catch(() => setAvailable([])); }, [numAgents]);
 
   useEffect(() => {
     session.reset(algorithm, numAgents, numTasks, seed);
@@ -628,7 +708,7 @@ function SingleView({ algorithms }) {
 
   const handleReset = () => {
     setPlaying(false);
-    session.reset(algorithm, numAgents, numTasks, seed);
+    session.reset(algorithm, numAgents, numTasks, seed, {workload, arrival_interval: arrivalInterval, sensor_front_fov: frontFov, sensor_rear_fov: rearFov, initial_soc: initialSoc / 100});
   };
 
   const canvasWrapRef = useRef(null);
@@ -638,7 +718,7 @@ function SingleView({ algorithms }) {
     else document.exitFullscreen?.();
   };
 
-  const activeAlgo = algorithms.find((a) => a.name === algorithm);
+  const activeAlgo = available.find((a) => a.name === algorithm);
 
   return (
     <>
@@ -659,15 +739,19 @@ function SingleView({ algorithms }) {
               <IconCube size={13} /> Algorithm
             </label>
             <select value={algorithm} onChange={(e) => setAlgorithm(e.target.value)}>
-              {(algorithms.length ? algorithms : [{ name: algorithm }]).map((a) => (
-                <option key={a.name} value={a.name}>
-                  {a.name}
+              {(available.length ? available : [{ name: algorithm, trained: true }]).map((a) => (
+                <option key={a.name} value={a.name} disabled={!a.trained}>
+                  {a.name}{!a.trained ? " (model unavailable for this fleet)" : ""}
                 </option>
               ))}
             </select>
           </div>
           <Stepper value={numAgents} onChange={setNumAgents} min={1} max={20} icon={<IconTruck size={13} />} labelText="Fleet Size" />
-          <Stepper value={numTasks} onChange={setNumTasks} min={1} max={40} icon={<IconPackage size={13} />} labelText="Tasks in Flight" />
+          <div className="field"><label>Package flow</label><select value={workload} onChange={e => setWorkload(e.target.value)}><option value="outbound">Shelf to shipping</option><option value="mixed">Receiving, storage and shipping</option></select></div>
+          {workload === "mixed" ? <div className="field"><label>Incoming package frequency</label><select value={arrivalInterval} onChange={e => setArrivalInterval(Number(e.target.value))}>{[80,40,20,12,8].map(n => <option key={n} value={n}>One every {n} steps</option>)}</select><small>600-step shift; arrivals stop at step 400. R: receiving; P: storage; D: shipping.</small></div> : <Stepper value={numTasks} onChange={setNumTasks} min={1} max={40} icon={<IconPackage size={13} />} labelText="Tasks in Flight" />}
+          <Stepper value={initialSoc} onChange={setInitialSoc} min={0} max={100} labelText="Initial battery %" />
+          <div className="field"><label>Front sensor coverage</label><select value={frontFov} onChange={e => setFrontFov(Number(e.target.value))}><option value={360}>360° range sensing</option><option value={120}>120° front</option><option value={90}>90° front</option><option value={0}>Off</option></select></div>
+          <div className="field"><label>Rear sensor coverage</label><select value={rearFov} onChange={e => setRearFov(Number(e.target.value))}><option value={0}>Off</option><option value={90}>90° rear</option><option value={120}>120° rear</option></select></div>
           <div className="field">
             <label>
               <IconRefreshCw size={13} /> Seed
@@ -698,7 +782,8 @@ function SingleView({ algorithms }) {
         {activeAlgo && (
           <p className="algo-description">
             {activeAlgo.description}
-            {activeAlgo.trained ? <span className="badge trained">checkpoint loaded</span> : <span className="badge">no checkpoint / untrained</span>}
+            {session.state?.workload_version && <span> Stored now: {session.state.package_counts?.stored ?? 0} · Shipped: {session.state.package_counts?.shipped ?? 0}</span>}
+            {["nearest_task", "shortest_path"].includes(activeAlgo.name) ? <span className="badge">privileged map planner</span> : activeAlgo.trained ? <span className="badge trained">pilot checkpoint · research validation pending</span> : <span className="badge">no checkpoint / untrained</span>}
           </p>
         )}
       </div>
@@ -733,9 +818,11 @@ function SingleView({ algorithms }) {
             </div>
           </div>
           <Legend />
+          <p className="algo-description">P: pickup · D: drop · C: charging · T: authorized handover. This map is the supervisor view. Learned robots receive only local sensor readings and their own task/battery information. Live demo replenishment is separate from the fixed evaluation streams.</p>
         </div>
         <div>
           <StatsPanel state={session.state} history={session.history} />
+          <SensorPanel state={session.state} sessionId="ui-single" />
           <FleetTable state={session.state} activityRef={session.activityRef} />
         </div>
       </div>
@@ -821,7 +908,7 @@ function Leaderboard({ ranked }) {
 function CompareView() {
   const sessions = {
     nearest_task: useSimSession("cmp-nearest_task"),
-    dqn: useSimSession("cmp-dqn"),
+    vdn: useSimSession("cmp-vdn"),
     iql: useSimSession("cmp-iql"),
     qmix: useSimSession("cmp-qmix"),
   };
@@ -860,7 +947,7 @@ function CompareView() {
   }, [playing, speedMs, tickAll]);
 
   const ranked = useMemo(() => {
-    const rows = COMPARE_ALGORITHMS.map((algo) => {
+    const rows = COMPARE_ALGORITHMS.filter(algo => sessions[algo].state).map((algo) => {
       const state = sessions[algo].state;
       const metrics = (state && state.metrics) || {};
       return {
@@ -872,7 +959,7 @@ function CompareView() {
     });
     return rows.sort((a, b) => b.completed - a.completed || a.collisions - b.collisions);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [sessions.nearest_task.state, sessions.dqn.state, sessions.iql.state, sessions.qmix.state]);
+  }, [sessions.nearest_task.state, sessions.vdn.state, sessions.iql.state, sessions.qmix.state]);
 
   const rankOf = (algo) => ranked.findIndex((r) => r.algorithm === algo) + 1;
 

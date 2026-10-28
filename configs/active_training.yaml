@@ -1,0 +1,41 @@
+study: staged_assisted_navigation_and_energy
+algorithms: [qmix, iql]
+seeds: [11, 23, 37]
+profile: core
+num_agents: 5
+horizon: 400
+device: cuda
+threads: 1
+hidden: 128
+batch_size: 8
+burn_in: 20
+unroll: 40
+replay_episodes: 128
+train_every: 16
+gamma: 0.99
+learning_rate: 0.0003
+epsilon_start: 0.2
+epsilon_steps: 10000
+eval_every: 2000
+eval_episodes: 20
+skill_episodes: 20
+bc_episodes: 40
+bc_epochs: 10
+dagger_rounds: 1
+bc_aux_weight: 0.2
+potential_weight: 2.0
+idle_bay_cost: 0.02
+delivery_reward: 10.0
+conflict_cost: 0.05
+stages:
+  C0: 10000
+  C0.5: 30000
+  C0.75: 30000
+  C1: 50000
+  C2: 50000
+promotion:
+  consecutive_checks: 2
+  minimum_stage_rl_steps: 4000
+  check_previous_generic_and_named_skills: true
+  final_tests_consumed: false
+note: Explicit imitation-assisted and potential-shaped condition, not pure QMIX/IQL. Expert data and optimization are reported separately. Stage caps are ceilings; failed stages stop, and no final/OOD partition is used for tuning.

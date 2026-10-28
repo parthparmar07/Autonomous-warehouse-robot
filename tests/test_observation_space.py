@@ -1,36 +1,22 @@
+import numpy as np
 from src.environment.warehouse_env import WarehouseEnv
+from src.environment.spec import OBS_DIM, SELF_FIELDS, SENSOR_CHANNELS
 
+def test_local_observation_versioned_shape_and_finite_proprioception():
+    env=WarehouseEnv(grid_size=(8,8),num_agents=2,seed=21)
+    obs=env.get_local_observation(0)
+    assert obs.shape==(OBS_DIM,) and np.isfinite(obs).all()
+    offset=25*len(SENSOR_CHANNELS)
+    s=offset+SELF_FIELDS.index('heading_sin');c=offset+SELF_FIELDS.index('heading_cos')
+    assert np.isclose(obs[s]**2+obs[c]**2,1)
 
-def test_local_observation_is_30_features_and_local_only():
-    env = WarehouseEnv(grid_size=(8, 8), num_agents=2, seed=21)
-    env.reset(seed=21)
-
-    obs = env.get_local_observation(0)
-    assert len(obs) == 30
-    assert obs.shape == (30,)
-
-    # The policy should only see a local window, target bearing, load and heading --
-    # not the full grid.
-    assert all(value == value for value in obs)
-    assert obs[:25].sum() >= 0
-    assert obs[25:27].shape == (2,)
-    assert obs[27].shape == ()
-    # Heading is sin/cos of the current orientation -- always on the unit circle.
-    import numpy as np
-
-    assert np.isclose(obs[28] ** 2 + obs[29] ** 2, 1.0)
-
-
-def test_local_observation_heading_reflects_orientation():
-    """The same world position/target must look different to the policy depending on
-    which way the robot is facing -- otherwise FORWARD's meaning is ambiguous from the
-    observation alone."""
-    env = WarehouseEnv(grid_size=(8, 8), num_agents=1, seed=3)
-    env.reset(seed=3)
-
-    env.robots[0]["orientation"] = 0
-    obs_north = env.get_local_observation(0)
-    env.robots[0]["orientation"] = 2
-    obs_south = env.get_local_observation(0)
-
-    assert not (obs_north[28:30] == obs_south[28:30]).all()
+def test_local_observation_heading_and_ego_goal_rotate_together():
+    env=WarehouseEnv(grid_size=(8,8),num_agents=1,seed=3)
+    env.robots[0]['target']=(4,1)
+    offset=25*len(SENSOR_CHANNELS)
+    env.robots[0]['orientation']=0
+    north=env.get_local_observation(0)
+    env.robots[0]['orientation']=2
+    south=env.get_local_observation(0)
+    np.testing.assert_allclose(north[offset:offset+2],-south[offset:offset+2])
+    assert not np.allclose(north[offset+4:offset+6],south[offset+4:offset+6])

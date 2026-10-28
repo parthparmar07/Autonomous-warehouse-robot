@@ -1,0 +1,6849 @@
+{
+  "planner": {
+    "completion_mean": 1.0,
+    "completion_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "throughput_mean": 0.06666666666666667,
+    "energy_used_mean": 343.4791606746629,
+    "avoidable_depletions": 0,
+    "executed_collisions": 0,
+    "completed_charge_cycles": [
+      4,
+      6,
+      6,
+      5,
+      6
+    ],
+    "episodes": [
+      {
+        "seed": 200000,
+        "scenario_hash": "a2712fdd575c3721aea586add21f7d7bf4b1ace360db7efda926edce4cb4cfb4",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 371.32087579783445,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 40.825,
+        "unfinished_orders": [],
+        "collision_count": 1.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.0003333333333333333,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 347.2550444149554,
+        "energy_per_delivery": 8.681376110373886,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1632.0,
+        "charge_queue_wait_p95": 22.549999999999997,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.145,
+        "idle_with_assignment_ticks": 39.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 4,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "2": 8,
+          "4": 9,
+          "1": 8,
+          "0": 6,
+          "3": 9
+        },
+        "inference_latency_ms": 3.2314916666666664,
+        "inference_latency_p95_ms": 5.010634999999993,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "4": 1111,
+          "0": 1029,
+          "3": 107,
+          "5": 414,
+          "2": 107,
+          "1": 228,
+          "6": 4
+        },
+        "per_robot_unique_cells": [
+          123,
+          154,
+          144,
+          107,
+          134
+        ],
+        "per_robot_action_counts": [
+          {
+            "4": 237,
+            "1": 24,
+            "2": 21,
+            "0": 214,
+            "5": 89,
+            "3": 14,
+            "6": 1
+          },
+          {
+            "4": 193,
+            "3": 21,
+            "0": 209,
+            "5": 87,
+            "2": 25,
+            "1": 64,
+            "6": 1
+          },
+          {
+            "0": 220,
+            "3": 30,
+            "5": 86,
+            "1": 48,
+            "2": 19,
+            "4": 196,
+            "6": 1
+          },
+          {
+            "4": 304,
+            "2": 22,
+            "0": 160,
+            "5": 54,
+            "3": 18,
+            "1": 42
+          },
+          {
+            "4": 181,
+            "2": 20,
+            "0": 226,
+            "3": 24,
+            "5": 98,
+            "1": 50,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "IDLE": {
+              "4": 228,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 18,
+              "2": 5,
+              "0": 56,
+              "5": 6,
+              "4": 2,
+              "3": 3
+            },
+            "PICKING": {
+              "5": 12
+            },
+            "TO_DROP": {
+              "1": 6,
+              "2": 11,
+              "0": 101,
+              "5": 6,
+              "4": 6,
+              "3": 6
+            },
+            "DROPPING": {
+              "5": 12
+            },
+            "TO_PARK": {
+              "2": 3,
+              "3": 3,
+              "0": 46,
+              "4": 1
+            },
+            "TO_CHARGER": {
+              "2": 2,
+              "0": 11,
+              "3": 2,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 52
+            }
+          },
+          {
+            "IDLE": {
+              "4": 178,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 8,
+              "0": 69,
+              "5": 8,
+              "1": 12,
+              "2": 7,
+              "4": 7
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "2": 12,
+              "0": 111,
+              "5": 8,
+              "1": 8,
+              "4": 6,
+              "3": 11
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 44,
+              "4": 2,
+              "2": 5,
+              "0": 23,
+              "3": 1
+            },
+            "TO_CHARGER": {
+              "2": 1,
+              "0": 6,
+              "3": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 38
+            }
+          },
+          {
+            "TO_PICKUP": {
+              "0": 43,
+              "3": 7,
+              "5": 8,
+              "2": 3,
+              "4": 2,
+              "1": 7
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "0": 114,
+              "3": 14,
+              "5": 8,
+              "1": 12,
+              "2": 10,
+              "4": 2
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 27,
+              "3": 8,
+              "0": 46,
+              "2": 4
+            },
+            "IDLE": {
+              "4": 192,
+              "6": 1
+            },
+            "TO_CHARGER": {
+              "1": 2,
+              "2": 2,
+              "0": 17,
+              "3": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 37
+            }
+          },
+          {
+            "IDLE": {
+              "4": 298
+            },
+            "TO_PICKUP": {
+              "2": 7,
+              "0": 46,
+              "4": 1,
+              "5": 9,
+              "3": 3,
+              "1": 16
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "2": 13,
+              "0": 93,
+              "3": 12,
+              "5": 9,
+              "4": 4,
+              "1": 8
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 18,
+              "2": 2,
+              "0": 21,
+              "3": 3,
+              "4": 1
+            }
+          },
+          {
+            "IDLE": {
+              "4": 169,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 6,
+              "0": 63,
+              "3": 7,
+              "5": 9,
+              "1": 6,
+              "4": 5
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 32,
+              "4": 4,
+              "2": 11,
+              "0": 100,
+              "5": 9,
+              "3": 8
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 12,
+              "3": 6,
+              "0": 48,
+              "2": 2,
+              "4": 3
+            },
+            "TO_CHARGER": {
+              "0": 15,
+              "3": 3,
+              "2": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 43
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.6319999999999895,
+          "energy": -3.472550444149529,
+          "conflicts": -0.05,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -1.2200000000000006,
+          "shaping": -22.304573758019522
+        }
+      },
+      {
+        "seed": 200001,
+        "scenario_hash": "ce060de54a3f7750cdce96ae1f0f157a181978a54072a6a174d0b5474805ec00",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 371.7108735237005,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 32.025,
+        "unfinished_orders": [],
+        "collision_count": 0.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.0,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 337.9030960107615,
+        "energy_per_delivery": 8.447577400269036,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1280.0,
+        "charge_queue_wait_p95": 21.75,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.20583333333333334,
+        "idle_with_assignment_ticks": 42.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 6,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "3": 9,
+          "0": 9,
+          "1": 7,
+          "4": 9,
+          "2": 6
+        },
+        "inference_latency_ms": 2.852266833333334,
+        "inference_latency_p95_ms": 4.401549999999997,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "4": 1047,
+          "0": 977,
+          "5": 487,
+          "3": 106,
+          "1": 285,
+          "2": 92,
+          "6": 6
+        },
+        "per_robot_unique_cells": [
+          127,
+          133,
+          117,
+          124,
+          134
+        ],
+        "per_robot_action_counts": [
+          {
+            "4": 142,
+            "3": 22,
+            "0": 190,
+            "5": 137,
+            "1": 90,
+            "2": 17,
+            "6": 2
+          },
+          {
+            "4": 249,
+            "3": 18,
+            "0": 197,
+            "2": 18,
+            "5": 86,
+            "6": 1,
+            "1": 31
+          },
+          {
+            "4": 277,
+            "2": 15,
+            "0": 183,
+            "3": 13,
+            "5": 74,
+            "1": 37,
+            "6": 1
+          },
+          {
+            "0": 205,
+            "5": 96,
+            "3": 33,
+            "1": 79,
+            "4": 163,
+            "2": 23,
+            "6": 1
+          },
+          {
+            "4": 216,
+            "1": 48,
+            "2": 19,
+            "0": 202,
+            "5": 94,
+            "3": 20,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "IDLE": {
+              "4": 135,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "3": 3,
+              "0": 24,
+              "5": 9,
+              "1": 20,
+              "2": 3,
+              "4": 4
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 8,
+              "2": 9,
+              "0": 105,
+              "3": 8,
+              "5": 9,
+              "4": 2
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 57,
+              "3": 7,
+              "0": 42,
+              "2": 5,
+              "4": 1
+            },
+            "TO_CHARGER": {
+              "1": 5,
+              "3": 4,
+              "0": 19,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 81
+            }
+          },
+          {
+            "IDLE": {
+              "4": 243,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 2,
+              "0": 38,
+              "2": 5,
+              "5": 7,
+              "1": 12
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "0": 84,
+              "3": 9,
+              "5": 7,
+              "2": 8,
+              "1": 1,
+              "4": 5
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_CHARGER": {
+              "3": 3,
+              "0": 16,
+              "2": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 43
+            },
+            "TO_PARK": {
+              "2": 4,
+              "0": 59,
+              "1": 18,
+              "3": 4,
+              "4": 1
+            }
+          },
+          {
+            "IDLE": {
+              "4": 260,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 4,
+              "0": 59,
+              "3": 5,
+              "5": 6
+            },
+            "PICKING": {
+              "5": 12
+            },
+            "TO_DROP": {
+              "2": 6,
+              "0": 66,
+              "3": 5,
+              "5": 6,
+              "1": 16,
+              "4": 16
+            },
+            "DROPPING": {
+              "5": 12
+            },
+            "TO_PARK": {
+              "3": 3,
+              "0": 43,
+              "2": 4,
+              "1": 17
+            },
+            "TO_CHARGER": {
+              "1": 4,
+              "2": 1,
+              "0": 15,
+              "4": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 37
+            }
+          },
+          {
+            "TO_PICKUP": {
+              "0": 45,
+              "5": 9,
+              "3": 8,
+              "2": 10,
+              "1": 16
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "0": 104,
+              "3": 13,
+              "5": 9,
+              "2": 7,
+              "1": 16
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 47,
+              "4": 2,
+              "3": 9,
+              "0": 45,
+              "2": 4
+            },
+            "IDLE": {
+              "6": 1,
+              "4": 161
+            },
+            "TO_CHARGER": {
+              "3": 3,
+              "0": 11,
+              "2": 2,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 41
+            }
+          },
+          {
+            "IDLE": {
+              "4": 201,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 3,
+              "2": 11,
+              "0": 82,
+              "5": 9,
+              "3": 5,
+              "4": 5
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 35,
+              "4": 10,
+              "2": 7,
+              "0": 73,
+              "5": 9,
+              "3": 5
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 4,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 39
+            },
+            "TO_PARK": {
+              "1": 10,
+              "3": 8,
+              "0": 43,
+              "2": 1
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.279999999999993,
+          "energy": -3.379030960107605,
+          "conflicts": -0.0,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -1.3200000000000007,
+          "shaping": -22.310095516191275
+        }
+      },
+      {
+        "seed": 200002,
+        "scenario_hash": "9ad9cda6af12339fdcd6285387353e76bd07007d0b850b19bd23aece28212796",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 371.395957621594,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 41.075,
+        "unfinished_orders": [],
+        "collision_count": 0.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.0,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 355.4112854552588,
+        "energy_per_delivery": 8.88528213638147,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1642.0,
+        "charge_queue_wait_p95": 57.75,
+        "charge_queue_ticks": 60.0,
+        "charger_utilization": 0.21833333333333332,
+        "idle_with_assignment_ticks": 58.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 6,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "0": 9,
+          "3": 9,
+          "2": 8,
+          "1": 7,
+          "4": 7
+        },
+        "inference_latency_ms": 2.4226558333333332,
+        "inference_latency_p95_ms": 4.404809999999999,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "1": 246,
+          "4": 1124,
+          "2": 83,
+          "0": 940,
+          "5": 502,
+          "3": 99,
+          "6": 6
+        },
+        "per_robot_unique_cells": [
+          130,
+          109,
+          125,
+          133,
+          108
+        ],
+        "per_robot_action_counts": [
+          {
+            "1": 52,
+            "2": 17,
+            "0": 254,
+            "5": 102,
+            "3": 24,
+            "6": 1,
+            "4": 150
+          },
+          {
+            "4": 211,
+            "1": 54,
+            "5": 119,
+            "0": 188,
+            "3": 16,
+            "2": 10,
+            "6": 2
+          },
+          {
+            "4": 239,
+            "3": 25,
+            "0": 186,
+            "2": 27,
+            "5": 90,
+            "1": 32,
+            "6": 1
+          },
+          {
+            "4": 210,
+            "2": 17,
+            "0": 183,
+            "5": 108,
+            "1": 61,
+            "3": 20,
+            "6": 1
+          },
+          {
+            "4": 314,
+            "2": 12,
+            "0": 129,
+            "3": 14,
+            "5": 83,
+            "1": 47,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "TO_PICKUP": {
+              "1": 18,
+              "2": 5,
+              "0": 77,
+              "5": 9,
+              "3": 8,
+              "4": 1
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 25,
+              "2": 7,
+              "0": 105,
+              "5": 9,
+              "3": 8,
+              "4": 10
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 9,
+              "3": 4,
+              "0": 41,
+              "2": 3
+            },
+            "IDLE": {
+              "6": 1,
+              "4": 138
+            },
+            "TO_CHARGER": {
+              "3": 4,
+              "0": 31,
+              "2": 2,
+              "4": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 47
+            }
+          },
+          {
+            "IDLE": {
+              "4": 208,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "1": 20,
+              "5": 7,
+              "0": 50,
+              "2": 3,
+              "3": 3,
+              "4": 3
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "0": 101,
+              "3": 7,
+              "2": 4,
+              "5": 7,
+              "1": 18
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "1": 16,
+              "2": 1,
+              "0": 12,
+              "3": 2
+            },
+            "TO_CHARGER": {
+              "3": 4,
+              "0": 25,
+              "2": 2,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 75
+            }
+          },
+          {
+            "IDLE": {
+              "4": 181,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 5,
+              "0": 28,
+              "2": 6,
+              "5": 8,
+              "4": 7,
+              "1": 4
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "0": 84,
+              "2": 11,
+              "3": 10,
+              "5": 8,
+              "1": 12,
+              "4": 9
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 14,
+              "3": 8,
+              "0": 58,
+              "2": 9
+            },
+            "QUEUED_CHARGE": {
+              "1": 2,
+              "3": 2,
+              "0": 15,
+              "4": 41
+            },
+            "TO_CHARGER": {
+              "4": 1,
+              "2": 1,
+              "0": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 41
+            }
+          },
+          {
+            "IDLE": {
+              "4": 206,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 6,
+              "0": 55,
+              "5": 9,
+              "1": 23,
+              "3": 7
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 36,
+              "2": 9,
+              "0": 75,
+              "3": 7,
+              "5": 9,
+              "4": 4
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "3": 5,
+              "0": 39
+            },
+            "TO_CHARGER": {
+              "1": 2,
+              "2": 2,
+              "0": 14,
+              "3": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 53
+            }
+          },
+          {
+            "IDLE": {
+              "4": 290,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 3,
+              "0": 34,
+              "3": 3,
+              "4": 9,
+              "5": 7,
+              "1": 28
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "0": 81,
+              "2": 6,
+              "3": 9,
+              "5": 7,
+              "4": 15,
+              "1": 1
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "3": 2,
+              "0": 12,
+              "1": 14,
+              "2": 2
+            },
+            "TO_CHARGER": {
+              "1": 4,
+              "2": 1,
+              "0": 2,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 40
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.6419999999999924,
+          "energy": -3.5541128545525664,
+          "conflicts": -0.0,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -1.0200000000000005,
+          "shaping": -22.387929523851575
+        }
+      },
+      {
+        "seed": 200003,
+        "scenario_hash": "7208e18390ac5d614f1190067d51b3e5e7917c92a1306df5e07155e48df1d766",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 371.72177127906843,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 35.65,
+        "unfinished_orders": [],
+        "collision_count": 0.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.0,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 352.34165710448275,
+        "energy_per_delivery": 8.808541427612068,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1425.0,
+        "charge_queue_wait_p95": 30.799999999999997,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.19333333333333333,
+        "idle_with_assignment_ticks": 31.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 5,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "0": 8,
+          "3": 9,
+          "2": 9,
+          "4": 7,
+          "1": 7
+        },
+        "inference_latency_ms": 2.5197358333333333,
+        "inference_latency_p95_ms": 4.258144999999997,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "3": 107,
+          "4": 1076,
+          "0": 997,
+          "5": 472,
+          "1": 257,
+          "2": 86,
+          "6": 5
+        },
+        "per_robot_unique_cells": [
+          114,
+          150,
+          129,
+          121,
+          136
+        ],
+        "per_robot_action_counts": [
+          {
+            "3": 18,
+            "0": 173,
+            "5": 103,
+            "1": 63,
+            "2": 19,
+            "4": 223,
+            "6": 1
+          },
+          {
+            "4": 210,
+            "3": 24,
+            "0": 232,
+            "2": 18,
+            "5": 89,
+            "1": 26,
+            "6": 1
+          },
+          {
+            "4": 188,
+            "3": 21,
+            "0": 230,
+            "5": 100,
+            "1": 48,
+            "2": 12,
+            "6": 1
+          },
+          {
+            "4": 194,
+            "2": 25,
+            "0": 171,
+            "5": 97,
+            "1": 89,
+            "3": 23,
+            "6": 1
+          },
+          {
+            "4": 261,
+            "1": 31,
+            "5": 83,
+            "3": 21,
+            "0": 191,
+            "2": 12,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "TO_PICKUP": {
+              "3": 4,
+              "0": 28,
+              "5": 8,
+              "1": 22,
+              "2": 4
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "1": 9,
+              "2": 9,
+              "0": 79,
+              "3": 9,
+              "5": 8
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 21,
+              "3": 5,
+              "0": 54,
+              "2": 5
+            },
+            "IDLE": {
+              "4": 223,
+              "6": 1
+            },
+            "TO_CHARGER": {
+              "1": 11,
+              "2": 1,
+              "0": 12,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 54
+            }
+          },
+          {
+            "IDLE": {
+              "4": 203,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 6,
+              "0": 67,
+              "2": 4,
+              "5": 7,
+              "1": 5,
+              "4": 4
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "0": 97,
+              "2": 8,
+              "3": 10,
+              "5": 7,
+              "1": 15,
+              "4": 2
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "3": 7,
+              "0": 56,
+              "1": 6,
+              "2": 4,
+              "4": 1
+            },
+            "TO_CHARGER": {
+              "2": 2,
+              "0": 12,
+              "3": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 46
+            }
+          },
+          {
+            "IDLE": {
+              "4": 183,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 6,
+              "0": 69,
+              "5": 9,
+              "2": 3,
+              "4": 2,
+              "1": 4
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 26,
+              "2": 5,
+              "0": 77,
+              "5": 9,
+              "3": 7,
+              "4": 2
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 18,
+              "2": 4,
+              "0": 61,
+              "3": 6,
+              "4": 1
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 23,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 45
+            }
+          },
+          {
+            "IDLE": {
+              "4": 186,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 11,
+              "0": 63,
+              "5": 9,
+              "3": 7,
+              "1": 25,
+              "4": 3
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 31,
+              "2": 11,
+              "0": 80,
+              "3": 9,
+              "5": 9,
+              "4": 5
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 28,
+              "3": 7,
+              "0": 27,
+              "2": 2
+            },
+            "TO_CHARGER": {
+              "1": 5,
+              "2": 1,
+              "0": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 42
+            }
+          },
+          {
+            "IDLE": {
+              "4": 248,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 17,
+              "5": 7,
+              "2": 3,
+              "0": 29,
+              "3": 3,
+              "4": 2
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "3": 11,
+              "0": 100,
+              "5": 7,
+              "2": 8,
+              "4": 11,
+              "1": 4
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "1": 10,
+              "3": 4,
+              "0": 35
+            },
+            "TO_CHARGER": {
+              "3": 3,
+              "0": 27,
+              "2": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 40
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.424999999999993,
+          "energy": -3.523416571044855,
+          "conflicts": -0.0,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -1.1400000000000006,
+          "shaping": -22.18981214988912
+        }
+      },
+      {
+        "seed": 200004,
+        "scenario_hash": "b4a6ccc2da1be898cfa28691f1f8dfc986ae2d8e1c6fcddeea469a9891c393a7",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 371.9886803506374,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 36.475,
+        "unfinished_orders": [],
+        "collision_count": 0.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.0,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 324.4847203878561,
+        "energy_per_delivery": 8.112118009696403,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1458.0,
+        "charge_queue_wait_p95": 28.25,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.195,
+        "idle_with_assignment_ticks": 62.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 6,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "2": 9,
+          "3": 7,
+          "0": 10,
+          "4": 8,
+          "1": 6
+        },
+        "inference_latency_ms": 2.9766255,
+        "inference_latency_p95_ms": 4.536324999999998,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "4": 1078,
+          "0": 947,
+          "5": 474,
+          "2": 84,
+          "3": 100,
+          "1": 311,
+          "6": 6
+        },
+        "per_robot_unique_cells": [
+          110,
+          130,
+          140,
+          132,
+          134
+        ],
+        "per_robot_action_counts": [
+          {
+            "4": 245,
+            "1": 92,
+            "2": 14,
+            "0": 170,
+            "5": 60,
+            "3": 19
+          },
+          {
+            "4": 275,
+            "3": 19,
+            "0": 153,
+            "2": 19,
+            "5": 78,
+            "1": 55,
+            "6": 1
+          },
+          {
+            "0": 231,
+            "5": 132,
+            "2": 19,
+            "3": 29,
+            "4": 130,
+            "1": 57,
+            "6": 2
+          },
+          {
+            "4": 220,
+            "1": 32,
+            "2": 18,
+            "0": 200,
+            "5": 119,
+            "3": 9,
+            "6": 2
+          },
+          {
+            "4": 208,
+            "1": 75,
+            "5": 85,
+            "0": 193,
+            "3": 24,
+            "2": 14,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "IDLE": {
+              "4": 229
+            },
+            "TO_PICKUP": {
+              "1": 32,
+              "2": 5,
+              "0": 46,
+              "5": 10,
+              "3": 5,
+              "4": 10
+            },
+            "PICKING": {
+              "5": 20
+            },
+            "TO_DROP": {
+              "1": 27,
+              "2": 8,
+              "0": 100,
+              "5": 10,
+              "4": 5,
+              "3": 10
+            },
+            "DROPPING": {
+              "5": 20
+            },
+            "TO_PARK": {
+              "1": 33,
+              "2": 1,
+              "0": 24,
+              "3": 4,
+              "4": 1
+            }
+          },
+          {
+            "IDLE": {
+              "4": 265,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 12,
+              "0": 56,
+              "2": 6,
+              "5": 6,
+              "4": 9,
+              "1": 7
+            },
+            "PICKING": {
+              "5": 12
+            },
+            "TO_DROP": {
+              "0": 59,
+              "2": 8,
+              "3": 4,
+              "5": 6,
+              "1": 4
+            },
+            "DROPPING": {
+              "5": 12
+            },
+            "TO_PARK": {
+              "3": 3,
+              "0": 27,
+              "2": 4,
+              "1": 28,
+              "4": 1
+            },
+            "TO_CHARGER": {
+              "1": 16,
+              "2": 1,
+              "0": 11,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 41
+            }
+          },
+          {
+            "TO_PICKUP": {
+              "0": 48,
+              "5": 9,
+              "3": 7,
+              "1": 23,
+              "2": 2
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "0": 99,
+              "2": 11,
+              "3": 11,
+              "5": 9,
+              "1": 9,
+              "4": 19
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "3": 9,
+              "0": 52,
+              "2": 5,
+              "1": 25,
+              "4": 1
+            },
+            "IDLE": {
+              "4": 110,
+              "6": 2
+            },
+            "TO_CHARGER": {
+              "0": 32,
+              "3": 2,
+              "2": 1,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 76
+            }
+          },
+          {
+            "IDLE": {
+              "4": 219,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "1": 18,
+              "2": 5,
+              "0": 56,
+              "5": 7,
+              "3": 1
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "2": 8,
+              "0": 99,
+              "3": 6,
+              "5": 7,
+              "4": 1
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "1": 7,
+              "3": 1,
+              "2": 2,
+              "0": 22
+            },
+            "TO_CHARGER": {
+              "1": 7,
+              "2": 3,
+              "0": 23,
+              "3": 1,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 75
+            }
+          },
+          {
+            "IDLE": {
+              "4": 186,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 11,
+              "5": 8,
+              "2": 3,
+              "0": 40,
+              "3": 4,
+              "4": 8
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "0": 125,
+              "3": 12,
+              "2": 8,
+              "5": 8,
+              "4": 10
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 64,
+              "3": 5,
+              "0": 12,
+              "4": 4
+            },
+            "TO_CHARGER": {
+              "2": 3,
+              "0": 16,
+              "3": 3,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 36
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.457999999999991,
+          "energy": -3.2448472038785576,
+          "conflicts": -0.0,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -0.9200000000000005,
+          "shaping": -22.38847244548615
+        }
+      }
+    ]
+  },
+  "iql": {
+    "completion_mean": 1.0,
+    "completion_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "throughput_mean": 0.06666666666666667,
+    "energy_used_mean": 354.52290615965546,
+    "avoidable_depletions": 0,
+    "executed_collisions": 0,
+    "completed_charge_cycles": [
+      4,
+      6,
+      6,
+      5,
+      5
+    ],
+    "episodes": [
+      {
+        "seed": 200000,
+        "scenario_hash": "a2712fdd575c3721aea586add21f7d7bf4b1ace360db7efda926edce4cb4cfb4",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 370.3699842336139,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 41.375,
+        "unfinished_orders": [],
+        "collision_count": 18.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.006,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 354.5680791106535,
+        "energy_per_delivery": 8.864201977766339,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1654.0,
+        "charge_queue_wait_p95": 25.899999999999995,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.14,
+        "idle_with_assignment_ticks": 3.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 4,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "2": 9,
+          "4": 7,
+          "0": 9,
+          "1": 7,
+          "3": 8
+        },
+        "inference_latency_ms": 4.8484576666666666,
+        "inference_latency_p95_ms": 7.392484999999999,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "4": 1060,
+          "3": 140,
+          "0": 1037,
+          "2": 110,
+          "5": 408,
+          "1": 241,
+          "6": 4
+        },
+        "per_robot_unique_cells": [
+          143,
+          157,
+          131,
+          92,
+          109
+        ],
+        "per_robot_action_counts": [
+          {
+            "4": 189,
+            "2": 19,
+            "0": 219,
+            "5": 105,
+            "1": 39,
+            "3": 28,
+            "6": 1
+          },
+          {
+            "4": 205,
+            "1": 26,
+            "3": 33,
+            "0": 237,
+            "5": 78,
+            "2": 20,
+            "6": 1
+          },
+          {
+            "3": 27,
+            "0": 209,
+            "2": 23,
+            "5": 90,
+            "1": 90,
+            "6": 1,
+            "4": 160
+          },
+          {
+            "4": 300,
+            "1": 46,
+            "2": 19,
+            "0": 164,
+            "5": 48,
+            "3": 23
+          },
+          {
+            "4": 206,
+            "2": 29,
+            "0": 208,
+            "3": 29,
+            "5": 87,
+            "1": 40,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "IDLE": {
+              "4": 189,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 5,
+              "0": 59,
+              "5": 9,
+              "1": 14,
+              "3": 7
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 19,
+              "2": 11,
+              "0": 107,
+              "3": 11,
+              "5": 9
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "3": 7,
+              "0": 44,
+              "2": 2,
+              "1": 6
+            },
+            "TO_CHARGER": {
+              "3": 3,
+              "0": 9,
+              "2": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 50
+            }
+          },
+          {
+            "IDLE": {
+              "4": 205,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 13,
+              "3": 8,
+              "0": 55,
+              "5": 7,
+              "2": 4
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "2": 13,
+              "0": 128,
+              "3": 16,
+              "5": 7,
+              "1": 7
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "1": 6,
+              "3": 8,
+              "0": 48,
+              "2": 2
+            },
+            "TO_CHARGER": {
+              "2": 1,
+              "0": 6,
+              "3": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 35
+            }
+          },
+          {
+            "TO_PICKUP": {
+              "3": 13,
+              "0": 66,
+              "2": 10,
+              "5": 9,
+              "1": 8
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "3": 11,
+              "0": 119,
+              "5": 9,
+              "2": 10,
+              "1": 27
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 54,
+              "2": 2,
+              "0": 17,
+              "3": 3
+            },
+            "IDLE": {
+              "6": 1,
+              "4": 160
+            },
+            "TO_CHARGER": {
+              "1": 1,
+              "2": 1,
+              "0": 7,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 35
+            }
+          },
+          {
+            "IDLE": {
+              "4": 297
+            },
+            "TO_PICKUP": {
+              "1": 8,
+              "2": 3,
+              "0": 51,
+              "5": 8,
+              "3": 4
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "2": 13,
+              "0": 94,
+              "3": 16,
+              "5": 8,
+              "4": 3,
+              "1": 19
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "3": 3,
+              "0": 19,
+              "1": 19,
+              "2": 3
+            }
+          },
+          {
+            "IDLE": {
+              "4": 206,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 11,
+              "0": 41,
+              "3": 9,
+              "5": 7,
+              "1": 3
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "1": 18,
+              "2": 11,
+              "0": 95,
+              "3": 9,
+              "5": 7
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "3": 9,
+              "0": 48,
+              "2": 6,
+              "1": 19
+            },
+            "TO_CHARGER": {
+              "0": 24,
+              "3": 2,
+              "2": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 44
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.1731893386361177,
+          0.18301237216951147,
+          0.20163185401884826,
+          0.16974226982879978,
+          0.21145792835690674
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.653999999999992,
+          "energy": -3.5456807911065162,
+          "conflicts": -0.9000000000000002,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -0.9000000000000005,
+          "shaping": -22.630334975282842
+        }
+      },
+      {
+        "seed": 200001,
+        "scenario_hash": "ce060de54a3f7750cdce96ae1f0f157a181978a54072a6a174d0b5474805ec00",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 370.21561321643674,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 77.925,
+        "unfinished_orders": [],
+        "collision_count": 51.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.017,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 337.3807299676435,
+        "energy_per_delivery": 8.434518249191088,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 3116.0,
+        "charge_queue_wait_p95": 30.75,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.20666666666666667,
+        "idle_with_assignment_ticks": 6.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 6,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "3": 12,
+          "0": 1,
+          "1": 8,
+          "4": 10,
+          "2": 9
+        },
+        "inference_latency_ms": 4.939440666666666,
+        "inference_latency_p95_ms": 7.173644999999999,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "4": 931,
+          "2": 131,
+          "0": 1109,
+          "3": 150,
+          "5": 488,
+          "1": 185,
+          "6": 6
+        },
+        "per_robot_unique_cells": [
+          16,
+          151,
+          91,
+          161,
+          148
+        ],
+        "per_robot_action_counts": [
+          {
+            "4": 564,
+            "3": 5,
+            "0": 10,
+            "5": 6,
+            "1": 11,
+            "2": 4
+          },
+          {
+            "4": 133,
+            "3": 29,
+            "0": 251,
+            "2": 19,
+            "5": 136,
+            "6": 2,
+            "1": 30
+          },
+          {
+            "4": 97,
+            "2": 25,
+            "0": 250,
+            "3": 29,
+            "5": 129,
+            "1": 68,
+            "6": 2
+          },
+          {
+            "2": 51,
+            "0": 326,
+            "3": 51,
+            "5": 114,
+            "1": 55,
+            "4": 2,
+            "6": 1
+          },
+          {
+            "4": 135,
+            "2": 32,
+            "0": 272,
+            "3": 36,
+            "5": 103,
+            "1": 21,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "IDLE": {
+              "4": 564
+            },
+            "TO_PICKUP": {
+              "3": 1,
+              "0": 1,
+              "5": 1
+            },
+            "PICKING": {
+              "5": 2
+            },
+            "TO_DROP": {
+              "1": 8,
+              "2": 1,
+              "0": 4,
+              "5": 1
+            },
+            "DROPPING": {
+              "5": 2
+            },
+            "TO_PARK": {
+              "1": 3,
+              "3": 4,
+              "0": 5,
+              "2": 3
+            }
+          },
+          {
+            "IDLE": {
+              "4": 133,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "3": 10,
+              "0": 105,
+              "2": 8,
+              "5": 8,
+              "1": 2
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "0": 101,
+              "3": 14,
+              "5": 8,
+              "2": 8,
+              "1": 28
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_CHARGER": {
+              "3": 4,
+              "0": 28,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 86
+            },
+            "TO_PARK": {
+              "2": 3,
+              "0": 17,
+              "3": 1
+            }
+          },
+          {
+            "IDLE": {
+              "4": 92,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "2": 10,
+              "0": 97,
+              "3": 14,
+              "5": 9,
+              "1": 15,
+              "4": 3
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "2": 7,
+              "0": 110,
+              "3": 10,
+              "5": 9,
+              "1": 8
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "3": 1,
+              "0": 22,
+              "1": 30,
+              "2": 2,
+              "4": 2
+            },
+            "TO_CHARGER": {
+              "1": 15,
+              "2": 6,
+              "0": 21,
+              "3": 4,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 73
+            }
+          },
+          {
+            "TO_PICKUP": {
+              "2": 24,
+              "0": 114,
+              "3": 22,
+              "5": 12,
+              "1": 17
+            },
+            "PICKING": {
+              "5": 24
+            },
+            "TO_DROP": {
+              "2": 12,
+              "0": 154,
+              "3": 13,
+              "5": 12,
+              "1": 4
+            },
+            "DROPPING": {
+              "5": 24
+            },
+            "TO_PARK": {
+              "1": 33,
+              "3": 16,
+              "2": 14,
+              "0": 55
+            },
+            "IDLE": {
+              "4": 2,
+              "6": 1
+            },
+            "TO_CHARGER": {
+              "1": 1,
+              "2": 1,
+              "0": 3,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 41
+            }
+          },
+          {
+            "IDLE": {
+              "4": 132,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 16,
+              "0": 130,
+              "3": 17,
+              "5": 10,
+              "1": 8,
+              "4": 1
+            },
+            "PICKING": {
+              "5": 20
+            },
+            "TO_DROP": {
+              "1": 11,
+              "2": 13,
+              "0": 95,
+              "3": 13,
+              "5": 10,
+              "4": 2
+            },
+            "DROPPING": {
+              "5": 20
+            },
+            "TO_CHARGER": {
+              "2": 2,
+              "0": 25,
+              "3": 3,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 42
+            },
+            "TO_PARK": {
+              "1": 2,
+              "3": 3,
+              "0": 22,
+              "2": 1
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.06184975994496199,
+          0.18077302266755396,
+          0.28938351801617196,
+          0.3494630034692303,
+          0.25640150075318463
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -3.1159999999999846,
+          "energy": -3.3738072996764363,
+          "conflicts": -2.5499999999999994,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -0.5200000000000001,
+          "shaping": -20.22457948388665
+        }
+      },
+      {
+        "seed": 200002,
+        "scenario_hash": "9ad9cda6af12339fdcd6285387353e76bd07007d0b850b19bd23aece28212796",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 370.49369414012574,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 46.85,
+        "unfinished_orders": [],
+        "collision_count": 19.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.006333333333333333,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 370.7685566785437,
+        "energy_per_delivery": 9.269213916963592,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1873.0,
+        "charge_queue_wait_p95": 39.25,
+        "charge_queue_ticks": 26.0,
+        "charger_utilization": 0.22916666666666666,
+        "idle_with_assignment_ticks": 16.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 6,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "3": 7,
+          "0": 10,
+          "2": 9,
+          "1": 7,
+          "4": 7
+        },
+        "inference_latency_ms": 5.258453333333334,
+        "inference_latency_p95_ms": 7.001344999999999,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "2": 110,
+          "4": 976,
+          "0": 1054,
+          "3": 129,
+          "5": 515,
+          "1": 210,
+          "6": 6
+        },
+        "per_robot_unique_cells": [
+          146,
+          153,
+          94,
+          124,
+          142
+        ],
+        "per_robot_action_counts": [
+          {
+            "2": 19,
+            "0": 264,
+            "3": 36,
+            "5": 108,
+            "1": 31,
+            "6": 1,
+            "4": 141
+          },
+          {
+            "4": 173,
+            "1": 42,
+            "2": 28,
+            "0": 213,
+            "3": 22,
+            "5": 120,
+            "6": 2
+          },
+          {
+            "4": 224,
+            "0": 160,
+            "3": 23,
+            "2": 25,
+            "5": 98,
+            "1": 69,
+            "6": 1
+          },
+          {
+            "4": 198,
+            "2": 21,
+            "0": 201,
+            "5": 101,
+            "1": 48,
+            "3": 30,
+            "6": 1
+          },
+          {
+            "4": 240,
+            "0": 216,
+            "2": 17,
+            "3": 18,
+            "5": 88,
+            "1": 20,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "TO_PICKUP": {
+              "2": 8,
+              "0": 69,
+              "3": 12,
+              "5": 10,
+              "1": 8,
+              "4": 14
+            },
+            "PICKING": {
+              "5": 20
+            },
+            "TO_DROP": {
+              "1": 23,
+              "2": 10,
+              "0": 116,
+              "3": 15,
+              "5": 10
+            },
+            "DROPPING": {
+              "5": 20
+            },
+            "TO_PARK": {
+              "3": 5,
+              "0": 44
+            },
+            "IDLE": {
+              "6": 1,
+              "4": 127
+            },
+            "TO_CHARGER": {
+              "3": 4,
+              "0": 35,
+              "2": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 47
+            }
+          },
+          {
+            "IDLE": {
+              "4": 173,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "1": 25,
+              "2": 15,
+              "0": 63,
+              "3": 10,
+              "5": 7
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "1": 15,
+              "2": 8,
+              "0": 97,
+              "3": 7,
+              "5": 7
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_CHARGER": {
+              "3": 3,
+              "0": 24,
+              "5": 2,
+              "1": 1,
+              "2": 2
+            },
+            "CHARGING": {
+              "5": 76
+            },
+            "TO_PARK": {
+              "3": 2,
+              "0": 29,
+              "2": 3,
+              "1": 1
+            }
+          },
+          {
+            "IDLE": {
+              "4": 203,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "0": 46,
+              "3": 8,
+              "2": 6,
+              "5": 9,
+              "1": 25
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "2": 11,
+              "0": 77,
+              "3": 5,
+              "5": 9,
+              "1": 24
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 20,
+              "2": 7,
+              "0": 30,
+              "3": 9
+            },
+            "QUEUED_CHARGE": {
+              "2": 1,
+              "0": 6,
+              "3": 1,
+              "4": 18
+            },
+            "TO_CHARGER": {
+              "4": 3,
+              "0": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 43
+            }
+          },
+          {
+            "IDLE": {
+              "4": 198,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 10,
+              "0": 46,
+              "5": 7,
+              "1": 20,
+              "3": 10
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "1": 13,
+              "2": 8,
+              "0": 88,
+              "3": 9,
+              "5": 7
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "3": 9,
+              "0": 36,
+              "2": 3,
+              "1": 15
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 31,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 58
+            }
+          },
+          {
+            "IDLE": {
+              "4": 238,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "0": 89,
+              "2": 6,
+              "3": 9,
+              "5": 7,
+              "1": 6,
+              "4": 2
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "2": 6,
+              "0": 90,
+              "5": 7,
+              "3": 8,
+              "1": 5
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "1": 7,
+              "2": 3,
+              "0": 23
+            },
+            "TO_CHARGER": {
+              "1": 2,
+              "2": 2,
+              "0": 14,
+              "3": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 45
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.24215067506923635,
+          0.1778000218617793,
+          0.20542085446026856,
+          0.18283171656367508,
+          0.15138562364546487
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.8729999999999905,
+          "energy": -3.707685566785421,
+          "conflicts": -0.9500000000000003,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -0.9600000000000005,
+          "shaping": -22.01562029308742
+        }
+      },
+      {
+        "seed": 200003,
+        "scenario_hash": "7208e18390ac5d614f1190067d51b3e5e7917c92a1306df5e07155e48df1d766",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 370.35059078787697,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 44.125,
+        "unfinished_orders": [],
+        "collision_count": 20.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.006666666666666667,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 366.88598048341674,
+        "energy_per_delivery": 9.172149512085419,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1764.0,
+        "charge_queue_wait_p95": 33.2,
+        "charge_queue_ticks": 19.0,
+        "charger_utilization": 0.19583333333333333,
+        "idle_with_assignment_ticks": 40.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 5,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "0": 9,
+          "3": 7,
+          "2": 8,
+          "4": 8,
+          "1": 8
+        },
+        "inference_latency_ms": 4.9508201666666665,
+        "inference_latency_p95_ms": 6.890375,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "3": 142,
+          "4": 927,
+          "0": 1042,
+          "5": 475,
+          "2": 113,
+          "1": 296,
+          "6": 5
+        },
+        "per_robot_unique_cells": [
+          142,
+          148,
+          156,
+          127,
+          121
+        ],
+        "per_robot_action_counts": [
+          {
+            "3": 31,
+            "0": 226,
+            "5": 107,
+            "2": 28,
+            "4": 154,
+            "1": 53,
+            "6": 1
+          },
+          {
+            "4": 192,
+            "3": 23,
+            "0": 191,
+            "2": 23,
+            "5": 95,
+            "1": 75,
+            "6": 1
+          },
+          {
+            "4": 167,
+            "3": 33,
+            "0": 234,
+            "5": 97,
+            "1": 46,
+            "2": 22,
+            "6": 1
+          },
+          {
+            "4": 182,
+            "1": 70,
+            "2": 28,
+            "0": 204,
+            "5": 85,
+            "3": 30,
+            "6": 1
+          },
+          {
+            "4": 232,
+            "1": 52,
+            "0": 187,
+            "5": 91,
+            "3": 25,
+            "2": 12,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "TO_PICKUP": {
+              "3": 6,
+              "0": 49,
+              "5": 9,
+              "1": 23,
+              "2": 4
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "2": 14,
+              "0": 93,
+              "3": 14,
+              "5": 9,
+              "1": 17
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "3": 11,
+              "0": 73,
+              "2": 9,
+              "1": 12
+            },
+            "IDLE": {
+              "4": 147,
+              "6": 1
+            },
+            "QUEUED_CHARGE": {
+              "1": 1,
+              "2": 1,
+              "0": 10,
+              "4": 7
+            },
+            "TO_CHARGER": {
+              "0": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 52
+            }
+          },
+          {
+            "IDLE": {
+              "4": 191,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 9,
+              "0": 62,
+              "2": 8,
+              "5": 8,
+              "1": 16,
+              "4": 1
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "0": 86,
+              "3": 8,
+              "2": 9,
+              "5": 8,
+              "1": 20
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 28,
+              "2": 5,
+              "0": 31,
+              "3": 6
+            },
+            "TO_CHARGER": {
+              "1": 11,
+              "2": 1,
+              "0": 12,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 46
+            }
+          },
+          {
+            "IDLE": {
+              "4": 166,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 11,
+              "0": 48,
+              "5": 8,
+              "2": 8,
+              "1": 24
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "1": 4,
+              "2": 10,
+              "0": 107,
+              "5": 8,
+              "3": 14,
+              "4": 1
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 18,
+              "2": 2,
+              "0": 50,
+              "3": 6
+            },
+            "TO_CHARGER": {
+              "0": 29,
+              "3": 2,
+              "2": 2,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 48
+            }
+          },
+          {
+            "IDLE": {
+              "4": 145,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 37,
+              "2": 13,
+              "0": 56,
+              "5": 7,
+              "3": 12,
+              "4": 37
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "1": 26,
+              "2": 12,
+              "0": 86,
+              "3": 11,
+              "5": 7
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "1": 7,
+              "3": 5,
+              "0": 58,
+              "2": 3
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 4,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 42
+            }
+          },
+          {
+            "IDLE": {
+              "4": 231,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 10,
+              "0": 61,
+              "5": 8,
+              "2": 7,
+              "3": 11,
+              "4": 1
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "3": 9,
+              "0": 64,
+              "5": 8,
+              "1": 28,
+              "2": 5
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 14,
+              "3": 3,
+              "0": 35
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 27,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 42
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.21137030603196158,
+          0.1677398314468155,
+          0.20509559627630553,
+          0.27646950612710197,
+          0.14045550795214393
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.7639999999999971,
+          "energy": -3.6688598048341916,
+          "conflicts": -1.0000000000000002,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -1.0800000000000005,
+          "shaping": -22.13654940729107
+        }
+      },
+      {
+        "seed": 200004,
+        "scenario_hash": "b4a6ccc2da1be898cfa28691f1f8dfc986ae2d8e1c6fcddeea469a9891c393a7",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 369.9099251013025,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 44.675,
+        "unfinished_orders": [],
+        "collision_count": 28.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.009333333333333334,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 343.01118455801986,
+        "energy_per_delivery": 8.575279613950496,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1786.0,
+        "charge_queue_wait_p95": 22.8,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.1675,
+        "idle_with_assignment_ticks": 4.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 5,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "2": 10,
+          "3": 6,
+          "4": 9,
+          "0": 9,
+          "1": 6
+        },
+        "inference_latency_ms": 4.887235333333333,
+        "inference_latency_p95_ms": 6.886654999999995,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "4": 944,
+          "0": 1153,
+          "5": 441,
+          "2": 121,
+          "3": 130,
+          "1": 206,
+          "6": 5
+        },
+        "per_robot_unique_cells": [
+          105,
+          147,
+          140,
+          147,
+          107
+        ],
+        "per_robot_action_counts": [
+          {
+            "4": 232,
+            "2": 33,
+            "0": 212,
+            "3": 25,
+            "5": 54,
+            "1": 44
+          },
+          {
+            "4": 211,
+            "3": 24,
+            "0": 231,
+            "2": 20,
+            "5": 78,
+            "1": 35,
+            "6": 1
+          },
+          {
+            "0": 289,
+            "5": 104,
+            "2": 32,
+            "3": 46,
+            "1": 4,
+            "6": 1,
+            "4": 124
+          },
+          {
+            "4": 185,
+            "1": 53,
+            "2": 21,
+            "0": 204,
+            "5": 115,
+            "3": 20,
+            "6": 2
+          },
+          {
+            "4": 192,
+            "1": 70,
+            "5": 90,
+            "0": 217,
+            "3": 15,
+            "2": 15,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "IDLE": {
+              "4": 229
+            },
+            "TO_PICKUP": {
+              "2": 11,
+              "0": 68,
+              "3": 5,
+              "5": 9,
+              "1": 8
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 22,
+              "2": 19,
+              "0": 117,
+              "3": 17,
+              "5": 9,
+              "4": 3
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 14,
+              "3": 3,
+              "0": 27,
+              "2": 3
+            }
+          },
+          {
+            "IDLE": {
+              "4": 211,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 9,
+              "0": 97,
+              "2": 6,
+              "5": 6,
+              "1": 15
+            },
+            "PICKING": {
+              "5": 12
+            },
+            "TO_DROP": {
+              "0": 73,
+              "2": 6,
+              "3": 6,
+              "5": 6
+            },
+            "DROPPING": {
+              "5": 12
+            },
+            "TO_PARK": {
+              "1": 17,
+              "2": 5,
+              "0": 48,
+              "3": 6
+            },
+            "TO_CHARGER": {
+              "2": 3,
+              "0": 13,
+              "3": 3,
+              "1": 3,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 41
+            }
+          },
+          {
+            "TO_PICKUP": {
+              "0": 86,
+              "5": 10,
+              "3": 14,
+              "2": 11
+            },
+            "PICKING": {
+              "5": 20
+            },
+            "TO_DROP": {
+              "2": 18,
+              "0": 132,
+              "3": 22,
+              "5": 10,
+              "1": 2
+            },
+            "DROPPING": {
+              "5": 20
+            },
+            "TO_PARK": {
+              "3": 8,
+              "0": 55,
+              "2": 3,
+              "1": 2
+            },
+            "IDLE": {
+              "6": 1,
+              "4": 124
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 16,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 43
+            }
+          },
+          {
+            "IDLE": {
+              "4": 184,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "1": 28,
+              "2": 7,
+              "0": 56,
+              "5": 6,
+              "3": 7,
+              "4": 1
+            },
+            "PICKING": {
+              "5": 12
+            },
+            "TO_DROP": {
+              "2": 11,
+              "0": 98,
+              "1": 8,
+              "3": 8,
+              "5": 6
+            },
+            "DROPPING": {
+              "5": 12
+            },
+            "TO_CHARGER": {
+              "0": 35,
+              "2": 3,
+              "3": 3,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 77
+            },
+            "TO_PARK": {
+              "1": 17,
+              "3": 2,
+              "0": 15
+            }
+          },
+          {
+            "IDLE": {
+              "4": 192,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 21,
+              "5": 9,
+              "0": 64,
+              "2": 7,
+              "3": 2
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "0": 107,
+              "3": 6,
+              "5": 9,
+              "1": 12,
+              "2": 5
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 33,
+              "3": 7,
+              "0": 39,
+              "2": 2
+            },
+            "TO_CHARGER": {
+              "1": 4,
+              "2": 1,
+              "0": 7,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 35
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.21074271602357839,
+          0.17558573997551927,
+          0.25541711506786974,
+          0.18240659946411142,
+          0.22135969633196206
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.7859999999999907,
+          "energy": -3.430111845580193,
+          "conflicts": -1.4000000000000006,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -1.0400000000000005,
+          "shaping": -22.43396305311589
+        }
+      }
+    ]
+  },
+  "vdn": {
+    "completion_mean": 1.0,
+    "completion_per_seed": [
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "throughput_mean": 0.06666666666666667,
+    "energy_used_mean": 351.8175530288146,
+    "avoidable_depletions": 0,
+    "executed_collisions": 0,
+    "completed_charge_cycles": [
+      5,
+      7,
+      6,
+      5,
+      6
+    ],
+    "episodes": [
+      {
+        "seed": 200000,
+        "scenario_hash": "a2712fdd575c3721aea586add21f7d7bf4b1ace360db7efda926edce4cb4cfb4",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 371.2713827692871,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 43.925,
+        "unfinished_orders": [],
+        "collision_count": 10.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.0033333333333333335,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 357.91249103740404,
+        "energy_per_delivery": 8.947812275935101,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1756.0,
+        "charge_queue_wait_p95": 25.6,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.185,
+        "idle_with_assignment_ticks": 0.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 5,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "2": 9,
+          "4": 8,
+          "0": 7,
+          "1": 8,
+          "3": 8
+        },
+        "inference_latency_ms": 4.9681888333333335,
+        "inference_latency_p95_ms": 7.326609999999998,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "4": 976,
+          "3": 139,
+          "0": 1069,
+          "2": 113,
+          "5": 462,
+          "1": 236,
+          "6": 5
+        },
+        "per_robot_unique_cells": [
+          142,
+          152,
+          127,
+          124,
+          113
+        ],
+        "per_robot_action_counts": [
+          {
+            "4": 216,
+            "2": 22,
+            "0": 208,
+            "5": 93,
+            "1": 37,
+            "3": 23,
+            "6": 1
+          },
+          {
+            "4": 188,
+            "1": 30,
+            "3": 32,
+            "0": 243,
+            "5": 86,
+            "2": 20,
+            "6": 1
+          },
+          {
+            "3": 36,
+            "0": 218,
+            "2": 21,
+            "5": 91,
+            "1": 67,
+            "6": 1,
+            "4": 166
+          },
+          {
+            "4": 193,
+            "1": 42,
+            "2": 24,
+            "0": 216,
+            "3": 26,
+            "5": 98,
+            "6": 1
+          },
+          {
+            "4": 213,
+            "2": 26,
+            "0": 184,
+            "3": 22,
+            "5": 94,
+            "1": 60,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "IDLE": {
+              "4": 216,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 9,
+              "0": 74,
+              "5": 7,
+              "3": 7
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "1": 29,
+              "2": 9,
+              "0": 96,
+              "3": 7,
+              "5": 7
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "3": 6,
+              "0": 29,
+              "1": 8,
+              "2": 3
+            },
+            "TO_CHARGER": {
+              "3": 3,
+              "0": 9,
+              "2": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 50
+            }
+          },
+          {
+            "IDLE": {
+              "4": 188,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 9,
+              "3": 11,
+              "0": 59,
+              "5": 8,
+              "2": 6
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "2": 9,
+              "0": 115,
+              "3": 9,
+              "5": 8,
+              "1": 5
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 16,
+              "3": 10,
+              "0": 63,
+              "2": 3
+            },
+            "TO_CHARGER": {
+              "2": 2,
+              "0": 6,
+              "3": 2,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 37
+            }
+          },
+          {
+            "TO_PICKUP": {
+              "3": 14,
+              "0": 77,
+              "2": 9,
+              "5": 9,
+              "1": 8
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "3": 11,
+              "0": 111,
+              "2": 8,
+              "5": 9,
+              "1": 17
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 42,
+              "3": 7,
+              "0": 12,
+              "2": 3
+            },
+            "IDLE": {
+              "6": 1,
+              "4": 166
+            },
+            "TO_CHARGER": {
+              "3": 4,
+              "0": 18,
+              "2": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 36
+            }
+          },
+          {
+            "IDLE": {
+              "4": 193,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 24,
+              "2": 9,
+              "0": 88,
+              "3": 11,
+              "5": 8
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "1": 15,
+              "2": 13,
+              "0": 89,
+              "3": 11,
+              "5": 8
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "3": 2,
+              "0": 27,
+              "1": 3,
+              "2": 2
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 12,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 49
+            }
+          },
+          {
+            "IDLE": {
+              "4": 213,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 8,
+              "0": 46,
+              "3": 9,
+              "5": 8,
+              "1": 10
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "1": 21,
+              "2": 11,
+              "0": 87,
+              "5": 8,
+              "3": 5
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 21,
+              "3": 6,
+              "0": 39,
+              "2": 4
+            },
+            "TO_CHARGER": {
+              "1": 8,
+              "2": 3,
+              "3": 2,
+              "0": 12,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 45
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.20985323780136847,
+          0.2642591738740884,
+          0.2354914051574997,
+          0.23375597838078344,
+          0.21469683511551618
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.7559999999999911,
+          "energy": -3.5791249103740244,
+          "conflicts": -0.49999999999999994,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -0.8200000000000004,
+          "shaping": -22.073492320341824
+        }
+      },
+      {
+        "seed": 200001,
+        "scenario_hash": "ce060de54a3f7750cdce96ae1f0f157a181978a54072a6a174d0b5474805ec00",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 370.6878522013425,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 86.775,
+        "unfinished_orders": [],
+        "collision_count": 34.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.011333333333333334,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 340.8430417297715,
+        "energy_per_delivery": 8.521076043244289,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 3470.0,
+        "charge_queue_wait_p95": 39.39999999999999,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.23916666666666667,
+        "idle_with_assignment_ticks": 7.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 7,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "3": 12,
+          "0": 1,
+          "1": 9,
+          "4": 10,
+          "2": 8
+        },
+        "inference_latency_ms": 4.7396105,
+        "inference_latency_p95_ms": 6.588575,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "4": 861,
+          "2": 153,
+          "0": 1080,
+          "3": 166,
+          "5": 527,
+          "1": 206,
+          "6": 7
+        },
+        "per_robot_unique_cells": [
+          16,
+          137,
+          142,
+          153,
+          133
+        ],
+        "per_robot_action_counts": [
+          {
+            "4": 564,
+            "3": 5,
+            "0": 10,
+            "5": 6,
+            "1": 11,
+            "2": 4
+          },
+          {
+            "4": 137,
+            "3": 28,
+            "0": 255,
+            "2": 22,
+            "5": 140,
+            "6": 2,
+            "1": 16
+          },
+          {
+            "4": 76,
+            "2": 38,
+            "0": 283,
+            "3": 42,
+            "5": 126,
+            "1": 33,
+            "6": 2
+          },
+          {
+            "2": 44,
+            "0": 293,
+            "3": 44,
+            "5": 116,
+            "1": 84,
+            "6": 1,
+            "4": 18
+          },
+          {
+            "4": 66,
+            "2": 45,
+            "0": 239,
+            "3": 47,
+            "5": 139,
+            "1": 62,
+            "6": 2
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "IDLE": {
+              "4": 564
+            },
+            "TO_PICKUP": {
+              "3": 1,
+              "0": 1,
+              "5": 1
+            },
+            "PICKING": {
+              "5": 2
+            },
+            "TO_DROP": {
+              "1": 8,
+              "2": 1,
+              "0": 4,
+              "5": 1
+            },
+            "DROPPING": {
+              "5": 2
+            },
+            "TO_PARK": {
+              "1": 3,
+              "3": 4,
+              "0": 5,
+              "2": 3
+            }
+          },
+          {
+            "IDLE": {
+              "4": 137,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "3": 13,
+              "0": 107,
+              "2": 10,
+              "5": 9,
+              "1": 8
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "0": 102,
+              "3": 10,
+              "5": 9,
+              "2": 9,
+              "1": 7
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_CHARGER": {
+              "3": 4,
+              "0": 28,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 84
+            },
+            "TO_PARK": {
+              "2": 3,
+              "0": 18,
+              "3": 1,
+              "1": 1
+            }
+          },
+          {
+            "IDLE": {
+              "4": 76,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "2": 14,
+              "0": 118,
+              "3": 19,
+              "5": 8,
+              "1": 20
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "2": 15,
+              "0": 116,
+              "3": 15,
+              "5": 8,
+              "1": 8
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "3": 2,
+              "0": 3,
+              "1": 1
+            },
+            "TO_CHARGER": {
+              "0": 46,
+              "2": 9,
+              "3": 6,
+              "1": 4,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 76
+            }
+          },
+          {
+            "TO_PICKUP": {
+              "2": 23,
+              "0": 80,
+              "3": 20,
+              "5": 12,
+              "1": 25,
+              "4": 1
+            },
+            "PICKING": {
+              "5": 24
+            },
+            "TO_DROP": {
+              "2": 12,
+              "0": 143,
+              "3": 12,
+              "5": 12,
+              "1": 23
+            },
+            "DROPPING": {
+              "5": 24
+            },
+            "TO_PARK": {
+              "1": 21,
+              "3": 11,
+              "2": 7,
+              "0": 58
+            },
+            "IDLE": {
+              "6": 1,
+              "4": 17
+            },
+            "TO_CHARGER": {
+              "1": 15,
+              "2": 2,
+              "0": 12,
+              "3": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 43
+            }
+          },
+          {
+            "IDLE": {
+              "4": 60,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "2": 24,
+              "0": 121,
+              "3": 28,
+              "5": 10,
+              "1": 25,
+              "4": 6
+            },
+            "PICKING": {
+              "5": 20
+            },
+            "TO_DROP": {
+              "1": 11,
+              "2": 17,
+              "0": 101,
+              "3": 16,
+              "5": 10
+            },
+            "DROPPING": {
+              "5": 20
+            },
+            "TO_CHARGER": {
+              "1": 8,
+              "2": 3,
+              "0": 14,
+              "3": 1,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 77
+            },
+            "TO_PARK": {
+              "1": 18,
+              "3": 2,
+              "0": 3,
+              "2": 1
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.09915441425318325,
+          0.23132719029676083,
+          0.3160391036765153,
+          0.3560854873781621,
+          0.3105252987447966
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -3.4699999999999824,
+          "energy": -3.4084304172977156,
+          "conflicts": -1.7000000000000008,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -0.6000000000000002,
+          "shaping": -20.133717381359855
+        }
+      },
+      {
+        "seed": 200002,
+        "scenario_hash": "9ad9cda6af12339fdcd6285387353e76bd07007d0b850b19bd23aece28212796",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 369.0377155654344,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 43.175,
+        "unfinished_orders": [],
+        "collision_count": 41.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.013666666666666667,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 377.034116978862,
+        "energy_per_delivery": 9.42585292447155,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1726.0,
+        "charge_queue_wait_p95": 38.25,
+        "charge_queue_ticks": 31.0,
+        "charger_utilization": 0.2275,
+        "idle_with_assignment_ticks": 2.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 6,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "0": 9,
+          "3": 7,
+          "2": 9,
+          "1": 7,
+          "4": 8
+        },
+        "inference_latency_ms": 4.573944999999999,
+        "inference_latency_p95_ms": 6.585374999999995,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "2": 118,
+          "4": 921,
+          "0": 1102,
+          "3": 134,
+          "5": 513,
+          "1": 205,
+          "6": 7
+        },
+        "per_robot_unique_cells": [
+          148,
+          128,
+          108,
+          116,
+          125
+        ],
+        "per_robot_action_counts": [
+          {
+            "2": 26,
+            "0": 301,
+            "3": 43,
+            "5": 103,
+            "1": 48,
+            "6": 2,
+            "4": 77
+          },
+          {
+            "4": 185,
+            "1": 41,
+            "5": 121,
+            "0": 217,
+            "3": 20,
+            "2": 14,
+            "6": 2
+          },
+          {
+            "4": 225,
+            "0": 172,
+            "3": 18,
+            "2": 31,
+            "5": 96,
+            "1": 57,
+            "6": 1
+          },
+          {
+            "4": 197,
+            "2": 30,
+            "0": 209,
+            "5": 99,
+            "1": 33,
+            "3": 31,
+            "6": 1
+          },
+          {
+            "4": 237,
+            "0": 203,
+            "2": 17,
+            "3": 22,
+            "5": 94,
+            "1": 26,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "TO_PICKUP": {
+              "2": 6,
+              "0": 76,
+              "3": 12,
+              "5": 9,
+              "1": 14
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 29,
+              "2": 9,
+              "0": 120,
+              "5": 9,
+              "3": 12
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 5,
+              "3": 8,
+              "0": 49,
+              "2": 3
+            },
+            "IDLE": {
+              "6": 2,
+              "4": 77
+            },
+            "TO_CHARGER": {
+              "3": 11,
+              "0": 56,
+              "2": 8,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 48
+            }
+          },
+          {
+            "IDLE": {
+              "4": 183,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "1": 35,
+              "5": 7,
+              "0": 39,
+              "3": 5,
+              "2": 2
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "0": 132,
+              "3": 10,
+              "5": 7,
+              "2": 8,
+              "1": 2,
+              "4": 2
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "1": 4,
+              "2": 4,
+              "0": 22,
+              "3": 1
+            },
+            "TO_CHARGER": {
+              "3": 4,
+              "0": 24,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 77
+            }
+          },
+          {
+            "IDLE": {
+              "4": 207,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "0": 67,
+              "3": 6,
+              "2": 10,
+              "5": 9,
+              "1": 8
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "2": 12,
+              "0": 67,
+              "3": 3,
+              "5": 9,
+              "1": 22
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 27,
+              "2": 8,
+              "0": 26,
+              "3": 8
+            },
+            "QUEUED_CHARGE": {
+              "2": 1,
+              "0": 11,
+              "3": 1,
+              "4": 18
+            },
+            "TO_CHARGER": {
+              "0": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 41
+            }
+          },
+          {
+            "IDLE": {
+              "4": 191,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 9,
+              "0": 54,
+              "5": 7,
+              "1": 18,
+              "3": 10
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "1": 13,
+              "2": 6,
+              "0": 76,
+              "3": 8,
+              "5": 7
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "3": 11,
+              "0": 56,
+              "2": 15,
+              "1": 2,
+              "4": 6
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 23,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 56
+            }
+          },
+          {
+            "IDLE": {
+              "4": 237,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "0": 77,
+              "2": 5,
+              "3": 10,
+              "5": 8,
+              "1": 6
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "2": 8,
+              "0": 95,
+              "3": 10,
+              "5": 8,
+              "1": 5
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "0": 17,
+              "1": 13,
+              "3": 1,
+              "2": 2
+            },
+            "TO_CHARGER": {
+              "1": 2,
+              "2": 2,
+              "0": 14,
+              "3": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 45
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.3169396044827105,
+          0.1988279411143473,
+          0.22678899518396672,
+          0.2601359737839448,
+          0.17306811774036154
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.7259999999999915,
+          "energy": -3.7703411697886096,
+          "conflicts": -2.0500000000000007,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -1.1200000000000008,
+          "shaping": -22.295943264775676
+        }
+      },
+      {
+        "seed": 200003,
+        "scenario_hash": "7208e18390ac5d614f1190067d51b3e5e7917c92a1306df5e07155e48df1d766",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 369.8255347233689,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 38.575,
+        "unfinished_orders": [],
+        "collision_count": 33.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.011,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 345.496012180666,
+        "energy_per_delivery": 8.63740030451665,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1542.0,
+        "charge_queue_wait_p95": 46.6,
+        "charge_queue_ticks": 42.0,
+        "charger_utilization": 0.19416666666666665,
+        "idle_with_assignment_ticks": 1.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 5,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "0": 7,
+          "3": 10,
+          "2": 8,
+          "4": 9,
+          "1": 6
+        },
+        "inference_latency_ms": 4.658434000000001,
+        "inference_latency_p95_ms": 6.498609999999999,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "3": 163,
+          "4": 980,
+          "0": 1058,
+          "5": 473,
+          "2": 122,
+          "1": 199,
+          "6": 5
+        },
+        "per_robot_unique_cells": [
+          151,
+          126,
+          143,
+          139,
+          118
+        ],
+        "per_robot_action_counts": [
+          {
+            "3": 48,
+            "0": 280,
+            "5": 95,
+            "2": 37,
+            "1": 26,
+            "6": 1,
+            "4": 113
+          },
+          {
+            "4": 287,
+            "3": 23,
+            "0": 154,
+            "2": 13,
+            "5": 82,
+            "1": 40,
+            "6": 1
+          },
+          {
+            "4": 224,
+            "3": 27,
+            "0": 187,
+            "5": 96,
+            "1": 45,
+            "2": 20,
+            "6": 1
+          },
+          {
+            "4": 167,
+            "1": 52,
+            "2": 31,
+            "0": 217,
+            "5": 103,
+            "3": 29,
+            "6": 1
+          },
+          {
+            "4": 189,
+            "1": 36,
+            "3": 36,
+            "0": 220,
+            "5": 97,
+            "2": 21,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "TO_PICKUP": {
+              "3": 12,
+              "0": 67,
+              "5": 7,
+              "2": 9,
+              "1": 9
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "2": 16,
+              "0": 121,
+              "1": 9,
+              "3": 20,
+              "5": 7,
+              "4": 1
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "3": 14,
+              "0": 83,
+              "2": 12,
+              "1": 8
+            },
+            "IDLE": {
+              "6": 1,
+              "4": 79
+            },
+            "QUEUED_CHARGE": {
+              "3": 2,
+              "0": 7,
+              "4": 33
+            },
+            "TO_CHARGER": {
+              "0": 2,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 52
+            }
+          },
+          {
+            "IDLE": {
+              "4": 287,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 10,
+              "0": 27,
+              "2": 3,
+              "5": 6,
+              "1": 7
+            },
+            "PICKING": {
+              "5": 12
+            },
+            "TO_DROP": {
+              "0": 71,
+              "3": 5,
+              "5": 6,
+              "1": 14,
+              "2": 3
+            },
+            "DROPPING": {
+              "5": 12
+            },
+            "TO_PARK": {
+              "3": 8,
+              "0": 46,
+              "2": 6,
+              "1": 3
+            },
+            "TO_CHARGER": {
+              "1": 16,
+              "2": 1,
+              "0": 10,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 45
+            }
+          },
+          {
+            "IDLE": {
+              "4": 224,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 12,
+              "0": 62,
+              "5": 8,
+              "2": 8,
+              "1": 3
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "1": 18,
+              "2": 8,
+              "0": 80,
+              "5": 8,
+              "3": 6
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 23,
+              "2": 3,
+              "0": 38,
+              "3": 9
+            },
+            "TO_CHARGER": {
+              "1": 1,
+              "2": 1,
+              "0": 7,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 47
+            }
+          },
+          {
+            "IDLE": {
+              "4": 167,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 22,
+              "2": 11,
+              "0": 72,
+              "5": 10,
+              "3": 6
+            },
+            "PICKING": {
+              "5": 20
+            },
+            "TO_DROP": {
+              "1": 9,
+              "2": 12,
+              "0": 114,
+              "3": 12,
+              "5": 10
+            },
+            "DROPPING": {
+              "5": 20
+            },
+            "TO_PARK": {
+              "1": 21,
+              "3": 9,
+              "0": 27,
+              "2": 8
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 4,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 42
+            }
+          },
+          {
+            "IDLE": {
+              "4": 189,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 3,
+              "3": 8,
+              "0": 70,
+              "5": 9,
+              "2": 3
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "0": 82,
+              "3": 10,
+              "5": 9,
+              "1": 22,
+              "2": 7
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 11,
+              "3": 11,
+              "0": 33,
+              "2": 7
+            },
+            "TO_CHARGER": {
+              "3": 7,
+              "0": 35,
+              "2": 4,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 42
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.3415158960718145,
+          0.17315419068773433,
+          0.1976249254275808,
+          0.253825522450843,
+          0.24206298522851286
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.5419999999999932,
+          "energy": -3.454960121806676,
+          "conflicts": -1.6500000000000008,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -1.1800000000000006,
+          "shaping": -22.347505154825388
+        }
+      },
+      {
+        "seed": 200004,
+        "scenario_hash": "b4a6ccc2da1be898cfa28691f1f8dfc986ae2d8e1c6fcddeea469a9891c393a7",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 370.25428224551655,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 39.375,
+        "unfinished_orders": [],
+        "collision_count": 26.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.008666666666666666,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 337.8021032173696,
+        "energy_per_delivery": 8.44505258043424,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1574.0,
+        "charge_queue_wait_p95": 22.75,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.19833333333333333,
+        "idle_with_assignment_ticks": 5.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 6,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "2": 11,
+          "3": 7,
+          "4": 8,
+          "0": 9,
+          "1": 5
+        },
+        "inference_latency_ms": 4.607257,
+        "inference_latency_p95_ms": 6.5244349999999995,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "4": 927,
+          "0": 1035,
+          "5": 478,
+          "2": 120,
+          "3": 133,
+          "1": 301,
+          "6": 6
+        },
+        "per_robot_unique_cells": [
+          140,
+          135,
+          84,
+          135,
+          108
+        ],
+        "per_robot_action_counts": [
+          {
+            "4": 194,
+            "2": 29,
+            "0": 219,
+            "3": 30,
+            "5": 54,
+            "1": 74
+          },
+          {
+            "4": 256,
+            "3": 22,
+            "0": 207,
+            "2": 18,
+            "5": 70,
+            "1": 26,
+            "6": 1
+          },
+          {
+            "0": 178,
+            "5": 144,
+            "2": 22,
+            "3": 27,
+            "1": 110,
+            "4": 117,
+            "6": 2
+          },
+          {
+            "4": 172,
+            "1": 46,
+            "2": 33,
+            "0": 205,
+            "5": 122,
+            "3": 20,
+            "6": 2
+          },
+          {
+            "4": 188,
+            "1": 45,
+            "5": 88,
+            "0": 226,
+            "3": 34,
+            "2": 18,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "IDLE": {
+              "4": 194
+            },
+            "TO_PICKUP": {
+              "2": 12,
+              "0": 79,
+              "3": 13,
+              "5": 9,
+              "1": 26
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 10,
+              "2": 14,
+              "0": 120,
+              "3": 14,
+              "5": 9
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 38,
+              "3": 3,
+              "0": 20,
+              "2": 3
+            }
+          },
+          {
+            "IDLE": {
+              "4": 256,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 8,
+              "0": 72,
+              "2": 4,
+              "5": 5,
+              "1": 8
+            },
+            "PICKING": {
+              "5": 10
+            },
+            "TO_DROP": {
+              "0": 81,
+              "2": 7,
+              "3": 6,
+              "5": 5
+            },
+            "DROPPING": {
+              "5": 10
+            },
+            "TO_PARK": {
+              "3": 5,
+              "0": 38,
+              "1": 18,
+              "2": 6
+            },
+            "TO_CHARGER": {
+              "3": 3,
+              "0": 16,
+              "2": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 39
+            }
+          },
+          {
+            "TO_PICKUP": {
+              "0": 19,
+              "5": 11,
+              "1": 61,
+              "3": 4
+            },
+            "PICKING": {
+              "5": 22
+            },
+            "TO_DROP": {
+              "2": 14,
+              "0": 115,
+              "3": 16,
+              "1": 3,
+              "5": 11
+            },
+            "DROPPING": {
+              "5": 22
+            },
+            "TO_PARK": {
+              "1": 46,
+              "2": 6,
+              "0": 15,
+              "3": 4
+            },
+            "IDLE": {
+              "4": 117,
+              "6": 2
+            },
+            "TO_CHARGER": {
+              "2": 2,
+              "0": 29,
+              "3": 3,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 76
+            }
+          },
+          {
+            "IDLE": {
+              "4": 170,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "1": 17,
+              "2": 9,
+              "0": 50,
+              "5": 7,
+              "3": 7
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "2": 12,
+              "0": 92,
+              "1": 16,
+              "3": 6,
+              "5": 7,
+              "4": 2
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_CHARGER": {
+              "0": 36,
+              "2": 4,
+              "3": 3,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 78
+            },
+            "TO_PARK": {
+              "2": 8,
+              "0": 27,
+              "3": 4,
+              "1": 13
+            }
+          },
+          {
+            "IDLE": {
+              "4": 185,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 18,
+              "5": 8,
+              "0": 57,
+              "2": 5,
+              "3": 10,
+              "4": 3
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "0": 102,
+              "3": 10,
+              "5": 8,
+              "1": 11,
+              "2": 6
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 11,
+              "3": 13,
+              "0": 56,
+              "2": 5
+            },
+            "TO_CHARGER": {
+              "1": 5,
+              "2": 2,
+              "0": 11,
+              "3": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 39
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.28527721856093197,
+          0.202307790454106,
+          0.2634338063832729,
+          0.2378555147470979,
+          0.26508527158600675
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.5739999999999925,
+          "energy": -3.378021032173691,
+          "conflicts": -1.3000000000000005,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -1.0000000000000004,
+          "shaping": -22.493696722311963
+        }
+      }
+    ]
+  },
+  "qmix": {
+    "completion_mean": 0.99,
+    "completion_per_seed": [
+      1.0,
+      0.95,
+      1.0,
+      1.0,
+      1.0
+    ],
+    "throughput_mean": 0.06599999999999999,
+    "energy_used_mean": 351.1182133224762,
+    "avoidable_depletions": 0,
+    "executed_collisions": 0,
+    "completed_charge_cycles": [
+      5,
+      6,
+      6,
+      5,
+      5
+    ],
+    "episodes": [
+      {
+        "seed": 200000,
+        "scenario_hash": "a2712fdd575c3721aea586add21f7d7bf4b1ace360db7efda926edce4cb4cfb4",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 369.60064264861194,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 43.0,
+        "unfinished_orders": [],
+        "collision_count": 26.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.008666666666666666,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 364.57576378040886,
+        "energy_per_delivery": 9.11439409451022,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1719.0,
+        "charge_queue_wait_p95": 30.999999999999996,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.18416666666666667,
+        "idle_with_assignment_ticks": 32.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 5,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "2": 10,
+          "4": 8,
+          "0": 7,
+          "1": 8,
+          "3": 7
+        },
+        "inference_latency_ms": 4.851075000000001,
+        "inference_latency_p95_ms": 7.272299999999999,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "4": 932,
+          "3": 139,
+          "0": 1165,
+          "2": 127,
+          "5": 461,
+          "1": 171,
+          "6": 5
+        },
+        "per_robot_unique_cells": [
+          144,
+          145,
+          113,
+          147,
+          128
+        ],
+        "per_robot_action_counts": [
+          {
+            "4": 155,
+            "2": 38,
+            "0": 243,
+            "5": 92,
+            "1": 32,
+            "3": 39,
+            "6": 1
+          },
+          {
+            "4": 193,
+            "1": 15,
+            "3": 26,
+            "0": 261,
+            "5": 87,
+            "2": 17,
+            "6": 1
+          },
+          {
+            "3": 31,
+            "0": 251,
+            "2": 27,
+            "5": 97,
+            "1": 51,
+            "6": 1,
+            "4": 142
+          },
+          {
+            "4": 208,
+            "1": 34,
+            "2": 23,
+            "0": 221,
+            "5": 92,
+            "3": 21,
+            "6": 1
+          },
+          {
+            "4": 234,
+            "2": 22,
+            "0": 189,
+            "3": 22,
+            "5": 93,
+            "1": 39,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "IDLE": {
+              "4": 151,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 13,
+              "0": 86,
+              "5": 7,
+              "1": 6,
+              "3": 12,
+              "4": 1
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "1": 25,
+              "2": 15,
+              "0": 109,
+              "3": 14,
+              "5": 7,
+              "4": 3
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 8,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 49
+            },
+            "TO_PARK": {
+              "2": 10,
+              "0": 40,
+              "3": 11,
+              "1": 1
+            }
+          },
+          {
+            "IDLE": {
+              "4": 193,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 2,
+              "3": 8,
+              "0": 71,
+              "5": 8,
+              "2": 8
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "2": 6,
+              "0": 115,
+              "3": 7,
+              "5": 8,
+              "1": 5
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 8,
+              "3": 9,
+              "0": 59,
+              "2": 3
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 16,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 38
+            }
+          },
+          {
+            "TO_PICKUP": {
+              "3": 5,
+              "0": 61,
+              "2": 7,
+              "5": 10,
+              "1": 7
+            },
+            "PICKING": {
+              "5": 20
+            },
+            "TO_DROP": {
+              "3": 19,
+              "0": 123,
+              "2": 17,
+              "5": 10,
+              "1": 17
+            },
+            "DROPPING": {
+              "5": 20
+            },
+            "TO_PARK": {
+              "1": 27,
+              "3": 5,
+              "0": 36,
+              "2": 3
+            },
+            "IDLE": {
+              "6": 1,
+              "4": 142
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 31,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 36
+            }
+          },
+          {
+            "IDLE": {
+              "4": 208,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 6,
+              "2": 9,
+              "0": 67,
+              "5": 7,
+              "3": 5
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "2": 9,
+              "0": 89,
+              "3": 12,
+              "5": 7,
+              "1": 25
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "3": 4,
+              "0": 53,
+              "1": 2,
+              "2": 4
+            },
+            "TO_CHARGER": {
+              "1": 1,
+              "2": 1,
+              "0": 12,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 49
+            }
+          },
+          {
+            "IDLE": {
+              "4": 206,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 9,
+              "0": 50,
+              "3": 7,
+              "5": 8,
+              "4": 26,
+              "1": 4
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "1": 13,
+              "2": 10,
+              "0": 98,
+              "4": 2,
+              "5": 8,
+              "3": 10
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 21,
+              "3": 5,
+              "0": 34,
+              "2": 2
+            },
+            "TO_CHARGER": {
+              "1": 1,
+              "2": 1,
+              "0": 7,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 44
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.25738057232768685,
+          0.16956043086420072,
+          0.24515421140071225,
+          0.1942152329735881,
+          0.20891398937484268
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.718999999999992,
+          "energy": -3.64575763780408,
+          "conflicts": -1.3000000000000005,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -1.1600000000000006,
+          "shaping": -22.574599713586696
+        }
+      },
+      {
+        "seed": 200001,
+        "scenario_hash": "ce060de54a3f7750cdce96ae1f0f157a181978a54072a6a174d0b5474805ec00",
+        "num_agents": 5,
+        "completed_tasks": 38,
+        "released_tasks": 40,
+        "completion_rate": 0.95,
+        "episode_reward": 351.21969601388395,
+        "throughput": 0.06333333333333334,
+        "delivery_time": 65.36842105263158,
+        "unfinished_orders": [
+          {
+            "task_id": 34,
+            "age": 260,
+            "right_censored": true
+          },
+          {
+            "task_id": 35,
+            "age": 220,
+            "right_censored": true
+          }
+        ],
+        "collision_count": 27.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.009,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 341.90026999580954,
+        "energy_per_delivery": 8.997375526205515,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 2965.0,
+        "charge_queue_wait_p95": 23.25,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.20833333333333334,
+        "idle_with_assignment_ticks": 21.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 6,
+        "weighted_tardiness": 20.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "3": 12,
+          "0": 1,
+          "1": 8,
+          "4": 7,
+          "2": 10
+        },
+        "inference_latency_ms": 4.678825499999999,
+        "inference_latency_p95_ms": 6.946689999999998,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 19,
+        "shipped_packages": 19,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 1,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 19,
+          "inbound_transit": 1
+        },
+        "action_counts": {
+          "4": 945,
+          "2": 140,
+          "0": 979,
+          "3": 176,
+          "5": 481,
+          "1": 273,
+          "6": 6
+        },
+        "per_robot_unique_cells": [
+          16,
+          138,
+          133,
+          146,
+          141
+        ],
+        "per_robot_action_counts": [
+          {
+            "4": 564,
+            "3": 5,
+            "0": 9,
+            "5": 6,
+            "1": 12,
+            "2": 4
+          },
+          {
+            "4": 129,
+            "3": 31,
+            "0": 243,
+            "2": 28,
+            "5": 136,
+            "6": 2,
+            "1": 31
+          },
+          {
+            "4": 98,
+            "2": 38,
+            "0": 234,
+            "3": 30,
+            "5": 137,
+            "1": 61,
+            "6": 2
+          },
+          {
+            "2": 25,
+            "0": 253,
+            "3": 37,
+            "5": 116,
+            "1": 92,
+            "6": 1,
+            "4": 76
+          },
+          {
+            "4": 78,
+            "1": 77,
+            "2": 45,
+            "0": 240,
+            "5": 86,
+            "3": 73,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "IDLE": {
+              "4": 564
+            },
+            "TO_PICKUP": {
+              "3": 1,
+              "0": 1,
+              "5": 1
+            },
+            "PICKING": {
+              "5": 2
+            },
+            "TO_DROP": {
+              "1": 8,
+              "2": 1,
+              "0": 4,
+              "5": 1
+            },
+            "DROPPING": {
+              "5": 2
+            },
+            "TO_PARK": {
+              "1": 4,
+              "3": 4,
+              "0": 4,
+              "2": 3
+            }
+          },
+          {
+            "IDLE": {
+              "4": 126,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "3": 15,
+              "0": 100,
+              "2": 14,
+              "5": 8,
+              "1": 5
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "0": 97,
+              "3": 10,
+              "2": 11,
+              "5": 8,
+              "1": 25,
+              "4": 3
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_CHARGER": {
+              "3": 4,
+              "0": 28,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 86
+            },
+            "TO_PARK": {
+              "2": 3,
+              "0": 18,
+              "3": 2,
+              "1": 1
+            }
+          },
+          {
+            "IDLE": {
+              "4": 98,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "2": 17,
+              "0": 92,
+              "3": 14,
+              "5": 10,
+              "1": 31
+            },
+            "PICKING": {
+              "5": 20
+            },
+            "TO_DROP": {
+              "2": 15,
+              "0": 102,
+              "3": 13,
+              "5": 10,
+              "1": 21
+            },
+            "DROPPING": {
+              "5": 20
+            },
+            "TO_PARK": {
+              "3": 2,
+              "0": 7,
+              "2": 3,
+              "1": 3
+            },
+            "TO_CHARGER": {
+              "1": 6,
+              "2": 3,
+              "0": 33,
+              "5": 2,
+              "3": 1
+            },
+            "CHARGING": {
+              "5": 75
+            }
+          },
+          {
+            "TO_PICKUP": {
+              "2": 9,
+              "0": 87,
+              "3": 16,
+              "5": 12,
+              "1": 41
+            },
+            "PICKING": {
+              "5": 24
+            },
+            "TO_DROP": {
+              "2": 15,
+              "0": 133,
+              "3": 15,
+              "5": 12,
+              "1": 29
+            },
+            "DROPPING": {
+              "5": 24
+            },
+            "TO_PARK": {
+              "1": 22,
+              "3": 5,
+              "0": 24
+            },
+            "IDLE": {
+              "6": 1,
+              "4": 76
+            },
+            "TO_CHARGER": {
+              "0": 9,
+              "2": 1,
+              "3": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 43
+            }
+          },
+          {
+            "IDLE": {
+              "4": 60,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 22,
+              "2": 9,
+              "0": 115,
+              "5": 8,
+              "3": 13,
+              "4": 3
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "1": 53,
+              "2": 36,
+              "0": 121,
+              "5": 7,
+              "3": 57,
+              "4": 15
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "1": 2,
+              "3": 1
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 4,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 40
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.060529679583848216,
+          0.21409209288502362,
+          0.25016555725485196,
+          0.26111568635865934,
+          0.4543196879258755
+        ],
+        "reward_components": {
+          "delivery": 380.0,
+          "backlog": -2.964999999999963,
+          "energy": -3.419002699958101,
+          "conflicts": -1.3500000000000005,
+          "lateness": -0.04000000000000002,
+          "depletion": -0.0,
+          "idle_bay": -0.4400000000000001,
+          "shaping": -20.566301286158303
+        }
+      },
+      {
+        "seed": 200002,
+        "scenario_hash": "9ad9cda6af12339fdcd6285387353e76bd07007d0b850b19bd23aece28212796",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 370.6252277323599,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 42.75,
+        "unfinished_orders": [],
+        "collision_count": 19.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.006333333333333333,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 368.86612999588596,
+        "energy_per_delivery": 9.221653249897148,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1709.0,
+        "charge_queue_wait_p95": 30.25,
+        "charge_queue_ticks": 23.0,
+        "charger_utilization": 0.21416666666666667,
+        "idle_with_assignment_ticks": 6.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 6,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "0": 9,
+          "3": 8,
+          "2": 9,
+          "1": 7,
+          "4": 7
+        },
+        "inference_latency_ms": 8.873254000000001,
+        "inference_latency_p95_ms": 8.608424999999995,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "2": 114,
+          "4": 975,
+          "0": 1109,
+          "3": 144,
+          "5": 497,
+          "1": 155,
+          "6": 6
+        },
+        "per_robot_unique_cells": [
+          151,
+          169,
+          146,
+          132,
+          132
+        ],
+        "per_robot_action_counts": [
+          {
+            "2": 19,
+            "0": 270,
+            "3": 30,
+            "5": 100,
+            "1": 23,
+            "6": 1,
+            "4": 157
+          },
+          {
+            "4": 215,
+            "3": 26,
+            "0": 185,
+            "2": 10,
+            "5": 115,
+            "6": 2,
+            "1": 47
+          },
+          {
+            "4": 159,
+            "3": 29,
+            "0": 239,
+            "2": 38,
+            "5": 97,
+            "1": 37,
+            "6": 1
+          },
+          {
+            "4": 174,
+            "2": 26,
+            "0": 229,
+            "5": 101,
+            "1": 33,
+            "3": 36,
+            "6": 1
+          },
+          {
+            "4": 270,
+            "0": 186,
+            "2": 21,
+            "3": 23,
+            "5": 84,
+            "1": 15,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "TO_PICKUP": {
+              "2": 6,
+              "0": 78,
+              "3": 9,
+              "5": 9,
+              "1": 2
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 18,
+              "0": 141,
+              "2": 10,
+              "3": 13,
+              "5": 9
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 3,
+              "3": 6,
+              "0": 35,
+              "2": 3
+            },
+            "IDLE": {
+              "6": 1,
+              "4": 157
+            },
+            "TO_CHARGER": {
+              "3": 2,
+              "0": 16,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 45
+            }
+          },
+          {
+            "IDLE": {
+              "4": 215,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "3": 7,
+              "0": 58,
+              "2": 2,
+              "5": 7,
+              "1": 16
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "2": 4,
+              "0": 72,
+              "3": 5,
+              "5": 7,
+              "1": 16
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "3": 7,
+              "0": 21,
+              "1": 15,
+              "2": 1
+            },
+            "TO_CHARGER": {
+              "0": 34,
+              "3": 7,
+              "2": 3,
+              "5": 2
+            },
+            "CHARGING": {
+              "5": 71
+            }
+          },
+          {
+            "IDLE": {
+              "4": 153,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 8,
+              "0": 84,
+              "2": 13,
+              "5": 9,
+              "1": 8
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "2": 16,
+              "0": 106,
+              "3": 14,
+              "5": 9,
+              "1": 11,
+              "4": 6
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 16,
+              "2": 5,
+              "0": 33,
+              "3": 6
+            },
+            "QUEUED_CHARGE": {
+              "1": 2,
+              "2": 2,
+              "0": 13,
+              "3": 1
+            },
+            "TO_CHARGER": {
+              "0": 3,
+              "2": 2,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 42
+            }
+          },
+          {
+            "IDLE": {
+              "4": 174,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "2": 15,
+              "0": 57,
+              "5": 8,
+              "3": 15,
+              "1": 9
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "1": 21,
+              "2": 7,
+              "0": 99,
+              "3": 5,
+              "5": 8
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "3": 12,
+              "0": 49,
+              "1": 3,
+              "2": 2
+            },
+            "TO_CHARGER": {
+              "3": 4,
+              "0": 24,
+              "2": 2,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 52
+            }
+          },
+          {
+            "IDLE": {
+              "4": 270,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "0": 60,
+              "2": 8,
+              "3": 7,
+              "5": 7,
+              "1": 9
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "2": 9,
+              "0": 82,
+              "5": 7,
+              "3": 9
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "1": 6,
+              "2": 4,
+              "0": 32,
+              "3": 5
+            },
+            "QUEUED_CHARGE": {
+              "3": 2,
+              "0": 3
+            },
+            "TO_CHARGER": {
+              "0": 9,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 41
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.20400555672484064,
+          0.151331975103789,
+          0.2615960865203891,
+          0.21842053170011866,
+          0.16724614911904004
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.7089999999999903,
+          "energy": -3.688661299958848,
+          "conflicts": -0.9500000000000003,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -0.9400000000000005,
+          "shaping": -22.087110967680022
+        }
+      },
+      {
+        "seed": 200003,
+        "scenario_hash": "7208e18390ac5d614f1190067d51b3e5e7917c92a1306df5e07155e48df1d766",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 368.41189569760803,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 44.475,
+        "unfinished_orders": [],
+        "collision_count": 47.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.015666666666666666,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 343.2741702486864,
+        "energy_per_delivery": 8.58185425621716,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1778.0,
+        "charge_queue_wait_p95": 30.599999999999998,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.1925,
+        "idle_with_assignment_ticks": 7.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 5,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "0": 9,
+          "3": 9,
+          "2": 7,
+          "4": 9,
+          "1": 6
+        },
+        "inference_latency_ms": 6.0792875,
+        "inference_latency_p95_ms": 9.589444999999994,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "3": 145,
+          "4": 979,
+          "0": 1056,
+          "5": 471,
+          "2": 107,
+          "1": 237,
+          "6": 5
+        },
+        "per_robot_unique_cells": [
+          115,
+          111,
+          131,
+          125,
+          140
+        ],
+        "per_robot_action_counts": [
+          {
+            "3": 27,
+            "0": 216,
+            "5": 107,
+            "2": 24,
+            "1": 87,
+            "6": 1,
+            "4": 138
+          },
+          {
+            "4": 281,
+            "3": 16,
+            "0": 185,
+            "2": 10,
+            "5": 81,
+            "1": 26,
+            "6": 1
+          },
+          {
+            "4": 221,
+            "3": 29,
+            "0": 205,
+            "5": 92,
+            "1": 34,
+            "2": 18,
+            "6": 1
+          },
+          {
+            "4": 153,
+            "1": 59,
+            "2": 29,
+            "0": 230,
+            "5": 97,
+            "3": 31,
+            "6": 1
+          },
+          {
+            "4": 186,
+            "1": 31,
+            "3": 42,
+            "0": 220,
+            "5": 94,
+            "2": 26,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "TO_PICKUP": {
+              "3": 9,
+              "0": 66,
+              "5": 9,
+              "2": 6,
+              "1": 22
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "2": 14,
+              "0": 113,
+              "3": 11,
+              "5": 9,
+              "1": 31
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "3": 7,
+              "0": 30,
+              "2": 3,
+              "1": 18
+            },
+            "IDLE": {
+              "6": 1,
+              "4": 138
+            },
+            "TO_CHARGER": {
+              "1": 16,
+              "2": 1,
+              "0": 7,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 52
+            }
+          },
+          {
+            "IDLE": {
+              "4": 280,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 5,
+              "0": 31,
+              "2": 3,
+              "5": 6,
+              "1": 21
+            },
+            "PICKING": {
+              "5": 12
+            },
+            "TO_DROP": {
+              "0": 110,
+              "3": 8,
+              "5": 6,
+              "2": 4,
+              "1": 1,
+              "4": 1
+            },
+            "DROPPING": {
+              "5": 12
+            },
+            "TO_PARK": {
+              "3": 3,
+              "0": 29,
+              "2": 2
+            },
+            "TO_CHARGER": {
+              "1": 4,
+              "2": 1,
+              "0": 15,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 44
+            }
+          },
+          {
+            "IDLE": {
+              "4": 218,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 10,
+              "0": 70,
+              "5": 7,
+              "1": 5,
+              "2": 7,
+              "4": 3
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "1": 6,
+              "2": 7,
+              "0": 71,
+              "5": 7,
+              "3": 11
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "1": 23,
+              "2": 3,
+              "0": 36,
+              "3": 6
+            },
+            "TO_CHARGER": {
+              "0": 28,
+              "2": 1,
+              "3": 2,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 49
+            }
+          },
+          {
+            "IDLE": {
+              "4": 151,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 28,
+              "2": 10,
+              "0": 59,
+              "5": 9,
+              "3": 7,
+              "4": 1
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "1": 21,
+              "2": 13,
+              "0": 110,
+              "3": 14,
+              "5": 9
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 6,
+              "3": 10,
+              "0": 56,
+              "2": 5,
+              "4": 1
+            },
+            "TO_CHARGER": {
+              "1": 4,
+              "2": 1,
+              "0": 5,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 42
+            }
+          },
+          {
+            "IDLE": {
+              "4": 184,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 14,
+              "3": 18,
+              "0": 83,
+              "5": 9,
+              "2": 11
+            },
+            "PICKING": {
+              "5": 18
+            },
+            "TO_DROP": {
+              "0": 94,
+              "3": 17,
+              "5": 9,
+              "1": 6,
+              "2": 12,
+              "4": 2
+            },
+            "DROPPING": {
+              "5": 18
+            },
+            "TO_PARK": {
+              "1": 11,
+              "3": 6,
+              "0": 29,
+              "2": 2
+            },
+            "TO_CHARGER": {
+              "0": 14,
+              "2": 1,
+              "3": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 39
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.2089416590081161,
+          0.1651311544324693,
+          0.19718011689822704,
+          0.24807875565046325,
+          0.218906371816106
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.7779999999999923,
+          "energy": -3.4327417024868843,
+          "conflicts": -2.3499999999999996,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -1.1200000000000006,
+          "shaping": -22.907362599906968
+        }
+      },
+      {
+        "seed": 200004,
+        "scenario_hash": "b4a6ccc2da1be898cfa28691f1f8dfc986ae2d8e1c6fcddeea469a9891c393a7",
+        "num_agents": 5,
+        "completed_tasks": 40,
+        "released_tasks": 40,
+        "completion_rate": 1.0,
+        "episode_reward": 370.1048571852623,
+        "throughput": 0.06666666666666667,
+        "delivery_time": 36.975,
+        "unfinished_orders": [],
+        "collision_count": 25.0,
+        "executed_collisions": 0.0,
+        "conflicts_per_robot_tick": 0.008333333333333333,
+        "deadlocks": 0.0,
+        "safety_violations": 0.0,
+        "safety_overrides": 0.0,
+        "energy_used": 336.9747325915901,
+        "energy_per_delivery": 8.424368314789753,
+        "avoidable_depletions": 0.0,
+        "backlog_ticks": 1478.0,
+        "charge_queue_wait_p95": 30.799999999999997,
+        "charge_queue_ticks": 0.0,
+        "charger_utilization": 0.1625,
+        "idle_with_assignment_ticks": 1.0,
+        "charge_locked_infeasible_ticks": 0.0,
+        "completed_charge_cycles": 5,
+        "weighted_tardiness": 0.0,
+        "recovery": [],
+        "per_robot_deliveries": {
+          "2": 8,
+          "3": 7,
+          "0": 10,
+          "4": 8,
+          "1": 7
+        },
+        "inference_latency_ms": 5.779006333333333,
+        "inference_latency_p95_ms": 8.11179499999999,
+        "steps": 600,
+        "workload_version": "mixed_stock_v1",
+        "arrival_interval": 20,
+        "stored_packages": 20,
+        "shipped_packages": 20,
+        "incoming_packages": 20,
+        "shipping_requests": 20,
+        "waiting_for_stock": 0,
+        "waiting_for_capacity": 0,
+        "inventory_states": {
+          "shipped": 20
+        },
+        "action_counts": {
+          "4": 989,
+          "0": 1043,
+          "5": 435,
+          "2": 124,
+          "3": 132,
+          "1": 272,
+          "6": 5
+        },
+        "per_robot_unique_cells": [
+          96,
+          138,
+          116,
+          144,
+          151
+        ],
+        "per_robot_action_counts": [
+          {
+            "4": 235,
+            "1": 67,
+            "2": 21,
+            "0": 197,
+            "5": 60,
+            "3": 20
+          },
+          {
+            "4": 213,
+            "3": 26,
+            "0": 186,
+            "2": 22,
+            "5": 84,
+            "1": 68,
+            "6": 1
+          },
+          {
+            "0": 192,
+            "5": 87,
+            "2": 32,
+            "3": 34,
+            "4": 201,
+            "1": 53,
+            "6": 1
+          },
+          {
+            "4": 154,
+            "1": 30,
+            "2": 25,
+            "0": 247,
+            "5": 120,
+            "3": 22,
+            "6": 2
+          },
+          {
+            "4": 186,
+            "1": 54,
+            "2": 24,
+            "0": 221,
+            "3": 30,
+            "5": 84,
+            "6": 1
+          }
+        ],
+        "per_robot_mode_actions": [
+          {
+            "IDLE": {
+              "4": 235
+            },
+            "TO_PICKUP": {
+              "1": 7,
+              "2": 8,
+              "0": 71,
+              "5": 10,
+              "3": 7
+            },
+            "PICKING": {
+              "5": 20
+            },
+            "TO_DROP": {
+              "1": 11,
+              "2": 8,
+              "0": 114,
+              "5": 10,
+              "3": 9
+            },
+            "DROPPING": {
+              "5": 20
+            },
+            "TO_PARK": {
+              "1": 49,
+              "2": 5,
+              "0": 12,
+              "3": 4
+            }
+          },
+          {
+            "IDLE": {
+              "4": 213,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "3": 15,
+              "0": 75,
+              "2": 6,
+              "5": 7,
+              "1": 21
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "0": 70,
+              "2": 6,
+              "3": 4,
+              "5": 7,
+              "1": 4
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_PARK": {
+              "3": 5,
+              "2": 7,
+              "0": 29,
+              "1": 28
+            },
+            "TO_CHARGER": {
+              "1": 15,
+              "2": 3,
+              "0": 12,
+              "3": 2,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 41
+            }
+          },
+          {
+            "TO_PICKUP": {
+              "0": 34,
+              "5": 8,
+              "3": 2,
+              "1": 7,
+              "2": 3
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "2": 20,
+              "0": 107,
+              "3": 22,
+              "5": 8,
+              "1": 9
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "3": 9,
+              "0": 43,
+              "2": 7,
+              "1": 34
+            },
+            "IDLE": {
+              "4": 201,
+              "6": 1
+            },
+            "TO_CHARGER": {
+              "1": 3,
+              "2": 2,
+              "0": 8,
+              "3": 1,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 38
+            }
+          },
+          {
+            "IDLE": {
+              "4": 154,
+              "6": 2
+            },
+            "TO_PICKUP": {
+              "1": 17,
+              "2": 9,
+              "0": 69,
+              "5": 7,
+              "3": 8
+            },
+            "PICKING": {
+              "5": 14
+            },
+            "TO_DROP": {
+              "2": 10,
+              "0": 103,
+              "1": 10,
+              "3": 7,
+              "5": 7
+            },
+            "DROPPING": {
+              "5": 14
+            },
+            "TO_CHARGER": {
+              "0": 26,
+              "2": 2,
+              "3": 1,
+              "5": 2,
+              "1": 1
+            },
+            "CHARGING": {
+              "5": 76
+            },
+            "TO_PARK": {
+              "1": 2,
+              "3": 6,
+              "0": 49,
+              "2": 4
+            }
+          },
+          {
+            "IDLE": {
+              "4": 185,
+              "6": 1
+            },
+            "TO_PICKUP": {
+              "1": 10,
+              "2": 6,
+              "0": 45,
+              "3": 8,
+              "5": 8
+            },
+            "PICKING": {
+              "5": 16
+            },
+            "TO_DROP": {
+              "1": 13,
+              "2": 11,
+              "0": 113,
+              "3": 12,
+              "5": 8,
+              "4": 1
+            },
+            "DROPPING": {
+              "5": 16
+            },
+            "TO_PARK": {
+              "1": 31,
+              "3": 8,
+              "0": 47,
+              "2": 5
+            },
+            "TO_CHARGER": {
+              "2": 2,
+              "0": 16,
+              "3": 2,
+              "5": 1
+            },
+            "CHARGING": {
+              "5": 35
+            }
+          }
+        ],
+        "behavior_entropy_mean": [
+          0.19310926138045906,
+          0.19654481450365058,
+          0.22547446289480944,
+          0.18053272935178039,
+          0.231350074914492
+        ],
+        "reward_components": {
+          "delivery": 400.0,
+          "backlog": -1.4779999999999933,
+          "energy": -3.3697473259158923,
+          "conflicts": -1.2500000000000004,
+          "lateness": -0.0,
+          "depletion": -0.0,
+          "idle_bay": -1.2600000000000007,
+          "shaping": -22.53739548882379
+        }
+      }
+    ]
+  }
+}

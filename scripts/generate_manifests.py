@@ -4,7 +4,7 @@ from src.evaluation.manifests import generate_manifest_set
 
 
 if __name__ == "__main__":
-    paths = generate_manifest_set("evaluation/manifests")
+    paths = generate_manifest_set()
     print(f"Generated {len(paths)} manifests")
     for path in paths:
         print(path)

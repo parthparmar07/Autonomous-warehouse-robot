@@ -1,0 +1,79 @@
+study: council_assisted_full_curriculum
+algorithms: [qmix, iql]
+seeds: [11, 23, 37]
+conditions:
+  assisted_potential:
+    seeds: [11, 23, 37]
+    overrides: {}
+  assisted_unshaped:
+    seeds: [11]
+    overrides:
+      potential_weight: 0.0
+  pure_rl_potential:
+    seeds: [11]
+    overrides:
+      bc_episodes: 0
+      dagger_rounds: 0
+      bc_aux_weight: 0.0
+      epsilon_start: 1.0
+profile: core
+stage_profiles:
+  C0: core
+  C0.5: core
+  C0.75: core
+  C1: core
+  C2: core
+  C3: robust
+  C4: robust
+  C5: robust
+num_agents: 5
+horizon: 400
+device: cuda
+threads: 1
+hidden: 128
+batch_size: 8
+burn_in: 20
+unroll: 40
+replay_episodes: 256
+train_every: 16
+gamma: 0.99
+learning_rate: 0.0003
+epsilon_start: 0.2
+epsilon_steps: 100000
+stage_epsilon_steps:
+  C0: 15000
+  C0.5: 150000
+  C0.75: 150000
+  C1: 240000
+  C2: 240000
+  C3: 240000
+  C4: 240000
+  C5: 360000
+eval_every: 10000
+eval_episodes: 20
+skill_episodes: 20
+checkpoint_every: 5000
+balanced_demonstrations: true
+bc_episodes: 80
+bc_epochs: 10
+dagger_rounds: 1
+bc_aux_weight: 0.2
+potential_weight: 2.0
+idle_bay_cost: 0.02
+delivery_reward: 10.0
+conflict_cost: 0.05
+stages:
+  C0: 30000
+  C0.5: 250000
+  C0.75: 250000
+  C1: 400000
+  C2: 400000
+  C3: 400000
+  C4: 400000
+  C5: 600000
+promotion:
+  consecutive_checks: 2
+  minimum_stage_rl_steps: 10000
+  check_previous_generic_and_named_skills: true
+  final_tests_consumed: false
+note: New exploratory council condition, fresh initialization and matched configurations. Up to 2730000 joint RL steps, not a convergence guarantee. Balanced demonstrations may exceed the requested count to cover all trained family/worker/heading combinations; assistance cost is reported separately. Failed prerequisites stop progression; C5 is not claimed trained unless reached. Strict per-family Wilson lower bound remains 0.8, currently effectively 20/20 at 20 evaluations. C4 and C5 generic robust mechanisms currently overlap; C5 adds composed named prerequisites and long-shift evaluation, not a claimed distinct generic difficulty. Final and OOD results remain unused for tuning.

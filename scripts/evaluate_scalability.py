@@ -18,6 +18,8 @@ from src.training.runner import evaluate
 ROOT = Path(__file__).resolve().parents[1]
 ARTIFACTS = ROOT / 'artifacts' / 'warehouse_v6_research' / 'mixed_stock_v1'
 SEALED = list(range(200000, 200020))
+# Demand grows with the fleet; N=20 is capped at 7 because 2 orders per arrival must fit the 128-order state.
+DEMAND_SCALED_INTERVAL = {5: 20, 10: 10, 20: 7}
 METRICS = ('completion_rate', 'delivery_time', 'conflicts_per_robot_tick', 'collision_count', 'executed_collisions',
            'energy_used', 'energy_per_delivery', 'avoidable_depletions', 'safety_violations', 'safety_overrides', 'throughput')
 
@@ -83,13 +85,18 @@ def main():
     p.add_argument('--fleets', type=int, nargs='+', default=[5, 10, 20])
     p.add_argument('--episodes', type=int, default=20)
     p.add_argument('--device', default='cuda')
-    p.add_argument('--output', default=str(ROOT / 'outputs' / 'evaluation' / 'scalability_N5_N10_N20.json'))
+    p.add_argument('--demand-scaled', action='store_true',
+                   help='Arrival rate grows with N (policies were trained at interval 20, so this tests generalisation)')
+    p.add_argument('--output')
     args = p.parse_args()
     seeds = SEALED[:args.episodes]
-    report = dict(workload='mixed_stock_v1', split='sealed_test', seeds=seeds, horizon=600, arrival_interval=20,
+    intervals = {n: DEMAND_SCALED_INTERVAL[n] if args.demand_scaled else 20 for n in args.fleets}
+    report = dict(workload='mixed_stock_v1', split='sealed_test', seeds=seeds, horizon=600, arrival_interval=intervals,
+                  demand_scaled=args.demand_scaled,
                   ci_note='Percentile bootstrap over sealed scenarios; one training seed per cell (scenario variance only).',
                   cells={}, comparisons={}, safety={})
-    out = Path(args.output); out.parent.mkdir(parents=True, exist_ok=True)
+    name = 'scalability_demand_scaled.json' if args.demand_scaled else 'scalability_N5_N10_N20.json'
+    out = Path(args.output or ROOT / 'outputs' / 'evaluation' / name); out.parent.mkdir(parents=True, exist_ok=True)
     for n in args.fleets:
         episodes = {}
         for algorithm in ('planner', 'iql', 'qmix'):
@@ -98,9 +105,10 @@ def main():
             if algorithm != 'planner' and model is None:
                 report['cells'][key] = dict(status='missing_checkpoint', checkpoint=source)
                 continue
-            rows = evaluate(model, seeds, n, 'C5', 'sealed_test', 600, workload='mixed')
+            rows = evaluate(model, seeds, n, 'C5', 'sealed_test', 600, workload='mixed', arrival_interval=intervals[n])
             episodes[algorithm] = rows
             report['cells'][key] = dict(status='evaluated', checkpoint=source, num_agents=n, episodes=len(rows),
+                                        arrival_interval=intervals[n], orders_released=float(np.mean([r['released_tasks'] for r in rows])),
                                         metrics={m: bootstrap_ci([r[m] if r[m] is not None else np.nan for r in rows])
                                                  for m in METRICS if all(r.get(m) is not None for r in rows)},
                                         completion_per_seed=[r['completion_rate'] for r in rows],
@@ -117,6 +125,9 @@ def main():
                         for k in ('completion_rate', 'conflicts_per_robot_tick', 'collision_count', 'energy_per_delivery')}
             if 'iql' in episodes:
                 report['comparisons'][f'qmix_over_iql_collision_ratio_N{n}'] = ratio_ci(episodes['qmix'], episodes['iql'], 'collision_count')
+        if args.demand_scaled:
+            out.write_text(json.dumps(report, indent=2), encoding='utf-8')
+            continue
         report['safety'][f'N{n}'] = adversarial_safety(n, seeds)
         print(f'safety_N{n}', json.dumps({k: v for k, v in report['safety'][f"N{n}"].items() if k != 'per_episode'}), flush=True)
         out.write_text(json.dumps(report, indent=2), encoding='utf-8')

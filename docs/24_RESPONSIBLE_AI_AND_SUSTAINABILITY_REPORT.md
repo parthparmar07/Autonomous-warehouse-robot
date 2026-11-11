@@ -98,8 +98,10 @@ A soft reward penalty sits on top of these but is not relied on.
   corridor.
 - **Sealed adversarial episodes** — [scripts/evaluate_scalability.py](../scripts/evaluate_scalability.py)
   runs 20 sealed 600-tick episodes at each fleet size with a policy that ignores the mask and
-  drives at any adjacent corridor cell. Results are in §4 of the
-  [model card](MODEL_CARD.md#safety).
+  drives at any adjacent corridor cell. **Result:** 376,539 corridor-entry attempts were blocked
+  across 60 episodes (56,134 at N=5, 110,913 at N=10, 209,492 at N=20), with **0 intrusions** and
+  0 executed safety violations. The learned policies also recorded 0 safety violations across all
+  180 benchmark episodes.
 - **CI gate** — [.github/workflows/verify.yml](../.github/workflows/verify.yml) runs the whole
   test suite on every push and pull request, so a safety-test failure blocks the build.
 
@@ -112,8 +114,49 @@ is the one in `physics.py` above.
 
 ## ETH-4 — Energy: routing savings net of the training footprint
 
-*Pending the N=10 QMIX vs IQL benchmark and the CodeCarbon training measurements; filled in from
-`outputs/evaluation/scalability_N5_N10_N20.json` and `outputs/emissions/emissions.csv`.*
+The requirement asks for the routing energy QMIX saves over IQL at N=10, net of the measured
+training footprint, as a two-sided estimate.
+
+**Measured: routing energy.** Source: `outputs/evaluation/scalability_N5_N10_N20.json`, 20 sealed
+seeds, paired by scenario.
+
+| N=10 | Energy per delivery (simulator energy units, EU) |
+|---|---|
+| IQL | 11.06 [10.67, 11.50] |
+| QMIX | 11.29 [10.90, 11.67] |
+| QMIX − IQL (paired) | **+0.23 [−0.17, +0.63]** |
+
+QMIX shows **no measurable energy saving** over IQL at N=10. The point estimate is about 2% *more*
+energy per delivery, and the 95% interval includes zero. (QMIX does deliver faster: 42.1 vs 56.9
+ticks.)
+
+**Measured: training footprint.** Source: `outputs/emissions/emissions.csv`, CodeCarbon,
+India grid at about 0.71 kg CO₂/kWh. The four N=10/N=20 training runs (1.8 h of GPU-laptop time)
+used **0.047 kWh, about 34 g CO₂e**; the sealed benchmark used another 0.028 kWh.
+
+- **Upper bound.** CodeCarbon measured the whole machine, and up to two runs overlapped, so these
+  figures overlap.
+- **Estimated, not metered.** Without admin rights CodeCarbon models CPU power instead of reading a
+  meter.
+- **N=5 not included.** The N=5 models were trained on a different machine and were not measured.
+
+**Converting simulator units to real energy (assumptions, not measurements).** One EU equals five
+empty grid moves (0.2 EU per move). We assume 1 m per cell and a 310 kg loaded AMR with
+rolling-resistance coefficient 0.015. That gives about 46 J/m at the wheels, our own first-principles
+figure; we found no measured AMR drive-energy reference. We multiply it by 1–4× for drivetrain and
+acceleration losses, so **1 EU ≈ 0.23–0.91 kJ**.
+
+| Case | Per delivery | Training paid back after |
+|---|---|---|
+| Point estimate (QMIX +0.23 EU) | QMIX costs 1.4–5.8 × 10⁻⁵ kWh **more** | Never |
+| Most favourable end of CI (QMIX −0.17 EU) | QMIX saves 1.1–4.4 × 10⁻⁵ kWh | ~1,100–4,300 deliveries |
+
+**Conclusion.** We cannot claim an energy benefit for QMIX at this scale. The honest reading is that
+any routing saving is smaller than our measurement can resolve. The training footprint is small in
+absolute terms (tens of grams of CO₂e). But it is a certain cost, while the saving is not shown to
+exist. Two things would decide whether the trade-off is positive:
+- a longer horizon with more deliveries;
+- independent training seeds, to narrow the interval.
 
 ---
 

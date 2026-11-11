@@ -1,0 +1,1784 @@
+{
+  "workload": "mixed_stock_v1",
+  "split": "sealed_test",
+  "seeds": [
+    200000,
+    200001,
+    200002,
+    200003,
+    200004,
+    200005,
+    200006,
+    200007,
+    200008,
+    200009,
+    200010,
+    200011,
+    200012,
+    200013,
+    200014,
+    200015,
+    200016,
+    200017,
+    200018,
+    200019
+  ],
+  "horizon": 600,
+  "arrival_interval": 20,
+  "ci_note": "Percentile bootstrap over sealed scenarios; one training seed per cell (scenario variance only).",
+  "cells": {
+    "planner_N5": {
+      "status": "evaluated",
+      "checkpoint": "NearestTaskDispatcher",
+      "num_agents": 5,
+      "episodes": 20,
+      "metrics": {
+        "completion_rate": {
+          "mean": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "delivery_time": {
+          "mean": 36.213750000000005,
+          "ci95": [
+            34.3261875,
+            38.142500000000005
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.00021666666666666666,
+          "ci95": [
+            0.00011666666666666665,
+            0.0003166666666666667
+          ]
+        },
+        "collision_count": {
+          "mean": 0.65,
+          "ci95": [
+            0.35,
+            0.95
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 341.39517719944536,
+          "ci95": [
+            331.4884995409566,
+            351.4950256953737
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 8.53487942998613,
+          "ci95": [
+            8.287212488523913,
+            8.787375642384342
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.06666666666666667,
+          "ci95": [
+            0.06666666666666667,
+            0.06666666666666667
+          ]
+        }
+      },
+      "completion_per_seed": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "scenario_hashes": [
+        "a2712fdd575c3721aea586add21f7d7bf4b1ace360db7efda926edce4cb4cfb4",
+        "ce060de54a3f7750cdce96ae1f0f157a181978a54072a6a174d0b5474805ec00",
+        "9ad9cda6af12339fdcd6285387353e76bd07007d0b850b19bd23aece28212796",
+        "7208e18390ac5d614f1190067d51b3e5e7917c92a1306df5e07155e48df1d766",
+        "b4a6ccc2da1be898cfa28691f1f8dfc986ae2d8e1c6fcddeea469a9891c393a7",
+        "50a0988e1ec4d94c9c49f7967d21f9d757d41ab5b1957fd270bdd22c022dff4f",
+        "37e528391f6435b211e70ec68e34d4a57943c582259c6ea93a081f1461592522",
+        "eaa94b02ce9708914bfc3b9c17b7dfdb4ea1db2212700758ca7b157f5fb71fea",
+        "3ff170bf5049a7f96677d99228c094f5f10a99a100cefbd19a0d6acc677cda86",
+        "f0cee6b9cca1786063492158c5de8fed3adc28899ea8b8280797a4135e82f73c",
+        "c5548b6c5124d1f5a0d011a5b0f760c67851c3651834a65cc74de022b9ecc9e7",
+        "098145fe4a7271bd196a37bd5801d26e0ad12ae40ad3ee78127bdde0b3ec1956",
+        "11e1ed22cc4ed0ac88ef2d15767baf4ba6a78107f753dbc040f0ff5699317cd0",
+        "60d14e3d11343ea706ca6e078a8fec26a3102297f05b1429696b4f570456d68e",
+        "09db8848349133136d804c63a6d77bea460eb0d64768847a7cb0d839543afc47",
+        "9971a198d36815a3aa2b4f8a8b1853393be51662f30f4bad58fee085684bd563",
+        "af11dd385d4af8c74aa1034f3d4027de2fbbff9b5c9ea970a432e719595f3e47",
+        "3cbe6ed5a0ab93291e6200c2b86a06a28076b39c26f41a69771898083c3c5827",
+        "50f1c73d852a7eaa55d0f9498ad068a34c411147be25058638a2e237d567cd6f",
+        "46c4d8be4e8dde0d39e3df3f2432e74b4b3675406a602dea2ac9b2a97fbfa68a"
+      ]
+    },
+    "iql_N5": {
+      "status": "evaluated",
+      "checkpoint": "C:\\Users\\Parth\\OneDrive\\Desktop\\Autonomous warehouse robot\\artifacts\\warehouse_v6_research\\mixed_stock_v1\\iql_policy_N5.pt",
+      "num_agents": 5,
+      "episodes": 20,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.98125,
+          "ci95": [
+            0.945,
+            1.0
+          ]
+        },
+        "delivery_time": {
+          "mean": 44.54266025641026,
+          "ci95": [
+            40.176218750000004,
+            49.54894150641026
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.010716666666666666,
+          "ci95": [
+            0.0079,
+            0.014400416666666662
+          ]
+        },
+        "collision_count": {
+          "mean": 32.15,
+          "ci95": [
+            23.7,
+            43.20124999999999
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 343.80997482179146,
+          "ci95": [
+            329.5212416007317,
+            356.2329953881864
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 8.773217300794927,
+          "ci95": [
+            8.53134192962988,
+            9.012294723049619
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.06541666666666666,
+          "ci95": [
+            0.063,
+            0.06666666666666667
+          ]
+        }
+      },
+      "completion_per_seed": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.975,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.65,
+        1.0
+      ],
+      "scenario_hashes": [
+        "a2712fdd575c3721aea586add21f7d7bf4b1ace360db7efda926edce4cb4cfb4",
+        "ce060de54a3f7750cdce96ae1f0f157a181978a54072a6a174d0b5474805ec00",
+        "9ad9cda6af12339fdcd6285387353e76bd07007d0b850b19bd23aece28212796",
+        "7208e18390ac5d614f1190067d51b3e5e7917c92a1306df5e07155e48df1d766",
+        "b4a6ccc2da1be898cfa28691f1f8dfc986ae2d8e1c6fcddeea469a9891c393a7",
+        "50a0988e1ec4d94c9c49f7967d21f9d757d41ab5b1957fd270bdd22c022dff4f",
+        "37e528391f6435b211e70ec68e34d4a57943c582259c6ea93a081f1461592522",
+        "eaa94b02ce9708914bfc3b9c17b7dfdb4ea1db2212700758ca7b157f5fb71fea",
+        "3ff170bf5049a7f96677d99228c094f5f10a99a100cefbd19a0d6acc677cda86",
+        "f0cee6b9cca1786063492158c5de8fed3adc28899ea8b8280797a4135e82f73c",
+        "c5548b6c5124d1f5a0d011a5b0f760c67851c3651834a65cc74de022b9ecc9e7",
+        "098145fe4a7271bd196a37bd5801d26e0ad12ae40ad3ee78127bdde0b3ec1956",
+        "11e1ed22cc4ed0ac88ef2d15767baf4ba6a78107f753dbc040f0ff5699317cd0",
+        "60d14e3d11343ea706ca6e078a8fec26a3102297f05b1429696b4f570456d68e",
+        "09db8848349133136d804c63a6d77bea460eb0d64768847a7cb0d839543afc47",
+        "9971a198d36815a3aa2b4f8a8b1853393be51662f30f4bad58fee085684bd563",
+        "af11dd385d4af8c74aa1034f3d4027de2fbbff9b5c9ea970a432e719595f3e47",
+        "3cbe6ed5a0ab93291e6200c2b86a06a28076b39c26f41a69771898083c3c5827",
+        "50f1c73d852a7eaa55d0f9498ad068a34c411147be25058638a2e237d567cd6f",
+        "46c4d8be4e8dde0d39e3df3f2432e74b4b3675406a602dea2ac9b2a97fbfa68a"
+      ]
+    },
+    "qmix_N5": {
+      "status": "evaluated",
+      "checkpoint": "C:\\Users\\Parth\\OneDrive\\Desktop\\Autonomous warehouse robot\\artifacts\\warehouse_v6_research\\mixed_stock_v1\\qmix_policy_N5.pt",
+      "num_agents": 5,
+      "episodes": 20,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.9974999999999999,
+          "ci95": [
+            0.9924999999999999,
+            1.0
+          ]
+        },
+        "delivery_time": {
+          "mean": 46.585921052631576,
+          "ci95": [
+            41.06746875,
+            52.69998190789474
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.009900000000000003,
+          "ci95": [
+            0.008049999999999998,
+            0.012000416666666661
+          ]
+        },
+        "collision_count": {
+          "mean": 29.7,
+          "ci95": [
+            24.15,
+            36.001249999999985
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 348.7930374006575,
+          "ci95": [
+            339.89812215739084,
+            358.4258206321195
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 8.74231937383195,
+          "ci95": [
+            8.515726924293025,
+            8.983500422654199
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.0665,
+          "ci95": [
+            0.06616666666666667,
+            0.06666666666666667
+          ]
+        }
+      },
+      "completion_per_seed": [
+        1.0,
+        0.95,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "scenario_hashes": [
+        "a2712fdd575c3721aea586add21f7d7bf4b1ace360db7efda926edce4cb4cfb4",
+        "ce060de54a3f7750cdce96ae1f0f157a181978a54072a6a174d0b5474805ec00",
+        "9ad9cda6af12339fdcd6285387353e76bd07007d0b850b19bd23aece28212796",
+        "7208e18390ac5d614f1190067d51b3e5e7917c92a1306df5e07155e48df1d766",
+        "b4a6ccc2da1be898cfa28691f1f8dfc986ae2d8e1c6fcddeea469a9891c393a7",
+        "50a0988e1ec4d94c9c49f7967d21f9d757d41ab5b1957fd270bdd22c022dff4f",
+        "37e528391f6435b211e70ec68e34d4a57943c582259c6ea93a081f1461592522",
+        "eaa94b02ce9708914bfc3b9c17b7dfdb4ea1db2212700758ca7b157f5fb71fea",
+        "3ff170bf5049a7f96677d99228c094f5f10a99a100cefbd19a0d6acc677cda86",
+        "f0cee6b9cca1786063492158c5de8fed3adc28899ea8b8280797a4135e82f73c",
+        "c5548b6c5124d1f5a0d011a5b0f760c67851c3651834a65cc74de022b9ecc9e7",
+        "098145fe4a7271bd196a37bd5801d26e0ad12ae40ad3ee78127bdde0b3ec1956",
+        "11e1ed22cc4ed0ac88ef2d15767baf4ba6a78107f753dbc040f0ff5699317cd0",
+        "60d14e3d11343ea706ca6e078a8fec26a3102297f05b1429696b4f570456d68e",
+        "09db8848349133136d804c63a6d77bea460eb0d64768847a7cb0d839543afc47",
+        "9971a198d36815a3aa2b4f8a8b1853393be51662f30f4bad58fee085684bd563",
+        "af11dd385d4af8c74aa1034f3d4027de2fbbff9b5c9ea970a432e719595f3e47",
+        "3cbe6ed5a0ab93291e6200c2b86a06a28076b39c26f41a69771898083c3c5827",
+        "50f1c73d852a7eaa55d0f9498ad068a34c411147be25058638a2e237d567cd6f",
+        "46c4d8be4e8dde0d39e3df3f2432e74b4b3675406a602dea2ac9b2a97fbfa68a"
+      ]
+    },
+    "planner_N10": {
+      "status": "evaluated",
+      "checkpoint": "NearestTaskDispatcher",
+      "num_agents": 10,
+      "episodes": 20,
+      "metrics": {
+        "completion_rate": {
+          "mean": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "delivery_time": {
+          "mean": 28.320000000000004,
+          "ci95": [
+            27.7961875,
+            28.845062500000004
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.00019166666666666665,
+          "ci95": [
+            0.000125,
+            0.0002666666666666667
+          ]
+        },
+        "collision_count": {
+          "mean": 1.15,
+          "ci95": [
+            0.75,
+            1.6
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 376.53988949619577,
+          "ci95": [
+            367.03406389684966,
+            386.5606986280267
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 9.413497237404894,
+          "ci95": [
+            9.175851597421243,
+            9.664017465700669
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.06666666666666667,
+          "ci95": [
+            0.06666666666666667,
+            0.06666666666666667
+          ]
+        }
+      },
+      "completion_per_seed": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "scenario_hashes": [
+        "dd4887d9ee53bb624c66c11891001d3cfca1e51b18b4617646ea8f14dc00ab06",
+        "f93fd2ae82b2516ab775cc6c0e105d492d0e0efccc967614344fb2a5265cdbb1",
+        "2a1e0377e096661fb746ced69df69dbd33285ffd0b5440a2d248ea04ad1063ad",
+        "34418a6ef508a70071e83c977a50232626c7fa3a1e039f9261699858f03309db",
+        "2b43dd460d54fd5fc0bd96f9ea8abb9792ce14b0dca9bb19cdd1fc702e51812c",
+        "710c7405772a9dfbb951bbb141c5e703003b2d19dca9361dc92b924ee0d6ed07",
+        "32a3053dbb3cf59d4e2af68c69ef5b0042a8c9cda91e3de21294f80ca3c910b5",
+        "621bb2b8d23ec72b83c1e9def2b944558398145ebf25e2d1585f2ea8c3560d45",
+        "5d3c5bfd55fcd9cdf4f03982f54259a1096ce88d01534a0a8382cf4fd778e2b8",
+        "f0c88d25c2aa9158f36bb96e66c16fd4f056968932f1c703e9596b1d2eda60fc",
+        "64b1eaa55734d20842a376b9e498516ad778302c1f24c7c61017717d57494581",
+        "86d642e3303d3b0b1da0f04ab437cf4dd44a27fef4eb973576b97f5e24a585f8",
+        "1865075243970aac812f3469d3614edf16f718e4ef8050d5dd3cffd5b2c6aa8f",
+        "265c1687130e2734d9f397ec8f27ac1729e5a558ac211b2fc9196ed2225cad97",
+        "9a232ddc270ce65beda774c46dababe2f2a01eb456a130516bd993df97840183",
+        "4b2f85717a2add31250a566a0e509ef60528fa5a3076da239faca08734fcf558",
+        "2bb7992b6badd144bee338d4fe06b12a7cf3efba14f6aed8dbef0edabc002bd1",
+        "689fa4c2fa2f696e2e2efbc0d8fa4025edf73f29b7494d3275a7d56722a68d03",
+        "b2378eb78dc1b00e5685c4fdfc8e4084014bcbd440d72bf36ee9977d6008cc50",
+        "276ff572f9b29e644c042c7e4a14b43aee4ec1038bbbdf41cd656002b5525773"
+      ]
+    },
+    "iql_N10": {
+      "status": "evaluated",
+      "checkpoint": "C:\\Users\\Parth\\OneDrive\\Desktop\\Autonomous warehouse robot\\artifacts\\warehouse_v6_research\\mixed_stock_v1\\iql_policy_N10.pt",
+      "num_agents": 10,
+      "episodes": 20,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.9674999999999999,
+          "ci95": [
+            0.9424999999999999,
+            0.9875
+          ]
+        },
+        "delivery_time": {
+          "mean": 56.91738298068891,
+          "ci95": [
+            50.42409942524581,
+            64.70816393698588
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.016233333333333336,
+          "ci95": [
+            0.012374791666666668,
+            0.021033749999999993
+          ]
+        },
+        "collision_count": {
+          "mean": 97.4,
+          "ci95": [
+            74.24875,
+            126.20249999999997
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 427.05095873175287,
+          "ci95": [
+            413.4607840504898,
+            440.48719201646753
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 11.062424209718282,
+          "ci95": [
+            10.666520301372055,
+            11.49836440336255
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.0645,
+          "ci95": [
+            0.06283333333333332,
+            0.06583333333333333
+          ]
+        }
+      },
+      "completion_per_seed": [
+        1.0,
+        1.0,
+        1.0,
+        0.95,
+        0.95,
+        0.875,
+        1.0,
+        1.0,
+        0.975,
+        1.0,
+        0.95,
+        0.95,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.9,
+        1.0,
+        1.0,
+        0.8
+      ],
+      "scenario_hashes": [
+        "dd4887d9ee53bb624c66c11891001d3cfca1e51b18b4617646ea8f14dc00ab06",
+        "f93fd2ae82b2516ab775cc6c0e105d492d0e0efccc967614344fb2a5265cdbb1",
+        "2a1e0377e096661fb746ced69df69dbd33285ffd0b5440a2d248ea04ad1063ad",
+        "34418a6ef508a70071e83c977a50232626c7fa3a1e039f9261699858f03309db",
+        "2b43dd460d54fd5fc0bd96f9ea8abb9792ce14b0dca9bb19cdd1fc702e51812c",
+        "710c7405772a9dfbb951bbb141c5e703003b2d19dca9361dc92b924ee0d6ed07",
+        "32a3053dbb3cf59d4e2af68c69ef5b0042a8c9cda91e3de21294f80ca3c910b5",
+        "621bb2b8d23ec72b83c1e9def2b944558398145ebf25e2d1585f2ea8c3560d45",
+        "5d3c5bfd55fcd9cdf4f03982f54259a1096ce88d01534a0a8382cf4fd778e2b8",
+        "f0c88d25c2aa9158f36bb96e66c16fd4f056968932f1c703e9596b1d2eda60fc",
+        "64b1eaa55734d20842a376b9e498516ad778302c1f24c7c61017717d57494581",
+        "86d642e3303d3b0b1da0f04ab437cf4dd44a27fef4eb973576b97f5e24a585f8",
+        "1865075243970aac812f3469d3614edf16f718e4ef8050d5dd3cffd5b2c6aa8f",
+        "265c1687130e2734d9f397ec8f27ac1729e5a558ac211b2fc9196ed2225cad97",
+        "9a232ddc270ce65beda774c46dababe2f2a01eb456a130516bd993df97840183",
+        "4b2f85717a2add31250a566a0e509ef60528fa5a3076da239faca08734fcf558",
+        "2bb7992b6badd144bee338d4fe06b12a7cf3efba14f6aed8dbef0edabc002bd1",
+        "689fa4c2fa2f696e2e2efbc0d8fa4025edf73f29b7494d3275a7d56722a68d03",
+        "b2378eb78dc1b00e5685c4fdfc8e4084014bcbd440d72bf36ee9977d6008cc50",
+        "276ff572f9b29e644c042c7e4a14b43aee4ec1038bbbdf41cd656002b5525773"
+      ]
+    },
+    "qmix_N10": {
+      "status": "evaluated",
+      "checkpoint": "C:\\Users\\Parth\\OneDrive\\Desktop\\Autonomous warehouse robot\\artifacts\\warehouse_v6_research\\mixed_stock_v1\\qmix_policy_N10.pt",
+      "num_agents": 10,
+      "episodes": 20,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.9775,
+          "ci95": [
+            0.9587499999999999,
+            0.9925312499999996
+          ]
+        },
+        "delivery_time": {
+          "mean": 42.14439801426643,
+          "ci95": [
+            40.14242434210526,
+            44.18996191199152
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.017016666666666666,
+          "ci95": [
+            0.01391625,
+            0.020525208333333333
+          ]
+        },
+        "collision_count": {
+          "mean": 102.1,
+          "ci95": [
+            83.4975,
+            123.15124999999999
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 440.728559311554,
+          "ci95": [
+            427.31696874077124,
+            453.6526094445334
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 11.290228487873737,
+          "ci95": [
+            10.89756205566035,
+            11.668730253300076
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.25,
+          "ci95": [
+            0.1,
+            0.45
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.06516666666666666,
+          "ci95": [
+            0.06391666666666666,
+            0.06616874999999998
+          ]
+        }
+      },
+      "completion_per_seed": [
+        1.0,
+        0.875,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.95,
+        0.9,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.95,
+        1.0,
+        1.0,
+        0.9,
+        0.975
+      ],
+      "scenario_hashes": [
+        "dd4887d9ee53bb624c66c11891001d3cfca1e51b18b4617646ea8f14dc00ab06",
+        "f93fd2ae82b2516ab775cc6c0e105d492d0e0efccc967614344fb2a5265cdbb1",
+        "2a1e0377e096661fb746ced69df69dbd33285ffd0b5440a2d248ea04ad1063ad",
+        "34418a6ef508a70071e83c977a50232626c7fa3a1e039f9261699858f03309db",
+        "2b43dd460d54fd5fc0bd96f9ea8abb9792ce14b0dca9bb19cdd1fc702e51812c",
+        "710c7405772a9dfbb951bbb141c5e703003b2d19dca9361dc92b924ee0d6ed07",
+        "32a3053dbb3cf59d4e2af68c69ef5b0042a8c9cda91e3de21294f80ca3c910b5",
+        "621bb2b8d23ec72b83c1e9def2b944558398145ebf25e2d1585f2ea8c3560d45",
+        "5d3c5bfd55fcd9cdf4f03982f54259a1096ce88d01534a0a8382cf4fd778e2b8",
+        "f0c88d25c2aa9158f36bb96e66c16fd4f056968932f1c703e9596b1d2eda60fc",
+        "64b1eaa55734d20842a376b9e498516ad778302c1f24c7c61017717d57494581",
+        "86d642e3303d3b0b1da0f04ab437cf4dd44a27fef4eb973576b97f5e24a585f8",
+        "1865075243970aac812f3469d3614edf16f718e4ef8050d5dd3cffd5b2c6aa8f",
+        "265c1687130e2734d9f397ec8f27ac1729e5a558ac211b2fc9196ed2225cad97",
+        "9a232ddc270ce65beda774c46dababe2f2a01eb456a130516bd993df97840183",
+        "4b2f85717a2add31250a566a0e509ef60528fa5a3076da239faca08734fcf558",
+        "2bb7992b6badd144bee338d4fe06b12a7cf3efba14f6aed8dbef0edabc002bd1",
+        "689fa4c2fa2f696e2e2efbc0d8fa4025edf73f29b7494d3275a7d56722a68d03",
+        "b2378eb78dc1b00e5685c4fdfc8e4084014bcbd440d72bf36ee9977d6008cc50",
+        "276ff572f9b29e644c042c7e4a14b43aee4ec1038bbbdf41cd656002b5525773"
+      ]
+    },
+    "planner_N20": {
+      "status": "evaluated",
+      "checkpoint": "NearestTaskDispatcher",
+      "num_agents": 20,
+      "episodes": 20,
+      "metrics": {
+        "completion_rate": {
+          "mean": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "delivery_time": {
+          "mean": 29.096249999999998,
+          "ci95": [
+            28.308718749999997,
+            30.107500000000005
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.00016250000000000002,
+          "ci95": [
+            9.156250000000002e-05,
+            0.0002458333333333333
+          ]
+        },
+        "collision_count": {
+          "mean": 1.95,
+          "ci95": [
+            1.0987500000000006,
+            2.95
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 435.771699143443,
+          "ci95": [
+            424.94986362019614,
+            447.11379636513885
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 10.894292478586076,
+          "ci95": [
+            10.6237465905049,
+            11.177844909128474
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.06666666666666667,
+          "ci95": [
+            0.06666666666666667,
+            0.06666666666666667
+          ]
+        }
+      },
+      "completion_per_seed": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "scenario_hashes": [
+        "f23b75d7a98b24d2a5479e691c878c7590db4da2137642763afa25df21c71741",
+        "34b6c8cabacebc5496fe7b4a79e4865541c5ec72afd55f7ec7fc45a77f29846a",
+        "afd835c11bb06a808f11652746bd08a302a0e122223cc4f24b4214708b8d07b9",
+        "7871b5b8315c7bc9af2af83480666bbe63c16e9d09c9f097e2cc1b0c2e7970cf",
+        "29573b8713dde0fd5408e4274d83266a4b10b113e6e4051dcdab009c21a8bfe3",
+        "064902617aed278278cad33e69d0fe2e72de9f1a60742cf5a558a38fd1c4dfc5",
+        "84a42a2b1a571e693e9e4f8e28e1bc0093c8ac2b73c1168a9ee3f9679cb942fc",
+        "d2bdb54842301bd31b630efc5d37450475fcd51d451837859767c80e008a7b35",
+        "9b938ceb1fa39b2a86e1a07a3753309424a3ef6abd9646a21e018cf405aa8686",
+        "dae7c4045e7087f05910627a7d524847397aeeef9d799c4a4392c7839e7eec67",
+        "090154547374ac0350724df919c5200d0f40aa3aa57b19461116ae0e61b69052",
+        "d8bc95ba7849522c7fa2f6c91fc4883bc45cb8544388b3a5e77f12e4e01c07a7",
+        "5b40cdde7f9d3bafdea55a2e7075ea0b47f2e280e5eba63864f623f36e0239ac",
+        "3dac9ee510b033aba165704dd0b8f207f9c26202200996ed17c34e9b32fe27bc",
+        "ac4e45e9866c926546a45a07f910b1d892518525020764eeaa430c5a3a9e6083",
+        "a5b8f7e3257aa981b972e2d1a0f310e092bec101e8fffb88b230704527d8065d",
+        "e590195f196b3ee7bc095117429237ce136c1b45b16a1ec9cd80150d3e4eaddb",
+        "0b523dd60677abb7eb9ccc0f45823983d9dfb36d4341df819ee0616a1e866c4e",
+        "9ea3003c25399a0a961ae8fe675909e90d96a3830a591b2bbb39020b57e2b9d7",
+        "109480adf6239a2532e692bb00a59a9246f1a5a78668cd98b59115f4d62afaba"
+      ]
+    },
+    "iql_N20": {
+      "status": "evaluated",
+      "checkpoint": "C:\\Users\\Parth\\OneDrive\\Desktop\\Autonomous warehouse robot\\artifacts\\warehouse_v6_research\\mixed_stock_v1\\iql_policy_N20.pt",
+      "num_agents": 20,
+      "episodes": 20,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.9524999999999999,
+          "ci95": [
+            0.9212499999999999,
+            0.97625
+          ]
+        },
+        "delivery_time": {
+          "mean": 91.51972543830303,
+          "ci95": [
+            79.4682335947388,
+            105.00296588324939
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.014770833333333334,
+          "ci95": [
+            0.012958125,
+            0.016587499999999998
+          ]
+        },
+        "collision_count": {
+          "mean": 177.25,
+          "ci95": [
+            155.4975,
+            199.05
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 580.7216334993794,
+          "ci95": [
+            556.9870890666589,
+            606.654777014545
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 15.308190094149074,
+          "ci95": [
+            14.570598686111877,
+            16.139968798360822
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.3,
+          "ci95": [
+            0.1,
+            0.55
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.06349999999999999,
+          "ci95": [
+            0.061416666666666654,
+            0.06508333333333333
+          ]
+        }
+      },
+      "completion_per_seed": [
+        0.975,
+        0.95,
+        0.95,
+        0.95,
+        0.925,
+        1.0,
+        0.975,
+        0.9,
+        0.725,
+        0.9,
+        1.0,
+        1.0,
+        1.0,
+        0.95,
+        1.0,
+        1.0,
+        0.9,
+        1.0,
+        1.0,
+        0.95
+      ],
+      "scenario_hashes": [
+        "f23b75d7a98b24d2a5479e691c878c7590db4da2137642763afa25df21c71741",
+        "34b6c8cabacebc5496fe7b4a79e4865541c5ec72afd55f7ec7fc45a77f29846a",
+        "afd835c11bb06a808f11652746bd08a302a0e122223cc4f24b4214708b8d07b9",
+        "7871b5b8315c7bc9af2af83480666bbe63c16e9d09c9f097e2cc1b0c2e7970cf",
+        "29573b8713dde0fd5408e4274d83266a4b10b113e6e4051dcdab009c21a8bfe3",
+        "064902617aed278278cad33e69d0fe2e72de9f1a60742cf5a558a38fd1c4dfc5",
+        "84a42a2b1a571e693e9e4f8e28e1bc0093c8ac2b73c1168a9ee3f9679cb942fc",
+        "d2bdb54842301bd31b630efc5d37450475fcd51d451837859767c80e008a7b35",
+        "9b938ceb1fa39b2a86e1a07a3753309424a3ef6abd9646a21e018cf405aa8686",
+        "dae7c4045e7087f05910627a7d524847397aeeef9d799c4a4392c7839e7eec67",
+        "090154547374ac0350724df919c5200d0f40aa3aa57b19461116ae0e61b69052",
+        "d8bc95ba7849522c7fa2f6c91fc4883bc45cb8544388b3a5e77f12e4e01c07a7",
+        "5b40cdde7f9d3bafdea55a2e7075ea0b47f2e280e5eba63864f623f36e0239ac",
+        "3dac9ee510b033aba165704dd0b8f207f9c26202200996ed17c34e9b32fe27bc",
+        "ac4e45e9866c926546a45a07f910b1d892518525020764eeaa430c5a3a9e6083",
+        "a5b8f7e3257aa981b972e2d1a0f310e092bec101e8fffb88b230704527d8065d",
+        "e590195f196b3ee7bc095117429237ce136c1b45b16a1ec9cd80150d3e4eaddb",
+        "0b523dd60677abb7eb9ccc0f45823983d9dfb36d4341df819ee0616a1e866c4e",
+        "9ea3003c25399a0a961ae8fe675909e90d96a3830a591b2bbb39020b57e2b9d7",
+        "109480adf6239a2532e692bb00a59a9246f1a5a78668cd98b59115f4d62afaba"
+      ]
+    },
+    "qmix_N20": {
+      "status": "evaluated",
+      "checkpoint": "C:\\Users\\Parth\\OneDrive\\Desktop\\Autonomous warehouse robot\\artifacts\\warehouse_v6_research\\mixed_stock_v1\\qmix_policy_N20.pt",
+      "num_agents": 20,
+      "episodes": 20,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.92125,
+          "ci95": [
+            0.8825000000000001,
+            0.95375
+          ]
+        },
+        "delivery_time": {
+          "mean": 81.22501403742754,
+          "ci95": [
+            71.55996969712177,
+            91.99158005067089
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.015183333333333335,
+          "ci95": [
+            0.013291562500000001,
+            0.0173334375
+          ]
+        },
+        "collision_count": {
+          "mean": 182.2,
+          "ci95": [
+            159.49875,
+            208.00124999999997
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 565.2830508618467,
+          "ci95": [
+            545.0898100723352,
+            589.9797699335081
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 15.395423474617711,
+          "ci95": [
+            14.857232434219716,
+            15.97292237352628
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.55,
+          "ci95": [
+            0.25,
+            0.9
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.06141666666666666,
+          "ci95": [
+            0.058833333333333335,
+            0.06358333333333333
+          ]
+        }
+      },
+      "completion_per_seed": [
+        0.9,
+        0.95,
+        0.7,
+        0.95,
+        1.0,
+        0.9,
+        0.9,
+        0.8,
+        0.9,
+        0.875,
+        0.95,
+        1.0,
+        0.775,
+        0.95,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.95,
+        0.925
+      ],
+      "scenario_hashes": [
+        "f23b75d7a98b24d2a5479e691c878c7590db4da2137642763afa25df21c71741",
+        "34b6c8cabacebc5496fe7b4a79e4865541c5ec72afd55f7ec7fc45a77f29846a",
+        "afd835c11bb06a808f11652746bd08a302a0e122223cc4f24b4214708b8d07b9",
+        "7871b5b8315c7bc9af2af83480666bbe63c16e9d09c9f097e2cc1b0c2e7970cf",
+        "29573b8713dde0fd5408e4274d83266a4b10b113e6e4051dcdab009c21a8bfe3",
+        "064902617aed278278cad33e69d0fe2e72de9f1a60742cf5a558a38fd1c4dfc5",
+        "84a42a2b1a571e693e9e4f8e28e1bc0093c8ac2b73c1168a9ee3f9679cb942fc",
+        "d2bdb54842301bd31b630efc5d37450475fcd51d451837859767c80e008a7b35",
+        "9b938ceb1fa39b2a86e1a07a3753309424a3ef6abd9646a21e018cf405aa8686",
+        "dae7c4045e7087f05910627a7d524847397aeeef9d799c4a4392c7839e7eec67",
+        "090154547374ac0350724df919c5200d0f40aa3aa57b19461116ae0e61b69052",
+        "d8bc95ba7849522c7fa2f6c91fc4883bc45cb8544388b3a5e77f12e4e01c07a7",
+        "5b40cdde7f9d3bafdea55a2e7075ea0b47f2e280e5eba63864f623f36e0239ac",
+        "3dac9ee510b033aba165704dd0b8f207f9c26202200996ed17c34e9b32fe27bc",
+        "ac4e45e9866c926546a45a07f910b1d892518525020764eeaa430c5a3a9e6083",
+        "a5b8f7e3257aa981b972e2d1a0f310e092bec101e8fffb88b230704527d8065d",
+        "e590195f196b3ee7bc095117429237ce136c1b45b16a1ec9cd80150d3e4eaddb",
+        "0b523dd60677abb7eb9ccc0f45823983d9dfb36d4341df819ee0616a1e866c4e",
+        "9ea3003c25399a0a961ae8fe675909e90d96a3830a591b2bbb39020b57e2b9d7",
+        "109480adf6239a2532e692bb00a59a9246f1a5a78668cd98b59115f4d62afaba"
+      ]
+    }
+  },
+  "comparisons": {
+    "qmix_minus_iql_N5": {
+      "completion_rate": {
+        "mean": 0.016249999999999997,
+        "ci95": [
+          -0.0050000000000000044,
+          0.05499999999999998
+        ]
+      },
+      "conflicts_per_robot_tick": {
+        "mean": -0.0008166666666666669,
+        "ci95": [
+          -0.0034000000000000002,
+          0.0016837499999999934
+        ]
+      },
+      "collision_count": {
+        "mean": -2.45,
+        "ci95": [
+          -10.2,
+          5.051249999999982
+        ]
+      },
+      "energy_per_delivery": {
+        "mean": -0.030897926962977485,
+        "ci95": [
+          -0.26712331438918985,
+          0.16314777815934506
+        ]
+      }
+    },
+    "qmix_minus_planner_N5": {
+      "completion_rate": {
+        "mean": -0.0025000000000000022,
+        "ci95": [
+          -0.007500000000000007,
+          0.0
+        ]
+      },
+      "conflicts_per_robot_tick": {
+        "mean": 0.009683333333333334,
+        "ci95": [
+          0.007882916666666667,
+          0.011733333333333333
+        ]
+      },
+      "collision_count": {
+        "mean": 29.05,
+        "ci95": [
+          23.64875,
+          35.2
+        ]
+      },
+      "energy_per_delivery": {
+        "mean": 0.20743994384581815,
+        "ci95": [
+          0.0944550855488467,
+          0.31464593184824724
+        ]
+      }
+    },
+    "qmix_over_iql_collision_ratio_N5": {
+      "ratio": 0.9237947122861586,
+      "ci95": [
+        0.7467276818265834,
+        1.2019458354624426
+      ]
+    },
+    "qmix_minus_iql_N10": {
+      "completion_rate": {
+        "mean": 0.010000000000000004,
+        "ci95": [
+          -0.021249999999999998,
+          0.042499999999999996
+        ]
+      },
+      "conflicts_per_robot_tick": {
+        "mean": 0.0007833333333333331,
+        "ci95": [
+          -0.003991875,
+          0.005050208333333329
+        ]
+      },
+      "collision_count": {
+        "mean": 4.7,
+        "ci95": [
+          -23.951249999999998,
+          30.301249999999982
+        ]
+      },
+      "energy_per_delivery": {
+        "mean": 0.2278042781554544,
+        "ci95": [
+          -0.1716136772018379,
+          0.6316025230639497
+        ]
+      }
+    },
+    "qmix_minus_planner_N10": {
+      "completion_rate": {
+        "mean": -0.022500000000000003,
+        "ci95": [
+          -0.04125,
+          -0.007468750000000456
+        ]
+      },
+      "conflicts_per_robot_tick": {
+        "mean": 0.016825,
+        "ci95": [
+          0.013699791666666667,
+          0.020350000000000004
+        ]
+      },
+      "collision_count": {
+        "mean": 100.95,
+        "ci95": [
+          82.19875,
+          122.1
+        ]
+      },
+      "energy_per_delivery": {
+        "mean": 1.8767312504688403,
+        "ci95": [
+          1.5327387107454633,
+          2.2185277796377973
+        ]
+      }
+    },
+    "qmix_over_iql_collision_ratio_N10": {
+      "ratio": 1.0482546201232033,
+      "ci95": [
+        0.7970088925406968,
+        1.3739364386730453
+      ]
+    },
+    "qmix_minus_iql_N20": {
+      "completion_rate": {
+        "mean": -0.031249999999999993,
+        "ci95": [
+          -0.07250000000000001,
+          0.010000000000000004
+        ]
+      },
+      "conflicts_per_robot_tick": {
+        "mean": 0.00041249999999999956,
+        "ci95": [
+          -0.0025253125,
+          0.0036043749999999978
+        ]
+      },
+      "collision_count": {
+        "mean": 4.95,
+        "ci95": [
+          -30.30375,
+          43.25249999999996
+        ]
+      },
+      "energy_per_delivery": {
+        "mean": 0.08723338046863907,
+        "ci95": [
+          -0.6741543498584223,
+          0.9084987232615256
+        ]
+      }
+    },
+    "qmix_minus_planner_N20": {
+      "completion_rate": {
+        "mean": -0.07875000000000001,
+        "ci95": [
+          -0.11749999999999998,
+          -0.04625
+        ]
+      },
+      "conflicts_per_robot_tick": {
+        "mean": 0.015020833333333336,
+        "ci95": [
+          0.013145833333333334,
+          0.017158437500000002
+        ]
+      },
+      "collision_count": {
+        "mean": 180.25,
+        "ci95": [
+          157.75,
+          205.90124999999998
+        ]
+      },
+      "energy_per_delivery": {
+        "mean": 4.501130996031638,
+        "ci95": [
+          3.9112179008055197,
+          5.160826681995871
+        ]
+      }
+    },
+    "qmix_over_iql_collision_ratio_N20": {
+      "ratio": 1.0279266572637518,
+      "ci95": [
+        0.8439905128002428,
+        1.2671641828711078
+      ]
+    }
+  },
+  "safety": {
+    "N5": {
+      "episodes": 20,
+      "corridor_intrusions": 0,
+      "blocked_corridor_attempts": 56134.0,
+      "executed_safety_violations": 0.0,
+      "passed": true,
+      "per_episode": [
+        {
+          "seed": 200000,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2950.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200001,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2945.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200002,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2925.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200003,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2949.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200004,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2378.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200005,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2502.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200006,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2582.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200007,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2920.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200008,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2902.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200009,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2568.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200010,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2965.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200011,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2831.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200012,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2926.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200013,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2970.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200014,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2903.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200015,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2863.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200016,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2356.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200017,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2900.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200018,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2957.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200019,
+          "corridor_intrusions": 0,
+          "safety_overrides": 2842.0,
+          "executed_safety_violations": 0.0
+        }
+      ]
+    },
+    "N10": {
+      "episodes": 20,
+      "corridor_intrusions": 0,
+      "blocked_corridor_attempts": 110913.0,
+      "executed_safety_violations": 0.0,
+      "passed": true,
+      "per_episode": [
+        {
+          "seed": 200000,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5641.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200001,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5840.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200002,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5168.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200003,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5494.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200004,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5533.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200005,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5914.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200006,
+          "corridor_intrusions": 0,
+          "safety_overrides": 4977.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200007,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5756.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200008,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5256.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200009,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5653.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200010,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5724.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200011,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5726.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200012,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5478.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200013,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5644.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200014,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5112.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200015,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5731.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200016,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5679.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200017,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5956.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200018,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5267.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200019,
+          "corridor_intrusions": 0,
+          "safety_overrides": 5364.0,
+          "executed_safety_violations": 0.0
+        }
+      ]
+    },
+    "N20": {
+      "episodes": 20,
+      "corridor_intrusions": 0,
+      "blocked_corridor_attempts": 209492.0,
+      "executed_safety_violations": 0.0,
+      "passed": true,
+      "per_episode": [
+        {
+          "seed": 200000,
+          "corridor_intrusions": 0,
+          "safety_overrides": 10719.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200001,
+          "corridor_intrusions": 0,
+          "safety_overrides": 11049.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200002,
+          "corridor_intrusions": 0,
+          "safety_overrides": 11110.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200003,
+          "corridor_intrusions": 0,
+          "safety_overrides": 9772.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200004,
+          "corridor_intrusions": 0,
+          "safety_overrides": 10200.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200005,
+          "corridor_intrusions": 0,
+          "safety_overrides": 9900.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200006,
+          "corridor_intrusions": 0,
+          "safety_overrides": 9613.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200007,
+          "corridor_intrusions": 0,
+          "safety_overrides": 10419.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200008,
+          "corridor_intrusions": 0,
+          "safety_overrides": 10902.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200009,
+          "corridor_intrusions": 0,
+          "safety_overrides": 11132.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200010,
+          "corridor_intrusions": 0,
+          "safety_overrides": 10509.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200011,
+          "corridor_intrusions": 0,
+          "safety_overrides": 10094.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200012,
+          "corridor_intrusions": 0,
+          "safety_overrides": 11029.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200013,
+          "corridor_intrusions": 0,
+          "safety_overrides": 10799.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200014,
+          "corridor_intrusions": 0,
+          "safety_overrides": 10257.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200015,
+          "corridor_intrusions": 0,
+          "safety_overrides": 10288.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200016,
+          "corridor_intrusions": 0,
+          "safety_overrides": 9410.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200017,
+          "corridor_intrusions": 0,
+          "safety_overrides": 10303.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200018,
+          "corridor_intrusions": 0,
+          "safety_overrides": 10897.0,
+          "executed_safety_violations": 0.0
+        },
+        {
+          "seed": 200019,
+          "corridor_intrusions": 0,
+          "safety_overrides": 11090.0,
+          "executed_safety_violations": 0.0
+        }
+      ]
+    }
+  }
+}

@@ -186,7 +186,94 @@ There are two checks, both on the 20 sealed seeds at each fleet size.
 OBJ-4 / NFR-3 are met: zero policy-induced intrusions across dedicated maximum-aggression episodes.
 The CI gate runs the safety tests on every push.
 
-## 5. Limitations
+## 5. Requirements not fully met
+
+Three acceptance items are only partly met, or not met. Each is reported with what was measured,
+why it happened, and what would close it. They are reported in full rather than tuned away, in
+line with the project's negative-result policy (ETH-5, ADR-005).
+
+### 5.1 NFR-2: does QMIX's lead over IQL grow with fleet size? Partly supported
+
+**Requirement.** ADR-005 reclassified NFR-2 from an acceptance criterion to the pre-registered
+hypothesis H1: the QMIX − IQL completion gap does not shrink as N goes from 5 to 10 to 20. Either
+direction counts as a passing result, provided the measurement is sound.
+
+**Measured.** Paired over 20 sealed seeds; brackets are 95% bootstrap CIs.
+
+| Demand | N=5 | N=10 | N=20 |
+|---|---|---|---|
+| Fixed (40 orders per shift) | +1.6 pp [−0.5, +5.5] | +1.0 pp [−2.1, +4.3] | −3.1 pp [−7.3, +1.0] |
+| Scaled with fleet (40 / 80 / 116 orders) | +1.6 pp [−0.5, +5.5] | **+15.1 pp [+7.9, +22.2]** | pending: QMIX cell being evaluated; IQL scores 77.0% |
+
+**Why the two rows differ.** At fixed demand there is too little work for coordination to matter.
+Both learned policies sit near the ceiling (92–100%), so no gap can show. Once demand grows with the
+fleet, the warehouse is genuinely busy. QMIX then holds 94.2% completion while IQL drops to 79.1%.
+That gap is significant and well outside the noise.
+
+**Conclusion.** H1 is supported from N=5 to N=10 under load, and is not detectable when demand is
+fixed. Coordinated credit assignment pays off when robots actually compete for work and space.
+
+### 5.2 NFR-4: QMIX near-miss conflicts ≤ 50% of IQL's at N=10. Not met
+
+**Measured.** QMIX/IQL ratio of near-miss conflicts per episode, 20 sealed seeds:
+
+| N | QMIX / IQL |
+|---|---|
+| 5 | 0.92 [0.75, 1.20] |
+| 10 | 1.05 [0.80, 1.37] |
+| 20 | 1.03 [0.84, 1.27] |
+
+In the Optuna study, the collision penalty had no significant effect on conflict rate (ρ = +0.37,
+p = 0.16).
+
+**What a "conflict" is here.** A conflict is two robots *trying* to enter the same cell or swap
+places. The joint move resolver blocks every one of them, so **executed collisions are 0 for every
+policy at every fleet size**. NFR-4 therefore measures how often the learned policies lean on the
+resolver, not physical crashes.
+
+**Why QMIX does not halve them.**
+- The conflict cost (0.05) is small next to the delivery reward (10), so the training signal
+  barely discourages near-misses.
+- Both policies start by imitating the same planner and keep an imitation regulariser, so they
+  inherit similar movement habits.
+- Near-misses rise with activity: policies that deliver more meet each other more often
+  (ρ = +0.74 between completion and conflict rate in the Optuna study).
+
+**What would close it:**
+- a larger conflict penalty tested at the full training budget, rather than the small Optuna
+  budget;
+- giving the mixer explicit information about neighbouring robots' intended moves.
+
+### 5.3 N=20 development gate: failed on battery depletions
+
+**Gate.** Every development episode must reach ≥ 80% completion with 0 executed collisions and
+0 avoidable battery depletions.
+
+**Measured.**
+
+| N=20 policy | Development completion | Collisions | Depletions (5 episodes) | Sealed depletions per episode |
+|---|---|---|---|---|
+| QMIX | 93.5% | 0 | 3 | 0.55 |
+| IQL | 92.5% | 0 | 2 | 0.30 |
+| Planner | 100% | 0 | — | 0 |
+
+Completion and collisions pass; only depletions fail.
+
+**Why.** The map is fixed at every fleet size: 20 robots share the same **2 chargers** that serve 5.
+Charger queues get long, and a learned robot sees only its local 5 × 5 window, so it cannot see how
+long the queue is before committing to a trip. The privileged planner sees every charger and avoids
+this. RL already cut depletions from about 25 (after imitation) to 3, but did not remove them.
+
+**What would close it:**
+- scaling the map and charging capacity with fleet size (the outbound workload's `area_per_robot`
+  mode already grows the map with N; the mixed workload would need the same, plus more chargers);
+- adding charger-queue length to the observation;
+- training longer at N=20.
+
+None of these changes the conclusion that the policies coordinate safely: there are zero collisions
+and zero corridor intrusions at N=20.
+
+## 6. Limitations
 
 - **One training seed per cell.** Confidence intervals cover scenario variance only, not
   run-to-run training variance, so differences between algorithms should be read as indicative.
@@ -200,7 +287,7 @@ The CI gate runs the safety tests on every push.
   high-demand regimes (3× arrivals) overwhelm even the planner (see the drift report).
 - **Synthetic physics and battery model**, with no sim-to-real validation.
 
-## 6. Ethical considerations
+## 7. Ethical considerations
 
 See [24_RESPONSIBLE_AI_AND_SUSTAINABILITY_REPORT.md](24_RESPONSIBLE_AI_AND_SUSTAINABILITY_REPORT.md).
 In short: the reward has no term for the people working alongside the robots; the safety layer

@@ -87,6 +87,7 @@ def main():
     p.add_argument('--device', default='cuda')
     p.add_argument('--demand-scaled', action='store_true',
                    help='Arrival rate grows with N (policies were trained at interval 20, so this tests generalisation)')
+    p.add_argument('--algorithms', nargs='+', default=['planner', 'iql', 'qmix'], choices=('planner', 'iql', 'qmix'))
     p.add_argument('--output')
     args = p.parse_args()
     seeds = SEALED[:args.episodes]
@@ -99,7 +100,7 @@ def main():
     out = Path(args.output or ROOT / 'outputs' / 'evaluation' / name); out.parent.mkdir(parents=True, exist_ok=True)
     for n in args.fleets:
         episodes = {}
-        for algorithm in ('planner', 'iql', 'qmix'):
+        for algorithm in args.algorithms:
             model, source = (None, 'NearestTaskDispatcher') if algorithm == 'planner' else load(algorithm, n, args.device)
             key = f'{algorithm}_N{n}'
             if algorithm != 'planner' and model is None:

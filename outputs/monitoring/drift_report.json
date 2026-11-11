@@ -1,0 +1,49 @@
+{
+  "threshold": 0.25,
+  "method": "population_stability_index (Evidently ValueDrift)",
+  "episodes_per_regime": 10,
+  "num_agents": 5,
+  "regimes": {
+    "reference": {
+      "seed_start": 520000,
+      "arrival_interval": 20
+    },
+    "control_normal": {
+      "seed_start": 530000,
+      "arrival_interval": 20
+    },
+    "high_demand_3x": {
+      "seed_start": 530000,
+      "arrival_interval": 7
+    }
+  },
+  "comparisons": {
+    "control_normal": {
+      "psi": {
+        "route_distance": 0.03283416893692665,
+        "inter_arrival": 0.0,
+        "outbound": 0.0,
+        "queue_length": 0.04419888500819871
+      },
+      "drifted": [],
+      "retrain_triggered": false,
+      "mean_queue_length": 2.2716666666666665,
+      "reference_mean_queue_length": 2.392
+    },
+    "high_demand_3x": {
+      "psi": {
+        "route_distance": 0.03042171931830318,
+        "inter_arrival": 17.768587494282507,
+        "outbound": 0.0,
+        "queue_length": 7.914272355500912
+      },
+      "drifted": [
+        "inter_arrival",
+        "queue_length"
+      ],
+      "retrain_triggered": true,
+      "mean_queue_length": 43.97716666666667,
+      "reference_mean_queue_length": 2.392
+    }
+  }
+}

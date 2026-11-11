@@ -19,6 +19,18 @@ optuna_studies/
 outputs/*
 !outputs/evaluation/
 !outputs/evaluation/*.json
+# Small graded deliverables; the 3.7 MB Evidently HTML reports are regenerable and stay local.
+!outputs/monitoring/
+outputs/monitoring/*
+!outputs/monitoring/drift_report.json
+!outputs/demo/
+outputs/demo/*
+!outputs/demo/*.gif
+!outputs/tuning/
+outputs/tuning/*
+!outputs/tuning/*.json
+!outputs/emissions/
+outputs/emissions/*
 checkpoints/
 *.pt
 *.pth
@@ -41,6 +53,7 @@ checkpoints/
 reports/generated/
 evidently_reports/
 emissions.csv
+!outputs/emissions/emissions.csv
 .codecarbon.config
 
 # --- episode logs (regenerable from seeds; manifests are versioned, logs are not) ---

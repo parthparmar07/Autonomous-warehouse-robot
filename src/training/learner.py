@@ -318,7 +318,7 @@ class RecurrentLearner:
         self.optimizer.zero_grad()
         loss.backward()
         actor_norm=nn.utils.clip_grad_norm_(self.actor.parameters(),self.config.gradient_clip,error_if_nonfinite=True)
-        mixer_norm=nn.utils.clip_grad_norm_(self.mixer.parameters(),self.config.gradient_clip,error_if_nonfinite=True) if self.mixer is not None else torch.tensor(0.0)
+        mixer_norm=nn.utils.clip_grad_norm_(self.mixer.parameters(),self.config.gradient_clip,error_if_nonfinite=True) if self.mixer is not None else torch.zeros((),device=actor_norm.device)
         norm=float(torch.hypot(torch.as_tensor(actor_norm),torch.as_tensor(mixer_norm)).item())
         self.optimizer.step()
         self.training_kind=('bc_regularized_rl' if self.config.bc_aux_weight else 'bc_then_rl') if self.training_kind.startswith('bc') else 'rl'

@@ -7,7 +7,7 @@ Structured multi-agent warehouse simulation and CTDE reinforcement learning (`QM
 - **Structured Warehouse (`warehouse_v6_research`)**:
   - $20 \times 20$ structured grid with shelf rows (`1`), human-worker safety corridors (`2`), pickup bays (`3`), drop bays (`4`), charger docks (`5`), transfer bays (`6`), and staging/parking cells (`7`).
   - Supports both outbound fulfillment and stock-backed mixed inbound/outbound workflows (`mixed_stock_v1` in [`src/environment/mixed_logistics.py`](src/environment/mixed_logistics.py)).
-  - Hard safety layer ([`src/safety/action_mask.py`](src/safety/action_mask.py) and [`src/environment/physics.py`](src/environment/physics.py)) masks and physically blocks any entry into human-worker safety corridors.
+  - Hard, non-learned safety layer in [`src/environment/physics.py`](src/environment/physics.py): `get_action_mask` masks corridor entry before action selection, and `step` physically refuses it even if commanded.
   - Realistic battery dynamics: movement, loaded-movement, turning, waiting, and 3-tick bay service energy costs; voluntary charging gated at $\text{SoC} \le 30\%$ when unloaded and unassigned.
 - **Egocentric Observations (`egocentric_range_v3_pose_feedback`, `OBS_DIM = 348`)**:
   - $5 \times 5 \times 12$ local FOV/occlusion grid (with configurable sensor dropout and latency), proprioception, mode one-hot encoding, sensor configuration, and 2-step executed action feedback.
@@ -56,3 +56,15 @@ Run configurations, learning curves, development outcomes, and resumable checkpo
 ```
 
 Open `http://127.0.0.1:8080`. Missing or incompatible learned policies fail closed and are reported explicitly.
+
+## Portfolio deliverables
+
+| Deliverable | Command / location |
+|---|---|
+| Scalability benchmark (planner / IQL / QMIX × N=5/10/20, 20 sealed seeds, bootstrap CIs, adversarial safety episodes) | `python -m scripts.evaluate_scalability` → `outputs/evaluation/scalability_N5_N10_N20.json` |
+| Reward-shaping Optuna study (completion vs collision Pareto frontier) | `python -m scripts.tune` → `outputs/tuning/` |
+| Task-queue drift monitor (Evidently PSI, retrain above 0.25) | `python -m scripts.monitor_drift` → `outputs/monitoring/drift_report.json` |
+| Training carbon footprint | `python -m scripts.track_emissions <label> <module> [args]` → `outputs/emissions/emissions.csv` |
+| ONNX actors with parity checks | `artifacts/onnx/warehouse_v6_research/` |
+| 3D PyBullet demo | `scripts/record_demo.py` + `scripts/demo_pybullet.py` → `outputs/demo/qmix_N5_3d.gif` |
+| Model card · Data card · Responsible AI report · Handover guide | [`docs/MODEL_CARD.md`](docs/MODEL_CARD.md) · [`docs/DATA_CARD.md`](docs/DATA_CARD.md) · [`docs/24_RESPONSIBLE_AI_AND_SUSTAINABILITY_REPORT.md`](docs/24_RESPONSIBLE_AI_AND_SUSTAINABILITY_REPORT.md) · [`docs/23_TEAMMATE_HANDOVER_GUIDE.md`](docs/23_TEAMMATE_HANDOVER_GUIDE.md) |

@@ -54,7 +54,7 @@ def main():
     for i, _ in enumerate(data['frames'][0]['robots']):
         robots.append(box((0.32, 0.3, 0.12), ROBOT_COLORS[i % len(ROBOT_COLORS)], (0, 0, 0.14)))
         cargo.append(box((0.18, 0.18, 0.1), (0.8, 0.62, 0.35, 1), (0, 0, -5)))
-    view = p.computeViewMatrix(cameraEyePosition=(w / 2 - 0.5, -h - 3, 15), cameraTargetPosition=(w / 2 - 0.5, -h / 2 - 1, 0),
+    view = p.computeViewMatrix(cameraEyePosition=(w / 2 - 0.5, -h - 4, 16), cameraTargetPosition=(w / 2 - 0.5, -h / 2 - 0.5, 0),
                                cameraUpVector=(0, 0, 1))
     proj = p.computeProjectionMatrixFOV(fov=45, aspect=16 / 10, nearVal=0.1, farVal=100)
     images = []

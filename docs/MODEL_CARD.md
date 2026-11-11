@@ -101,6 +101,71 @@ Brackets are 95% bootstrap CIs over the 20 scenarios.
 6. **Throughput is capped by demand.** All policies stay near 0.0667 orders per tick
    (40 orders / 600 ticks), so adding robots cannot raise it.
 
+### Demand scaled with fleet size
+
+Arrivals every 20 / 10 / 7 ticks at N = 5 / 10 / 20, i.e. 40 / 80 / 116 orders per shift. Policies
+were trained at the 20-tick rate, so this tests generalisation to higher load. Source:
+`outputs/evaluation/scalability_demand_scaled.json`, 20 sealed seeds.
+
+| N (orders) | Planner | IQL | QMIX | QMIX − IQL completion (paired) |
+|---|---|---|---|---|
+| 5 (40) | 100% | 98.1% | 99.8% | +1.6 pp [−0.5, +5.5] |
+| 10 (80) | 99.8% | 79.1% [73.5, 84.2] | **94.2%** [88.5, 98.1] | **+15.1 pp [+7.9, +22.2]** |
+| 20 (116) | 99.8% | 77.0% [73.0, 81.0] | not measured (run interrupted) | — |
+
+Throughput at N=10 is 0.126 orders/tick for QMIX vs 0.105 for IQL, with 0 executed collisions.
+
+**What this shows.** Under fixed demand, QMIX's advantage over IQL is not detectable. Once demand
+grows with the fleet, a clear cooperative advantage appears at N=10. Measured this way, NFR-2's
+hypothesis (a QMIX−IQL gap that grows with N) is supported from N=5 to N=10. The N=20 QMIX cell is
+still needed to tell whether the gap keeps growing, and can be filled in with:
+
+```powershell
+.\.venv\Scripts\python.exe -m scripts.evaluate_scalability --demand-scaled --fleets 20
+```
+
+### Reward-shaping sensitivity (OBJ-5 / NFR-4), Optuna
+
+**Setup.** 16 TPE trials of QMIX at N=5, run by [scripts/tune.py](../scripts/tune.py). Two
+objectives: maximise completion, minimise near-miss conflicts per robot-tick. Searched over:
+- learning rate, 1e-4 to 1e-3;
+- conflict (collision) cost, 0.01 to 1.0;
+- delivery reward, 5 to 20;
+- shaping potential weight, 0 to 4.
+
+Each trial gets an equal, deliberately small budget: 10 demo episodes, 4 BC epochs, 3,000 RL steps.
+Results are scored on development seeds only. Source:
+`outputs/tuning/qmix_N5_steps3000_reward_shaping.json`. 16 completed, 0 failed.
+
+**Pareto frontier:**
+
+| Trial | Completion | Conflicts / robot-tick | lr | Conflict cost | Delivery reward | Potential weight |
+|---|---|---|---|---|---|---|
+| 6 | 0% | 0.020 | 1.3e-4 | 0.015 | 15.7 | 2.40 |
+| 1 | 4% | 0.031 | 2.6e-4 | 0.094 | 5.2 | 1.95 |
+| 5 | 20.5% | 0.048 | 5.7e-4 | 0.433 | 10.2 | 1.28 |
+| 13 | 37% | 0.068 | 5.1e-4 | 0.254 | 15.4 | 1.20 |
+
+**Spearman rank correlations across trials:**
+
+| Parameter | vs completion | vs collision rate |
+|---|---|---|
+| Learning rate | **+0.82** (p < 0.001) | **+0.82** (p < 0.001) |
+| Conflict cost | +0.42 (p = 0.11) | +0.37 (p = 0.16) |
+| Delivery reward | −0.09 (p = 0.73) | 0.00 (p = 1.0) |
+| Potential weight | +0.19 (p = 0.47) | +0.21 (p = 0.44) |
+
+**What this shows.**
+- **Learning rate dominates.** At this budget, the reward weights have no significant effect.
+- **The collision penalty does not show the hoped-for effect.** NFR-4 asks for a monotone
+  *decrease* in collisions as the penalty rises; the estimate is a non-significant *increase*
+  (ρ = +0.37), so that clause is **not supported**.
+- **The frontier comes from activity, not penalties.** Completion and conflict rate rise together
+  (ρ = +0.74, p = 0.001): policies that move and deliver more meet each other more often.
+- **No trial executed a collision**, because the joint move resolver blocks conflicting moves.
+- **Low completions are expected at this budget** and are not comparable with the full-budget
+  models above. A larger budget per trial could change the ranking of the reward weights.
+
 ### Safety
 
 There are two checks, both on the 20 sealed seeds at each fleet size.

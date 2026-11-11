@@ -75,12 +75,15 @@ A lane skips any checkpoint that already exists. Plan on these costs:
 - **Memory:** each run holds 1.5–3 GB of RAM, and RAM, not the GPU, decides how many lanes fit.
 - **GPU use stays low:** the network is small and the warehouse simulation runs on the CPU, so
   GPU utilisation of a few percent is expected.
-- **Time:** on an RTX 4050 laptop, N=10 took about 25 min.
+- **Time:** on an RTX 4050 laptop, N=10 took about 25 min and N=20 about 30 min.
+- **A misleading error:** on Windows, "CUDA error: out of memory" with the GPU nearly empty
+  means **system RAM** is exhausted. Close other apps or run fewer jobs at once.
 
 ### Benchmark, drift, tuning, export
 
 ```powershell
 .\.venv\Scripts\python.exe -m scripts.evaluate_scalability            # needs N=10/20 checkpoints
+.\.venv\Scripts\python.exe -m scripts.evaluate_scalability --demand-scaled   # arrivals every 20/10/7 ticks at N=5/10/20
 .\.venv\Scripts\python.exe -m scripts.monitor_drift                   # ~2 min
 .\.venv\Scripts\python.exe -m scripts.tune --trials 16 --steps 3000   # ~5 min per trial
 .\.venv\Scripts\python.exe -m scripts.export_onnx --checkpoint artifacts/warehouse_v6_research/mixed_stock_v1/qmix_policy_N5.pt --output artifacts/onnx/warehouse_v6_research/mixed_stock_v1/qmix_policy_N5.onnx
@@ -111,7 +114,12 @@ See the [model card](MODEL_CARD.md) and the RAI report for the final numbers.
 | ONNX export of the six N=5 policies | Done, parity verified |
 | Drift monitor | Done: control 0.04 max PSI (no trigger); 3× demand triggers (queue length 2.4 → 44) |
 | 3D demo | Done |
-| N=10 / N=20 training, sealed scalability benchmark, Optuna study | Running at handover; results go into the model card and RAI report ETH-4 |
+| N=10 / N=20 QMIX and IQL training | Done (GPU, N=5 recipe). N=10 passes the dev gate. N=20 fails it on 2–3 battery depletions (20 robots, 2 chargers). |
+| Sealed 9-cell scalability benchmark, fixed demand | Done. QMIX 99.8% at N=5. QMIX is faster than IQL at N=10. The QMIX−IQL completion gap does not widen with N. NFR-4 collision ratio not met. |
+| Demand-scaled benchmark (arrivals grow with N) | N=5 and N=10 done: QMIX beats IQL by +15.1 pp [+7.9, +22.2] at N=10. **N=20 QMIX not measured** (run interrupted). Fill it with `python -m scripts.evaluate_scalability --demand-scaled --fleets 20` (~25 min). |
+| Adversarial safety, N=5/10/20 | Done. 376,539 attempts blocked, 0 intrusions. |
+| Optuna reward-shaping study | Done. Learning rate dominates; collision penalty has no significant effect. |
+| RAI report ETH-4 (energy) | Done. No measurable QMIX energy saving at N=10; training footprint about 34 g CO₂e. |
 | Multiple training seeds per cell | **Not done.** CIs cover scenario variance only. Training 2+ seeds per cell would allow `paired_hierarchical_interval` to report training-run variance. |
 | Out-of-distribution layouts, sim-to-real | Not in scope this semester |
 

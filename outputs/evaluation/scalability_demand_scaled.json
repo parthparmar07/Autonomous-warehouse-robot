@@ -1,0 +1,1221 @@
+{
+  "workload": "mixed_stock_v1",
+  "split": "sealed_test",
+  "seeds": [
+    200000,
+    200001,
+    200002,
+    200003,
+    200004,
+    200005,
+    200006,
+    200007,
+    200008,
+    200009,
+    200010,
+    200011,
+    200012,
+    200013,
+    200014,
+    200015,
+    200016,
+    200017,
+    200018,
+    200019
+  ],
+  "horizon": 600,
+  "arrival_interval": {
+    "5": 20,
+    "10": 10,
+    "20": 7
+  },
+  "demand_scaled": true,
+  "ci_note": "Percentile bootstrap over sealed scenarios; one training seed per cell (scenario variance only).",
+  "cells": {
+    "planner_N5": {
+      "status": "evaluated",
+      "checkpoint": "NearestTaskDispatcher",
+      "num_agents": 5,
+      "episodes": 20,
+      "arrival_interval": 20,
+      "orders_released": 40.0,
+      "metrics": {
+        "completion_rate": {
+          "mean": 1.0,
+          "ci95": [
+            1.0,
+            1.0
+          ]
+        },
+        "delivery_time": {
+          "mean": 36.213750000000005,
+          "ci95": [
+            34.3261875,
+            38.142500000000005
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.00021666666666666666,
+          "ci95": [
+            0.00011666666666666665,
+            0.0003166666666666667
+          ]
+        },
+        "collision_count": {
+          "mean": 0.65,
+          "ci95": [
+            0.35,
+            0.95
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 341.39517719944536,
+          "ci95": [
+            331.4884995409566,
+            351.4950256953737
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 8.53487942998613,
+          "ci95": [
+            8.287212488523913,
+            8.787375642384342
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.06666666666666667,
+          "ci95": [
+            0.06666666666666667,
+            0.06666666666666667
+          ]
+        }
+      },
+      "completion_per_seed": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "scenario_hashes": [
+        "a2712fdd575c3721aea586add21f7d7bf4b1ace360db7efda926edce4cb4cfb4",
+        "ce060de54a3f7750cdce96ae1f0f157a181978a54072a6a174d0b5474805ec00",
+        "9ad9cda6af12339fdcd6285387353e76bd07007d0b850b19bd23aece28212796",
+        "7208e18390ac5d614f1190067d51b3e5e7917c92a1306df5e07155e48df1d766",
+        "b4a6ccc2da1be898cfa28691f1f8dfc986ae2d8e1c6fcddeea469a9891c393a7",
+        "50a0988e1ec4d94c9c49f7967d21f9d757d41ab5b1957fd270bdd22c022dff4f",
+        "37e528391f6435b211e70ec68e34d4a57943c582259c6ea93a081f1461592522",
+        "eaa94b02ce9708914bfc3b9c17b7dfdb4ea1db2212700758ca7b157f5fb71fea",
+        "3ff170bf5049a7f96677d99228c094f5f10a99a100cefbd19a0d6acc677cda86",
+        "f0cee6b9cca1786063492158c5de8fed3adc28899ea8b8280797a4135e82f73c",
+        "c5548b6c5124d1f5a0d011a5b0f760c67851c3651834a65cc74de022b9ecc9e7",
+        "098145fe4a7271bd196a37bd5801d26e0ad12ae40ad3ee78127bdde0b3ec1956",
+        "11e1ed22cc4ed0ac88ef2d15767baf4ba6a78107f753dbc040f0ff5699317cd0",
+        "60d14e3d11343ea706ca6e078a8fec26a3102297f05b1429696b4f570456d68e",
+        "09db8848349133136d804c63a6d77bea460eb0d64768847a7cb0d839543afc47",
+        "9971a198d36815a3aa2b4f8a8b1853393be51662f30f4bad58fee085684bd563",
+        "af11dd385d4af8c74aa1034f3d4027de2fbbff9b5c9ea970a432e719595f3e47",
+        "3cbe6ed5a0ab93291e6200c2b86a06a28076b39c26f41a69771898083c3c5827",
+        "50f1c73d852a7eaa55d0f9498ad068a34c411147be25058638a2e237d567cd6f",
+        "46c4d8be4e8dde0d39e3df3f2432e74b4b3675406a602dea2ac9b2a97fbfa68a"
+      ]
+    },
+    "iql_N5": {
+      "status": "evaluated",
+      "checkpoint": "C:\\Users\\Parth\\OneDrive\\Desktop\\Autonomous warehouse robot\\artifacts\\warehouse_v6_research\\mixed_stock_v1\\iql_policy_N5.pt",
+      "num_agents": 5,
+      "episodes": 20,
+      "arrival_interval": 20,
+      "orders_released": 40.0,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.98125,
+          "ci95": [
+            0.945,
+            1.0
+          ]
+        },
+        "delivery_time": {
+          "mean": 44.54266025641026,
+          "ci95": [
+            40.176218750000004,
+            49.54894150641026
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.010716666666666666,
+          "ci95": [
+            0.0079,
+            0.014400416666666662
+          ]
+        },
+        "collision_count": {
+          "mean": 32.15,
+          "ci95": [
+            23.7,
+            43.20124999999999
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 343.80997482179146,
+          "ci95": [
+            329.5212416007317,
+            356.2329953881864
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 8.773217300794927,
+          "ci95": [
+            8.53134192962988,
+            9.012294723049619
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.06541666666666666,
+          "ci95": [
+            0.063,
+            0.06666666666666667
+          ]
+        }
+      },
+      "completion_per_seed": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.975,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.65,
+        1.0
+      ],
+      "scenario_hashes": [
+        "a2712fdd575c3721aea586add21f7d7bf4b1ace360db7efda926edce4cb4cfb4",
+        "ce060de54a3f7750cdce96ae1f0f157a181978a54072a6a174d0b5474805ec00",
+        "9ad9cda6af12339fdcd6285387353e76bd07007d0b850b19bd23aece28212796",
+        "7208e18390ac5d614f1190067d51b3e5e7917c92a1306df5e07155e48df1d766",
+        "b4a6ccc2da1be898cfa28691f1f8dfc986ae2d8e1c6fcddeea469a9891c393a7",
+        "50a0988e1ec4d94c9c49f7967d21f9d757d41ab5b1957fd270bdd22c022dff4f",
+        "37e528391f6435b211e70ec68e34d4a57943c582259c6ea93a081f1461592522",
+        "eaa94b02ce9708914bfc3b9c17b7dfdb4ea1db2212700758ca7b157f5fb71fea",
+        "3ff170bf5049a7f96677d99228c094f5f10a99a100cefbd19a0d6acc677cda86",
+        "f0cee6b9cca1786063492158c5de8fed3adc28899ea8b8280797a4135e82f73c",
+        "c5548b6c5124d1f5a0d011a5b0f760c67851c3651834a65cc74de022b9ecc9e7",
+        "098145fe4a7271bd196a37bd5801d26e0ad12ae40ad3ee78127bdde0b3ec1956",
+        "11e1ed22cc4ed0ac88ef2d15767baf4ba6a78107f753dbc040f0ff5699317cd0",
+        "60d14e3d11343ea706ca6e078a8fec26a3102297f05b1429696b4f570456d68e",
+        "09db8848349133136d804c63a6d77bea460eb0d64768847a7cb0d839543afc47",
+        "9971a198d36815a3aa2b4f8a8b1853393be51662f30f4bad58fee085684bd563",
+        "af11dd385d4af8c74aa1034f3d4027de2fbbff9b5c9ea970a432e719595f3e47",
+        "3cbe6ed5a0ab93291e6200c2b86a06a28076b39c26f41a69771898083c3c5827",
+        "50f1c73d852a7eaa55d0f9498ad068a34c411147be25058638a2e237d567cd6f",
+        "46c4d8be4e8dde0d39e3df3f2432e74b4b3675406a602dea2ac9b2a97fbfa68a"
+      ]
+    },
+    "qmix_N5": {
+      "status": "evaluated",
+      "checkpoint": "C:\\Users\\Parth\\OneDrive\\Desktop\\Autonomous warehouse robot\\artifacts\\warehouse_v6_research\\mixed_stock_v1\\qmix_policy_N5.pt",
+      "num_agents": 5,
+      "episodes": 20,
+      "arrival_interval": 20,
+      "orders_released": 40.0,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.9974999999999999,
+          "ci95": [
+            0.9924999999999999,
+            1.0
+          ]
+        },
+        "delivery_time": {
+          "mean": 46.585921052631576,
+          "ci95": [
+            41.06746875,
+            52.69998190789474
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.009900000000000003,
+          "ci95": [
+            0.008049999999999998,
+            0.012000416666666661
+          ]
+        },
+        "collision_count": {
+          "mean": 29.7,
+          "ci95": [
+            24.15,
+            36.001249999999985
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 348.7930374006575,
+          "ci95": [
+            339.89812215739084,
+            358.4258206321195
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 8.74231937383195,
+          "ci95": [
+            8.515726924293025,
+            8.983500422654199
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.0665,
+          "ci95": [
+            0.06616666666666667,
+            0.06666666666666667
+          ]
+        }
+      },
+      "completion_per_seed": [
+        1.0,
+        0.95,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "scenario_hashes": [
+        "a2712fdd575c3721aea586add21f7d7bf4b1ace360db7efda926edce4cb4cfb4",
+        "ce060de54a3f7750cdce96ae1f0f157a181978a54072a6a174d0b5474805ec00",
+        "9ad9cda6af12339fdcd6285387353e76bd07007d0b850b19bd23aece28212796",
+        "7208e18390ac5d614f1190067d51b3e5e7917c92a1306df5e07155e48df1d766",
+        "b4a6ccc2da1be898cfa28691f1f8dfc986ae2d8e1c6fcddeea469a9891c393a7",
+        "50a0988e1ec4d94c9c49f7967d21f9d757d41ab5b1957fd270bdd22c022dff4f",
+        "37e528391f6435b211e70ec68e34d4a57943c582259c6ea93a081f1461592522",
+        "eaa94b02ce9708914bfc3b9c17b7dfdb4ea1db2212700758ca7b157f5fb71fea",
+        "3ff170bf5049a7f96677d99228c094f5f10a99a100cefbd19a0d6acc677cda86",
+        "f0cee6b9cca1786063492158c5de8fed3adc28899ea8b8280797a4135e82f73c",
+        "c5548b6c5124d1f5a0d011a5b0f760c67851c3651834a65cc74de022b9ecc9e7",
+        "098145fe4a7271bd196a37bd5801d26e0ad12ae40ad3ee78127bdde0b3ec1956",
+        "11e1ed22cc4ed0ac88ef2d15767baf4ba6a78107f753dbc040f0ff5699317cd0",
+        "60d14e3d11343ea706ca6e078a8fec26a3102297f05b1429696b4f570456d68e",
+        "09db8848349133136d804c63a6d77bea460eb0d64768847a7cb0d839543afc47",
+        "9971a198d36815a3aa2b4f8a8b1853393be51662f30f4bad58fee085684bd563",
+        "af11dd385d4af8c74aa1034f3d4027de2fbbff9b5c9ea970a432e719595f3e47",
+        "3cbe6ed5a0ab93291e6200c2b86a06a28076b39c26f41a69771898083c3c5827",
+        "50f1c73d852a7eaa55d0f9498ad068a34c411147be25058638a2e237d567cd6f",
+        "46c4d8be4e8dde0d39e3df3f2432e74b4b3675406a602dea2ac9b2a97fbfa68a"
+      ]
+    },
+    "planner_N10": {
+      "status": "evaluated",
+      "checkpoint": "NearestTaskDispatcher",
+      "num_agents": 10,
+      "episodes": 20,
+      "arrival_interval": 10,
+      "orders_released": 80.0,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.9974999999999999,
+          "ci95": [
+            0.9931249999999998,
+            1.0
+          ]
+        },
+        "delivery_time": {
+          "mean": 50.742025419201056,
+          "ci95": [
+            43.213,
+            59.336308847402606
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.00031666666666666665,
+          "ci95": [
+            0.000225,
+            0.00040833333333333336
+          ]
+        },
+        "collision_count": {
+          "mean": 1.9,
+          "ci95": [
+            1.35,
+            2.45
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 664.1492905429325,
+          "ci95": [
+            651.8294575115733,
+            676.5818268929489
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 8.324720850962365,
+          "ci95": [
+            8.155885194943146,
+            8.503801678161027
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.133,
+          "ci95": [
+            0.13241666666666668,
+            0.13333333333333333
+          ]
+        }
+      },
+      "completion_per_seed": [
+        1.0,
+        0.9875,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.9625,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "scenario_hashes": [
+        "7709a348bf9615edde1dd90bd5e041fa8a992afae2d730aaa75dbc29b69413d7",
+        "4768d09cf191d3c666a5340511338108cee7d013f2a7ca02d8873f99e6b19cc3",
+        "0d109e240347caa0cfd195f4ea0732572759eeb3e8a3ee8003fc2bd93dc90c9c",
+        "4756397e101b7bde4596edbcc679d29c057db6ff802a4ac59005094c95e08d89",
+        "14c749a20f782ddf9834bdffbb9037c3f97709b6cd977598aae9ff0c55c596a6",
+        "cb2598b52fd5271a48d598a4094707dc392d24599eabaefc06124379373667b5",
+        "fe5c6d1d851ba3666f77ad2fb706ed9899950a7aabcee5a08984bca84a7f7178",
+        "10f9752b84ca5a484d1164ff522edd3e73abcc40cad79d84036ee6801dc55ad4",
+        "5423254dac78fd12395a0237c4247a30befba2c8f758b8506f59567531f35fcd",
+        "63247b7d4cff754b4c711fd03c5951b164d750986a78191dc4b8a9501cebf503",
+        "5b851f6734bd58b0421d959f90e024b7204814725c45683982a36fb9d2fbf882",
+        "6453b111662303efa1b23118309815160a303e04cde1ec83c210d6e3babdf96c",
+        "cea35d46ecf081e3d0e2be496848b6d7276241ce3e7972f49bd7aaab0e9379d7",
+        "892a1c69336401852127b0690ad05e5c6ad65303da901872a4c6de8f2586c60f",
+        "abc257248542c62afa5e685f3effd2e72bffa50d62c0a71bc7f17eac72271542",
+        "6da83c6412a084eaf55e6815def6b6af3a7fa695c9fe653616c90796006171ab",
+        "f81315748547fa989f0f533970779593c67345032bce9a9009fbce42f38a4fba",
+        "42e77c51570ec1457c0d60797045e9b41c4ff2d1d26b310e1c8ddc68515462c7",
+        "a28c1722f90b0c07681b920eb47f46b5d43b1f705bfc6e6600eeee838deb5205",
+        "bc237e4203904dcd7a4953359439834e00ed2df52cd7c0c2b2f16e36f60106d7"
+      ]
+    },
+    "iql_N10": {
+      "status": "evaluated",
+      "checkpoint": "C:\\Users\\Parth\\OneDrive\\Desktop\\Autonomous warehouse robot\\artifacts\\warehouse_v6_research\\mixed_stock_v1\\iql_policy_N10.pt",
+      "num_agents": 10,
+      "episodes": 20,
+      "arrival_interval": 10,
+      "orders_released": 80.0,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.790625,
+          "ci95": [
+            0.7350000000000001,
+            0.8418750000000002
+          ]
+        },
+        "delivery_time": {
+          "mean": 118.73180057234902,
+          "ci95": [
+            107.50023986877355,
+            130.2351143498881
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.023733333333333335,
+          "ci95": [
+            0.020374999999999997,
+            0.02743333333333333
+          ]
+        },
+        "collision_count": {
+          "mean": 142.4,
+          "ci95": [
+            122.25,
+            164.6
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 633.7391868781062,
+          "ci95": [
+            594.651394176138,
+            668.5205597737627
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 10.086617589300202,
+          "ci95": [
+            9.681360726033425,
+            10.480365465255167
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.10541666666666669,
+          "ci95": [
+            0.098,
+            0.11225
+          ]
+        }
+      },
+      "completion_per_seed": [
+        0.7125,
+        0.8375,
+        0.825,
+        0.7375,
+        0.875,
+        0.85,
+        0.7125,
+        0.7875,
+        0.5375,
+        0.9875,
+        0.625,
+        0.95,
+        0.8,
+        0.9625,
+        0.825,
+        0.6375,
+        0.725,
+        0.9,
+        0.9,
+        0.625
+      ],
+      "scenario_hashes": [
+        "7709a348bf9615edde1dd90bd5e041fa8a992afae2d730aaa75dbc29b69413d7",
+        "4768d09cf191d3c666a5340511338108cee7d013f2a7ca02d8873f99e6b19cc3",
+        "0d109e240347caa0cfd195f4ea0732572759eeb3e8a3ee8003fc2bd93dc90c9c",
+        "4756397e101b7bde4596edbcc679d29c057db6ff802a4ac59005094c95e08d89",
+        "14c749a20f782ddf9834bdffbb9037c3f97709b6cd977598aae9ff0c55c596a6",
+        "cb2598b52fd5271a48d598a4094707dc392d24599eabaefc06124379373667b5",
+        "fe5c6d1d851ba3666f77ad2fb706ed9899950a7aabcee5a08984bca84a7f7178",
+        "10f9752b84ca5a484d1164ff522edd3e73abcc40cad79d84036ee6801dc55ad4",
+        "5423254dac78fd12395a0237c4247a30befba2c8f758b8506f59567531f35fcd",
+        "63247b7d4cff754b4c711fd03c5951b164d750986a78191dc4b8a9501cebf503",
+        "5b851f6734bd58b0421d959f90e024b7204814725c45683982a36fb9d2fbf882",
+        "6453b111662303efa1b23118309815160a303e04cde1ec83c210d6e3babdf96c",
+        "cea35d46ecf081e3d0e2be496848b6d7276241ce3e7972f49bd7aaab0e9379d7",
+        "892a1c69336401852127b0690ad05e5c6ad65303da901872a4c6de8f2586c60f",
+        "abc257248542c62afa5e685f3effd2e72bffa50d62c0a71bc7f17eac72271542",
+        "6da83c6412a084eaf55e6815def6b6af3a7fa695c9fe653616c90796006171ab",
+        "f81315748547fa989f0f533970779593c67345032bce9a9009fbce42f38a4fba",
+        "42e77c51570ec1457c0d60797045e9b41c4ff2d1d26b310e1c8ddc68515462c7",
+        "a28c1722f90b0c07681b920eb47f46b5d43b1f705bfc6e6600eeee838deb5205",
+        "bc237e4203904dcd7a4953359439834e00ed2df52cd7c0c2b2f16e36f60106d7"
+      ]
+    },
+    "qmix_N10": {
+      "status": "evaluated",
+      "checkpoint": "C:\\Users\\Parth\\OneDrive\\Desktop\\Autonomous warehouse robot\\artifacts\\warehouse_v6_research\\mixed_stock_v1\\qmix_policy_N10.pt",
+      "num_agents": 10,
+      "episodes": 20,
+      "arrival_interval": 10,
+      "orders_released": 80.0,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.9418749999999999,
+          "ci95": [
+            0.8850000000000001,
+            0.98125
+          ]
+        },
+        "delivery_time": {
+          "mean": 90.59096692325122,
+          "ci95": [
+            82.50517917396908,
+            99.46421851759607
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.027491666666666664,
+          "ci95": [
+            0.025091458333333327,
+            0.03024166666666666
+          ]
+        },
+        "collision_count": {
+          "mean": 164.95,
+          "ci95": [
+            150.54875,
+            181.45
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 731.5921440462856,
+          "ci95": [
+            706.238489343691,
+            753.2408699728334
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 9.832582222221482,
+          "ci95": [
+            9.403212607731419,
+            10.384031336566961
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.1,
+          "ci95": [
+            0.0,
+            0.3
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.12558333333333332,
+          "ci95": [
+            0.118,
+            0.1308333333333333
+          ]
+        }
+      },
+      "completion_per_seed": [
+        0.9875,
+        1.0,
+        0.975,
+        0.975,
+        0.95,
+        0.9875,
+        0.95,
+        0.975,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.975,
+        0.9875,
+        0.9125,
+        1.0,
+        0.525,
+        0.725,
+        0.9625,
+        0.95
+      ],
+      "scenario_hashes": [
+        "7709a348bf9615edde1dd90bd5e041fa8a992afae2d730aaa75dbc29b69413d7",
+        "4768d09cf191d3c666a5340511338108cee7d013f2a7ca02d8873f99e6b19cc3",
+        "0d109e240347caa0cfd195f4ea0732572759eeb3e8a3ee8003fc2bd93dc90c9c",
+        "4756397e101b7bde4596edbcc679d29c057db6ff802a4ac59005094c95e08d89",
+        "14c749a20f782ddf9834bdffbb9037c3f97709b6cd977598aae9ff0c55c596a6",
+        "cb2598b52fd5271a48d598a4094707dc392d24599eabaefc06124379373667b5",
+        "fe5c6d1d851ba3666f77ad2fb706ed9899950a7aabcee5a08984bca84a7f7178",
+        "10f9752b84ca5a484d1164ff522edd3e73abcc40cad79d84036ee6801dc55ad4",
+        "5423254dac78fd12395a0237c4247a30befba2c8f758b8506f59567531f35fcd",
+        "63247b7d4cff754b4c711fd03c5951b164d750986a78191dc4b8a9501cebf503",
+        "5b851f6734bd58b0421d959f90e024b7204814725c45683982a36fb9d2fbf882",
+        "6453b111662303efa1b23118309815160a303e04cde1ec83c210d6e3babdf96c",
+        "cea35d46ecf081e3d0e2be496848b6d7276241ce3e7972f49bd7aaab0e9379d7",
+        "892a1c69336401852127b0690ad05e5c6ad65303da901872a4c6de8f2586c60f",
+        "abc257248542c62afa5e685f3effd2e72bffa50d62c0a71bc7f17eac72271542",
+        "6da83c6412a084eaf55e6815def6b6af3a7fa695c9fe653616c90796006171ab",
+        "f81315748547fa989f0f533970779593c67345032bce9a9009fbce42f38a4fba",
+        "42e77c51570ec1457c0d60797045e9b41c4ff2d1d26b310e1c8ddc68515462c7",
+        "a28c1722f90b0c07681b920eb47f46b5d43b1f705bfc6e6600eeee838deb5205",
+        "bc237e4203904dcd7a4953359439834e00ed2df52cd7c0c2b2f16e36f60106d7"
+      ]
+    },
+    "planner_N20": {
+      "status": "evaluated",
+      "checkpoint": "NearestTaskDispatcher",
+      "num_agents": 20,
+      "episodes": 20,
+      "arrival_interval": 7,
+      "orders_released": 116.0,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.9982758620689655,
+          "ci95": [
+            0.9948275862068965,
+            1.0
+          ]
+        },
+        "delivery_time": {
+          "mean": 39.74168719211823,
+          "ci95": [
+            37.64596828817734,
+            42.37196582512314
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.0008541666666666668,
+          "ci95": [
+            0.00027499999999999996,
+            0.0016292708333333322
+          ]
+        },
+        "collision_count": {
+          "mean": 10.25,
+          "ci95": [
+            3.3,
+            19.551249999999982
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 1055.6031796182838,
+          "ci95": [
+            1040.787623456436,
+            1070.8752927494377
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 9.116177054258078,
+          "ci95": [
+            8.984021645310104,
+            9.252124798144868
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.193,
+          "ci95": [
+            0.19233333333333333,
+            0.19333333333333333
+          ]
+        }
+      },
+      "completion_per_seed": [
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.9655172413793104,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "scenario_hashes": [
+        "7af30a16aac7fbc058c3ec60c368dfd8a357e26be72d328032fd18671011e8ca",
+        "66e7dcbcf9f1b57ce611b9484edba638dcf7d4b856afe389cac8ced6312f98a9",
+        "190363d2db1d4d1268b79b4edcae9271123cb636e77d40a6e53f393f4bb2a740",
+        "caae2a5bc2423caee8c70552eb1e5f304900eb0e5d4656b6f8344a3eb0fcc4ed",
+        "c31967d73ec093c72f1354c4261765068e340ee4f647bb279cd058beb2ced587",
+        "5403cc39274f58621b05f29e57fa87bab338bec48dccc1da6e1eff73959a9236",
+        "3d17da66e6d76e817954c8e9f6b0d146548e0c930667c317856f24ff8b89d149",
+        "dea0027deeffac46d061e88db126de718a8f7c37b93495348b5d850158b15af7",
+        "b93a42df96cd22e807610120f79ca571c84004d21e6aa2bd7f87679ecbe0a986",
+        "87dbda39075e9d2e3a9aad7124b3cad76e8729b88ac9a97ecceebcb829883b59",
+        "822ae6824452086620a3636b8040c1465fc49bbc615b574ca8350928e71cc24c",
+        "bd111afbd3722d4ebda522659ce061966ca7be8a16017789b33e8c1bdcbe7409",
+        "fc80a66b7f5ed5c55f46f58f6ac2826cb5fcea504e6aa23163b0220c2cabcf1e",
+        "c1b259448ab2e374da023b3a156d5d6f053a6c39dc4488c9b2bda6389871b3c5",
+        "7ec50562d2a5df06611224e49fb6f37c85617faba35e8a0710339158f7862934",
+        "b876ad7dcff023630117f9b2291291fee2897ef22b6eec9308ce456b6dcc07f0",
+        "adec4171dfedb5aaf516f815d7c677b732ab494d7dd8542344eb0d7a97f8a031",
+        "9484fea6c650e671c160e9d98eab512f531551c60c4e05d151e3698955480c4b",
+        "fcde81b02eda8f935bc80c61369da4adc25cb8f1a86b11e2b11ad5fd2d10844a",
+        "33c3e33d148502bcc9ce2ebce590480b12bdfc844081305184f2c02af27f44fc"
+      ]
+    },
+    "iql_N20": {
+      "status": "evaluated",
+      "checkpoint": "C:\\Users\\Parth\\OneDrive\\Desktop\\Autonomous warehouse robot\\artifacts\\warehouse_v6_research\\mixed_stock_v1\\iql_policy_N20.pt",
+      "num_agents": 20,
+      "episodes": 20,
+      "arrival_interval": 7,
+      "orders_released": 116.0,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.7702586206896552,
+          "ci95": [
+            0.7297306034482759,
+            0.8103448275862067
+          ]
+        },
+        "delivery_time": {
+          "mean": 127.83454517019675,
+          "ci95": [
+            118.98455490873842,
+            137.05308141260866
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.027587499999999997,
+          "ci95": [
+            0.026079166666666664,
+            0.029095833333333338
+          ]
+        },
+        "collision_count": {
+          "mean": 331.05,
+          "ci95": [
+            312.95,
+            349.15
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 1246.0631550412804,
+          "ci95": [
+            1211.814344119947,
+            1279.4252924432656
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 14.069493117276854,
+          "ci95": [
+            13.57625683945544,
+            14.643769269306148
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 0.95,
+          "ci95": [
+            0.65,
+            1.25
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.14891666666666667,
+          "ci95": [
+            0.14108125000000002,
+            0.15666666666666668
+          ]
+        }
+      },
+      "completion_per_seed": [
+        0.8793103448275862,
+        0.6724137931034483,
+        0.8706896551724138,
+        0.7413793103448276,
+        0.5948275862068966,
+        0.7844827586206896,
+        0.7155172413793104,
+        0.7586206896551724,
+        0.6810344827586207,
+        0.7672413793103449,
+        0.8879310344827587,
+        0.75,
+        0.7672413793103449,
+        0.8362068965517241,
+        0.8017241379310345,
+        0.9482758620689655,
+        0.5862068965517241,
+        0.7844827586206896,
+        0.8362068965517241,
+        0.7413793103448276
+      ],
+      "scenario_hashes": [
+        "7af30a16aac7fbc058c3ec60c368dfd8a357e26be72d328032fd18671011e8ca",
+        "66e7dcbcf9f1b57ce611b9484edba638dcf7d4b856afe389cac8ced6312f98a9",
+        "190363d2db1d4d1268b79b4edcae9271123cb636e77d40a6e53f393f4bb2a740",
+        "caae2a5bc2423caee8c70552eb1e5f304900eb0e5d4656b6f8344a3eb0fcc4ed",
+        "c31967d73ec093c72f1354c4261765068e340ee4f647bb279cd058beb2ced587",
+        "5403cc39274f58621b05f29e57fa87bab338bec48dccc1da6e1eff73959a9236",
+        "3d17da66e6d76e817954c8e9f6b0d146548e0c930667c317856f24ff8b89d149",
+        "dea0027deeffac46d061e88db126de718a8f7c37b93495348b5d850158b15af7",
+        "b93a42df96cd22e807610120f79ca571c84004d21e6aa2bd7f87679ecbe0a986",
+        "87dbda39075e9d2e3a9aad7124b3cad76e8729b88ac9a97ecceebcb829883b59",
+        "822ae6824452086620a3636b8040c1465fc49bbc615b574ca8350928e71cc24c",
+        "bd111afbd3722d4ebda522659ce061966ca7be8a16017789b33e8c1bdcbe7409",
+        "fc80a66b7f5ed5c55f46f58f6ac2826cb5fcea504e6aa23163b0220c2cabcf1e",
+        "c1b259448ab2e374da023b3a156d5d6f053a6c39dc4488c9b2bda6389871b3c5",
+        "7ec50562d2a5df06611224e49fb6f37c85617faba35e8a0710339158f7862934",
+        "b876ad7dcff023630117f9b2291291fee2897ef22b6eec9308ce456b6dcc07f0",
+        "adec4171dfedb5aaf516f815d7c677b732ab494d7dd8542344eb0d7a97f8a031",
+        "9484fea6c650e671c160e9d98eab512f531551c60c4e05d151e3698955480c4b",
+        "fcde81b02eda8f935bc80c61369da4adc25cb8f1a86b11e2b11ad5fd2d10844a",
+        "33c3e33d148502bcc9ce2ebce590480b12bdfc844081305184f2c02af27f44fc"
+      ]
+    }
+  },
+  "comparisons": {
+    "qmix_minus_iql_N5": {
+      "completion_rate": {
+        "mean": 0.016249999999999997,
+        "ci95": [
+          -0.0050000000000000044,
+          0.05499999999999998
+        ]
+      },
+      "conflicts_per_robot_tick": {
+        "mean": -0.0008166666666666669,
+        "ci95": [
+          -0.0034000000000000002,
+          0.0016837499999999934
+        ]
+      },
+      "collision_count": {
+        "mean": -2.45,
+        "ci95": [
+          -10.2,
+          5.051249999999982
+        ]
+      },
+      "energy_per_delivery": {
+        "mean": -0.030897926962977485,
+        "ci95": [
+          -0.26712331438918985,
+          0.16314777815934506
+        ]
+      }
+    },
+    "qmix_minus_planner_N5": {
+      "completion_rate": {
+        "mean": -0.0025000000000000022,
+        "ci95": [
+          -0.007500000000000007,
+          0.0
+        ]
+      },
+      "conflicts_per_robot_tick": {
+        "mean": 0.009683333333333334,
+        "ci95": [
+          0.007882916666666667,
+          0.011733333333333333
+        ]
+      },
+      "collision_count": {
+        "mean": 29.05,
+        "ci95": [
+          23.64875,
+          35.2
+        ]
+      },
+      "energy_per_delivery": {
+        "mean": 0.20743994384581815,
+        "ci95": [
+          0.0944550855488467,
+          0.31464593184824724
+        ]
+      }
+    },
+    "qmix_over_iql_collision_ratio_N5": {
+      "ratio": 0.9237947122861586,
+      "ci95": [
+        0.7467276818265834,
+        1.2019458354624426
+      ]
+    },
+    "qmix_minus_iql_N10": {
+      "completion_rate": {
+        "mean": 0.15125000000000002,
+        "ci95": [
+          0.07874999999999997,
+          0.221875
+        ]
+      },
+      "conflicts_per_robot_tick": {
+        "mean": 0.0037583333333333336,
+        "ci95": [
+          -0.00017499999999999894,
+          0.007992083333333328
+        ]
+      },
+      "collision_count": {
+        "mean": 22.55,
+        "ci95": [
+          -1.05,
+          47.952499999999965
+        ]
+      },
+      "energy_per_delivery": {
+        "mean": -0.25403536707872176,
+        "ci95": [
+          -0.7058964892371412,
+          0.23247064744431525
+        ]
+      }
+    },
+    "qmix_minus_planner_N10": {
+      "completion_rate": {
+        "mean": -0.055625,
+        "ci95": [
+          -0.10814062500000002,
+          -0.018125000000000002
+        ]
+      },
+      "conflicts_per_robot_tick": {
+        "mean": 0.027174999999999998,
+        "ci95": [
+          0.024733125,
+          0.029949999999999997
+        ]
+      },
+      "collision_count": {
+        "mean": 163.05,
+        "ci95": [
+          148.39875,
+          179.7
+        ]
+      },
+      "energy_per_delivery": {
+        "mean": 1.5078613712591171,
+        "ci95": [
+          1.1157193447713245,
+          1.9720417448189467
+        ]
+      }
+    },
+    "qmix_over_iql_collision_ratio_N10": {
+      "ratio": 1.1583567415730338,
+      "ci95": [
+        0.9933734839956246,
+        1.3797055209477447
+      ]
+    }
+  },
+  "safety": {}
+}

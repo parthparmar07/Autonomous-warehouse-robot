@@ -1,0 +1,231 @@
+{
+  "study": "qmix_N5_steps3000_reward_shaping",
+  "scope": "development seeds 300000-300004 only; sealed test never used",
+  "budget": {
+    "steps": 3000,
+    "bc_episodes": 10,
+    "bc_epochs": 4,
+    "num_agents": 5
+  },
+  "trials": [
+    {
+      "number": 0,
+      "params": {
+        "learning_rate": 0.00015145014339916285,
+        "conflict_cost": 0.010938316435811203,
+        "delivery_reward": 11.948277897475169,
+        "potential_weight": 2.8997357167685913
+      },
+      "completion": 0.0,
+      "collision_rate": 0.06793333333333333,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794406108414428400"
+    },
+    {
+      "number": 1,
+      "params": {
+        "learning_rate": 0.0002631501395048965,
+        "conflict_cost": 0.09350916874651947,
+        "delivery_reward": 5.19171221885913,
+        "potential_weight": 1.9494864292794865
+      },
+      "completion": 0.04,
+      "collision_rate": 0.0308,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794406411686303600"
+    },
+    {
+      "number": 2,
+      "params": {
+        "learning_rate": 0.0008745943196468909,
+        "conflict_cost": 0.5030257054040972,
+        "delivery_reward": 15.94946705331228,
+        "potential_weight": 0.43494428747589975
+      },
+      "completion": 0.175,
+      "collision_rate": 0.12793333333333332,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794406826240234700"
+    },
+    {
+      "number": 3,
+      "params": {
+        "learning_rate": 0.000783256793328578,
+        "conflict_cost": 0.51797463630935,
+        "delivery_reward": 7.476299263928407,
+        "potential_weight": 2.5293360552939843
+      },
+      "completion": 0.35,
+      "collision_rate": 0.1436,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794407522601994300"
+    },
+    {
+      "number": 4,
+      "params": {
+        "learning_rate": 0.00010482952375706739,
+        "conflict_cost": 0.017118848069220746,
+        "delivery_reward": 9.745509674188106,
+        "potential_weight": 0.6316492266997478
+      },
+      "completion": 0.0,
+      "collision_rate": 0.025133333333333334,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794408098439830100"
+    },
+    {
+      "number": 5,
+      "params": {
+        "learning_rate": 0.0005740894793692324,
+        "conflict_cost": 0.4330626366620464,
+        "delivery_reward": 10.169367364388261,
+        "potential_weight": 1.2751951874497345
+      },
+      "completion": 0.205,
+      "collision_rate": 0.0484,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794408615185314000"
+    },
+    {
+      "number": 6,
+      "params": {
+        "learning_rate": 0.00012931867077661298,
+        "conflict_cost": 0.014719948367335926,
+        "delivery_reward": 15.690889035332644,
+        "potential_weight": 2.398173585030622
+      },
+      "completion": 0.0,
+      "collision_rate": 0.0198,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794409084021641000"
+    },
+    {
+      "number": 7,
+      "params": {
+        "learning_rate": 0.00011367728158947326,
+        "conflict_cost": 0.09111598266892645,
+        "delivery_reward": 11.025147209459783,
+        "potential_weight": 3.391915990187898
+      },
+      "completion": 0.0,
+      "collision_rate": 0.022533333333333332,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794409487935639100"
+    },
+    {
+      "number": 8,
+      "params": {
+        "learning_rate": 0.0005222148041041565,
+        "conflict_cost": 0.16000299148820724,
+        "delivery_reward": 13.285757322582459,
+        "potential_weight": 3.79640959098655
+      },
+      "completion": 0.27999999999999997,
+      "collision_rate": 0.12253333333333334,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794410007524874500"
+    },
+    {
+      "number": 9,
+      "params": {
+        "learning_rate": 0.0009697802390280274,
+        "conflict_cost": 0.04743600424979334,
+        "delivery_reward": 8.598120185787101,
+        "potential_weight": 3.1857430159517848
+      },
+      "completion": 0.24,
+      "collision_rate": 0.1278,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794410365993767000"
+    },
+    {
+      "number": 10,
+      "params": {
+        "learning_rate": 0.00034003714606266507,
+        "conflict_cost": 0.780337465599187,
+        "delivery_reward": 19.384700479887748,
+        "potential_weight": 1.3292839419018392
+      },
+      "completion": 0.12,
+      "collision_rate": 0.0728,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794410727402561300"
+    },
+    {
+      "number": 11,
+      "params": {
+        "learning_rate": 0.0005047207324090616,
+        "conflict_cost": 0.2307188831063485,
+        "delivery_reward": 13.053137108233893,
+        "potential_weight": 3.830318915467748
+      },
+      "completion": 0.27999999999999997,
+      "collision_rate": 0.0898,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794411083200569300"
+    },
+    {
+      "number": 12,
+      "params": {
+        "learning_rate": 0.0005188767762516508,
+        "conflict_cost": 0.24571508873059897,
+        "delivery_reward": 13.572706637596198,
+        "potential_weight": 1.4562283991145084
+      },
+      "completion": 0.195,
+      "collision_rate": 0.06146666666666667,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794411424372144800"
+    },
+    {
+      "number": 13,
+      "params": {
+        "learning_rate": 0.0005079110287922753,
+        "conflict_cost": 0.2542136612001301,
+        "delivery_reward": 15.368108663061916,
+        "potential_weight": 1.2036723765487034
+      },
+      "completion": 0.37,
+      "collision_rate": 0.06839999999999999,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794411785340631300"
+    },
+    {
+      "number": 14,
+      "params": {
+        "learning_rate": 0.0003353440512624849,
+        "conflict_cost": 0.3177831934250031,
+        "delivery_reward": 19.103429754297935,
+        "potential_weight": 1.0326483755851505
+      },
+      "completion": 0.15,
+      "collision_rate": 0.05553333333333334,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794412165416682500"
+    },
+    {
+      "number": 15,
+      "params": {
+        "learning_rate": 0.00021441492427272854,
+        "conflict_cost": 0.8538602195116819,
+        "delivery_reward": 16.50234144814378,
+        "potential_weight": 0.2322774989487255
+      },
+      "completion": 0.005,
+      "collision_rate": 0.036733333333333326,
+      "executed_collisions": 0.0,
+      "run_id": "qmix_N5_seed11_1794412509765423400"
+    }
+  ],
+  "failed_trials": 0,
+  "pareto_front": [
+    1,
+    5,
+    6,
+    13
+  ],
+  "conflict_cost_vs_collision_rate_spearman": {
+    "rho": 0.37058823529411766,
+    "p": 0.1576504647378207
+  }
+}

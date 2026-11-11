@@ -1,0 +1,167 @@
+{
+  "workload": "mixed_stock_v1",
+  "split": "sealed_test",
+  "seeds": [
+    200000,
+    200001,
+    200002,
+    200003,
+    200004,
+    200005,
+    200006,
+    200007,
+    200008,
+    200009,
+    200010,
+    200011,
+    200012,
+    200013,
+    200014,
+    200015,
+    200016,
+    200017,
+    200018,
+    200019
+  ],
+  "horizon": 600,
+  "arrival_interval": {
+    "20": 7
+  },
+  "demand_scaled": true,
+  "ci_note": "Percentile bootstrap over sealed scenarios; one training seed per cell (scenario variance only).",
+  "cells": {
+    "qmix_N20": {
+      "status": "evaluated",
+      "checkpoint": "C:\\Users\\Parth\\OneDrive\\Desktop\\Autonomous warehouse robot\\artifacts\\warehouse_v6_research\\mixed_stock_v1\\qmix_policy_N20.pt",
+      "num_agents": 20,
+      "episodes": 20,
+      "arrival_interval": 7,
+      "orders_released": 116.0,
+      "metrics": {
+        "completion_rate": {
+          "mean": 0.7836206896551723,
+          "ci95": [
+            0.7353340517241378,
+            0.8280172413793105
+          ]
+        },
+        "delivery_time": {
+          "mean": 124.87708751982204,
+          "ci95": [
+            116.53024874922926,
+            134.3516169105135
+          ]
+        },
+        "conflicts_per_robot_tick": {
+          "mean": 0.02867083333333334,
+          "ci95": [
+            0.027658020833333335,
+            0.0297084375
+          ]
+        },
+        "collision_count": {
+          "mean": 344.05,
+          "ci95": [
+            331.89624999999995,
+            356.50124999999997
+          ]
+        },
+        "executed_collisions": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "energy_used": {
+          "mean": 1206.8738036576533,
+          "ci95": [
+            1170.9830065193687,
+            1239.7483323698386
+          ]
+        },
+        "energy_per_delivery": {
+          "mean": 13.445440149455251,
+          "ci95": [
+            12.895146154630368,
+            14.069591825139952
+          ]
+        },
+        "avoidable_depletions": {
+          "mean": 1.25,
+          "ci95": [
+            0.9,
+            1.6
+          ]
+        },
+        "safety_violations": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "safety_overrides": {
+          "mean": 0.0,
+          "ci95": [
+            0.0,
+            0.0
+          ]
+        },
+        "throughput": {
+          "mean": 0.15150000000000002,
+          "ci95": [
+            0.14216458333333334,
+            0.16008333333333336
+          ]
+        }
+      },
+      "completion_per_seed": [
+        0.5689655172413793,
+        0.8103448275862069,
+        0.896551724137931,
+        0.75,
+        0.603448275862069,
+        0.7413793103448276,
+        0.7241379310344828,
+        0.5603448275862069,
+        0.8620689655172413,
+        0.8017241379310345,
+        0.8189655172413793,
+        0.7241379310344828,
+        0.853448275862069,
+        0.8103448275862069,
+        0.8448275862068966,
+        0.9051724137931034,
+        0.7155172413793104,
+        0.896551724137931,
+        0.8706896551724138,
+        0.9137931034482759
+      ],
+      "scenario_hashes": [
+        "7af30a16aac7fbc058c3ec60c368dfd8a357e26be72d328032fd18671011e8ca",
+        "66e7dcbcf9f1b57ce611b9484edba638dcf7d4b856afe389cac8ced6312f98a9",
+        "190363d2db1d4d1268b79b4edcae9271123cb636e77d40a6e53f393f4bb2a740",
+        "caae2a5bc2423caee8c70552eb1e5f304900eb0e5d4656b6f8344a3eb0fcc4ed",
+        "c31967d73ec093c72f1354c4261765068e340ee4f647bb279cd058beb2ced587",
+        "5403cc39274f58621b05f29e57fa87bab338bec48dccc1da6e1eff73959a9236",
+        "3d17da66e6d76e817954c8e9f6b0d146548e0c930667c317856f24ff8b89d149",
+        "dea0027deeffac46d061e88db126de718a8f7c37b93495348b5d850158b15af7",
+        "b93a42df96cd22e807610120f79ca571c84004d21e6aa2bd7f87679ecbe0a986",
+        "87dbda39075e9d2e3a9aad7124b3cad76e8729b88ac9a97ecceebcb829883b59",
+        "822ae6824452086620a3636b8040c1465fc49bbc615b574ca8350928e71cc24c",
+        "bd111afbd3722d4ebda522659ce061966ca7be8a16017789b33e8c1bdcbe7409",
+        "fc80a66b7f5ed5c55f46f58f6ac2826cb5fcea504e6aa23163b0220c2cabcf1e",
+        "c1b259448ab2e374da023b3a156d5d6f053a6c39dc4488c9b2bda6389871b3c5",
+        "7ec50562d2a5df06611224e49fb6f37c85617faba35e8a0710339158f7862934",
+        "b876ad7dcff023630117f9b2291291fee2897ef22b6eec9308ce456b6dcc07f0",
+        "adec4171dfedb5aaf516f815d7c677b732ab494d7dd8542344eb0d7a97f8a031",
+        "9484fea6c650e671c160e9d98eab512f531551c60c4e05d151e3698955480c4b",
+        "fcde81b02eda8f935bc80c61369da4adc25cb8f1a86b11e2b11ad5fd2d10844a",
+        "33c3e33d148502bcc9ce2ebce590480b12bdfc844081305184f2c02af27f44fc"
+      ]
+    }
+  },
+  "comparisons": {},
+  "safety": {}
+}

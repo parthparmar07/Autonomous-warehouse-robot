@@ -111,18 +111,18 @@ were trained at the 20-tick rate, so this tests generalisation to higher load. S
 |---|---|---|---|---|
 | 5 (40) | 100% | 98.1% | 99.8% | +1.6 pp [−0.5, +5.5] |
 | 10 (80) | 99.8% | 79.1% [73.5, 84.2] | **94.2%** [88.5, 98.1] | **+15.1 pp [+7.9, +22.2]** |
-| 20 (116) | 99.8% | 77.0% [73.0, 81.0] | not measured (run interrupted) | — |
+| 20 (116) | 99.8% | 77.0% [73.0, 81.0] | 78.4% [73.5, 82.8] | +1.3 pp [−4.0, +6.1] |
 
-Throughput at N=10 is 0.126 orders/tick for QMIX vs 0.105 for IQL, with 0 executed collisions.
+The N=20 QMIX cell was evaluated separately (`outputs/evaluation/demand_scaled_qmix_N20.json`) on
+the same 20 scenarios as IQL; the scenario hashes match. Throughput at N=10 is 0.126 orders/tick
+for QMIX vs 0.105 for IQL. Executed collisions and safety violations are 0 in every cell.
 
-**What this shows.** Under fixed demand, QMIX's advantage over IQL is not detectable. Once demand
-grows with the fleet, a clear cooperative advantage appears at N=10. Measured this way, NFR-2's
-hypothesis (a QMIX−IQL gap that grows with N) is supported from N=5 to N=10. The N=20 QMIX cell is
-still needed to tell whether the gap keeps growing, and can be filled in with:
-
-```powershell
-.\.venv\Scripts\python.exe -m scripts.evaluate_scalability --demand-scaled --fleets 20
-```
+**What this shows.**
+- **Fixed demand:** QMIX's advantage over IQL is not detectable.
+- **N=10 under scaled demand:** a clear cooperative advantage appears.
+- **N=20 under about 2.9× demand:** the advantage vanishes. Both learned policies saturate near 78%
+  while the privileged planner holds 99.8%. At that load, congestion and charger contention (§5.3)
+  limit both algorithms more than credit assignment does.
 
 ### Reward-shaping sensitivity (OBJ-5 / NFR-4), Optuna
 
@@ -203,15 +203,19 @@ direction counts as a passing result, provided the measurement is sound.
 | Demand | N=5 | N=10 | N=20 |
 |---|---|---|---|
 | Fixed (40 orders per shift) | +1.6 pp [−0.5, +5.5] | +1.0 pp [−2.1, +4.3] | −3.1 pp [−7.3, +1.0] |
-| Scaled with fleet (40 / 80 / 116 orders) | +1.6 pp [−0.5, +5.5] | **+15.1 pp [+7.9, +22.2]** | pending: QMIX cell being evaluated; IQL scores 77.0% |
+| Scaled with fleet (40 / 80 / 116 orders) | +1.6 pp [−0.5, +5.5] | **+15.1 pp [+7.9, +22.2]** | +1.3 pp [−4.0, +6.1] |
 
 **Why the two rows differ.** At fixed demand there is too little work for coordination to matter.
 Both learned policies sit near the ceiling (92–100%), so no gap can show. Once demand grows with the
-fleet, the warehouse is genuinely busy. QMIX then holds 94.2% completion while IQL drops to 79.1%.
-That gap is significant and well outside the noise.
+fleet, the warehouse is genuinely busy. At N=10 QMIX then holds 94.2% completion while IQL drops to
+79.1%, a significant gap. At N=20 under about 2.9× demand, both fall to about 78% and the gap
+closes. The binding limit there is physical, not coordination: 20 robots, 2 chargers, and narrow
+aisles. The privileged planner still reaches 99.8%, so the task itself is achievable.
 
-**Conclusion.** H1 is supported from N=5 to N=10 under load, and is not detectable when demand is
-fixed. Coordinated credit assignment pays off when robots actually compete for work and space.
+**Conclusion.** H1 (a gap that does not shrink with N) is **supported from N=5 to N=10 and not from
+N=10 to N=20**. Coordinated credit assignment gives a large, significant benefit under moderate
+load. At the highest load, both learned policies are limited by their local view of charger queues
+and congestion. Closing that would need the changes listed under §5.3.
 
 ### 5.2 NFR-4: QMIX near-miss conflicts ≤ 50% of IQL's at N=10. Not met
 

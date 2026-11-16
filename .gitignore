@@ -63,6 +63,7 @@ data/episodes/
 
 # --- testing & coverage ---
 .pytest_cache/
+.pytest_tmp/
 tmp/
 .coverage
 coverage.xml

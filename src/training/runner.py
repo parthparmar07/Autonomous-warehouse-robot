@@ -270,7 +270,8 @@ def train(args,evaluation_callback=None):
     if args.mlflow:
         import mlflow
         from src.tracking.mlflow_logger import MLFlowLogger
-        mlflow.set_tracking_uri((ROOT/'outputs'/'mlruns').resolve().as_uri())
+        # MLflow >= 3 refuses the file store; view with: mlflow ui --backend-store-uri sqlite:///outputs/mlflow.db
+        mlflow.set_tracking_uri('sqlite:///'+(ROOT/'outputs'/'mlflow.db').as_posix())
         tracker=MLFlowLogger(ENV_VERSION);tracker.start_run(run_id)
         tracker.log_params(dict(algorithm=model.algorithm,num_agents=args.num_agents,stage=args.stage,seed=args.seed,**asdict(model.config)))
     started=time.perf_counter()

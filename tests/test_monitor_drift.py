@@ -1,5 +1,9 @@
+import pytest
+
 from src.environment.mixed_logistics import make_mixed_scenario
-from scripts.monitor_drift import order_features
+
+pytest.importorskip('evidently')
+from scripts.monitor_drift import order_features  # noqa: E402  (needs evidently, a research-only dependency)
 
 
 def test_order_features_reflect_arrival_interval():

@@ -1,7 +1,8 @@
 from concurrent.futures import ThreadPoolExecutor
+import time
 import pytest
 from fastapi.testclient import TestClient
-from src.deployment.api import app,_sessions
+from src.deployment.api import app,_sessions,SESSION_TTL
 from src.environment.spec import OBS_DIM
 
 def test_sensor_configuration_shapes_and_strict_actions():
@@ -36,5 +37,6 @@ def test_session_ttl_and_identifier_validation():
     with TestClient(app) as client:
         assert client.post('/reset?session_id=bad/id',json={}).status_code==422
         client.post('/reset?session_id=expired',json={})
-        _sessions['expired'].last_access=0
+        # monotonic() counts from boot; 0 is not "old" on a runner up < SESSION_TTL.
+        _sessions['expired'].last_access=time.monotonic()-SESSION_TTL-1
         assert client.get('/state?session_id=expired').status_code==404

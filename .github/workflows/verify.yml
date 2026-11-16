@@ -15,4 +15,5 @@ jobs:
           set -o pipefail
           python -m pytest -q -rfE 2>&1 | tee pytest.log
       - if: always()
-        run: { echo '```'; tail -n 60 pytest.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+        run: |
+          { echo '```'; tail -n 60 pytest.log; echo '```'; } >> "$GITHUB_STEP_SUMMARY"

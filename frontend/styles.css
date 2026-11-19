@@ -944,3 +944,78 @@ canvas {
   color: var(--ink-dim);
   font-size: 0.95rem;
 }
+
+/* ---------------- Tooltips, guide, presets, 3D (demo usability pass) ---------------- */
+
+.tip { position: relative; display: inline-flex; align-items: center; cursor: help; }
+.tip-i {
+  width: 15px; height: 15px; border-radius: 50%; margin-left: 4px;
+  display: inline-grid; place-items: center; flex-shrink: 0;
+  background: var(--accent-soft); border: 1px solid var(--panel-border);
+  color: var(--ink-dim); font-size: 10px; font-weight: 800; font-style: normal; text-transform: none; letter-spacing: 0;
+}
+.tip-i.inline { display: inline-grid; vertical-align: middle; margin: 0 2px; }
+.tip::after {
+  content: attr(data-tip);
+  position: absolute; left: 50%; bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+  width: max-content; max-width: 260px;
+  background: var(--ink); color: #fff;
+  font-size: 0.74rem; font-weight: 500; line-height: 1.45; letter-spacing: 0; text-transform: none; text-align: left; white-space: normal;
+  padding: 8px 10px; border-radius: 8px; box-shadow: 0 10px 28px -10px rgba(0, 0, 0, 0.45);
+  opacity: 0; pointer-events: none; transition: opacity 0.15s, transform 0.15s; z-index: 60;
+}
+.tip.wide::after { max-width: 340px; }
+.tip:hover::after, .tip:focus-visible::after { opacity: 1; transform: translateX(-50%) translateY(0); }
+.tip:not([data-tip])::after, .tip[data-tip=""]::after { display: none; }
+
+.start-here {
+  display: flex; justify-content: space-between; align-items: center; gap: 18px; flex-wrap: wrap;
+  background: var(--good-soft); border: 1px solid #bfe3d1; border-radius: var(--radius-lg);
+  padding: 14px 20px; margin-bottom: 18px; font-size: 0.86rem;
+}
+.start-here ol { margin: 6px 0 0; padding-left: 20px; line-height: 1.6; }
+.start-actions { display: flex; gap: 8px; }
+
+.preset-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.preset {
+  border: 1px solid var(--panel-border); background: var(--panel); border-radius: 999px;
+  padding: 8px 14px; font-weight: 700; font-size: 0.8rem; cursor: pointer; color: var(--ink);
+  transition: background 0.15s, border-color 0.15s;
+}
+.preset:hover { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+.shift-progress { font-size: 0.78rem; font-weight: 700; color: var(--ink-dim); font-variant-numeric: tabular-nums; }
+.status-line.paused { color: var(--ink-faint); }
+.status-line.paused .status-dot { background: var(--ink-faint); box-shadow: none; animation: none; }
+.compact-select { padding: 6px 10px; font-size: 0.8rem; max-width: 140px; }
+
+.scene3d { width: 100%; border-radius: var(--radius-md); overflow: hidden; cursor: grab; }
+.scene3d:active { cursor: grabbing; }
+.canvas-wrap .scene3d canvas { display: block; }
+
+.layout { grid-template-columns: minmax(0, 1fr) 400px; }
+.table-scroll { overflow-x: auto; }
+.status-pill { white-space: nowrap; }
+.battery.low { color: var(--bad); font-weight: 700; }
+.fleet-table th .tip { cursor: help; }
+
+.compare-card.unavailable { display: flex; flex-direction: column; justify-content: center; min-height: 220px; color: var(--ink-dim); text-align: center; }
+.compare-card.unavailable p { font-size: 0.85rem; margin: 6px 12px 0; }
+
+.guide-section { padding: 20px 24px; }
+.guide-title { font-size: 1.05rem; margin-bottom: 10px; }
+.guide-body { font-size: 0.9rem; line-height: 1.65; color: var(--ink); }
+.guide-body p { margin: 0 0 8px; }
+.guide-steps { padding-left: 20px; margin: 0 0 14px; }
+.guide-table { width: 100%; border-collapse: collapse; }
+.guide-table td { padding: 8px 10px; border-bottom: 1px solid #f1f0eb; vertical-align: top; }
+.guide-table td:first-child { width: 210px; white-space: nowrap; }
+.flow { display: flex; flex-wrap: wrap; align-items: stretch; gap: 8px; }
+.flow-box {
+  flex: 1 1 140px; display: flex; flex-direction: column; gap: 4px;
+  background: var(--accent-soft); border: 1px solid var(--panel-border); border-radius: var(--radius-md); padding: 10px 12px; font-size: 0.8rem;
+}
+.flow-box span { color: var(--ink-dim); }
+.flow-box.safety { background: var(--warn-soft); border-color: #efd3a2; }
+.flow-arrow { align-self: center; color: var(--ink-faint); font-weight: 800; }

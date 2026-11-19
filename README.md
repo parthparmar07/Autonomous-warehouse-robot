@@ -50,6 +50,14 @@ Run configurations, learning curves, development outcomes, and resumable checkpo
 
 ## Dashboard
 
+One command starts the decision service and the dashboard and opens the browser:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\demo.ps1
+```
+
+The dashboard has demo presets, a 2D/3D view, tooltips on every control and a Guide page. To start the two parts manually:
+
 ```powershell
 .\.venv-cuda\Scripts\python.exe -m uvicorn src.deployment.api:app --host 127.0.0.1 --port 8000 --workers 1
 .\.venv-cuda\Scripts\python.exe -m http.server 8080 --bind 127.0.0.1 --directory frontend

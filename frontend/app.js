@@ -692,7 +692,7 @@ function SingleView({ algorithms }) {
   const [arrivalInterval, setArrivalInterval] = useState(20);
   const [available, setAvailable] = useState(algorithms);
 
-  useEffect(() => { apiGet(`/algorithms?num_agents=${numAgents}`).then(setAvailable).catch(() => setAvailable([])); }, [numAgents]);
+  useEffect(() => { apiGet(`/algorithms?num_agents=${numAgents}&workload=${workload}`).then(setAvailable).catch(() => setAvailable([])); }, [numAgents, workload]);
 
   useEffect(() => {
     session.reset(algorithm, numAgents, numTasks, seed);

@@ -5,12 +5,12 @@ import time
 import torch
 from threading import RLock
 from contextlib import contextmanager
-from typing import Any
+from typing import Any, Literal
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from src.baselines.nearest_task import NearestTaskDispatcher
 from src.deployment.inference import inference_source, predict_actions
-from src.deployment.policies import describe_algorithms, load_policy
+from src.deployment.policies import describe_algorithms, load_policy, mixed_checkpoint
 from src.deployment.schemas import ObservationRequest, PredictResponse, ResetRequest, StepRequest
 from src.environment.runtime_config import RuntimeConfig
 from src.environment.spec import SENSOR_CHANNELS, OBS_VERSION
@@ -55,9 +55,7 @@ class _Session:
         self.dispatcher = NearestTaskDispatcher(self.env)
         checkpoint=None
         if self.workload=='mixed' and self.algorithm not in ('nearest_task','shortest_path'):
-            from src.deployment.policies import ROOT
-            from src.environment.spec import ENV_VERSION
-            checkpoint=ROOT/'artifacts'/ENV_VERSION/'mixed_stock_v1'/f'{self.algorithm}_policy_N{self.num_agents}.pt'
+            checkpoint=mixed_checkpoint(self.algorithm,self.num_agents)
         self.policy = load_policy(self.algorithm, self.num_agents, env=self.env,checkpoint=checkpoint)
         if hasattr(self.policy,'reset_hidden_states'): self.policy.reset_hidden_states()
 
@@ -113,9 +111,9 @@ def _locked_session(session_id):
 def health(): return dict(status='ok',session_storage='single-process; run one worker')
 
 @app.get('/algorithms')
-def algorithms(num_agents:int=5):
+def algorithms(num_agents:int=5,workload:Literal['outbound','mixed']='outbound'):
     if not 1<=num_agents<=40: raise HTTPException(422,'Fleet must be 1..40')
-    return describe_algorithms(num_agents)
+    return describe_algorithms(num_agents,workload)
 
 @app.post('/predict',response_model=PredictResponse)
 def predict(payload:ObservationRequest):

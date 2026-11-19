@@ -27,7 +27,11 @@ def resolve_checkpoint(name,num_agents):
     path=specific_checkpoint(name,num_agents)
     return path if path.is_file() else None
 
-def checkpoint_exists(name,num_agents=5):
+def mixed_checkpoint(name,num_agents):
+    return _ARTIFACT_DIR/'mixed_stock_v1'/f'{name}_policy_N{num_agents}.pt'
+
+def checkpoint_exists(name,num_agents=5,workload='outbound'):
+    if workload=='mixed':return mixed_checkpoint(name,num_agents).is_file()
     return resolve_checkpoint(name,num_agents) is not None
 
 def save_checkpoint(payload,path):
@@ -57,7 +61,7 @@ def load_policy(name,num_agents,env=None,checkpoint=None):
     model.epsilon=0
     return model
 
-def describe_algorithms(num_agents=5):
-    return [dict(name=name,trained=name in ('nearest_task','shortest_path') or checkpoint_exists(name,num_agents),
+def describe_algorithms(num_agents=5,workload='outbound'):
+    return [dict(name=name,trained=name in ('nearest_task','shortest_path') or checkpoint_exists(name,num_agents,workload),
                  description=description,environment_version=ENV_VERSION,observation_version=OBS_VERSION,
                  fleet_size=num_agents) for name,description in ALGORITHM_DESCRIPTIONS.items()]

@@ -40,3 +40,10 @@ def test_session_ttl_and_identifier_validation():
         # monotonic() counts from boot; 0 is not "old" on a runner up < SESSION_TTL.
         _sessions['expired'].last_access=time.monotonic()-SESSION_TTL-1
         assert client.get('/state?session_id=expired').status_code==404
+
+def test_algorithm_availability_follows_workload():
+    with TestClient(app) as client:
+        trained = lambda wl: {a['name']: a['trained'] for a in client.get(f'/algorithms?num_agents=10&workload={wl}').json()}
+        assert trained('mixed')['qmix'] and trained('mixed')['iql']
+        assert not trained('outbound')['qmix']
+        assert client.get('/algorithms?num_agents=10&workload=bogus').status_code == 422
